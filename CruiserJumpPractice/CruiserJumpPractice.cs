@@ -2,6 +2,7 @@
 
 using BepInEx;
 using BepInEx.Logging;
+using CruiserJumpPractice.Managers;
 using HarmonyLib;
 
 namespace CruiserJumpPractice;
@@ -12,9 +13,11 @@ public class CruiserJumpPractice : BaseUnityPlugin
 {
     internal static new ManualLogSource? Logger { get; private set; }
 
-    internal static Harmony Harmony { get; } = new Harmony(MyPluginInfo.PLUGIN_GUID);
+    internal static Harmony Harmony { get; } = new(MyPluginInfo.PLUGIN_GUID);
 
     internal static InputActions InputActions { get; } = new();
+
+    internal static CruiserManager CruiserManager { get; } = new();
 
     private void Awake()
     {
