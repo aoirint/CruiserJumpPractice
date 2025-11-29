@@ -109,10 +109,13 @@ internal class CruiserManager
             return;
         }
 
+        // NOTE: These values will be synced with vanilla VehicleController.Update and SyncCarPhysicsToOtherClients
         cruiser.transform.position = savedCruiserState.CarPosition;
         cruiser.transform.eulerAngles = savedCruiserState.CarRotation;
         cruiser.steeringAnimValue = savedCruiserState.SteeringInput;
         cruiser.EngineRPM = savedCruiserState.EngineRPM;
+
+        // NOTE: These values will be synced with vanilla Server RPCs
         CruiserUtils.SetCarHP(cruiser, savedCruiserState.CarHP);
         CruiserUtils.SetTurboBoosts(cruiser, savedCruiserState.TurboBoosts);
 

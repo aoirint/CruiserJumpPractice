@@ -119,6 +119,8 @@ internal class HUDManagerPatch
         }
 
         var newMagnetState = !isMagnetOn.Value;
+
+        // NOTE: This value will be synced with vanilla Server RPC
         MagnetUtils.SetMagnet(newMagnetState);
 
         var magnetStateText = newMagnetState ? "ON" : "OFF";
