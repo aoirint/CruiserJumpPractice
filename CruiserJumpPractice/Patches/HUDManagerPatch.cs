@@ -23,7 +23,7 @@ internal class HUDManagerPatch
             return;
         }
 
-        gameObject.AddComponent<CruiserJumpPracticeNetworkBehaviour>();
+        gameObject.AddComponent<CruiserStateNetworkBehaviour>();
     }
 
     [HarmonyPatch(nameof(HUDManager.Update))]
@@ -53,14 +53,14 @@ internal class HUDManagerPatch
             return;
         }
 
-        var cruiserJumpPracticeNetworkBehaviour = NetworkBehaviourUtils.GetCruiserJumpPracticeNetworkBehaviour();
-        if (cruiserJumpPracticeNetworkBehaviour == null)
+        var cruiserStateNetworkBehaviour = NetworkBehaviourUtils.GetCruiserStateNetworkBehaviour();
+        if (cruiserStateNetworkBehaviour == null)
         {
-            Logger.LogError("CruiserJumpPracticeNetworkBehaviour is null.");
+            Logger.LogError("CruiserStateNetworkBehaviour is null.");
             return;
         }
 
-        cruiserJumpPracticeNetworkBehaviour.SaveCruiserStateServerRpc();
+        cruiserStateNetworkBehaviour.SaveCruiserStateServerRpc();
     }
 
     internal static void UpdateLoadCruiser()
@@ -82,13 +82,13 @@ internal class HUDManagerPatch
             return;
         }
 
-        var cruiserJumpPracticeNetworkBehaviour = NetworkBehaviourUtils.GetCruiserJumpPracticeNetworkBehaviour();
-        if (cruiserJumpPracticeNetworkBehaviour == null)
+        var cruiserStateNetworkBehaviour = NetworkBehaviourUtils.GetCruiserStateNetworkBehaviour();
+        if (cruiserStateNetworkBehaviour == null)
         {
-            Logger.LogError("CruiserJumpPracticeNetworkBehaviour is null.");
+            Logger.LogError("CruiserStateNetworkBehaviour is null.");
             return;
         }
 
-        cruiserJumpPracticeNetworkBehaviour.LoadCruiserStateServerRpc();
+        cruiserStateNetworkBehaviour.LoadCruiserStateServerRpc();
     }
 }

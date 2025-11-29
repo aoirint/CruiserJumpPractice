@@ -47,17 +47,17 @@ internal class CruiserManager
 
     internal void SaveCruiserState()
     {
-        var cruiserJumpPracticeNetworkBehaviour = NetworkBehaviourUtils.GetCruiserJumpPracticeNetworkBehaviour();
-        if (cruiserJumpPracticeNetworkBehaviour == null)
+        var cruiserStateNetworkBehaviour = NetworkBehaviourUtils.GetCruiserStateNetworkBehaviour();
+        if (cruiserStateNetworkBehaviour == null)
         {
-            Logger.LogError("CruiserJumpPracticeNetworkBehaviour is null.");
+            Logger.LogError("CruiserStateNetworkBehaviour is null.");
             return;
         }
 
         var cruiser = CruiserUtils.GetCruiser();
         if (cruiser == null)
         {
-            cruiserJumpPracticeNetworkBehaviour.SaveCruiserStateDoneClientRpc(SaveCruiserStateResult.NoCruiserFound);
+            cruiserStateNetworkBehaviour.SaveCruiserStateDoneClientRpc(SaveCruiserStateResult.NoCruiserFound);
             return;
         }
 
@@ -77,35 +77,35 @@ internal class CruiserManager
             turboBoosts: turboBoosts.Value
         );
 
-        cruiserJumpPracticeNetworkBehaviour.SaveCruiserStateDoneClientRpc(SaveCruiserStateResult.Success);
+        cruiserStateNetworkBehaviour.SaveCruiserStateDoneClientRpc(SaveCruiserStateResult.Success);
     }
 
     internal void LoadCruiserState()
     {
-        var cruiserJumpPracticeNetworkBehaviour = NetworkBehaviourUtils.GetCruiserJumpPracticeNetworkBehaviour();
-        if (cruiserJumpPracticeNetworkBehaviour == null)
+        var cruiserStateNetworkBehaviour = NetworkBehaviourUtils.GetCruiserStateNetworkBehaviour();
+        if (cruiserStateNetworkBehaviour == null)
         {
-            Logger.LogError("CruiserJumpPracticeNetworkBehaviour is null.");
+            Logger.LogError("CruiserStateNetworkBehaviour is null.");
             return;
         }
 
         var cruiser = CruiserUtils.GetCruiser();
         if (cruiser == null)
         {
-            cruiserJumpPracticeNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.NoCruiserFound);
+            cruiserStateNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.NoCruiserFound);
             return;
         }
 
         if (savedCruiserState == null)
         {
-            cruiserJumpPracticeNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.NoSavedState);
+            cruiserStateNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.NoSavedState);
             return;
         }
 
         var magnetedToShip = cruiser.magnetedToShip;
         if (magnetedToShip)
         {
-            cruiserJumpPracticeNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.MagnetedToShip);
+            cruiserStateNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.MagnetedToShip);
             return;
         }
 
@@ -116,6 +116,6 @@ internal class CruiserManager
         cruiser.carHP = savedCruiserState.CarHP;
         CruiserUtils.SetTurboBoosts(cruiser, savedCruiserState.TurboBoosts);
 
-        cruiserJumpPracticeNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.Success);
+        cruiserStateNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.Success);
     }
 }

@@ -9,13 +9,13 @@ internal static class NetworkBehaviourUtils
 {
     internal static ManualLogSource Logger => CruiserJumpPractice.Logger!;
 
-    private static CruiserJumpPracticeNetworkBehaviour? cachedCruiserJumpPracticeNetworkBehaviour;
+    private static CruiserStateNetworkBehaviour? cachedCruiserStateNetworkBehaviour;
 
-    public static CruiserJumpPracticeNetworkBehaviour? GetCruiserJumpPracticeNetworkBehaviour()
+    public static CruiserStateNetworkBehaviour? GetCruiserStateNetworkBehaviour()
     {
-        if (cachedCruiserJumpPracticeNetworkBehaviour != null)
+        if (cachedCruiserStateNetworkBehaviour != null)
         {
-            return cachedCruiserJumpPracticeNetworkBehaviour;
+            return cachedCruiserStateNetworkBehaviour;
         }
 
         var hudManager = HUDManagerUtils.GetHUDManager();
@@ -25,15 +25,15 @@ internal static class NetworkBehaviourUtils
             return null;
         }
 
-        var cruiserJumpPracticeNetworkBehaviour = hudManager.GetComponent<CruiserJumpPracticeNetworkBehaviour>();
-        if (cruiserJumpPracticeNetworkBehaviour == null)
+        var cruiserStateNetworkBehaviour = hudManager.GetComponent<CruiserStateNetworkBehaviour>();
+        if (cruiserStateNetworkBehaviour == null)
         {
-            Logger.LogError("CruiserJumpPracticeNetworkBehaviour component not found on HUDManager instance.");
+            Logger.LogError("CruiserStateNetworkBehaviour component not found on HUDManager instance.");
             return null;
         }
 
-        cachedCruiserJumpPracticeNetworkBehaviour = cruiserJumpPracticeNetworkBehaviour;
+        cachedCruiserStateNetworkBehaviour = cruiserStateNetworkBehaviour;
 
-        return cruiserJumpPracticeNetworkBehaviour;
+        return cruiserStateNetworkBehaviour;
     }
 }

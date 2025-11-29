@@ -20,7 +20,7 @@ internal enum LoadCruiserStateResult
     MagnetedToShip
 }
 
-internal class CruiserJumpPracticeNetworkBehaviour : NetworkBehaviour
+internal class CruiserStateNetworkBehaviour : NetworkBehaviour
 {
     internal static ManualLogSource Logger => CruiserJumpPractice.Logger!;
 
