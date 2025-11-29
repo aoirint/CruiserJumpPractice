@@ -8,6 +8,7 @@ using HarmonyLib;
 namespace CruiserJumpPractice;
 
 [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
+[BepInDependency("com.rune580.LethalCompanyInputUtils", BepInDependency.DependencyFlags.HardDependency)]
 [BepInProcess("Lethal Company.exe")]
 public class CruiserJumpPractice : BaseUnityPlugin
 {
