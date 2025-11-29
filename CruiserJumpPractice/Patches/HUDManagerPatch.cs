@@ -105,6 +105,12 @@ internal class HUDManagerPatch
             return;
         }
 
+        if (!NetworkUtils.IsHost())
+        {
+            HUDManagerUtils.DisplayTip("CruiserJumpPractice", "Only the host can toggle the magnet.");
+            return;
+        }
+
         var isMagnetOn = MagnetUtils.IsMagnetOn();
         if (isMagnetOn == null)
         {
