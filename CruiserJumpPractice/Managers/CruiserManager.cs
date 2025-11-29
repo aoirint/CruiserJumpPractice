@@ -61,13 +61,20 @@ internal class CruiserManager
             return;
         }
 
+        var turboBoosts = CruiserUtils.GetTurboBoosts(cruiser);
+        if (turboBoosts == null)
+        {
+            Logger.LogError("Failed to get turbo boosts from cruiser.");
+            return;
+        }
+
         savedCruiserState = new CruiserState(
             carPosition: cruiser.transform.position,
             carRotation: cruiser.transform.eulerAngles,
             steeringInput: cruiser.moveInputVector.x,
             engineRPM: cruiser.EngineRPM,
             carHP: cruiser.carHP,
-            turboBoosts: cruiser.turboBoosts
+            turboBoosts: turboBoosts.Value
         );
 
         cruiserJumpPracticeNetworkBehaviour.SaveCruiserStateDoneClientRpc(SaveCruiserStateResult.Success);
@@ -100,7 +107,7 @@ internal class CruiserManager
         cruiser.steeringAnimValue = savedCruiserState.SteeringInput;
         cruiser.EngineRPM = savedCruiserState.EngineRPM;
         cruiser.carHP = savedCruiserState.CarHP;
-        cruiser.turboBoosts = savedCruiserState.TurboBoosts;
+        CruiserUtils.SetTurboBoosts(cruiser, savedCruiserState.TurboBoosts);
 
         cruiserJumpPracticeNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.Success);
     }

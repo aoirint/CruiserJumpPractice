@@ -26,4 +26,54 @@ internal static class CruiserUtils
 
         return vehicleControllers[0];
     }
+
+    internal static int? GetTurboBoosts(VehicleController cruiser)
+    {
+        try
+        {
+            var turboBoostsField = typeof(VehicleController).GetField("turboBoosts", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            if (turboBoostsField == null)
+            {
+                Logger.LogError("Failed to get 'turboBoosts' field from VehicleController.");
+                return null;
+            }
+
+            var turboBoostsValue = turboBoostsField.GetValue(cruiser);
+            if (turboBoostsValue is int turboBoosts)
+            {
+                return turboBoosts;
+            }
+            else
+            {
+                Logger.LogError("'turboBoosts' field is not of type int.");
+                return null;
+            }
+        }
+        catch (System.Exception error)
+        {
+            Logger.LogError($"Exception while getting 'turboBoosts': {error}");
+            return null;
+        }
+    }
+
+    internal static bool SetTurboBoosts(VehicleController cruiser, int turboBoosts)
+    {
+        try
+        {
+            var turboBoostsField = typeof(VehicleController).GetField("turboBoosts", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            if (turboBoostsField == null)
+            {
+                Logger.LogError("Failed to get 'turboBoosts' field from VehicleController.");
+                return false;
+            }
+
+            turboBoostsField.SetValue(cruiser, turboBoosts);
+            return true;
+        }
+        catch (System.Exception error)
+        {
+            Logger.LogError($"Exception while setting 'turboBoosts': {error}");
+            return false;
+        }
+    }
 }
