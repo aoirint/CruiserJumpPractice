@@ -8,9 +8,9 @@ namespace CruiserJumpPractice;
 
 class InputActions : LcInputActions
 {
-    [InputAction(KeyboardControl.LeftBracket, Name = "Save Cruiser")]
+    [InputAction(KeyboardControl.Backslash, Name = "Save Cruiser")]
     public InputAction? SaveCruiserKey { get; set; }
 
-    [InputAction(KeyboardControl.RightBracket, Name = "Load Cruiser")]
+    [InputAction(KeyboardControl.LeftBracket, Name = "Load Cruiser")]
     public InputAction? LoadCruiserKey { get; set; }
 }
