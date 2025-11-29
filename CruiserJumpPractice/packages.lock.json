@@ -34,6 +34,17 @@
           "UnityEngine.Modules": "2022.3.9"
         }
       },
+      "Rune580.Mods.LethalCompany.InputUtils": {
+        "type": "Direct",
+        "requested": "[0.7.12, )",
+        "resolved": "0.7.12",
+        "contentHash": "WjNgfydv5/3DlSIHrl24CTJSkPFVbkeWshmfrwpKCBXWneuoM0+WEj4mxLRPOdidRkakb6nJwvD+65zHH05GRg==",
+        "dependencies": {
+          "BepInEx.Core": "5.4.21",
+          "BepInEx.PluginInfoProps": "1.1.0",
+          "UnityEngine.Modules": "2022.3.62"
+        }
+      },
       "UnityEngine.Modules": {
         "type": "Direct",
         "requested": "[2022.3.62, )",
