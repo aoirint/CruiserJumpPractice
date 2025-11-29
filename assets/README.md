@@ -6,19 +6,14 @@ This mod helps you practice cruiser jumps repeatedly without having to manually 
 
 Only the host can use all features of this mod. Clients will still receive the synced cruiser state even without this mod installed.
 
-Using it together with [giosuel/Imperium](https://thunderstore.io/c/lethal-company/p/giosuel/Imperium/) is recommended to spawn instantly and set up the cruiser easily. CruiserJumpPractice itself does not include these spawn/setup features.
+[giosuel/Imperium](https://thunderstore.io/c/lethal-company/p/giosuel/Imperium/) is practically required.
+This mod does not provide any way to instantly spawn cruiser, teleport player, or **restore destroyed cruiser**.
 
 ## What it does
 
 - Keybind to save the current cruiser state (position, rotation, HP, turbo boosts).
 - Keybind to load the saved cruiser state.
 - Keybind to toggle the magnet on/off remotely.
-
-## Who needs to install
-
-Host only.
-
-Clients cannot use all features even if they install this mod.
 
 ## Keybinds
 
@@ -27,3 +22,13 @@ You can change the keybinds from the [Rune580/LethalCompany_InputUtils](https://
 - Load Cruiser State: `[` (US: `[`, JP109: `@`)
 - Save Cruiser State: `]` (US: `]`, JP109: `[`)
 - Toggle Magnet: `\` (US: `\`, JP109: `]`)
+
+## Current Limitations
+
+- Exploded cruisers cannot be restored. Use Imperium to respawn the cruiser and then load the saved state.
+
+## Who needs to install
+
+Host only.
+
+Clients cannot use all features even if they install this mod.
