@@ -122,6 +122,6 @@ internal class HUDManagerPatch
         MagnetUtils.SetMagnet(newMagnetState);
 
         var magnetStateText = newMagnetState ? "ON" : "OFF";
-        HUDManagerUtils.DisplayTip("CruiserJumpPractice", $"Magnet turned {magnetStateText}.");
+        HUDManagerUtils.DisplayTip("CruiserJumpPractice", $"Magnet is now {magnetStateText}.");
     }
 }
