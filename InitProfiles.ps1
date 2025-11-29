@@ -25,6 +25,13 @@ $mods = @(
     CopyPaths = @('plugins/LethalCompanyInputUtils')
   },
   @{
+    Name = 'OdinSerializer'
+    Id = 'Lordfirespeed-OdinSerializer'
+    Version = '2024.2.2700'
+    Sha256 = '302446d2191906a0a98b4179aeb8d11d9db03617b61cac35886b03f8afea1273'
+    CopyPaths = @('BepInEx/core/OdinSerializer')
+  }
+  @{
     Name = 'LethalNetworkAPI'
     Id = 'xilophor-LethalNetworkAPI'
     Version = '3.3.2'
