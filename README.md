@@ -1,6 +1,6 @@
 # CruiserJumpPractice
 
-A Lethal Company mod that saves cruiser status to practice cruiser jumps.
+A Lethal Company mod that saves/loads cruiser position, rotation, and condition, and lets you toggle the magnet remotely.
 
 - [User guide](./assets/README.md)
 
