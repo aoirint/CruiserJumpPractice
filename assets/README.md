@@ -24,6 +24,6 @@ Clients cannot use all features even if they install this mod.
 
 You can change the keybinds from the [Rune580/LethalCompany_InputUtils](https://thunderstore.io/c/lethal-company/p/Rune580/LethalCompany_InputUtils/) settings menu.
 
-- Save Cruiser State: `[` (US: `[`, JP109: `@`)
-- Load Cruiser State: `]` (US: `]`, JP109: `[`)
+- Load Cruiser State: `[` (US: `[`, JP109: `@`)
+- Save Cruiser State: `]` (US: `]`, JP109: `[`)
 - Toggle Magnet: `\` (US: `\`, JP109: `]`)
