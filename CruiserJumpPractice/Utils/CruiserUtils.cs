@@ -28,40 +28,9 @@ internal static class CruiserUtils
         return vehicleControllers[0];
     }
 
-    internal static GameNetworkManager? GetGameNetworkManager()
-    {
-        var gameNetworkManager = GameNetworkManager.Instance;
-        if (gameNetworkManager == null)
-        {
-            Logger.LogError("GameNetworkManager.Instance is null.");
-            return null;
-        }
-
-        return gameNetworkManager;
-    }
-
-    internal static PlayerControllerB? GetLocalPlayer()
-    {
-        var gameNetworkManager = GetGameNetworkManager();
-        if (gameNetworkManager == null)
-        {
-            Logger.LogError("GameNetworkManager is null.");
-            return null;
-        }
-
-        var localPlayer = gameNetworkManager.localPlayerController;
-        if (localPlayer == null)
-        {
-            Logger.LogError("localPlayerController is null.");
-            return null;
-        }
-
-        return localPlayer;
-    }
-
     internal static bool SetCarHP(VehicleController cruiser, int carHP)
     {
-        var localPlayer = GetLocalPlayer();
+        var localPlayer = PlayerUtils.GetLocalPlayer();
         if (localPlayer == null)
         {
             Logger.LogError("Local player is null.");
@@ -104,7 +73,7 @@ internal static class CruiserUtils
 
     internal static bool SetTurboBoosts(VehicleController cruiser, int turboBoosts)
     {
-        var localPlayer = GetLocalPlayer();
+        var localPlayer = PlayerUtils.GetLocalPlayer();
         if (localPlayer == null)
         {
             Logger.LogError("Local player is null.");

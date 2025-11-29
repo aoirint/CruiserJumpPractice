@@ -32,7 +32,7 @@ internal static class MagnetUtils
         return startOfRound.magnetOn;
     }
 
-    internal static void SetMagnet(bool on)
+    internal static void ToggleMagnet()
     {
         var startOfRound = GetStartOfRound();
         if (startOfRound == null)
@@ -41,7 +41,21 @@ internal static class MagnetUtils
             return;
         }
 
-        // NOTE: This method sends a ServerRpc internally.
-        startOfRound.SetMagnetOn(on);
+        var magnetLever = startOfRound.magnetLever;
+        if (magnetLever == null)
+        {
+            Logger.LogError("StartOfRound.magnetLever is null.");
+            return;
+        }
+
+        var localPlayer = PlayerUtils.GetLocalPlayer();
+        if (localPlayer == null)
+        {
+            Logger.LogError("Local player is null.");
+            return;
+        }
+
+        // NOTE: This AnimatedObjectTrigger method calls StartOfRound.SetMagnetOn and sends a ServerRpc internally.
+        magnetLever.TriggerAnimation(localPlayer);
     }
 }
