@@ -30,6 +30,16 @@ internal class HUDManagerPatch
     [HarmonyPostfix]
     public static void UpdatePostfix(HUDManager __instance)
     {
+        if (!NetworkUtils.IsClient())
+        {
+            return;
+        }
+
+        if (PlayerUtils.IsLocalPlayerBusy())
+        {
+            return;
+        }
+
         UpdateSaveCruiser();
         UpdateLoadCruiser();
         UpdateToggleMagnet();
@@ -37,11 +47,6 @@ internal class HUDManagerPatch
 
     internal static void UpdateSaveCruiser()
     {
-        if (!NetworkUtils.IsServer())
-        {
-            return;
-        }
-
         if (!(CruiserJumpPractice.InputActions?.SaveCruiserKey?.triggered ?? false))
         {
             return;
@@ -66,11 +71,6 @@ internal class HUDManagerPatch
 
     internal static void UpdateLoadCruiser()
     {
-        if (!NetworkUtils.IsClient())
-        {
-            return;
-        }
-
         if (!(CruiserJumpPractice.InputActions?.LoadCruiserKey?.triggered ?? false))
         {
             return;
@@ -95,11 +95,6 @@ internal class HUDManagerPatch
 
     internal static void UpdateToggleMagnet()
     {
-        if (!NetworkUtils.IsClient())
-        {
-            return;
-        }
-
         if (!(CruiserJumpPractice.InputActions?.ToggleMagnetKey?.triggered ?? false))
         {
             return;

@@ -39,4 +39,96 @@ internal static class PlayerUtils
 
         return localPlayer;
     }
+
+    internal static bool IsLocalPlayerBusy()
+    {
+        if (IsLocalPlayerMenuOpen() == true)
+        {
+            return true;
+        }
+
+        if (IsLocalPlayerInTerminalMenu() == true)
+        {
+            return true;
+        }
+
+        if (IsLocalPlayerTypingChat() == true)
+        {
+            return true;
+        }
+
+        if (IsLocalPlayerDead() == true)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    internal static bool? IsLocalPlayerInTerminalMenu()
+    {
+        var localPlayer = GetLocalPlayer();
+        if (localPlayer == null)
+        {
+            Logger.LogError("Local player is null.");
+            return null;
+        }
+
+        return localPlayer.inTerminalMenu;
+    }
+
+    internal static bool? IsLocalPlayerTypingChat()
+    {
+        var localPlayer = GetLocalPlayer();
+        if (localPlayer == null)
+        {
+            Logger.LogError("Local player is null.");
+            return null;
+        }
+
+        return localPlayer.isTypingChat;
+    }
+
+    internal static QuickMenuManager? GetLocalPlayerQuickMenuManager()
+    {
+        var localPlayer = GetLocalPlayer();
+        if (localPlayer == null)
+        {
+            Logger.LogError("Local player is null.");
+            return null;
+        }
+
+        var quickMenuManager = localPlayer.quickMenuManager;
+        if (quickMenuManager == null)
+        {
+            Logger.LogError("quickMenuManager is null.");
+            return null;
+        }
+
+        return quickMenuManager;
+    }
+
+    internal static bool? IsLocalPlayerMenuOpen()
+    {
+        var quickMenuManager = GetLocalPlayerQuickMenuManager();
+        if (quickMenuManager == null)
+        {
+            Logger.LogError("QuickMenuManager is null.");
+            return null;
+        }
+
+        return quickMenuManager.isMenuOpen;
+    }
+
+    internal static bool? IsLocalPlayerDead()
+    {
+        var localPlayer = GetLocalPlayer();
+        if (localPlayer == null)
+        {
+            Logger.LogError("Local player is null.");
+            return null;
+        }
+
+        return localPlayer.isPlayerDead;
+    }
 }

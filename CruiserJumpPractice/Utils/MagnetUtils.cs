@@ -8,21 +8,9 @@ internal static class MagnetUtils
 {
     internal static ManualLogSource Logger => CruiserJumpPractice.Logger!;
 
-    internal static StartOfRound? GetStartOfRound()
-    {
-        var startOfRound = StartOfRound.Instance;
-        if (startOfRound == null)
-        {
-            Logger.LogError("StartOfRound.Instance is null.");
-            return null;
-        }
-
-        return startOfRound;
-    }
-
     internal static bool? IsMagnetOn()
     {
-        var startOfRound = GetStartOfRound();
+        var startOfRound = StartOfRoundUtils.GetStartOfRound();
         if (startOfRound == null)
         {
             Logger.LogError("StartOfRound is null.");
@@ -34,7 +22,7 @@ internal static class MagnetUtils
 
     internal static void ToggleMagnet()
     {
-        var startOfRound = GetStartOfRound();
+        var startOfRound = StartOfRoundUtils.GetStartOfRound();
         if (startOfRound == null)
         {
             Logger.LogError("StartOfRound is null.");
