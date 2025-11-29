@@ -10,8 +10,34 @@ $BepInExSha256Expected = "2af69fe0aaf821e95c4cd3e4d53860e667c54648f97dca6f971a5b
 
 # Thunderstore mods to install
 $mods = @(
-  @{ Name = 'LCBetterSaves'; Id = 'Pooble-LCBetterSaves'; Version = '1.7.3'; Sha256 = '502c75b79c3a89ccce484893df020adcdb8eade9d3a10ea39f74110efe77b5a6'; CopyPaths = @('LCBetterSaves.dll') },
-  @{ Name = 'LethalCompanyInputUtils'; Id = 'Rune580-LethalCompany_InputUtils'; Version = '0.7.12'; Sha256 = 'c185134830c1bffd47a30872b1b48bc727dc64cb728c9192bb7fdc88bcdbda20'; CopyPaths = @('plugins/LethalCompanyInputUtils') }
+  @{
+    Name = 'LCBetterSaves'
+    Id = 'Pooble-LCBetterSaves'
+    Version = '1.7.3'
+    Sha256 = '502c75b79c3a89ccce484893df020adcdb8eade9d3a10ea39f74110efe77b5a6'
+    CopyPaths = @('LCBetterSaves.dll')
+  },
+  @{
+    Name = 'LethalCompanyInputUtils'
+    Id = 'Rune580-LethalCompany_InputUtils'
+    Version = '0.7.12'
+    Sha256 = 'c185134830c1bffd47a30872b1b48bc727dc64cb728c9192bb7fdc88bcdbda20'
+    CopyPaths = @('plugins/LethalCompanyInputUtils')
+  },
+  @{
+    Name = 'LethalNetworkAPI'
+    Id = 'xilophor-LethalNetworkAPI'
+    Version = '3.3.2'
+    Sha256 = '0b4368904b719577c52a3189c35ac4dc6d6d8dd93409643237a8c5f01516a6c1'
+    CopyPaths = @('BepInEx/plugins/LethalNetworkAPI/LethalNetworkAPI.dll')
+  }
+  @{
+    Name = 'Imperium'
+    Id = 'giosuel-Imperium'
+    Version = '1.1.1'
+    Sha256 = '27378e9b0f854829aff91a925648440399e7d2dd598b549ded4ccdcbb61f2b17'
+    CopyPaths = @('giosuel.Imperium.dll')
+  }
 )
 
 function Download-And-ExtractMod($mod) {
