@@ -8,15 +8,43 @@ $BepInExVersion = "5.4.21"
 $BepInExAssetName = "BepInEx_x64_5.4.21.0.zip"
 $BepInExSha256Expected = "2af69fe0aaf821e95c4cd3e4d53860e667c54648f97dca6f971a5bcd3c22aa34"
 
-$LcBetterSavesVersion = "1.7.3"
-$LcBetterSavesSha256Expected = "502c75b79c3a89ccce484893df020adcdb8eade9d3a10ea39f74110efe77b5a6"
+# Thunderstore mods to install
+$mods = @(
+  @{ Name = 'LCBetterSaves'; Id = 'Pooble-LCBetterSaves'; Version = '1.7.3'; Sha256 = '502c75b79c3a89ccce484893df020adcdb8eade9d3a10ea39f74110efe77b5a6'; CopyPaths = @('LCBetterSaves.dll') },
+  @{ Name = 'LethalCompanyInputUtils'; Id = 'Rune580-LethalCompany_InputUtils'; Version = '0.7.12'; Sha256 = 'c185134830c1bffd47a30872b1b48bc727dc64cb728c9192bb7fdc88bcdbda20'; CopyPaths = @('plugins/LethalCompanyInputUtils') }
+)
 
-$InputUtilsVersion = "0.7.12"
-$InputUtilsSha256Expected = "c185134830c1bffd47a30872b1b48bc727dc64cb728c9192bb7fdc88bcdbda20"
+function Download-And-ExtractMod($mod) {
+  $url = "https://gcdn.thunderstore.io/live/repository/packages/$($mod.Id)-$($mod.Version).zip"
+  $zipPath = Join-Path $env:TEMP ("mod_zip_" + [guid]::NewGuid().ToString() + ".zip")
+  try {
+    Invoke-WebRequest -Uri $url -OutFile $zipPath
+  } catch {
+    Write-Error "Failed to download $($mod.Name): $_"
+    exit 1
+  }
+
+  $hash = (Get-FileHash -Path $zipPath -Algorithm SHA256).Hash.ToLower()
+  if ($hash -ne $mod.Sha256.ToLower()) {
+    Write-Error "$($mod.Name) hash mismatch. Expected: $($mod.Sha256), Actual: $hash"
+    Remove-Item -Path $zipPath -Force
+    exit 1
+  }
+
+  $extractDir = Join-Path $env:TEMP ("mod_" + [guid]::NewGuid().ToString())
+  try {
+    Expand-Archive -Path $zipPath -DestinationPath $extractDir -Force
+  } catch {
+    Write-Error "Failed to extract $($mod.Name): $_"
+    exit 1
+  }
+  Remove-Item -Path $zipPath -Force
+  $mod.ExtractedDir = $extractDir
+}
 
 # Download BepInEx
 $BepInExUrl = "https://github.com/BepInEx/BepInEx/releases/download/v${BepInExVersion}/${BepInExAssetName}"
-$TempBepInExZipFile = Join-Path $env:TEMP ("BepInex_zip_" + [guid]::NewGuid().ToString() + ".zip")
+$TempBepInExZipFile = Join-Path $env:TEMP ("BepInEx_zip_" + [guid]::NewGuid().ToString() + ".zip")
 try {
   Invoke-WebRequest -Uri $BepInExUrl -OutFile $TempBepInExZipFile
 } catch {
@@ -31,7 +59,7 @@ if ($BepInExHash -ne $BepInExSha256Expected.ToLower()) {
   exit 1
 }
 
-$TempBepInExDir = Join-Path $env:TEMP  ("BepInex_" + [guid]::NewGuid().ToString())
+$TempBepInExDir = Join-Path $env:TEMP  ("BepInEx_" + [guid]::NewGuid().ToString())
 try {
   Expand-Archive -Path $TempBepInExZipFile -DestinationPath $TempBepInExDir -Force
 } catch {
@@ -56,59 +84,10 @@ for ($i = 1; $i -le 2; $i++) {
 }
 Remove-Item -Path $TempBepInExDir -Recurse -Force
 
-# Download LcBetterSaves mod
-$LcBetterSavesUrl = "https://gcdn.thunderstore.io/live/repository/packages/Pooble-LCBetterSaves-${LcBetterSavesVersion}.zip"
-$TempLcBetterSavesZipFile = Join-Path $env:TEMP ("lc_better_saves_zip_" + [guid]::NewGuid().ToString() + ".zip")
-try {
-  Invoke-WebRequest -Uri $LcBetterSavesUrl -OutFile $TempLcBetterSavesZipFile
+# Download and extract mods
+foreach ($m in $mods) {
+  Download-And-ExtractMod -mod $m
 }
-catch {
-  Write-Error "Failed to download LcBetterSaves mod: $_"
-  exit 1
-}
-
-$LcBetterSavesHash = (Get-FileHash -Path $TempLcBetterSavesZipFile -Algorithm SHA256).Hash.ToLower()
-if ($LcBetterSavesHash -ne $LcBetterSavesSha256Expected.ToLower()) {
-  Write-Error "LcBetterSaves mod hash mismatch. Expected: $LcBetterSavesSha256Expected, Actual: $LcBetterSavesHash"
-  Remove-Item -Path $TempLcBetterSavesZipFile -Force
-  exit 1
-}
-
-$TempLcBetterSavesDir = Join-Path $env:TEMP  ("lc_better_saves_" + [guid]::NewGuid().ToString())
-try {
-  Expand-Archive -Path $TempLcBetterSavesZipFile -DestinationPath $TempLcBetterSavesDir -Force
-} catch {
-  Write-Error "Failed to extract LcBetterSaves mod: $_"
-  exit 1
-}
-Remove-Item -Path $TempLcBetterSavesZipFile -Force
-
-# Download InputUtils mod
-$InputUtilsUrl = "https://gcdn.thunderstore.io/live/repository/packages/Rune580-LethalCompany_InputUtils-${InputUtilsVersion}.zip"
-$TempInputUtilsZipFile = Join-Path $env:TEMP ("input_utils_zip_" + [guid]::NewGuid().ToString() + ".zip")
-try {
-  Invoke-WebRequest -Uri $InputUtilsUrl -OutFile $TempInputUtilsZipFile
-}
-catch {
-  Write-Error "Failed to download InputUtils mod: $_"
-  exit 1
-}
-
-$InputUtilsHash = (Get-FileHash -Path $TempInputUtilsZipFile -Algorithm SHA256).Hash.ToLower()
-if ($InputUtilsHash -ne $InputUtilsSha256Expected.ToLower()) {
-  Write-Error "InputUtils mod hash mismatch. Expected: $InputUtilsSha256Expected, Actual: $InputUtilsHash"
-  Remove-Item -Path $TempInputUtilsZipFile -Force
-  exit 1
-}
-
-$TempInputUtilsDir = Join-Path $env:TEMP  ("input_utils_" + [guid]::NewGuid().ToString())
-try {
-  Expand-Archive -Path $TempInputUtilsZipFile -DestinationPath $TempInputUtilsDir -Force
-} catch {
-  Write-Error "Failed to extract InputUtils mod: $_"
-  exit 1
-}
-Remove-Item -Path $TempInputUtilsZipFile -Force
 
 # Install mods
 for ($i = 1; $i -le 2; $i++) {
@@ -116,10 +95,24 @@ for ($i = 1; $i -le 2; $i++) {
   $PluginsDir = Join-Path $ProfileDir "BepInEx\plugins"
 
   if (-not (Test-Path $PluginsDir)) {
-    New-Item -ItemType Directory -Path ${PluginsDir} | Out-Null
+    New-Item -ItemType Directory -Path $PluginsDir | Out-Null
   }
 
-  Copy-Item -Path (Join-Path $TempLcBetterSavesDir "LCBetterSaves.dll") -Destination $PluginsDir -Force
-  Copy-Item -Path (Join-Path $TempInputUtilsDir "plugins/LethalCompanyInputUtils") -Destination $PluginsDir -Recurse -Force
+  foreach ($m in $mods) {
+    foreach ($rel in $m.CopyPaths) {
+      $src = Join-Path $m.ExtractedDir $rel
+      if (Test-Path $src) {
+        Copy-Item -Path $src -Destination $PluginsDir -Recurse -Force
+      } else {
+        Write-Warning "Source not found for $($m.Name): $src"
+      }
+    }
+  }
 }
-Remove-Item -Path $TempLcBetterSavesDir -Recurse -Force
+
+# Remove temporary mod extraction directories
+foreach ($m in $mods) {
+  if ($m.ExtractedDir -and (Test-Path $m.ExtractedDir)) {
+    Remove-Item -Path $m.ExtractedDir -Recurse -Force
+  }
+}
