@@ -41,7 +41,7 @@ internal class HUDManagerPatch
             return;
         }
 
-        if (!(CruiserJumpPractice.InputActions.SaveCruiserKey?.triggered ?? false))
+        if (!(CruiserJumpPractice.InputActions?.SaveCruiserKey?.triggered ?? false))
         {
             return;
         }
@@ -70,7 +70,7 @@ internal class HUDManagerPatch
             return;
         }
 
-        if (!(CruiserJumpPractice.InputActions.LoadCruiserKey?.triggered ?? false))
+        if (!(CruiserJumpPractice.InputActions?.LoadCruiserKey?.triggered ?? false))
         {
             return;
         }

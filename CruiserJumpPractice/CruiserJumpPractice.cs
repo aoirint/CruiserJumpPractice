@@ -16,13 +16,15 @@ public class CruiserJumpPractice : BaseUnityPlugin
 
     internal static Harmony Harmony { get; } = new(MyPluginInfo.PLUGIN_GUID);
 
-    internal static InputActions InputActions { get; } = new();
+    internal static InputActions? InputActions { get; private set; }
 
     internal static CruiserManager CruiserManager { get; } = new();
 
     private void Awake()
     {
         Logger = base.Logger;
+
+        InputActions = new InputActions();
 
         Harmony.PatchAll();
 
