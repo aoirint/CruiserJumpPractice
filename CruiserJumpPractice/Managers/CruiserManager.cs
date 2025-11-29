@@ -102,6 +102,13 @@ internal class CruiserManager
             return;
         }
 
+        var magnetedToShip = cruiser.magnetedToShip;
+        if (magnetedToShip)
+        {
+            cruiserJumpPracticeNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.MagnetedToShip);
+            return;
+        }
+
         cruiser.transform.position = savedCruiserState.CarPosition;
         cruiser.transform.eulerAngles = savedCruiserState.CarRotation;
         cruiser.steeringAnimValue = savedCruiserState.SteeringInput;

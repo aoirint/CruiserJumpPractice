@@ -16,7 +16,8 @@ internal enum LoadCruiserStateResult
 {
     Success,
     NoCruiserFound,
-    NoSavedState
+    NoSavedState,
+    MagnetedToShip
 }
 
 internal class CruiserJumpPracticeNetworkBehaviour : NetworkBehaviour
@@ -90,6 +91,10 @@ internal class CruiserJumpPracticeNetworkBehaviour : NetworkBehaviour
         else if (result == LoadCruiserStateResult.NoSavedState)
         {
             HUDManagerUtils.DisplayTip("CruiserJumpPractice", "No saved cruiser state to load.");
+        }
+        else if (result == LoadCruiserStateResult.MagnetedToShip)
+        {
+            HUDManagerUtils.DisplayTip("CruiserJumpPractice", "Cannot load cruiser state while magneted to ship.");
         }
         else
         {
