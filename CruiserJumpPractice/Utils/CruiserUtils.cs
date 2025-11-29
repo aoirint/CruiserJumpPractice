@@ -1,6 +1,7 @@
 #nullable enable
 
 using BepInEx.Logging;
+using GameNetcodeStuff;
 using UnityEngine;
 
 namespace CruiserJumpPractice.Utils;
@@ -25,6 +26,37 @@ internal static class CruiserUtils
         }
 
         return vehicleControllers[0];
+    }
+
+    internal static GameNetworkManager? GetGameNetworkManager()
+    {
+        var gameNetworkManager = GameNetworkManager.Instance;
+        if (gameNetworkManager == null)
+        {
+            Logger.LogError("GameNetworkManager.Instance is null.");
+            return null;
+        }
+
+        return gameNetworkManager;
+    }
+
+    internal static PlayerControllerB? GetLocalPlayer()
+    {
+        var gameNetworkManager = GetGameNetworkManager();
+        if (gameNetworkManager == null)
+        {
+            Logger.LogError("GameNetworkManager is null.");
+            return null;
+        }
+
+        var localPlayer = gameNetworkManager.localPlayerController;
+        if (localPlayer == null)
+        {
+            Logger.LogError("localPlayerController is null.");
+            return null;
+        }
+
+        return localPlayer;
     }
 
     internal static int? GetTurboBoosts(VehicleController cruiser)
@@ -58,22 +90,15 @@ internal static class CruiserUtils
 
     internal static bool SetTurboBoosts(VehicleController cruiser, int turboBoosts)
     {
-        try
+        var localPlayer = GetLocalPlayer();
+        if (localPlayer == null)
         {
-            var turboBoostsField = typeof(VehicleController).GetField("turboBoosts", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-            if (turboBoostsField == null)
-            {
-                Logger.LogError("Failed to get 'turboBoosts' field from VehicleController.");
-                return false;
-            }
-
-            turboBoostsField.SetValue(cruiser, turboBoosts);
-            return true;
-        }
-        catch (System.Exception error)
-        {
-            Logger.LogError($"Exception while setting 'turboBoosts': {error}");
+            Logger.LogError("Local player is null.");
             return false;
         }
+
+        cruiser.AddTurboBoostOnLocalClient(turboBoosts);
+        cruiser.AddTurboBoostServerRpc((int)localPlayer.playerClientId, turboBoosts);
+        return true;
     }
 }
