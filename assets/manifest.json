@@ -4,6 +4,7 @@
     "website_url": "https://github.com/aoirint/CruiserJumpPractice",
     "description": "Saves/loads cruiser position, rotation, and condition, and lets you toggle the magnet remotely.",
     "dependencies": [
-        "BepInEx-BepInExPack-5.4.2100"
+        "BepInEx-BepInExPack-5.4.2100",
+        "Rune580-LethalCompany_InputUtils-0.7.12"
     ]
 }
