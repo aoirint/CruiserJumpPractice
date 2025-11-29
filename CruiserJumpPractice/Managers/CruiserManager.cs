@@ -113,7 +113,7 @@ internal class CruiserManager
         cruiser.transform.eulerAngles = savedCruiserState.CarRotation;
         cruiser.steeringAnimValue = savedCruiserState.SteeringInput;
         cruiser.EngineRPM = savedCruiserState.EngineRPM;
-        cruiser.carHP = savedCruiserState.CarHP;
+        CruiserUtils.SetCarHP(cruiser, savedCruiserState.CarHP);
         CruiserUtils.SetTurboBoosts(cruiser, savedCruiserState.TurboBoosts);
 
         cruiserStateNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.Success);

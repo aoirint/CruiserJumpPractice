@@ -59,6 +59,20 @@ internal static class CruiserUtils
         return localPlayer;
     }
 
+    internal static bool SetCarHP(VehicleController cruiser, int carHP)
+    {
+        var localPlayer = GetLocalPlayer();
+        if (localPlayer == null)
+        {
+            Logger.LogError("Local player is null.");
+            return false;
+        }
+
+        cruiser.AddEngineOilOnLocalClient(carHP);
+        cruiser.AddEngineOilServerRpc((int)localPlayer.playerClientId, carHP);
+        return true;
+    }
+
     internal static int? GetTurboBoosts(VehicleController cruiser)
     {
         try
