@@ -32,6 +32,7 @@ internal class HUDManagerPatch
     {
         UpdateSaveCruiser();
         UpdateLoadCruiser();
+        UpdateToggleMagnet();
     }
 
     internal static void UpdateSaveCruiser()
@@ -90,5 +91,31 @@ internal class HUDManagerPatch
         }
 
         cruiserStateNetworkBehaviour.LoadCruiserStateServerRpc();
+    }
+
+    internal static void UpdateToggleMagnet()
+    {
+        if (!NetworkUtils.IsClient())
+        {
+            return;
+        }
+
+        if (!(CruiserJumpPractice.InputActions?.ToggleMagnetKey?.triggered ?? false))
+        {
+            return;
+        }
+
+        var isMagnetOn = MagnetUtils.IsMagnetOn();
+        if (isMagnetOn == null)
+        {
+            Logger.LogError("IsMagnetOn returned null.");
+            return;
+        }
+
+        var newMagnetState = !isMagnetOn.Value;
+        MagnetUtils.SetMagnet(newMagnetState);
+
+        var magnetStateText = newMagnetState ? "ON" : "OFF";
+        HUDManagerUtils.DisplayTip("CruiserJumpPractice", $"Magnet turned {magnetStateText}.");
     }
 }
