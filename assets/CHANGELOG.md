@@ -1,4 +1,4 @@
-## v0.1.3 - 2025-11-30 UTC
+## v0.1.4 - 2025-11-30 UTC
 
 - Enabled keybind actions while the player is dead, same as Imperium.
 
