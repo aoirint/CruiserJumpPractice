@@ -57,11 +57,6 @@ internal static class PlayerUtils
             return true;
         }
 
-        if (IsLocalPlayerDead() == true)
-        {
-            return true;
-        }
-
         return false;
     }
 
@@ -118,17 +113,5 @@ internal static class PlayerUtils
         }
 
         return quickMenuManager.isMenuOpen;
-    }
-
-    internal static bool? IsLocalPlayerDead()
-    {
-        var localPlayer = GetLocalPlayer();
-        if (localPlayer == null)
-        {
-            Logger.LogError("Local player is null.");
-            return null;
-        }
-
-        return localPlayer.isPlayerDead;
     }
 }
