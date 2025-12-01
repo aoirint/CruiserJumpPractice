@@ -4,16 +4,18 @@ A Lethal Company mod that saves/loads cruiser position, rotation, and condition,
 
 This mod helps you practice cruiser jumps repeatedly without having to manually reset the cruiser every attempt.
 
-Only the host can use all features of this mod. Clients will still receive the synced cruiser state even without this mod installed.
-
-[giosuel/Imperium](https://thunderstore.io/c/lethal-company/p/giosuel/Imperium/) is practically required.
-This mod does not provide any way to instantly spawn cruiser, teleport player, or **restore destroyed cruiser**.
+This mod works for v73+. Maybe works for the earlier versions, but not tested.
 
 ## What it does
 
 - Keybind to save the current cruiser state (position, rotation, HP, turbo boosts).
 - Keybind to load the saved cruiser state.
 - Keybind to toggle the magnet on/off remotely.
+
+Only the host can use all features of this mod. Clients will still receive the synced cruiser state even without this mod installed.
+
+[giosuel/Imperium](https://thunderstore.io/c/lethal-company/p/giosuel/Imperium/) is practically required.
+This mod does not provide any way to instantly spawn cruiser, teleport player, or **restore destroyed cruiser**.
 
 ## Keybinds
 
