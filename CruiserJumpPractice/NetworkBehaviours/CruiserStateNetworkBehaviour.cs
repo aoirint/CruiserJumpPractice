@@ -9,7 +9,8 @@ namespace CruiserJumpPractice.NetworkBehaviours;
 internal enum SaveCruiserStateResult
 {
     Success,
-    NoCruiserFound
+    NoCruiserFound,
+    UnexpectedState
 }
 
 internal enum LoadCruiserStateResult
@@ -17,7 +18,8 @@ internal enum LoadCruiserStateResult
     Success,
     NoCruiserFound,
     NoSavedState,
-    MagnetedToShip
+    MagnetedToShip,
+    UnexpectedState
 }
 
 internal class CruiserStateNetworkBehaviour : NetworkBehaviour

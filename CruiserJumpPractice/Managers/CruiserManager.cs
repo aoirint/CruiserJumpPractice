@@ -1,6 +1,8 @@
 #nullable enable
 
 using BepInEx.Logging;
+using CruiserJumpPractice.BaseGame.Controllers.Server.Cruiser;
+using CruiserJumpPractice.BaseGame.Finders;
 using CruiserJumpPractice.NetworkBehaviours;
 using CruiserJumpPractice.Utils;
 using UnityEngine;
@@ -39,6 +41,21 @@ internal sealed class CruiserState
     }
 }
 
+class NoCruiserFoundException : System.Exception
+{
+    public NoCruiserFoundException() : base() { }
+}
+
+class NoSavedStateException : System.Exception
+{
+    public NoSavedStateException() : base() { }
+}
+
+class MagnetedToShipException : System.Exception
+{
+    public MagnetedToShipException() : base() { }
+}
+
 internal class CruiserManager
 {
     internal static ManualLogSource Logger => CruiserJumpPractice.Logger!;
@@ -54,30 +71,47 @@ internal class CruiserManager
             return;
         }
 
-        var cruiser = CruiserUtils.GetCruiser();
-        if (cruiser == null)
+        try
         {
+            var cruiserFinder = new CruiserFinder();
+            var cruiser = cruiserFinder.GetCruiser();
+            if (cruiser == null)
+            {
+                throw new NoCruiserFoundException();
+            }
+
+            var localPlayerIdFinder = new LocalPlayerIdFinder();
+            var localPlayerId = localPlayerIdFinder.GetLocalPlayerId();
+
+            var cruiserPhysicsController = new CruiserPhysicsController(cruiser);
+            var cruiserHpController = new CruiserHpController(cruiser, localPlayerId);
+            var cruiserTurboBoostController = new CruiserTurboBoostController(cruiser, localPlayerId);
+
+            var cruiserPhysics = cruiserPhysicsController.GetCruiserPhysics();
+            var cruiserHP = cruiserHpController.GetCruiserHP();
+            var turboBoosts = cruiserTurboBoostController.GetCruiserTurboBoosts();
+
+            savedCruiserState = new CruiserState(
+                carPosition: cruiserPhysics.CarPosition,
+                carRotation: cruiserPhysics.CarRotation,
+                steeringInput: cruiserPhysics.SteeringInput,
+                engineRPM: cruiserPhysics.EngineRPM,
+                carHP: cruiserHP,
+                turboBoosts: turboBoosts
+            );
+
+            cruiserStateNetworkBehaviour.SaveCruiserStateDoneClientRpc(SaveCruiserStateResult.Success);
+        }
+        catch (NoCruiserFoundException)
+        {
+            Logger.LogInfo("No cruiser found.");
             cruiserStateNetworkBehaviour.SaveCruiserStateDoneClientRpc(SaveCruiserStateResult.NoCruiserFound);
-            return;
         }
-
-        var turboBoosts = CruiserUtils.GetTurboBoosts(cruiser);
-        if (turboBoosts == null)
+        catch (System.Exception error)
         {
-            Logger.LogError("Failed to get turbo boosts from cruiser.");
-            return;
+            Logger.LogError($"Exception while saving cruiser state: {error}");
+            cruiserStateNetworkBehaviour.SaveCruiserStateDoneClientRpc(SaveCruiserStateResult.UnexpectedState);
         }
-
-        savedCruiserState = new CruiserState(
-            carPosition: cruiser.transform.position,
-            carRotation: cruiser.transform.eulerAngles,
-            steeringInput: cruiser.moveInputVector.x,
-            engineRPM: cruiser.EngineRPM,
-            carHP: cruiser.carHP,
-            turboBoosts: turboBoosts.Value
-        );
-
-        cruiserStateNetworkBehaviour.SaveCruiserStateDoneClientRpc(SaveCruiserStateResult.Success);
     }
 
     internal void LoadCruiserState()
@@ -89,36 +123,65 @@ internal class CruiserManager
             return;
         }
 
-        var cruiser = CruiserUtils.GetCruiser();
-        if (cruiser == null)
+        try
         {
+            var cruiserFinder = new CruiserFinder();
+            var cruiser = cruiserFinder.GetCruiser();
+            if (cruiser == null)
+            {
+                throw new NoCruiserFoundException();
+            }
+
+            if (savedCruiserState == null)
+            {
+                throw new NoSavedStateException();
+            }
+
+            var localPlayerIdFinder = new LocalPlayerIdFinder();
+            var localPlayerId = localPlayerIdFinder.GetLocalPlayerId();
+
+            var cruiserMagnetController = new CruiserMagnetController(cruiser);
+            var magnetedToShip = cruiserMagnetController.GetMagnetedToShip();
+            if (magnetedToShip)
+            {
+                throw new MagnetedToShipException();
+            }
+
+            var cruiserPhysicsController = new CruiserPhysicsController(cruiser);
+            var cruiserHpController = new CruiserHpController(cruiser, localPlayerId);
+            var cruiserTurboBoostController = new CruiserTurboBoostController(cruiser, localPlayerId);
+            cruiserPhysicsController.SetCruiserPhysics(
+                new CruiserPhysics(
+                    carPosition: savedCruiserState.CarPosition,
+                    carRotation: savedCruiserState.CarRotation,
+                    steeringInput: savedCruiserState.SteeringInput,
+                    engineRPM: savedCruiserState.EngineRPM
+                )
+            );
+            cruiserHpController.SetCruiserHP(savedCruiserState.CarHP);
+            cruiserTurboBoostController.SetCruiserTurboBoosts(savedCruiserState.TurboBoosts);
+
+            cruiserStateNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.Success);
+        }
+        catch (NoCruiserFoundException)
+        {
+            Logger.LogInfo("No cruiser found.");
             cruiserStateNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.NoCruiserFound);
-            return;
         }
-
-        if (savedCruiserState == null)
+        catch (NoSavedStateException)
         {
+            Logger.LogInfo("No saved cruiser state found.");
             cruiserStateNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.NoSavedState);
-            return;
         }
-
-        var magnetedToShip = cruiser.magnetedToShip;
-        if (magnetedToShip)
+        catch (MagnetedToShipException)
         {
+            Logger.LogInfo("Cruiser is currently magneted to the ship. Cannot load state.");
             cruiserStateNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.MagnetedToShip);
-            return;
         }
-
-        // NOTE: These values will be synced with vanilla VehicleController.Update and SyncCarPhysicsToOtherClients
-        cruiser.transform.position = savedCruiserState.CarPosition;
-        cruiser.transform.eulerAngles = savedCruiserState.CarRotation;
-        cruiser.moveInputVector.x = savedCruiserState.SteeringInput;
-        cruiser.EngineRPM = savedCruiserState.EngineRPM;
-
-        // NOTE: These values will be synced with vanilla Server RPCs
-        CruiserUtils.SetCarHP(cruiser, savedCruiserState.CarHP);
-        CruiserUtils.SetTurboBoosts(cruiser, savedCruiserState.TurboBoosts);
-
-        cruiserStateNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.Success);
+        catch (System.Exception error)
+        {
+            Logger.LogError($"Exception while loading cruiser state: {error}");
+            cruiserStateNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.UnexpectedState);
+        }
     }
 }
