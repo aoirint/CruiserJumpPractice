@@ -17,8 +17,10 @@ internal sealed class HudAdapterV73
         this.gameObjects = gameObjects;
     }
 
-    public void DisplayTip(HUDManager hudManager, string headerText, string bodyText)
+    public void DisplayTip(string headerText, string bodyText)
     {
+        var hudManager = gameObjects.GetHUDManager();
+
         try
         {
             hudManager.DisplayTip(headerText, bodyText);
@@ -28,10 +30,5 @@ internal sealed class HudAdapterV73
             logger.LogError($"Exception while displaying tip: {error}");
             throw new GameInteropException($"Exception while displaying tip: {error}");
         }
-    }
-
-    public void DisplayLocalTip(string headerText, string bodyText)
-    {
-        DisplayTip(gameObjects.GetHUDManager(), headerText, bodyText);
     }
 }

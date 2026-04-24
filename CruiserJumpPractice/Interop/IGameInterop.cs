@@ -15,9 +15,7 @@ internal interface IGameInterop
 
     bool IsLocalPlayerBusy();
 
-    void DisplayTip(HUDManager hudManager, string headerText, string bodyText);
-
-    void DisplayLocalTip(string headerText, string bodyText);
+    void DisplayTip(string headerText, string bodyText);
 
     void SpawnRpcSurrogate();
 

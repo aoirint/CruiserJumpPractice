@@ -48,14 +48,9 @@ internal sealed class GameInteropV73 : IGameInterop
         return playerInterop.IsLocalPlayerBusy();
     }
 
-    public void DisplayTip(HUDManager hudManager, string headerText, string bodyText)
+    public void DisplayTip(string headerText, string bodyText)
     {
-        hudInterop.DisplayTip(hudManager, headerText, bodyText);
-    }
-
-    public void DisplayLocalTip(string headerText, string bodyText)
-    {
-        hudInterop.DisplayLocalTip(headerText, bodyText);
+        hudInterop.DisplayTip(headerText, bodyText);
     }
 
     public void SpawnRpcSurrogate()

@@ -15,6 +15,6 @@ internal sealed class ClientNotificationService
 
     public void ShowCruiserTip(string message)
     {
-        gameInterop.DisplayLocalTip("CruiserJumpPractice", message);
+        gameInterop.DisplayTip("CruiserJumpPractice", message);
     }
 }
