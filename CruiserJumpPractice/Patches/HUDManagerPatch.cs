@@ -2,9 +2,6 @@
 
 using BepInEx.Logging;
 using HarmonyLib;
-using CruiserJumpPractice.BaseGame.Controllers;
-using CruiserJumpPractice.BaseGame.Controllers.Client;
-using CruiserJumpPractice.BaseGame.Finders;
 
 namespace CruiserJumpPractice.Patches;
 
@@ -17,25 +14,19 @@ internal class HUDManagerPatch
     [HarmonyPostfix]
     public static void AwakePostfix(HUDManager __instance)
     {
-        CruiserJumpPractice.CustomRpcSurrogateService.Spawn(__instance);
+        CruiserJumpPractice.GameInterop.SpawnRpcSurrogate(__instance);
     }
 
     [HarmonyPatch(nameof(HUDManager.Update))]
     [HarmonyPostfix]
     public static void UpdatePostfix(HUDManager __instance)
     {
-        var networkManagerFinder = new NetworkManagerFinder();
-        var networkManager = networkManagerFinder.GetNetworkManager();
-        var networkStateController = new NetworkStateController(networkManager);
-        if (!networkStateController.IsClient())
+        if (!CruiserJumpPractice.GameInterop.IsClient())
         {
             return;
         }
 
-        var localPlayerFinder = new LocalPlayerFinder();
-        var localPlayer = localPlayerFinder.GetLocalPlayer();
-        var playerStatusController = new PlayerStatusController(localPlayer);
-        if (playerStatusController.IsPlayerBusy())
+        if (CruiserJumpPractice.GameInterop.IsLocalPlayerBusy())
         {
             return;
         }
@@ -52,7 +43,7 @@ internal class HUDManagerPatch
             return;
         }
 
-        CruiserJumpPractice.CruiserStateClientService.RequestSaveCruiserState(hudManager);
+        CruiserJumpPractice.ClientCruiserStateService.RequestSaveCruiserState(hudManager);
     }
 
     internal static void UpdateLoadCruiser(HUDManager hudManager)
@@ -62,7 +53,7 @@ internal class HUDManagerPatch
             return;
         }
 
-        CruiserJumpPractice.CruiserStateClientService.RequestLoadCruiserState(hudManager);
+        CruiserJumpPractice.ClientCruiserStateService.RequestLoadCruiserState(hudManager);
     }
 
     internal static void UpdateToggleMagnet(HUDManager hudManager)
@@ -72,7 +63,7 @@ internal class HUDManagerPatch
             return;
         }
 
-        CruiserJumpPractice.MagnetClientService.ToggleMagnet(hudManager);
+        CruiserJumpPractice.ClientMagnetService.ToggleMagnet(hudManager);
     }
 
 }

@@ -2,9 +2,8 @@
 
 using BepInEx;
 using BepInEx.Logging;
+using CruiserJumpPractice.GameInterop;
 using CruiserJumpPractice.Services;
-using CruiserJumpPractice.Services.Client;
-using CruiserJumpPractice.Services.Server;
 using HarmonyLib;
 
 namespace CruiserJumpPractice;
@@ -20,19 +19,26 @@ public class CruiserJumpPractice : BaseUnityPlugin
 
     internal static InputActions? InputActions { get; private set; }
 
-    internal static CruiserStateClientService CruiserStateClientService { get; } = new();
+    private static ServiceRegistry? Services { get; set; }
 
-    internal static CruiserStateServerService CruiserStateServerService { get; } = new();
+    internal static Services.Client.ClientCruiserStateService ClientCruiserStateService =>
+        Services!.ClientCruiserStateService;
 
-    internal static CustomRpcSurrogateService CustomRpcSurrogateService { get; } = new();
+    internal static IGameInterop GameInterop =>
+        Services!.GameInterop;
 
-    internal static MagnetClientService MagnetClientService { get; } = new();
+    internal static Services.Server.ServerCruiserStateService ServerCruiserStateService =>
+        Services!.ServerCruiserStateService;
+
+    internal static Services.Client.ClientMagnetService ClientMagnetService =>
+        Services!.ClientMagnetService;
 
     private void Awake()
     {
         Logger = base.Logger;
 
         InputActions = new InputActions();
+        Services = ServiceRegistry.Create(Logger);
 
         Harmony.PatchAll();
 

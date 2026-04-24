@@ -1,9 +1,6 @@
 #nullable enable
 
 using BepInEx.Logging;
-using CruiserJumpPractice.BaseGame.Controllers;
-using CruiserJumpPractice.BaseGame.Controllers.Client;
-using CruiserJumpPractice.BaseGame.Finders;
 using Unity.Netcode;
 
 namespace CruiserJumpPractice.NetworkBehaviours;
@@ -24,7 +21,7 @@ internal enum LoadCruiserStateResult
     UnexpectedState
 }
 
-internal class CustomRpcSurrogateNetworkBehaviour : NetworkBehaviour
+internal class RpcSurrogateNetworkBehaviour : NetworkBehaviour
 {
     internal static ManualLogSource Logger => CruiserJumpPractice.Logger!;
 
@@ -37,7 +34,7 @@ internal class CustomRpcSurrogateNetworkBehaviour : NetworkBehaviour
             return;
         }
 
-        CruiserJumpPractice.CruiserStateServerService.SaveCruiserState();
+        CruiserJumpPractice.ServerCruiserStateService.SaveCruiserState();
     }
 
     [ClientRpc]
@@ -72,7 +69,7 @@ internal class CustomRpcSurrogateNetworkBehaviour : NetworkBehaviour
             return;
         }
 
-        CruiserJumpPractice.CruiserStateServerService.LoadCruiserState();
+        CruiserJumpPractice.ServerCruiserStateService.LoadCruiserState();
     }
 
     [ClientRpc]
@@ -108,25 +105,16 @@ internal class CustomRpcSurrogateNetworkBehaviour : NetworkBehaviour
 
     private static void DisplayTip(string bodyText)
     {
-        var hudManagerFinder = new HUDManagerFinder();
-        var hudManager = hudManagerFinder.GetHUDManager();
-        var tipController = new TipController(hudManager);
-        tipController.DisplayTip("CruiserJumpPractice", bodyText);
+        CruiserJumpPractice.GameInterop.DisplayLocalTip("CruiserJumpPractice", bodyText);
     }
 
     private static bool HasServerRole()
     {
-        var networkManagerFinder = new NetworkManagerFinder();
-        var networkManager = networkManagerFinder.GetNetworkManager();
-        var networkStateController = new NetworkStateController(networkManager);
-        return networkStateController.IsServer();
+        return CruiserJumpPractice.GameInterop.IsServer();
     }
 
     private static bool HasClientRole()
     {
-        var networkManagerFinder = new NetworkManagerFinder();
-        var networkManager = networkManagerFinder.GetNetworkManager();
-        var networkStateController = new NetworkStateController(networkManager);
-        return networkStateController.IsClient();
+        return CruiserJumpPractice.GameInterop.IsClient();
     }
 }
