@@ -21,7 +21,7 @@ internal class HUDManagerPatch
     [HarmonyPostfix]
     public static void UpdatePostfix()
     {
-        CruiserJumpPractice.FrameInputCoordinator.HandleFrame();
+        CruiserJumpPractice.FrameInputHandler.HandleFrame();
     }
 
 }

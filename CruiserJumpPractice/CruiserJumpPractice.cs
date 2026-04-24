@@ -2,7 +2,7 @@
 
 using BepInEx;
 using BepInEx.Logging;
-using CruiserJumpPractice.Application.UseCases;
+using CruiserJumpPractice.Application.Facades;
 using CruiserJumpPractice.Composition;
 using CruiserJumpPractice.GameInterop;
 using CruiserJumpPractice.Presentation;
@@ -23,8 +23,8 @@ public class CruiserJumpPractice : BaseUnityPlugin
 
     private static CompositionRoot? Root { get; set; }
 
-    internal static FrameInputCoordinator FrameInputCoordinator =>
-        Root!.FrameInputCoordinator;
+    internal static FrameInputHandler FrameInputHandler =>
+        Root!.FrameInputHandler;
 
     internal static StartupInitializer StartupInitializer =>
         Root!.StartupInitializer;
@@ -32,11 +32,8 @@ public class CruiserJumpPractice : BaseUnityPlugin
     internal static IGameInterop GameInterop =>
         Root!.GameInterop;
 
-    internal static SaveCruiserStateUseCase SaveCruiserStateUseCase =>
-        Root!.SaveCruiserStateUseCase;
-
-    internal static LoadCruiserStateUseCase LoadCruiserStateUseCase =>
-        Root!.LoadCruiserStateUseCase;
+    internal static ServerCruiserStateFacade ServerCruiserStateFacade =>
+        Root!.ServerCruiserStateFacade;
 
     internal static ClientCruiserResultPresenter ClientCruiserResultPresenter =>
         Root!.ClientCruiserResultPresenter;
