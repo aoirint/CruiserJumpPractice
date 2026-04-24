@@ -32,18 +32,7 @@ internal class RpcSurrogateNetworkBehaviour : NetworkBehaviour
             return;
         }
 
-        if (result == SaveCruiserStateResult.Success)
-        {
-            DisplayTip("Cruiser state saved.");
-        }
-        else if (result == SaveCruiserStateResult.NoCruiserFound)
-        {
-            DisplayTip("No cruiser found to save.");
-        }
-        else
-        {
-            Logger.LogError($"Unknown SaveCruiserStateResult: {result}");
-        }
+        CruiserJumpPractice.ClientCruiserResultPresenter.PresentSaveResult(result);
     }
 
     [ServerRpc(RequireOwnership = true)]
@@ -68,31 +57,7 @@ internal class RpcSurrogateNetworkBehaviour : NetworkBehaviour
             return;
         }
 
-        if (result == LoadCruiserStateResult.Success)
-        {
-            DisplayTip("Cruiser state loaded.");
-        }
-        else if (result == LoadCruiserStateResult.NoCruiserFound)
-        {
-            DisplayTip("No cruiser found to load.");
-        }
-        else if (result == LoadCruiserStateResult.NoSavedState)
-        {
-            DisplayTip("No saved cruiser state to load.");
-        }
-        else if (result == LoadCruiserStateResult.MagnetedToShip)
-        {
-            DisplayTip("Cannot load cruiser state while magneted to ship.");
-        }
-        else
-        {
-            Logger.LogError($"Unknown LoadCruiserStateResult: {result}");
-        }
-    }
-
-    private static void DisplayTip(string bodyText)
-    {
-        CruiserJumpPractice.GameInterop.DisplayLocalTip("CruiserJumpPractice", bodyText);
+        CruiserJumpPractice.ClientCruiserResultPresenter.PresentLoadResult(result);
     }
 
     private static bool HasServerRole()

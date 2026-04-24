@@ -36,6 +36,9 @@ public class CruiserJumpPractice : BaseUnityPlugin
     internal static Services.Server.ServerCruiserStateService ServerCruiserStateService =>
         Services!.ServerCruiserStateService;
 
+    internal static Services.Client.ClientCruiserResultPresenter ClientCruiserResultPresenter =>
+        Services!.ClientCruiserResultPresenter;
+
     internal static Services.Client.ClientMagnetService ClientMagnetService =>
         Services!.ClientMagnetService;
 

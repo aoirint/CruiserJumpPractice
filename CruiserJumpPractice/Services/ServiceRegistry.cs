@@ -18,6 +18,8 @@ internal sealed class ServiceRegistry
 
     public ServerCruiserStateService ServerCruiserStateService { get; }
 
+    public ClientCruiserResultPresenter ClientCruiserResultPresenter { get; }
+
     public FrameHandler FrameHandler { get; }
 
     public StartupHandler StartupHandler { get; }
@@ -28,6 +30,7 @@ internal sealed class ServiceRegistry
         IGameInterop gameInterop,
         ClientCruiserStateService clientCruiserStateService,
         ServerCruiserStateService serverCruiserStateService,
+        ClientCruiserResultPresenter clientCruiserResultPresenter,
         FrameHandler frameHandler,
         StartupHandler startupHandler,
         ClientMagnetService clientMagnetService
@@ -36,6 +39,7 @@ internal sealed class ServiceRegistry
         GameInterop = gameInterop;
         ClientCruiserStateService = clientCruiserStateService;
         ServerCruiserStateService = serverCruiserStateService;
+        ClientCruiserResultPresenter = clientCruiserResultPresenter;
         FrameHandler = frameHandler;
         StartupHandler = startupHandler;
         ClientMagnetService = clientMagnetService;
@@ -48,6 +52,7 @@ internal sealed class ServiceRegistry
         var saveCruiserStateUseCase = new SaveCruiserStateUseCase(gameInterop, cruiserStateStore);
         var loadCruiserStateUseCase = new LoadCruiserStateUseCase(gameInterop, cruiserStateStore);
         var clientCruiserStateService = new ClientCruiserStateService(gameInterop);
+        var clientCruiserResultPresenter = new ClientCruiserResultPresenter(gameInterop);
         var clientMagnetService = new ClientMagnetService(gameInterop);
         var frameHandler = new FrameHandler(
             gameInterop,
@@ -62,6 +67,7 @@ internal sealed class ServiceRegistry
                 saveCruiserStateUseCase,
                 loadCruiserStateUseCase
             ),
+            clientCruiserResultPresenter: clientCruiserResultPresenter,
             frameHandler: frameHandler,
             startupHandler: new StartupHandler(gameInterop),
             clientMagnetService: clientMagnetService
