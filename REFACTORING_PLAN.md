@@ -23,46 +23,38 @@
 - Default is feature-level grouping with shallow layers.
 - Exception rule: even with fewer than 4 files, independent folders are allowed for lifecycle boundaries (`Runtime`, `Network`, `Patches`, `Notifications`).
 
-## Target Organization (Simplified, Single Project)
+## Target Organization
 
 ```text
 CruiserJumpPractice/
   CruiserJumpPractice.cs
   InputActions.cs
-  Composition/
-    CompositionRoot.cs
-  Features/
-    CruiserState/
-      UseCases/
-        SaveCruiserStateUseCase.cs
-        LoadCruiserStateUseCase.cs
-        RequestSaveCruiserStateUseCase.cs
-        RequestLoadCruiserStateUseCase.cs
-      CruiserStateResults.cs
-      ClientCruiserStateService.cs
-      ServerCruiserStateService.cs
-      CruiserStateStore.cs
-    Magnet/
-      UseCases/
-        ToggleMagnetUseCase.cs
-      MagnetResults.cs
-      ClientMagnetService.cs
-    Notifications/
-      ClientNotificationService.cs
-    Runtime/
-      FrameInputHandler.cs
-      StartupHandler.cs
-      ClientCruiserResultPresenter.cs
+  Domain/
+    CruiserStateStore.cs
+    CruiserStateResults.cs
+    MagnetResults.cs
+  Runtime/
+    FrameHandler.cs
+    StartupHandler.cs
+  Services/
+    ClientNotificationService.cs
+    ClientMagnetService.cs
+    ClientCruiserStateService.cs
+    ServerCruiserStateService.cs
+    ServiceComposition.cs
+  UseCases/
+    SaveCruiserStateUseCase.cs
+    LoadCruiserStateUseCase.cs
+    RequestSaveCruiserStateUseCase.cs
+    RequestLoadCruiserStateUseCase.cs
+    ToggleMagnetUseCase.cs
+  Utilities/
+    CruiserStateTipUtility.cs
   Interop/
-    Contracts/
-      IGameInterop.cs
-    Models/
-      CruiserSnapshot.cs
-    Exceptions/
-      GameInteropException.cs
+    IGameInterop.cs
+    GameInteropV73.cs
     Adapters/
       V73/
-        GameInteropV73.cs
         CruiserAdapterV73.cs
         GameObjectAdapterV73.cs
         HudAdapterV73.cs
@@ -70,10 +62,13 @@ CruiserJumpPractice/
         PlayerAdapterV73.cs
         RpcSurrogateAdapterV73.cs
         ShipMagnetAdapterV73.cs
-  Network/
-    RpcSurrogateNetworkBehaviour.cs
-  Patches/
-    HudManagerPatch.cs
+    Behaviours/
+      RpcSurrogateBehaviour.cs
+    Domain/
+      CruiserSnapshot.cs
+      GameInteropException.cs
+    Patches/
+      HudManagerPatch.cs
 ```
 
 Notes:
