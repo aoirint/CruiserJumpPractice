@@ -6,7 +6,7 @@ using CruiserJumpPractice.BaseGame.Finders;
 using CruiserJumpPractice.NetworkBehaviours;
 using UnityEngine;
 
-namespace CruiserJumpPractice.Managers;
+namespace CruiserJumpPractice.Services;
 
 internal sealed class CruiserState
 {
@@ -55,7 +55,7 @@ class MagnetedToShipException : System.Exception
     public MagnetedToShipException() : base() { }
 }
 
-internal class CruiserManager
+internal class CruiserStateService
 {
     internal static ManualLogSource Logger => CruiserJumpPractice.Logger!;
 

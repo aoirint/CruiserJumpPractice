@@ -2,7 +2,7 @@
 
 using BepInEx;
 using BepInEx.Logging;
-using CruiserJumpPractice.Managers;
+using CruiserJumpPractice.Services;
 using HarmonyLib;
 
 namespace CruiserJumpPractice;
@@ -18,7 +18,7 @@ public class CruiserJumpPractice : BaseUnityPlugin
 
     internal static InputActions? InputActions { get; private set; }
 
-    internal static CruiserManager CruiserManager { get; } = new();
+    internal static CruiserStateService CruiserStateService { get; } = new();
 
     private void Awake()
     {
