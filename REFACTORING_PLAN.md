@@ -6,7 +6,8 @@
 - Naming is fixed to PascalCase and English only.
 - `Client` / `Server` vocabulary is retained (no forced rename to `Local` / `Host`).
 - This plan prioritizes structure-first renaming, then namespace alignment, then wiring clarity.
-- `Bootstrap/CruiserJumpPractice.cs` and `Bootstrap/InputActions.cs` are fixed and excluded from rename scope.
+- `CruiserJumpPractice.cs` and `InputActions.cs` are fixed and excluded from rename scope.
+- The section `## Target Organization (Simplified, Single Project)` is authoritative. Other sections must conform to it.
 
 ## Refactoring Goals
 
@@ -18,9 +19,9 @@
 ## Directory Granularity Policy
 
 - `UseCases` classification is intentionally retained as a semantic boundary for application actions.
-- Current draft was too fine-grained for some other buckets (`Results`, `Services`, `Presenters`, `Handlers` under every area).
 - New policy: split only when a folder contains 4 or more files or clearly different lifecycle concerns.
 - Default is feature-level grouping with shallow layers.
+- Exception rule: even with fewer than 4 files, independent folders are allowed for lifecycle boundaries (`Runtime`, `Network`, `Patches`, `Notifications`).
 
 ## Target Organization (Simplified, Single Project)
 
@@ -88,28 +89,23 @@ Notes:
 - Do not inherit legacy names when they no longer match target folder responsibility.
 - Rename from directory intent first, then adjust dependencies.
 - File name equals type name exactly.
+- If this section conflicts with Target Organization, Target Organization wins.
 
 ### Role Suffix Policy
 
-- Use functional names first (`SaveCruiserState`, `LoadCruiserState`, `ToggleMagnet`) and keep `UseCase` suffix for application actions.
-- Add suffix only when disambiguation is required:
-  - `UseCase` for application action classes.
-  - `Service` for orchestration and shared feature utilities.
-  - `Handler` for frame/startup lifecycle entry points.
-  - `Presenter` for user-facing message composition.
-  - `Patch` only for Harmony patch types.
+- Keep `UseCase` suffix for application action classes.
+- Use `Service` for orchestration and shared feature utilities.
+- Use `Handler` for frame/startup lifecycle entry points.
+- Use `Presenter` for user-facing message composition.
+- Use `Patch` only for Harmony patch types.
+- Use `AdapterV<MajorVersion>` only for version-specific interop adapters.
 
-### Planned Renames (Core Examples)
+### Planned Renames (Bounded by Phase)
 
-- `CruiserJumpPractice` -> `CruiserJumpPractice` (kept)
-- `SaveCruiserStateUseCase` -> `SaveCruiserStateUseCase` (kept)
-- `LoadCruiserStateUseCase` -> `LoadCruiserStateUseCase` (kept)
-- `RequestSaveCruiserStateUseCase` -> `RequestSaveCruiserStateUseCase` (kept)
-- `RequestLoadCruiserStateUseCase` -> `RequestLoadCruiserStateUseCase` (kept)
-- `ServerCruiserStateService` -> `ServerCruiserStateService` (kept)
-- `ClientCruiserStateService` -> `ClientCruiserStateService` (kept)
-- `ClientMagnetService` -> `ClientMagnetService` (kept)
+Phase 2 (non-Interop renames only):
 - `FrameHandler` -> `FrameInputHandler`
+
+Phase 3 (Interop V73 renames only):
 - `CurrentGameInterop` -> `GameInteropV73`
 - `CruiserInterop` -> `CruiserAdapterV73`
 - `GameObjectInterop` -> `GameObjectAdapterV73`
@@ -147,78 +143,95 @@ Notes:
 - Namespace must mirror physical path from `CruiserJumpPractice/`.
 - For versioned interop:
   - `CruiserJumpPractice.Interop.Adapters.V73`
+- Namespace updates are allowed in the same phase as file moves when needed for compile consistency.
 - No generic technical bucket names like `Features` inside interop.
 
 ## Migration Phases
 
-## Phase 1: Simplify Folders and Move Files (UseCases retained, no behavior change)
+## Phase 1: Simplify Folders and Move Files (No type renames)
 
-1. Create simplified target folders.
-2. Move files based on feature ownership.
-3. Keep old symbol names temporarily.
-4. Build and verify.
+1. Create target folders exactly as defined in Target Organization.
+2. Move files to target folders.
+3. Update namespaces/usings only as required to keep the build passing after moves.
+4. Do not rename types in this phase.
+5. Build and verify.
 
 Exit Criteria:
 - `dotnet build` succeeds.
-- No runtime logic edits.
+- File placement matches Target Organization.
+- No type renames are included.
 
-## Phase 2: Structure-First Renaming
+## Phase 2: Structure-First Renaming (Non-Interop only)
 
-1. Apply planned class/file renames.
-2. Update namespaces and using directives.
+1. Apply only non-Interop renames from Planned Renames.
+2. Update namespaces/usings and references.
 3. Keep behavior unchanged.
 4. Build and verify.
 
 Exit Criteria:
-- Renamed symbols align with folder responsibility.
-- No legacy naming drift remains.
+- Non-Interop renamed symbols align with folder responsibility.
+- Interop legacy names are still untouched.
+- `dotnet build` succeeds.
 
 ## Phase 3: Interop Versioning Foundation
 
-1. Rename `CurrentGameInterop` family to `V73` series.
-2. Move all V73-specific implementations under `Interop/Adapters/V73`.
+1. Apply all Interop V73 renames from Planned Renames.
+2. Ensure all V73-specific implementations are under `Interop/Adapters/V73`.
 3. Keep `IGameInterop` contract stable.
-4. Build and verify.
+4. Keep behavior unchanged.
+5. Build and verify.
 
 Exit Criteria:
 - Version-specific code is physically isolated.
 - Contract remains version-agnostic.
+- `dotnet build` succeeds.
 
 ## Phase 4: Composition and Runtime Validation
 
 1. Keep `CompositionRoot` as single binding point.
-2. Verify startup, frame input, save/load, and magnet toggle flows.
-3. Update README architecture map.
+2. Confirm `IGameInterop` binding targets `GameInteropV73`.
+3. Run runtime smoke checks.
+4. Update README architecture map.
+
+Runtime Smoke Checks:
+- Startup path works in debug profile.
+- Frame input handling triggers expected flow.
+- Save Cruiser State path works end-to-end.
+- Load Cruiser State path works end-to-end.
+- Magnet toggle path works end-to-end.
+- Notifications and HUD-related messaging still appear as expected.
 
 Exit Criteria:
-- Debug startup works.
-- Save/load/toggle paths still function.
-- Documentation reflects real structure and naming.
+- Startup works.
+- Save/load/toggle paths function.
+- Composition binding is correct.
+- Documentation reflects actual structure and naming.
 
 ## Risk Controls
 
 - Do not mix behavior refactor with folder/symbol refactor in the same commit.
 - Keep commits phase-scoped.
 - Run build after each phase.
-- Preserve `Client` / `Server` terms only where they represent runtime role, not historical naming.
+- Preserve `Client` / `Server` terms only where they represent runtime role.
+- If a phase introduces behavior changes, stop and split that change into a separate follow-up commit.
 
 ## Suggested Commit Strategy
 
-1. `refactor(structure): simplify folders and align file placement`
-2. `refactor(naming): apply structure-first symbol renaming`
-3. `refactor(interop): introduce v73-based interop naming`
-4. `refactor(composition): rebind to versioned interop implementation`
-5. `docs: update README architecture and naming rules`
+1. `refactor(structure): align folders with target organization`
+2. `refactor(naming): apply non-interop structure-first renames`
+3. `refactor(interop): apply v73 interop naming and placement`
+4. `refactor(composition): bind interop contract to gameinteropv73`
+5. `docs: update readme architecture and validation notes`
 
 ## Task Checklist
 
 - [ ] Phase 1 folder simplification completed
 - [ ] Phase 1 build passes
-- [ ] Phase 2 symbol/file renaming completed
+- [ ] Phase 2 non-Interop renaming completed
 - [ ] Phase 2 build passes
-- [ ] Phase 3 interop versioning isolation completed
+- [ ] Phase 3 Interop V73 renaming completed
 - [ ] Phase 3 build passes
-- [ ] Phase 4 runtime validation completed
+- [ ] Phase 4 runtime smoke checks completed
 - [ ] README updated
 
 ## Decision Log
@@ -228,3 +241,4 @@ Exit Criteria:
 - 2026-04-25: Preserve `Client` / `Server` terminology.
 - 2026-04-25: Prioritize structure-first renaming over legacy name inheritance.
 - 2026-04-25: Adopt V73-explicit naming for current interop implementation.
+- 2026-04-25: Treat Target Organization as the single source of truth for all other sections.
