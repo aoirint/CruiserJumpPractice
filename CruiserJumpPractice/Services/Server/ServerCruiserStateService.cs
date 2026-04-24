@@ -1,114 +1,31 @@
 #nullable enable
 
-using BepInEx.Logging;
-using CruiserJumpPractice.GameInterop;
-using CruiserJumpPractice.NetworkBehaviours;
+using CruiserJumpPractice.Application;
+using CruiserJumpPractice.Application.UseCases;
 
 namespace CruiserJumpPractice.Services.Server;
 
-class NoCruiserFoundException : System.Exception
+internal sealed class ServerCruiserStateService
 {
-    public NoCruiserFoundException() : base() { }
-}
+    private readonly SaveCruiserStateUseCase saveCruiserStateUseCase;
+    private readonly LoadCruiserStateUseCase loadCruiserStateUseCase;
 
-class NoSavedStateException : System.Exception
-{
-    public NoSavedStateException() : base() { }
-}
-
-class MagnetedToShipException : System.Exception
-{
-    public MagnetedToShipException() : base() { }
-}
-
-internal class ServerCruiserStateService
-{
-    internal static ManualLogSource Logger => CruiserJumpPractice.Logger!;
-
-    private readonly IGameInterop gameInterop;
-
-    private CruiserSnapshot? savedCruiserState;
-
-    public ServerCruiserStateService(IGameInterop gameInterop)
+    public ServerCruiserStateService(
+        SaveCruiserStateUseCase saveCruiserStateUseCase,
+        LoadCruiserStateUseCase loadCruiserStateUseCase
+    )
     {
-        this.gameInterop = gameInterop;
+        this.saveCruiserStateUseCase = saveCruiserStateUseCase;
+        this.loadCruiserStateUseCase = loadCruiserStateUseCase;
     }
 
-    internal void SaveCruiserState()
+    internal SaveCruiserStateResult SaveCruiserState()
     {
-        var rpcSurrogateNetworkBehaviour = gameInterop.GetRpcSurrogateNetworkBehaviour();
-
-        try
-        {
-            var cruiser = gameInterop.FindCruiser();
-            if (cruiser == null)
-            {
-                throw new NoCruiserFoundException();
-            }
-
-            savedCruiserState = gameInterop.CaptureCruiser(cruiser);
-
-            rpcSurrogateNetworkBehaviour.SaveCruiserStateDoneClientRpc(SaveCruiserStateResult.Success);
-        }
-        catch (NoCruiserFoundException)
-        {
-            Logger.LogInfo("No cruiser found.");
-            rpcSurrogateNetworkBehaviour.SaveCruiserStateDoneClientRpc(SaveCruiserStateResult.NoCruiserFound);
-        }
-        catch (System.Exception error)
-        {
-            Logger.LogError($"Exception while saving cruiser state: {error}");
-            rpcSurrogateNetworkBehaviour.SaveCruiserStateDoneClientRpc(SaveCruiserStateResult.UnexpectedState);
-        }
+        return saveCruiserStateUseCase.Execute();
     }
 
-    internal void LoadCruiserState()
+    internal LoadCruiserStateResult LoadCruiserState()
     {
-        var rpcSurrogateNetworkBehaviour = gameInterop.GetRpcSurrogateNetworkBehaviour();
-
-        try
-        {
-            var cruiser = gameInterop.FindCruiser();
-            if (cruiser == null)
-            {
-                throw new NoCruiserFoundException();
-            }
-
-            if (savedCruiserState == null)
-            {
-                throw new NoSavedStateException();
-            }
-
-            var magnetedToShip = gameInterop.IsCruiserMagnetedToShip(cruiser);
-            if (magnetedToShip)
-            {
-                throw new MagnetedToShipException();
-            }
-
-            gameInterop.RestoreCruiser(cruiser, savedCruiserState);
-
-            rpcSurrogateNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.Success);
-        }
-        catch (NoCruiserFoundException)
-        {
-            Logger.LogInfo("No cruiser found.");
-            rpcSurrogateNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.NoCruiserFound);
-        }
-        catch (NoSavedStateException)
-        {
-            Logger.LogInfo("No saved cruiser state found.");
-            rpcSurrogateNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.NoSavedState);
-        }
-        catch (MagnetedToShipException)
-        {
-            Logger.LogInfo("Cruiser is currently magneted to the ship. Cannot load state.");
-            rpcSurrogateNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.MagnetedToShip);
-        }
-        catch (System.Exception error)
-        {
-            Logger.LogError($"Exception while loading cruiser state: {error}");
-            rpcSurrogateNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.UnexpectedState);
-        }
+        return loadCruiserStateUseCase.Execute();
     }
-
 }

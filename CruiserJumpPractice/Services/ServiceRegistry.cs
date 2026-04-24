@@ -1,5 +1,7 @@
 #nullable enable
 
+using CruiserJumpPractice.Application.UseCases;
+using CruiserJumpPractice.Domain;
 using BepInEx.Logging;
 using CruiserJumpPractice.GameInterop;
 using CruiserJumpPractice.Runtime;
@@ -42,6 +44,9 @@ internal sealed class ServiceRegistry
     public static ServiceRegistry Create(ManualLogSource logger)
     {
         IGameInterop gameInterop = new CurrentGameInterop(logger);
+        var cruiserStateStore = new CruiserStateStore();
+        var saveCruiserStateUseCase = new SaveCruiserStateUseCase(gameInterop, cruiserStateStore);
+        var loadCruiserStateUseCase = new LoadCruiserStateUseCase(gameInterop, cruiserStateStore);
         var clientCruiserStateService = new ClientCruiserStateService(gameInterop);
         var clientMagnetService = new ClientMagnetService(gameInterop);
         var frameHandler = new FrameHandler(
@@ -53,7 +58,10 @@ internal sealed class ServiceRegistry
         return new ServiceRegistry(
             gameInterop: gameInterop,
             clientCruiserStateService: clientCruiserStateService,
-            serverCruiserStateService: new ServerCruiserStateService(gameInterop),
+            serverCruiserStateService: new ServerCruiserStateService(
+                saveCruiserStateUseCase,
+                loadCruiserStateUseCase
+            ),
             frameHandler: frameHandler,
             startupHandler: new StartupHandler(gameInterop),
             clientMagnetService: clientMagnetService

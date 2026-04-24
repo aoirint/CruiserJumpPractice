@@ -1,25 +1,10 @@
 #nullable enable
 
+using CruiserJumpPractice.Application;
 using BepInEx.Logging;
 using Unity.Netcode;
 
 namespace CruiserJumpPractice.NetworkBehaviours;
-
-internal enum SaveCruiserStateResult
-{
-    Success,
-    NoCruiserFound,
-    UnexpectedState
-}
-
-internal enum LoadCruiserStateResult
-{
-    Success,
-    NoCruiserFound,
-    NoSavedState,
-    MagnetedToShip,
-    UnexpectedState
-}
 
 internal class RpcSurrogateNetworkBehaviour : NetworkBehaviour
 {
@@ -34,7 +19,8 @@ internal class RpcSurrogateNetworkBehaviour : NetworkBehaviour
             return;
         }
 
-        CruiserJumpPractice.ServerCruiserStateService.SaveCruiserState();
+        var result = CruiserJumpPractice.ServerCruiserStateService.SaveCruiserState();
+        SaveCruiserStateDoneClientRpc(result);
     }
 
     [ClientRpc]
@@ -69,7 +55,8 @@ internal class RpcSurrogateNetworkBehaviour : NetworkBehaviour
             return;
         }
 
-        CruiserJumpPractice.ServerCruiserStateService.LoadCruiserState();
+        var result = CruiserJumpPractice.ServerCruiserStateService.LoadCruiserState();
+        LoadCruiserStateDoneClientRpc(result);
     }
 
     [ClientRpc]
