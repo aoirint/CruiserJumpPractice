@@ -2,13 +2,13 @@
 
 using CruiserJumpPractice.GameInterop;
 
-namespace CruiserJumpPractice.Runtime;
+namespace CruiserJumpPractice.Presentation;
 
-internal sealed class StartupHandler
+internal sealed class StartupInitializer
 {
     private readonly IGameInterop gameInterop;
 
-    public StartupHandler(IGameInterop gameInterop)
+    public StartupInitializer(IGameInterop gameInterop)
     {
         this.gameInterop = gameInterop;
     }

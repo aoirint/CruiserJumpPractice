@@ -3,23 +3,23 @@
 using CruiserJumpPractice.GameInterop;
 using CruiserJumpPractice.Services.Client;
 
-namespace CruiserJumpPractice.Runtime;
+namespace CruiserJumpPractice.Presentation;
 
-internal sealed class FrameHandler
+internal sealed class FrameInputCoordinator
 {
     private readonly IGameInterop gameInterop;
-    private readonly ClientCruiserStateService clientCruiserStateService;
-    private readonly ClientMagnetService clientMagnetService;
+    private readonly ClientCruiserStateCoordinator clientCruiserStateCoordinator;
+    private readonly ClientMagnetCoordinator clientMagnetCoordinator;
 
-    public FrameHandler(
+    public FrameInputCoordinator(
         IGameInterop gameInterop,
-        ClientCruiserStateService clientCruiserStateService,
-        ClientMagnetService clientMagnetService
+        ClientCruiserStateCoordinator clientCruiserStateCoordinator,
+        ClientMagnetCoordinator clientMagnetCoordinator
     )
     {
         this.gameInterop = gameInterop;
-        this.clientCruiserStateService = clientCruiserStateService;
-        this.clientMagnetService = clientMagnetService;
+        this.clientCruiserStateCoordinator = clientCruiserStateCoordinator;
+        this.clientMagnetCoordinator = clientMagnetCoordinator;
     }
 
     public void HandleFrame()
@@ -46,7 +46,7 @@ internal sealed class FrameHandler
             return;
         }
 
-        clientCruiserStateService.RequestSaveCruiserState();
+        clientCruiserStateCoordinator.RequestSaveCruiserState();
     }
 
     private void UpdateLoadCruiser()
@@ -56,7 +56,7 @@ internal sealed class FrameHandler
             return;
         }
 
-        clientCruiserStateService.RequestLoadCruiserState();
+        clientCruiserStateCoordinator.RequestLoadCruiserState();
     }
 
     private void UpdateToggleMagnet()
@@ -66,6 +66,6 @@ internal sealed class FrameHandler
             return;
         }
 
-        clientMagnetService.ToggleMagnet();
+        clientMagnetCoordinator.ToggleMagnet();
     }
 }

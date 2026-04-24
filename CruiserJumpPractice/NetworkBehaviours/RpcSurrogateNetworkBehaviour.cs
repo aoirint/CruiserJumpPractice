@@ -19,7 +19,7 @@ internal class RpcSurrogateNetworkBehaviour : NetworkBehaviour
             return;
         }
 
-        var result = CruiserJumpPractice.ServerCruiserStateService.SaveCruiserState();
+        var result = CruiserJumpPractice.ServerCruiserStateCoordinator.SaveCruiserState();
         SaveCruiserStateDoneClientRpc(result);
     }
 
@@ -44,7 +44,7 @@ internal class RpcSurrogateNetworkBehaviour : NetworkBehaviour
             return;
         }
 
-        var result = CruiserJumpPractice.ServerCruiserStateService.LoadCruiserState();
+        var result = CruiserJumpPractice.ServerCruiserStateCoordinator.LoadCruiserState();
         LoadCruiserStateDoneClientRpc(result);
     }
 

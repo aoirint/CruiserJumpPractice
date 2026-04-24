@@ -19,35 +19,35 @@ public class CruiserJumpPractice : BaseUnityPlugin
 
     internal static InputActions? InputActions { get; private set; }
 
-    private static ServiceRegistry? Services { get; set; }
+    private static CompositionRoot? Services { get; set; }
 
-    internal static Services.Client.ClientCruiserStateService ClientCruiserStateService =>
-        Services!.ClientCruiserStateService;
+    internal static Services.Client.ClientCruiserStateCoordinator ClientCruiserStateCoordinator =>
+        Services!.ClientCruiserStateCoordinator;
 
-    internal static Runtime.FrameHandler FrameHandler =>
-        Services!.FrameHandler;
+    internal static Presentation.FrameInputCoordinator FrameInputCoordinator =>
+        Services!.FrameInputCoordinator;
 
-    internal static Runtime.StartupHandler StartupHandler =>
-        Services!.StartupHandler;
+    internal static Presentation.StartupInitializer StartupInitializer =>
+        Services!.StartupInitializer;
 
     internal static IGameInterop GameInterop =>
         Services!.GameInterop;
 
-    internal static Services.Server.ServerCruiserStateService ServerCruiserStateService =>
-        Services!.ServerCruiserStateService;
+    internal static Services.Server.ServerCruiserStateCoordinator ServerCruiserStateCoordinator =>
+        Services!.ServerCruiserStateCoordinator;
 
     internal static Services.Client.ClientCruiserResultPresenter ClientCruiserResultPresenter =>
         Services!.ClientCruiserResultPresenter;
 
-    internal static Services.Client.ClientMagnetService ClientMagnetService =>
-        Services!.ClientMagnetService;
+    internal static Services.Client.ClientMagnetCoordinator ClientMagnetCoordinator =>
+        Services!.ClientMagnetCoordinator;
 
     private void Awake()
     {
         Logger = base.Logger;
 
         InputActions = new InputActions();
-        Services = ServiceRegistry.Create(Logger);
+        Services = CompositionRoot.Create(Logger);
 
         Harmony.PatchAll();
 
