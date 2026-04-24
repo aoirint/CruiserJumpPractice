@@ -72,10 +72,11 @@ internal class CruiserStateService
             return;
         }
 
-        var cruiserStateNetworkBehaviourFinder = new CruiserStateNetworkBehaviourFinder();
-        var cruiserStateNetworkBehaviour = cruiserStateNetworkBehaviourFinder.GetCruiserStateNetworkBehaviour();
+        var customRpcSurrogateNetworkBehaviourFinder = new CustomRpcSurrogateNetworkBehaviourFinder();
+        var customRpcSurrogateNetworkBehaviour =
+            customRpcSurrogateNetworkBehaviourFinder.GetCustomRpcSurrogateNetworkBehaviour();
 
-        cruiserStateNetworkBehaviour.SaveCruiserStateServerRpc();
+        customRpcSurrogateNetworkBehaviour.SaveCruiserStateServerRpc();
     }
 
     internal void RequestLoadCruiserState(HUDManager hudManager)
@@ -87,16 +88,18 @@ internal class CruiserStateService
             return;
         }
 
-        var cruiserStateNetworkBehaviourFinder = new CruiserStateNetworkBehaviourFinder();
-        var cruiserStateNetworkBehaviour = cruiserStateNetworkBehaviourFinder.GetCruiserStateNetworkBehaviour();
+        var customRpcSurrogateNetworkBehaviourFinder = new CustomRpcSurrogateNetworkBehaviourFinder();
+        var customRpcSurrogateNetworkBehaviour =
+            customRpcSurrogateNetworkBehaviourFinder.GetCustomRpcSurrogateNetworkBehaviour();
 
-        cruiserStateNetworkBehaviour.LoadCruiserStateServerRpc();
+        customRpcSurrogateNetworkBehaviour.LoadCruiserStateServerRpc();
     }
 
     internal void SaveCruiserState()
     {
-        var cruiserStateNetworkBehaviourFinder = new CruiserStateNetworkBehaviourFinder();
-        var cruiserStateNetworkBehaviour = cruiserStateNetworkBehaviourFinder.GetCruiserStateNetworkBehaviour();
+        var customRpcSurrogateNetworkBehaviourFinder = new CustomRpcSurrogateNetworkBehaviourFinder();
+        var customRpcSurrogateNetworkBehaviour =
+            customRpcSurrogateNetworkBehaviourFinder.GetCustomRpcSurrogateNetworkBehaviour();
 
         try
         {
@@ -127,24 +130,25 @@ internal class CruiserStateService
                 turboBoosts: turboBoosts
             );
 
-            cruiserStateNetworkBehaviour.SaveCruiserStateDoneClientRpc(SaveCruiserStateResult.Success);
+            customRpcSurrogateNetworkBehaviour.SaveCruiserStateDoneClientRpc(SaveCruiserStateResult.Success);
         }
         catch (NoCruiserFoundException)
         {
             Logger.LogInfo("No cruiser found.");
-            cruiserStateNetworkBehaviour.SaveCruiserStateDoneClientRpc(SaveCruiserStateResult.NoCruiserFound);
+            customRpcSurrogateNetworkBehaviour.SaveCruiserStateDoneClientRpc(SaveCruiserStateResult.NoCruiserFound);
         }
         catch (System.Exception error)
         {
             Logger.LogError($"Exception while saving cruiser state: {error}");
-            cruiserStateNetworkBehaviour.SaveCruiserStateDoneClientRpc(SaveCruiserStateResult.UnexpectedState);
+            customRpcSurrogateNetworkBehaviour.SaveCruiserStateDoneClientRpc(SaveCruiserStateResult.UnexpectedState);
         }
     }
 
     internal void LoadCruiserState()
     {
-        var cruiserStateNetworkBehaviourFinder = new CruiserStateNetworkBehaviourFinder();
-        var cruiserStateNetworkBehaviour = cruiserStateNetworkBehaviourFinder.GetCruiserStateNetworkBehaviour();
+        var customRpcSurrogateNetworkBehaviourFinder = new CustomRpcSurrogateNetworkBehaviourFinder();
+        var customRpcSurrogateNetworkBehaviour =
+            customRpcSurrogateNetworkBehaviourFinder.GetCustomRpcSurrogateNetworkBehaviour();
 
         try
         {
@@ -184,27 +188,27 @@ internal class CruiserStateService
             cruiserHpController.SetCruiserHP(savedCruiserState.CarHP);
             cruiserTurboBoostController.SetCruiserTurboBoosts(savedCruiserState.TurboBoosts);
 
-            cruiserStateNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.Success);
+            customRpcSurrogateNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.Success);
         }
         catch (NoCruiserFoundException)
         {
             Logger.LogInfo("No cruiser found.");
-            cruiserStateNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.NoCruiserFound);
+            customRpcSurrogateNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.NoCruiserFound);
         }
         catch (NoSavedStateException)
         {
             Logger.LogInfo("No saved cruiser state found.");
-            cruiserStateNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.NoSavedState);
+            customRpcSurrogateNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.NoSavedState);
         }
         catch (MagnetedToShipException)
         {
             Logger.LogInfo("Cruiser is currently magneted to the ship. Cannot load state.");
-            cruiserStateNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.MagnetedToShip);
+            customRpcSurrogateNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.MagnetedToShip);
         }
         catch (System.Exception error)
         {
             Logger.LogError($"Exception while loading cruiser state: {error}");
-            cruiserStateNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.UnexpectedState);
+            customRpcSurrogateNetworkBehaviour.LoadCruiserStateDoneClientRpc(LoadCruiserStateResult.UnexpectedState);
         }
     }
 

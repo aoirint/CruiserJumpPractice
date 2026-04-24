@@ -5,7 +5,6 @@ using HarmonyLib;
 using CruiserJumpPractice.BaseGame.Controllers;
 using CruiserJumpPractice.BaseGame.Controllers.Client;
 using CruiserJumpPractice.BaseGame.Finders;
-using CruiserJumpPractice.NetworkBehaviours;
 
 namespace CruiserJumpPractice.Patches;
 
@@ -18,14 +17,7 @@ internal class HUDManagerPatch
     [HarmonyPostfix]
     public static void AwakePostfix(HUDManager __instance)
     {
-        var gameObject = __instance.gameObject;
-        if (gameObject == null)
-        {
-            Logger.LogError("HUDManager.gameObject is null.");
-            return;
-        }
-
-        gameObject.AddComponent<CruiserStateNetworkBehaviour>();
+        CruiserJumpPractice.CustomRpcSurrogateService.Spawn(__instance);
     }
 
     [HarmonyPatch(nameof(HUDManager.Update))]

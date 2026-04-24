@@ -24,7 +24,7 @@ internal enum LoadCruiserStateResult
     UnexpectedState
 }
 
-internal class CruiserStateNetworkBehaviour : NetworkBehaviour
+internal class CustomRpcSurrogateNetworkBehaviour : NetworkBehaviour
 {
     internal static ManualLogSource Logger => CruiserJumpPractice.Logger!;
 
