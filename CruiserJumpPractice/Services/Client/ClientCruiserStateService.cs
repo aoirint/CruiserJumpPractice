@@ -1,42 +1,42 @@
 #nullable enable
 
-using BepInEx.Logging;
-using CruiserJumpPractice.GameInterop;
+using CruiserJumpPractice.Application;
+using CruiserJumpPractice.Application.UseCases;
 
 namespace CruiserJumpPractice.Services.Client;
 
-internal class ClientCruiserStateService
+internal sealed class ClientCruiserStateService
 {
-    internal static ManualLogSource Logger => CruiserJumpPractice.Logger!;
+    private readonly RequestSaveCruiserStateUseCase requestSaveCruiserStateUseCase;
+    private readonly RequestLoadCruiserStateUseCase requestLoadCruiserStateUseCase;
+    private readonly ClientNotificationService clientNotificationService;
 
-    private readonly IGameInterop gameInterop;
-
-    public ClientCruiserStateService(IGameInterop gameInterop)
+    public ClientCruiserStateService(
+        RequestSaveCruiserStateUseCase requestSaveCruiserStateUseCase,
+        RequestLoadCruiserStateUseCase requestLoadCruiserStateUseCase,
+        ClientNotificationService clientNotificationService
+    )
     {
-        this.gameInterop = gameInterop;
+        this.requestSaveCruiserStateUseCase = requestSaveCruiserStateUseCase;
+        this.requestLoadCruiserStateUseCase = requestLoadCruiserStateUseCase;
+        this.clientNotificationService = clientNotificationService;
     }
 
     internal void RequestSaveCruiserState()
     {
-        if (!gameInterop.IsHost())
+        var result = requestSaveCruiserStateUseCase.Execute();
+        if (result == HostGuardResult.HostOnly)
         {
-            gameInterop.DisplayLocalTip("CruiserJumpPractice", "Only the host can save the cruiser state.");
-            return;
+            clientNotificationService.ShowCruiserTip("Only the host can save the cruiser state.");
         }
-
-        var rpcSurrogateNetworkBehaviour = gameInterop.GetRpcSurrogateNetworkBehaviour();
-        rpcSurrogateNetworkBehaviour.SaveCruiserStateServerRpc();
     }
 
     internal void RequestLoadCruiserState()
     {
-        if (!gameInterop.IsHost())
+        var result = requestLoadCruiserStateUseCase.Execute();
+        if (result == HostGuardResult.HostOnly)
         {
-            gameInterop.DisplayLocalTip("CruiserJumpPractice", "Only the host can load the cruiser state.");
-            return;
+            clientNotificationService.ShowCruiserTip("Only the host can load the cruiser state.");
         }
-
-        var rpcSurrogateNetworkBehaviour = gameInterop.GetRpcSurrogateNetworkBehaviour();
-        rpcSurrogateNetworkBehaviour.LoadCruiserStateServerRpc();
     }
 }

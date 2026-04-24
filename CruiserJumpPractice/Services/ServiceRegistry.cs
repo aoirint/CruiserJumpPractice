@@ -48,12 +48,24 @@ internal sealed class ServiceRegistry
     public static ServiceRegistry Create(ManualLogSource logger)
     {
         IGameInterop gameInterop = new CurrentGameInterop(logger);
+
         var cruiserStateStore = new CruiserStateStore();
         var saveCruiserStateUseCase = new SaveCruiserStateUseCase(gameInterop, cruiserStateStore);
         var loadCruiserStateUseCase = new LoadCruiserStateUseCase(gameInterop, cruiserStateStore);
-        var clientCruiserStateService = new ClientCruiserStateService(gameInterop);
-        var clientCruiserResultPresenter = new ClientCruiserResultPresenter(gameInterop);
-        var clientMagnetService = new ClientMagnetService(gameInterop);
+
+        var requestSaveCruiserStateUseCase = new RequestSaveCruiserStateUseCase(gameInterop);
+        var requestLoadCruiserStateUseCase = new RequestLoadCruiserStateUseCase(gameInterop);
+        var toggleMagnetUseCase = new ToggleMagnetUseCase(gameInterop);
+
+        var clientNotificationService = new ClientNotificationService(gameInterop);
+        var clientCruiserStateService = new ClientCruiserStateService(
+            requestSaveCruiserStateUseCase,
+            requestLoadCruiserStateUseCase,
+            clientNotificationService
+        );
+        var clientCruiserResultPresenter = new ClientCruiserResultPresenter(clientNotificationService);
+        var clientMagnetService = new ClientMagnetService(toggleMagnetUseCase, clientNotificationService);
+
         var frameHandler = new FrameHandler(
             gameInterop,
             clientCruiserStateService,

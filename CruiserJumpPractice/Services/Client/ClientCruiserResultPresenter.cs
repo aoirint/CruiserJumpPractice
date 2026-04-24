@@ -2,7 +2,6 @@
 
 using BepInEx.Logging;
 using CruiserJumpPractice.Application;
-using CruiserJumpPractice.GameInterop;
 
 namespace CruiserJumpPractice.Services.Client;
 
@@ -10,11 +9,11 @@ internal sealed class ClientCruiserResultPresenter
 {
     internal static ManualLogSource Logger => CruiserJumpPractice.Logger!;
 
-    private readonly IGameInterop gameInterop;
+    private readonly ClientNotificationService clientNotificationService;
 
-    public ClientCruiserResultPresenter(IGameInterop gameInterop)
+    public ClientCruiserResultPresenter(ClientNotificationService clientNotificationService)
     {
-        this.gameInterop = gameInterop;
+        this.clientNotificationService = clientNotificationService;
     }
 
     public void PresentSaveResult(SaveCruiserStateResult result)
@@ -59,6 +58,6 @@ internal sealed class ClientCruiserResultPresenter
 
     private void DisplayTip(string bodyText)
     {
-        gameInterop.DisplayLocalTip("CruiserJumpPractice", bodyText);
+        clientNotificationService.ShowCruiserTip(bodyText);
     }
 }

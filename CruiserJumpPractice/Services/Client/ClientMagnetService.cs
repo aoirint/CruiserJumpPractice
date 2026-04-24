@@ -1,35 +1,34 @@
 #nullable enable
 
-using BepInEx.Logging;
-using CruiserJumpPractice.GameInterop;
+using CruiserJumpPractice.Application;
+using CruiserJumpPractice.Application.UseCases;
 
 namespace CruiserJumpPractice.Services.Client;
 
-internal class ClientMagnetService
+internal sealed class ClientMagnetService
 {
-    internal static ManualLogSource Logger => CruiserJumpPractice.Logger!;
+    private readonly ToggleMagnetUseCase toggleMagnetUseCase;
+    private readonly ClientNotificationService clientNotificationService;
 
-    private readonly IGameInterop gameInterop;
-
-    public ClientMagnetService(IGameInterop gameInterop)
+    public ClientMagnetService(
+        ToggleMagnetUseCase toggleMagnetUseCase,
+        ClientNotificationService clientNotificationService
+    )
     {
-        this.gameInterop = gameInterop;
+        this.toggleMagnetUseCase = toggleMagnetUseCase;
+        this.clientNotificationService = clientNotificationService;
     }
 
     internal void ToggleMagnet()
     {
-        if (!gameInterop.IsHost())
+        var result = toggleMagnetUseCase.Execute();
+        if (result == ToggleMagnetResult.HostOnly)
         {
-            gameInterop.DisplayLocalTip("CruiserJumpPractice", "Only the host can toggle the magnet.");
+            clientNotificationService.ShowCruiserTip("Only the host can toggle the magnet.");
             return;
         }
 
-        var newMagnetState = !gameInterop.IsShipMagnetOn();
-
-        // NOTE: This value will be synced with vanilla Server RPC
-        gameInterop.ToggleShipMagnet();
-
-        var magnetStateText = newMagnetState ? "ON" : "OFF";
-        gameInterop.DisplayLocalTip("CruiserJumpPractice", $"Magnet is now {magnetStateText}.");
+        var magnetStateText = result == ToggleMagnetResult.MagnetOn ? "ON" : "OFF";
+        clientNotificationService.ShowCruiserTip($"Magnet is now {magnetStateText}.");
     }
 }
