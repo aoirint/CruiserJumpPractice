@@ -38,7 +38,10 @@ internal class HUDManagerPatch
             return;
         }
 
-        if (PlayerUtils.IsLocalPlayerBusy())
+        var localPlayerFinder = new LocalPlayerFinder();
+        var localPlayer = localPlayerFinder.GetLocalPlayer();
+        var playerStatusController = new PlayerStatusController(localPlayer);
+        if (playerStatusController.IsPlayerBusy())
         {
             return;
         }
