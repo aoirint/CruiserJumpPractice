@@ -30,7 +30,7 @@ internal sealed class CruiserStateOperationRequestService
         var result = requestSaveCruiserStateUseCase.Execute();
         if (result == HostGuardResult.HostOnly)
         {
-            notificationService.ShowCruiserTip("Only the host can save the cruiser state.");
+            notificationService.DisplayTip("Only the host can save the cruiser state.");
         }
     }
 
@@ -39,7 +39,7 @@ internal sealed class CruiserStateOperationRequestService
         var result = requestLoadCruiserStateUseCase.Execute();
         if (result == HostGuardResult.HostOnly)
         {
-            notificationService.ShowCruiserTip("Only the host can load the cruiser state.");
+            notificationService.DisplayTip("Only the host can load the cruiser state.");
         }
     }
 
@@ -47,11 +47,11 @@ internal sealed class CruiserStateOperationRequestService
     {
         if (result == SaveCruiserStateResult.Success)
         {
-            notificationService.ShowCruiserTip("Cruiser state saved.");
+            notificationService.DisplayTip("Cruiser state saved.");
         }
         else if (result == SaveCruiserStateResult.NoCruiserFound)
         {
-            notificationService.ShowCruiserTip("No cruiser found to save.");
+            notificationService.DisplayTip("No cruiser found to save.");
         }
         else
         {
@@ -63,19 +63,19 @@ internal sealed class CruiserStateOperationRequestService
     {
         if (result == LoadCruiserStateResult.Success)
         {
-            notificationService.ShowCruiserTip("Cruiser state loaded.");
+            notificationService.DisplayTip("Cruiser state loaded.");
         }
         else if (result == LoadCruiserStateResult.NoCruiserFound)
         {
-            notificationService.ShowCruiserTip("No cruiser found to load.");
+            notificationService.DisplayTip("No cruiser found to load.");
         }
         else if (result == LoadCruiserStateResult.NoSavedState)
         {
-            notificationService.ShowCruiserTip("No saved cruiser state to load.");
+            notificationService.DisplayTip("No saved cruiser state to load.");
         }
         else if (result == LoadCruiserStateResult.MagnetedToShip)
         {
-            notificationService.ShowCruiserTip("Cannot load cruiser state while magneted to ship.");
+            notificationService.DisplayTip("Cannot load cruiser state while magneted to ship.");
         }
         else
         {

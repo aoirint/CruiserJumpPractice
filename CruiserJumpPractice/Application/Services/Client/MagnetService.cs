@@ -24,11 +24,11 @@ internal sealed class MagnetService
         var result = toggleMagnetUseCase.Execute();
         if (result == ToggleMagnetResult.HostOnly)
         {
-            notificationService.ShowCruiserTip("Only the host can toggle the magnet.");
+            notificationService.DisplayTip("Only the host can toggle the magnet.");
             return;
         }
 
         var magnetStateText = result == ToggleMagnetResult.MagnetOn ? "ON" : "OFF";
-        notificationService.ShowCruiserTip($"Magnet is now {magnetStateText}.");
+        notificationService.DisplayTip($"Magnet is now {magnetStateText}.");
     }
 }

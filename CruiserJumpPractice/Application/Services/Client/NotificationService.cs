@@ -13,7 +13,7 @@ internal sealed class NotificationService
         this.gameInterop = gameInterop;
     }
 
-    public void ShowCruiserTip(string message)
+    public void DisplayTip(string message)
     {
         gameInterop.DisplayTip("CruiserJumpPractice", message);
     }
