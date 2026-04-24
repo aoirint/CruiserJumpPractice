@@ -2,8 +2,8 @@
 
 using BepInEx.Logging;
 using CruiserJumpPractice.GameInterop;
+using CruiserJumpPractice.Runtime;
 using CruiserJumpPractice.Services.Client;
-using CruiserJumpPractice.Services.Runtime;
 using CruiserJumpPractice.Services.Server;
 
 namespace CruiserJumpPractice.Services;

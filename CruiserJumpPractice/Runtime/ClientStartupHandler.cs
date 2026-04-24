@@ -2,7 +2,7 @@
 
 using CruiserJumpPractice.GameInterop;
 
-namespace CruiserJumpPractice.Services.Runtime;
+namespace CruiserJumpPractice.Runtime;
 
 internal sealed class ClientStartupHandler
 {

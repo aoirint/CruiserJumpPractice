@@ -3,7 +3,7 @@
 using CruiserJumpPractice.GameInterop;
 using CruiserJumpPractice.Services.Client;
 
-namespace CruiserJumpPractice.Services.Runtime;
+namespace CruiserJumpPractice.Runtime;
 
 internal sealed class ClientFrameHandler
 {

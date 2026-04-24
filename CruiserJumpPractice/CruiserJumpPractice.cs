@@ -24,10 +24,10 @@ public class CruiserJumpPractice : BaseUnityPlugin
     internal static Services.Client.ClientCruiserStateService ClientCruiserStateService =>
         Services!.ClientCruiserStateService;
 
-    internal static Services.Runtime.ClientFrameHandler ClientFrameHandler =>
+    internal static Runtime.ClientFrameHandler ClientFrameHandler =>
         Services!.ClientFrameHandler;
 
-    internal static Services.Runtime.ClientStartupHandler ClientStartupHandler =>
+    internal static Runtime.ClientStartupHandler ClientStartupHandler =>
         Services!.ClientStartupHandler;
 
     internal static IGameInterop GameInterop =>
