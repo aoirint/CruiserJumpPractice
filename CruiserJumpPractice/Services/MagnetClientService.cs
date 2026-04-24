@@ -8,7 +8,7 @@ using CruiserJumpPractice.BaseGame.Finders;
 
 namespace CruiserJumpPractice.Services;
 
-internal class MagnetService
+internal class MagnetClientService
 {
     internal static ManualLogSource Logger => CruiserJumpPractice.Logger!;
 

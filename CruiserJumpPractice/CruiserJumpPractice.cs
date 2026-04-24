@@ -24,7 +24,7 @@ public class CruiserJumpPractice : BaseUnityPlugin
 
     internal static CustomRpcSurrogateService CustomRpcSurrogateService { get; } = new();
 
-    internal static MagnetService MagnetService { get; } = new();
+    internal static MagnetClientService MagnetClientService { get; } = new();
 
     private void Awake()
     {

@@ -72,7 +72,7 @@ internal class HUDManagerPatch
             return;
         }
 
-        CruiserJumpPractice.MagnetService.ToggleMagnet(hudManager);
+        CruiserJumpPractice.MagnetClientService.ToggleMagnet(hudManager);
     }
 
 }
