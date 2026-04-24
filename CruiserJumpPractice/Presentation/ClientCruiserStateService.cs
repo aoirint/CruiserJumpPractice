@@ -5,13 +5,13 @@ using CruiserJumpPractice.Application.UseCases;
 
 namespace CruiserJumpPractice.Presentation;
 
-internal sealed class ClientCruiserStateFacade
+internal sealed class ClientCruiserStateService
 {
     private readonly RequestSaveCruiserStateUseCase requestSaveCruiserStateUseCase;
     private readonly RequestLoadCruiserStateUseCase requestLoadCruiserStateUseCase;
     private readonly ClientNotificationService clientNotificationService;
 
-    public ClientCruiserStateFacade(
+    public ClientCruiserStateService(
         RequestSaveCruiserStateUseCase requestSaveCruiserStateUseCase,
         RequestLoadCruiserStateUseCase requestLoadCruiserStateUseCase,
         ClientNotificationService clientNotificationService

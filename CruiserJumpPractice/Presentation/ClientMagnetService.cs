@@ -5,12 +5,12 @@ using CruiserJumpPractice.Application.UseCases;
 
 namespace CruiserJumpPractice.Presentation;
 
-internal sealed class ClientMagnetFacade
+internal sealed class ClientMagnetService
 {
     private readonly ToggleMagnetUseCase toggleMagnetUseCase;
     private readonly ClientNotificationService clientNotificationService;
 
-    public ClientMagnetFacade(
+    public ClientMagnetService(
         ToggleMagnetUseCase toggleMagnetUseCase,
         ClientNotificationService clientNotificationService
     )

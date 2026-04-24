@@ -4,9 +4,9 @@
 
 ### Presentation
 
-- Runtime input handling: `Presentation/FrameInputHandler.cs`
+- Runtime input handling: `Presentation/FrameHandler.cs`
 - Harmony entry points: `Patches/HUDManagerPatch.cs`
-- Purpose: react to frame/input events and call presentation/application facades.
+- Purpose: react to frame/input events and call presentation/application services.
 
 ### Application
 

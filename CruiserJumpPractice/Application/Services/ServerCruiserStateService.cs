@@ -2,14 +2,14 @@
 
 using CruiserJumpPractice.Application.UseCases;
 
-namespace CruiserJumpPractice.Application.Facades;
+namespace CruiserJumpPractice.Application.Services;
 
-internal sealed class ServerCruiserStateFacade
+internal sealed class ServerCruiserStateService
 {
     private readonly SaveCruiserStateUseCase saveCruiserStateUseCase;
     private readonly LoadCruiserStateUseCase loadCruiserStateUseCase;
 
-    public ServerCruiserStateFacade(
+    public ServerCruiserStateService(
         SaveCruiserStateUseCase saveCruiserStateUseCase,
         LoadCruiserStateUseCase loadCruiserStateUseCase
     )

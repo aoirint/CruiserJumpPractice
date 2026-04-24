@@ -4,21 +4,21 @@ using CruiserJumpPractice.GameInterop;
 
 namespace CruiserJumpPractice.Presentation;
 
-internal sealed class FrameInputHandler
+internal sealed class FrameHandler
 {
     private readonly IGameInterop gameInterop;
-    private readonly ClientCruiserStateFacade clientCruiserStateFacade;
-    private readonly ClientMagnetFacade clientMagnetFacade;
+    private readonly ClientCruiserStateService clientCruiserStateService;
+    private readonly ClientMagnetService clientMagnetService;
 
-    public FrameInputHandler(
+    public FrameHandler(
         IGameInterop gameInterop,
-        ClientCruiserStateFacade clientCruiserStateFacade,
-        ClientMagnetFacade clientMagnetFacade
+        ClientCruiserStateService clientCruiserStateService,
+        ClientMagnetService clientMagnetService
     )
     {
         this.gameInterop = gameInterop;
-        this.clientCruiserStateFacade = clientCruiserStateFacade;
-        this.clientMagnetFacade = clientMagnetFacade;
+        this.clientCruiserStateService = clientCruiserStateService;
+        this.clientMagnetService = clientMagnetService;
     }
 
     public void HandleFrame()
@@ -45,7 +45,7 @@ internal sealed class FrameInputHandler
             return;
         }
 
-        clientCruiserStateFacade.RequestSaveCruiserState();
+        clientCruiserStateService.RequestSaveCruiserState();
     }
 
     private void UpdateLoadCruiser()
@@ -55,7 +55,7 @@ internal sealed class FrameInputHandler
             return;
         }
 
-        clientCruiserStateFacade.RequestLoadCruiserState();
+        clientCruiserStateService.RequestLoadCruiserState();
     }
 
     private void UpdateToggleMagnet()
@@ -65,6 +65,6 @@ internal sealed class FrameInputHandler
             return;
         }
 
-        clientMagnetFacade.ToggleMagnet();
+        clientMagnetService.ToggleMagnet();
     }
 }
