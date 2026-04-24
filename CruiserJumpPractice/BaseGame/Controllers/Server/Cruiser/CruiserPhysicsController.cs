@@ -55,7 +55,8 @@ class CruiserPhysicsController
                 cruiser.moveInputVector.x,
                 cruiser.EngineRPM
             );
-        } catch (System.Exception error)
+        }
+        catch (System.Exception error)
         {
             Logger.LogError($"Exception while getting cruiser physics: {error}");
             throw new CruiserPhysicsControllerException($"Exception while getting cruiser physics: {error}");
@@ -71,7 +72,8 @@ class CruiserPhysicsController
             cruiser.transform.eulerAngles = cruiserPhysics.CarRotation;
             cruiser.moveInputVector.x = cruiserPhysics.SteeringInput;
             cruiser.EngineRPM = cruiserPhysics.EngineRPM;
-        } catch (System.Exception error)
+        }
+        catch (System.Exception error)
         {
             Logger.LogError($"Exception while setting cruiser physics: {error}");
             throw new CruiserPhysicsControllerException($"Exception while setting cruiser physics: {error}");

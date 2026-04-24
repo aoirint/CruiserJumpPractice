@@ -35,7 +35,8 @@ class CruiserHpController
         try
         {
             return cruiser.carHP;
-        } catch (System.Exception error)
+        }
+        catch (System.Exception error)
         {
             Logger.LogError($"Exception while getting 'carHP': {error}");
             throw new CruiserHpControllerException($"Exception while getting 'carHP': {error}");
@@ -49,13 +50,16 @@ class CruiserHpController
     /// <exception cref="CruiserHpControllerException"></exception>
     public void SetCruiserHP(int carHP)
     {
-        try {
+        try
+        {
             // Set for the local client
             cruiser.AddEngineOilOnLocalClient(carHP);
 
             // Sync with the vanilla Server RPC
             cruiser.AddEngineOilServerRpc(localPlayerId, carHP);
-        } catch (System.Exception error) {
+        }
+        catch (System.Exception error)
+        {
             Logger.LogError($"Exception while setting 'carHP': {error}");
             throw new CruiserHpControllerException($"Exception while setting 'carHP': {error}");
         }

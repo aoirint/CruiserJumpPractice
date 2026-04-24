@@ -32,7 +32,8 @@ class CruiserFinder
             }
 
             return vehicleControllers[0];
-        } catch (System.Exception error)
+        }
+        catch (System.Exception error)
         {
             Logger.LogError($"Exception while getting cruiser: {error}");
             throw new CruiserFinderException($"Exception while getting cruiser: {error}");

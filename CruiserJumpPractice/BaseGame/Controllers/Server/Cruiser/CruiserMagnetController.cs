@@ -30,7 +30,8 @@ class CruiserMagnetController
         try
         {
             return cruiser.magnetedToShip;
-        } catch (System.Exception error)
+        }
+        catch (System.Exception error)
         {
             Logger.LogError($"Exception while getting 'magnetedToShip': {error}");
             throw new CruiserMagnetControllerException($"Exception while getting 'magnetedToShip': {error}");

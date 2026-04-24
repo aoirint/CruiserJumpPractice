@@ -25,7 +25,8 @@ class StartOfRoundFinder
             }
 
             return startOfRound;
-        } catch (System.Exception error)
+        }
+        catch (System.Exception error)
         {
             Logger.LogError($"Exception while getting StartOfRound: {error}");
             throw new StartOfRoundFinderException($"Exception while getting StartOfRound: {error}");

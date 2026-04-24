@@ -64,13 +64,16 @@ class CruiserTurboBoostController
     /// <exception cref="CruiserTurboBoostControllerException"></exception>
     public void SetCruiserTurboBoosts(int turboBoosts)
     {
-        try {
+        try
+        {
             // Set for the local client
             cruiser.AddTurboBoostOnLocalClient(turboBoosts);
 
             // Sync with the vanilla Server RPC
             cruiser.AddTurboBoostServerRpc(localPlayerId, turboBoosts);
-        } catch (System.Exception error) {
+        }
+        catch (System.Exception error)
+        {
             Logger.LogError($"Exception while setting 'turboBoosts': {error}");
             throw new CruiserTurboBoostControllerException($"Exception while setting 'turboBoosts': {error}");
         }

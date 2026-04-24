@@ -24,12 +24,14 @@ class LocalPlayerIdFinder
             }
 
             var localPlayer = gameNetworkManager.localPlayerController;
-            if (localPlayer == null)        {
+            if (localPlayer == null)
+            {
                 throw new LocalPlayerIdFinderException("localPlayerController is null.");
             }
 
             return (int)localPlayer.playerClientId;
-        } catch (System.Exception error)
+        }
+        catch (System.Exception error)
         {
             Logger.LogError($"Exception while getting local player ID: {error}");
             throw new LocalPlayerIdFinderException($"Exception while getting local player ID: {error}");
