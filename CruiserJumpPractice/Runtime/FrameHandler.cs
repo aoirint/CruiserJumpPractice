@@ -8,18 +8,18 @@ namespace CruiserJumpPractice.Runtime;
 internal sealed class FrameHandler
 {
     private readonly IGameInterop gameInterop;
-    private readonly CruiserStateService cruiserStateService;
-    private readonly MagnetService magnetService;
+    private readonly ClientCruiserStateService clientCruiserStateService;
+    private readonly ClientMagnetService clientMagnetService;
 
     public FrameHandler(
         IGameInterop gameInterop,
-        CruiserStateService cruiserStateService,
-        MagnetService magnetService
+        ClientCruiserStateService clientCruiserStateService,
+        ClientMagnetService clientMagnetService
     )
     {
         this.gameInterop = gameInterop;
-        this.cruiserStateService = cruiserStateService;
-        this.magnetService = magnetService;
+        this.clientCruiserStateService = clientCruiserStateService;
+        this.clientMagnetService = clientMagnetService;
     }
 
     public void HandleFrame()
@@ -46,7 +46,7 @@ internal sealed class FrameHandler
             return;
         }
 
-        cruiserStateService.RequestSaveCruiserState();
+        clientCruiserStateService.RequestSaveCruiserState();
     }
 
     private void UpdateLoadCruiser()
@@ -56,7 +56,7 @@ internal sealed class FrameHandler
             return;
         }
 
-        cruiserStateService.RequestLoadCruiserState();
+        clientCruiserStateService.RequestLoadCruiserState();
     }
 
     private void UpdateToggleMagnet()
@@ -66,6 +66,6 @@ internal sealed class FrameHandler
             return;
         }
 
-        magnetService.ToggleMagnet();
+        clientMagnetService.ToggleMagnet();
     }
 }

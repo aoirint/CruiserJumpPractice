@@ -12,7 +12,7 @@ internal sealed class ServiceRegistry
 {
     public IGameInterop GameInterop { get; }
 
-    public CruiserStateService CruiserStateService { get; }
+    public ClientCruiserStateService ClientCruiserStateService { get; }
 
     public ServerCruiserStateService ServerCruiserStateService { get; }
 
@@ -20,43 +20,43 @@ internal sealed class ServiceRegistry
 
     public StartupHandler StartupHandler { get; }
 
-    public MagnetService MagnetService { get; }
+    public ClientMagnetService ClientMagnetService { get; }
 
     private ServiceRegistry(
         IGameInterop gameInterop,
-        CruiserStateService cruiserStateService,
+        ClientCruiserStateService clientCruiserStateService,
         ServerCruiserStateService serverCruiserStateService,
         FrameHandler frameHandler,
         StartupHandler startupHandler,
-        MagnetService magnetService
+        ClientMagnetService clientMagnetService
     )
     {
         GameInterop = gameInterop;
-        CruiserStateService = cruiserStateService;
+        ClientCruiserStateService = clientCruiserStateService;
         ServerCruiserStateService = serverCruiserStateService;
         FrameHandler = frameHandler;
         StartupHandler = startupHandler;
-        MagnetService = magnetService;
+        ClientMagnetService = clientMagnetService;
     }
 
     public static ServiceRegistry Create(ManualLogSource logger)
     {
         IGameInterop gameInterop = new CurrentGameInterop(logger);
-        var cruiserStateService = new CruiserStateService(gameInterop);
-        var magnetService = new MagnetService(gameInterop);
+        var clientCruiserStateService = new ClientCruiserStateService(gameInterop);
+        var clientMagnetService = new ClientMagnetService(gameInterop);
         var frameHandler = new FrameHandler(
             gameInterop,
-            cruiserStateService,
-            magnetService
+            clientCruiserStateService,
+            clientMagnetService
         );
 
         return new ServiceRegistry(
             gameInterop: gameInterop,
-            cruiserStateService: cruiserStateService,
+            clientCruiserStateService: clientCruiserStateService,
             serverCruiserStateService: new ServerCruiserStateService(gameInterop),
             frameHandler: frameHandler,
             startupHandler: new StartupHandler(gameInterop),
-            magnetService: magnetService
+            clientMagnetService: clientMagnetService
         );
     }
 }

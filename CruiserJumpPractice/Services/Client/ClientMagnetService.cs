@@ -5,13 +5,13 @@ using CruiserJumpPractice.GameInterop;
 
 namespace CruiserJumpPractice.Services.Client;
 
-internal class MagnetService
+internal class ClientMagnetService
 {
     internal static ManualLogSource Logger => CruiserJumpPractice.Logger!;
 
     private readonly IGameInterop gameInterop;
 
-    public MagnetService(IGameInterop gameInterop)
+    public ClientMagnetService(IGameInterop gameInterop)
     {
         this.gameInterop = gameInterop;
     }
