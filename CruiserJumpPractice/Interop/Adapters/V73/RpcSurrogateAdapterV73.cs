@@ -7,14 +7,14 @@ using CruiserJumpPractice.Interop.Domain;
 
 namespace CruiserJumpPractice.Interop.Adapters.V73;
 
-internal sealed class RpcSurrogateInterop
+internal sealed class RpcSurrogateAdapterV73
 {
     private readonly ManualLogSource logger;
-    private readonly GameObjectInterop gameObjects;
+    private readonly GameObjectAdapterV73 gameObjects;
 
     private RpcSurrogateBehaviour? cachedRpcSurrogateBehaviour;
 
-    public RpcSurrogateInterop(ManualLogSource logger, GameObjectInterop gameObjects)
+    public RpcSurrogateAdapterV73(ManualLogSource logger, GameObjectAdapterV73 gameObjects)
     {
         this.logger = logger;
         this.gameObjects = gameObjects;

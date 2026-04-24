@@ -6,12 +6,12 @@ using CruiserJumpPractice.Interop.Domain;
 
 namespace CruiserJumpPractice.Interop.Adapters.V73;
 
-internal sealed class NetworkInterop
+internal sealed class NetworkAdapterV73
 {
     private readonly ManualLogSource logger;
-    private readonly GameObjectInterop gameObjects;
+    private readonly GameObjectAdapterV73 gameObjects;
 
-    public NetworkInterop(ManualLogSource logger, GameObjectInterop gameObjects)
+    public NetworkAdapterV73(ManualLogSource logger, GameObjectAdapterV73 gameObjects)
     {
         this.logger = logger;
         this.gameObjects = gameObjects;

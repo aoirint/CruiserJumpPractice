@@ -65,7 +65,7 @@ internal sealed class ServiceComposition
 
     public static ServiceComposition Create(ManualLogSource logger)
     {
-        IGameInterop gameInterop = new CurrentGameInterop(logger);
+        IGameInterop gameInterop = new GameInteropV73(logger);
 
         var cruiserStateStore = new CruiserStateStore();
         var saveCruiserStateUseCase = new SaveCruiserStateUseCase(gameInterop, cruiserStateStore);

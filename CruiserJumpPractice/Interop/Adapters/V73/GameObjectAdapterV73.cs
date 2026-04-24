@@ -8,11 +8,11 @@ using CruiserJumpPractice.Interop.Domain;
 
 namespace CruiserJumpPractice.Interop.Adapters.V73;
 
-internal sealed class GameObjectInterop
+internal sealed class GameObjectAdapterV73
 {
     private readonly ManualLogSource logger;
 
-    public GameObjectInterop(ManualLogSource logger)
+    public GameObjectAdapterV73(ManualLogSource logger)
     {
         this.logger = logger;
     }

@@ -6,7 +6,7 @@ using HarmonyLib;
 namespace CruiserJumpPractice.Interop.Patches;
 
 [HarmonyPatch(typeof(HUDManager))]
-internal class HudManagerPatch
+internal class HUDManagerPatch
 {
     internal static ManualLogSource Logger => CruiserJumpPractice.Logger!;
 

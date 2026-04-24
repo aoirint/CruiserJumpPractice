@@ -7,25 +7,25 @@ using CruiserJumpPractice.Interop.Domain;
 
 namespace CruiserJumpPractice.Interop;
 
-internal sealed class CurrentGameInterop : IGameInterop
+internal sealed class GameInteropV73 : IGameInterop
 {
-    private readonly NetworkInterop networkInterop;
-    private readonly PlayerInterop playerInterop;
-    private readonly HudInterop hudInterop;
-    private readonly RpcSurrogateInterop rpcSurrogateInterop;
-    private readonly CruiserInterop cruiserInterop;
-    private readonly ShipMagnetInterop shipMagnetInterop;
+    private readonly NetworkAdapterV73 networkInterop;
+    private readonly PlayerAdapterV73 playerInterop;
+    private readonly HudAdapterV73 hudInterop;
+    private readonly RpcSurrogateAdapterV73 rpcSurrogateInterop;
+    private readonly CruiserAdapterV73 cruiserInterop;
+    private readonly ShipMagnetAdapterV73 shipMagnetInterop;
 
-    public CurrentGameInterop(ManualLogSource logger)
+    public GameInteropV73(ManualLogSource logger)
     {
-        var gameObjects = new GameObjectInterop(logger);
+        var gameObjects = new GameObjectAdapterV73(logger);
 
-        networkInterop = new NetworkInterop(logger, gameObjects);
-        playerInterop = new PlayerInterop(logger, gameObjects);
-        hudInterop = new HudInterop(logger, gameObjects);
-        rpcSurrogateInterop = new RpcSurrogateInterop(logger, gameObjects);
-        cruiserInterop = new CruiserInterop(logger, gameObjects);
-        shipMagnetInterop = new ShipMagnetInterop(logger, gameObjects);
+        networkInterop = new NetworkAdapterV73(logger, gameObjects);
+        playerInterop = new PlayerAdapterV73(logger, gameObjects);
+        hudInterop = new HudAdapterV73(logger, gameObjects);
+        rpcSurrogateInterop = new RpcSurrogateAdapterV73(logger, gameObjects);
+        cruiserInterop = new CruiserAdapterV73(logger, gameObjects);
+        shipMagnetInterop = new ShipMagnetAdapterV73(logger, gameObjects);
     }
 
     public bool IsServer()

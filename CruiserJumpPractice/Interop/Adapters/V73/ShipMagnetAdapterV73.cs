@@ -6,12 +6,12 @@ using CruiserJumpPractice.Interop.Domain;
 
 namespace CruiserJumpPractice.Interop.Adapters.V73;
 
-internal sealed class ShipMagnetInterop
+internal sealed class ShipMagnetAdapterV73
 {
     private readonly ManualLogSource logger;
-    private readonly GameObjectInterop gameObjects;
+    private readonly GameObjectAdapterV73 gameObjects;
 
-    public ShipMagnetInterop(ManualLogSource logger, GameObjectInterop gameObjects)
+    public ShipMagnetAdapterV73(ManualLogSource logger, GameObjectAdapterV73 gameObjects)
     {
         this.logger = logger;
         this.gameObjects = gameObjects;

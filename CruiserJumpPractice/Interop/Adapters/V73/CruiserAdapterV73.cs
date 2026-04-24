@@ -7,12 +7,12 @@ using UnityEngine;
 
 namespace CruiserJumpPractice.Interop.Adapters.V73;
 
-internal sealed class CruiserInterop
+internal sealed class CruiserAdapterV73
 {
     private readonly ManualLogSource logger;
-    private readonly GameObjectInterop gameObjects;
+    private readonly GameObjectAdapterV73 gameObjects;
 
-    public CruiserInterop(ManualLogSource logger, GameObjectInterop gameObjects)
+    public CruiserAdapterV73(ManualLogSource logger, GameObjectAdapterV73 gameObjects)
     {
         this.logger = logger;
         this.gameObjects = gameObjects;
