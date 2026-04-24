@@ -6,6 +6,7 @@
 - Naming is fixed to PascalCase and English only.
 - `Client` / `Server` vocabulary is retained (no forced rename to `Local` / `Host`).
 - This plan prioritizes structure-first renaming, then namespace alignment, then wiring clarity.
+- `Bootstrap/ModEntryPoint.cs` and `Bootstrap/InputActions.cs` are fixed and excluded from rename scope.
 
 ## Refactoring Goals
 
@@ -16,7 +17,8 @@
 
 ## Directory Granularity Policy
 
-- Current draft was too fine-grained (`UseCases`, `Results`, `Services`, `Presenters`, `Handlers` under every area).
+- `UseCases` classification is intentionally retained as a semantic boundary for application actions.
+- Current draft was too fine-grained for some other buckets (`Results`, `Services`, `Presenters`, `Handlers` under every area).
 - New policy: split only when a folder contains 4 or more files or clearly different lifecycle concerns.
 - Default is feature-level grouping with shallow layers.
 
@@ -31,18 +33,20 @@ CruiserJumpPractice/
     CompositionRoot.cs
   Features/
     CruiserState/
-      SaveCruiserState.cs
-      LoadCruiserState.cs
-      RequestSaveCruiserState.cs
-      RequestLoadCruiserState.cs
+      UseCases/
+        SaveCruiserStateUseCase.cs
+        LoadCruiserStateUseCase.cs
+        RequestSaveCruiserStateUseCase.cs
+        RequestLoadCruiserStateUseCase.cs
       CruiserStateResults.cs
-      ClientCruiserStateCoordinator.cs
-      ServerCruiserStateCoordinator.cs
+      ClientCruiserStateService.cs
+      ServerCruiserStateService.cs
       CruiserStateStore.cs
     Magnet/
-      ToggleMagnet.cs
+      UseCases/
+        ToggleMagnetUseCase.cs
       MagnetResults.cs
-      ClientMagnetCoordinator.cs
+      ClientMagnetService.cs
     Notifications/
       ClientNotificationService.cs
     Runtime/
@@ -75,6 +79,7 @@ CruiserJumpPractice/
 Notes:
 - Folders are shallow by default.
 - `Features` is product-facing and stable in meaning.
+- `UseCases` folders are preserved in feature scope.
 - Technical version-specific implementation is isolated under `Interop/Adapters/V73`.
 
 ## Structure-First Rename Rules (Authoritative)
@@ -87,24 +92,24 @@ Notes:
 
 ### Role Suffix Policy
 
-- Use functional names first (`SaveCruiserState`, `LoadCruiserState`, `ToggleMagnet`).
+- Use functional names first (`SaveCruiserState`, `LoadCruiserState`, `ToggleMagnet`) and keep `UseCase` suffix for application actions.
 - Add suffix only when disambiguation is required:
-  - `Coordinator` for orchestration classes that call multiple operations.
+  - `UseCase` for application action classes.
+  - `Service` for orchestration and shared feature utilities.
   - `Handler` for frame/startup lifecycle entry points.
   - `Presenter` for user-facing message composition.
-  - `Service` only for truly shared cross-feature utilities.
   - `Patch` only for Harmony patch types.
 
 ### Planned Renames (Core Examples)
 
 - `CruiserJumpPractice` -> `ModEntryPoint`
-- `SaveCruiserStateUseCase` -> `SaveCruiserState`
-- `LoadCruiserStateUseCase` -> `LoadCruiserState`
-- `RequestSaveCruiserStateUseCase` -> `RequestSaveCruiserState`
-- `RequestLoadCruiserStateUseCase` -> `RequestLoadCruiserState`
-- `ServerCruiserStateService` -> `ServerCruiserStateCoordinator`
-- `ClientCruiserStateService` -> `ClientCruiserStateCoordinator`
-- `ClientMagnetService` -> `ClientMagnetCoordinator`
+- `SaveCruiserStateUseCase` -> `SaveCruiserStateUseCase` (kept)
+- `LoadCruiserStateUseCase` -> `LoadCruiserStateUseCase` (kept)
+- `RequestSaveCruiserStateUseCase` -> `RequestSaveCruiserStateUseCase` (kept)
+- `RequestLoadCruiserStateUseCase` -> `RequestLoadCruiserStateUseCase` (kept)
+- `ServerCruiserStateService` -> `ServerCruiserStateService` (kept)
+- `ClientCruiserStateService` -> `ClientCruiserStateService` (kept)
+- `ClientMagnetService` -> `ClientMagnetService` (kept)
 - `FrameHandler` -> `FrameInputHandler`
 - `CurrentGameInterop` -> `GameInteropV73`
 - `CruiserInterop` -> `CruiserAdapterV73`
@@ -147,7 +152,7 @@ Notes:
 
 ## Migration Phases
 
-## Phase 1: Simplify Folders and Move Files (No behavior change)
+## Phase 1: Simplify Folders and Move Files (UseCases retained, no behavior change)
 
 1. Create simplified target folders.
 2. Move files based on feature ownership.
