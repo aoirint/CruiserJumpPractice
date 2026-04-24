@@ -1,22 +1,22 @@
 #nullable enable
 
 using CruiserJumpPractice.Domain;
-using CruiserJumpPractice.Application.UseCases;
+using CruiserJumpPractice.Application.UseCases.Client;
 
 namespace CruiserJumpPractice.Application.Services.Client;
 
 internal sealed class MagnetService
 {
     private readonly ToggleMagnetUseCase toggleMagnetUseCase;
-    private readonly NotificationUsecase notificationUsecase;
+    private readonly NotificationUseCase notificationUseCase;
 
     public MagnetService(
         ToggleMagnetUseCase toggleMagnetUseCase,
-        NotificationUsecase notificationUsecase
+        NotificationUseCase notificationUseCase
     )
     {
         this.toggleMagnetUseCase = toggleMagnetUseCase;
-        this.notificationUsecase = notificationUsecase;
+        this.notificationUseCase = notificationUseCase;
     }
 
     internal void ToggleMagnet()
@@ -24,11 +24,11 @@ internal sealed class MagnetService
         var result = toggleMagnetUseCase.Execute();
         if (result == ToggleMagnetResult.HostOnly)
         {
-            notificationUsecase.DisplayTip("Only the host can toggle the magnet.");
+            notificationUseCase.DisplayTip("Only the host can toggle the magnet.");
             return;
         }
 
         var magnetStateText = result == ToggleMagnetResult.MagnetOn ? "ON" : "OFF";
-        notificationUsecase.DisplayTip($"Magnet is now {magnetStateText}.");
+        notificationUseCase.DisplayTip($"Magnet is now {magnetStateText}.");
     }
 }

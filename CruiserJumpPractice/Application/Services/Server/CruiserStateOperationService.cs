@@ -1,7 +1,7 @@
 #nullable enable
 
 using CruiserJumpPractice.Domain;
-using CruiserJumpPractice.Application.UseCases;
+using CruiserJumpPractice.Application.UseCases.Server;
 
 namespace CruiserJumpPractice.Application.Services.Server;
 

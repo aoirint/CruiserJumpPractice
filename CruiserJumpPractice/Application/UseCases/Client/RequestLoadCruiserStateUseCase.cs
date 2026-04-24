@@ -3,7 +3,7 @@
 using CruiserJumpPractice.Interop;
 using CruiserJumpPractice.Domain;
 
-namespace CruiserJumpPractice.Application.UseCases;
+namespace CruiserJumpPractice.Application.UseCases.Client;
 
 internal sealed class RequestLoadCruiserStateUseCase
 {

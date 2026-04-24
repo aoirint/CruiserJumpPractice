@@ -2,7 +2,7 @@
 
 using BepInEx.Logging;
 using CruiserJumpPractice.Domain;
-using CruiserJumpPractice.Application.UseCases;
+using CruiserJumpPractice.Application.UseCases.Client;
 
 namespace CruiserJumpPractice.Application.Services.Client;
 
@@ -12,17 +12,17 @@ internal sealed class CruiserStateOperationRequestService
 
     private readonly RequestSaveCruiserStateUseCase requestSaveCruiserStateUseCase;
     private readonly RequestLoadCruiserStateUseCase requestLoadCruiserStateUseCase;
-    private readonly NotificationUsecase notificationUsecase;
+    private readonly NotificationUseCase notificationUseCase;
 
     public CruiserStateOperationRequestService(
         RequestSaveCruiserStateUseCase requestSaveCruiserStateUseCase,
         RequestLoadCruiserStateUseCase requestLoadCruiserStateUseCase,
-        NotificationUsecase notificationUsecase
+        NotificationUseCase notificationUseCase
     )
     {
         this.requestSaveCruiserStateUseCase = requestSaveCruiserStateUseCase;
         this.requestLoadCruiserStateUseCase = requestLoadCruiserStateUseCase;
-        this.notificationUsecase = notificationUsecase;
+        this.notificationUseCase = notificationUseCase;
     }
 
     internal void RequestSaveCruiserState()
@@ -30,7 +30,7 @@ internal sealed class CruiserStateOperationRequestService
         var result = requestSaveCruiserStateUseCase.Execute();
         if (result == HostGuardResult.HostOnly)
         {
-            notificationUsecase.DisplayTip("Only the host can save the cruiser state.");
+            notificationUseCase.DisplayTip("Only the host can save the cruiser state.");
         }
     }
 
@@ -39,7 +39,7 @@ internal sealed class CruiserStateOperationRequestService
         var result = requestLoadCruiserStateUseCase.Execute();
         if (result == HostGuardResult.HostOnly)
         {
-            notificationUsecase.DisplayTip("Only the host can load the cruiser state.");
+            notificationUseCase.DisplayTip("Only the host can load the cruiser state.");
         }
     }
 
@@ -47,11 +47,11 @@ internal sealed class CruiserStateOperationRequestService
     {
         if (result == SaveCruiserStateResult.Success)
         {
-            notificationUsecase.DisplayTip("Cruiser state saved.");
+            notificationUseCase.DisplayTip("Cruiser state saved.");
         }
         else if (result == SaveCruiserStateResult.NoCruiserFound)
         {
-            notificationUsecase.DisplayTip("No cruiser found to save.");
+            notificationUseCase.DisplayTip("No cruiser found to save.");
         }
         else
         {
@@ -63,19 +63,19 @@ internal sealed class CruiserStateOperationRequestService
     {
         if (result == LoadCruiserStateResult.Success)
         {
-            notificationUsecase.DisplayTip("Cruiser state loaded.");
+            notificationUseCase.DisplayTip("Cruiser state loaded.");
         }
         else if (result == LoadCruiserStateResult.NoCruiserFound)
         {
-            notificationUsecase.DisplayTip("No cruiser found to load.");
+            notificationUseCase.DisplayTip("No cruiser found to load.");
         }
         else if (result == LoadCruiserStateResult.NoSavedState)
         {
-            notificationUsecase.DisplayTip("No saved cruiser state to load.");
+            notificationUseCase.DisplayTip("No saved cruiser state to load.");
         }
         else if (result == LoadCruiserStateResult.MagnetedToShip)
         {
-            notificationUsecase.DisplayTip("Cannot load cruiser state while magneted to ship.");
+            notificationUseCase.DisplayTip("Cannot load cruiser state while magneted to ship.");
         }
         else
         {

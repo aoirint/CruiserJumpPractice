@@ -2,13 +2,13 @@
 
 using CruiserJumpPractice.Interop;
 
-namespace CruiserJumpPractice.Application.UseCases;
+namespace CruiserJumpPractice.Application.UseCases.Client;
 
-internal sealed class NotificationUsecase
+internal sealed class NotificationUseCase
 {
     private readonly IGameInterop gameInterop;
 
-    public NotificationUsecase(IGameInterop gameInterop)
+    public NotificationUseCase(IGameInterop gameInterop)
     {
         this.gameInterop = gameInterop;
     }
