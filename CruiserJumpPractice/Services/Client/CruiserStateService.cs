@@ -5,13 +5,13 @@ using CruiserJumpPractice.GameInterop;
 
 namespace CruiserJumpPractice.Services.Client;
 
-internal class ClientCruiserStateService
+internal class CruiserStateService
 {
     internal static ManualLogSource Logger => CruiserJumpPractice.Logger!;
 
     private readonly IGameInterop gameInterop;
 
-    public ClientCruiserStateService(IGameInterop gameInterop)
+    public CruiserStateService(IGameInterop gameInterop)
     {
         this.gameInterop = gameInterop;
     }

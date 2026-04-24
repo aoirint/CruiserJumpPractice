@@ -4,11 +4,11 @@ using CruiserJumpPractice.GameInterop;
 
 namespace CruiserJumpPractice.Runtime;
 
-internal sealed class ClientStartupHandler
+internal sealed class StartupHandler
 {
     private readonly IGameInterop gameInterop;
 
-    public ClientStartupHandler(IGameInterop gameInterop)
+    public StartupHandler(IGameInterop gameInterop)
     {
         this.gameInterop = gameInterop;
     }
