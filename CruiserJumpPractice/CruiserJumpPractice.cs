@@ -5,7 +5,8 @@ using BepInEx.Logging;
 using CruiserJumpPractice.Interop;
 using CruiserJumpPractice.Application;
 using CruiserJumpPractice.Application.Runtime;
-using CruiserJumpPractice.Application.Services;
+using CruiserJumpPractice.Application.Services.Client;
+using CruiserJumpPractice.Application.Services.Server;
 using HarmonyLib;
 
 namespace CruiserJumpPractice;
@@ -32,11 +33,11 @@ public class CruiserJumpPractice : BaseUnityPlugin
     internal static IGameInterop GameInterop =>
         App!.GameInterop;
 
-    internal static ServerCruiserStateService ServerCruiserStateService =>
-        App!.ServerCruiserStateService;
+    internal static CruiserStateOperationService CruiserStateOperationService =>
+        App!.CruiserStateOperationService;
 
-    internal static ClientCruiserStateService ClientCruiserStateService =>
-        App!.ClientCruiserStateService;
+    internal static CruiserStateOperationRequestService CruiserStateOperationRequestService =>
+        App!.CruiserStateOperationRequestService;
 
     private void Awake()
     {

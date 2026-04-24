@@ -2,13 +2,13 @@
 
 using CruiserJumpPractice.Interop;
 
-namespace CruiserJumpPractice.Application.Services;
+namespace CruiserJumpPractice.Application.Services.Client;
 
-internal sealed class ClientNotificationService
+internal sealed class NotificationService
 {
     private readonly IGameInterop gameInterop;
 
-    public ClientNotificationService(IGameInterop gameInterop)
+    public NotificationService(IGameInterop gameInterop)
     {
         this.gameInterop = gameInterop;
     }
