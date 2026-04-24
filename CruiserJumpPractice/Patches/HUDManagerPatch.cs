@@ -2,10 +2,10 @@
 
 using BepInEx.Logging;
 using HarmonyLib;
+using CruiserJumpPractice.BaseGame.Controllers;
 using CruiserJumpPractice.BaseGame.Controllers.Client;
 using CruiserJumpPractice.BaseGame.Controllers.Server;
 using CruiserJumpPractice.BaseGame.Finders;
-using CruiserJumpPractice.Utils;
 using CruiserJumpPractice.NetworkBehaviours;
 
 namespace CruiserJumpPractice.Patches;
@@ -33,7 +33,10 @@ internal class HUDManagerPatch
     [HarmonyPostfix]
     public static void UpdatePostfix(HUDManager __instance)
     {
-        if (!NetworkUtils.IsClient())
+        var networkManagerFinder = new NetworkManagerFinder();
+        var networkManager = networkManagerFinder.GetNetworkManager();
+        var networkStateController = new NetworkStateController(networkManager);
+        if (!networkStateController.IsClient())
         {
             return;
         }
@@ -59,19 +62,15 @@ internal class HUDManagerPatch
         }
 
         // Only the host can save the cruiser state
-        if (!NetworkUtils.IsHost())
+        if (!IsHost())
         {
             var tipController = new TipController(hudManager);
             tipController.DisplayTip("CruiserJumpPractice", "Only the host can save the cruiser state.");
             return;
         }
 
-        var cruiserStateNetworkBehaviour = NetworkBehaviourUtils.GetCruiserStateNetworkBehaviour();
-        if (cruiserStateNetworkBehaviour == null)
-        {
-            Logger.LogError("CruiserStateNetworkBehaviour is null.");
-            return;
-        }
+        var cruiserStateNetworkBehaviourFinder = new CruiserStateNetworkBehaviourFinder();
+        var cruiserStateNetworkBehaviour = cruiserStateNetworkBehaviourFinder.GetCruiserStateNetworkBehaviour();
 
         cruiserStateNetworkBehaviour.SaveCruiserStateServerRpc();
     }
@@ -84,19 +83,15 @@ internal class HUDManagerPatch
         }
 
         // Only the host can load the cruiser state
-        if (!NetworkUtils.IsHost())
+        if (!IsHost())
         {
             var tipController = new TipController(hudManager);
             tipController.DisplayTip("CruiserJumpPractice", "Only the host can load the cruiser state.");
             return;
         }
 
-        var cruiserStateNetworkBehaviour = NetworkBehaviourUtils.GetCruiserStateNetworkBehaviour();
-        if (cruiserStateNetworkBehaviour == null)
-        {
-            Logger.LogError("CruiserStateNetworkBehaviour is null.");
-            return;
-        }
+        var cruiserStateNetworkBehaviourFinder = new CruiserStateNetworkBehaviourFinder();
+        var cruiserStateNetworkBehaviour = cruiserStateNetworkBehaviourFinder.GetCruiserStateNetworkBehaviour();
 
         cruiserStateNetworkBehaviour.LoadCruiserStateServerRpc();
     }
@@ -108,7 +103,7 @@ internal class HUDManagerPatch
             return;
         }
 
-        if (!NetworkUtils.IsHost())
+        if (!IsHost())
         {
             var tipController = new TipController(hudManager);
             tipController.DisplayTip("CruiserJumpPractice", "Only the host can toggle the magnet.");
@@ -126,5 +121,13 @@ internal class HUDManagerPatch
         var magnetStateText = newMagnetState ? "ON" : "OFF";
         var localTipController = new TipController(hudManager);
         localTipController.DisplayTip("CruiserJumpPractice", $"Magnet is now {magnetStateText}.");
+    }
+
+    private static bool IsHost()
+    {
+        var networkManagerFinder = new NetworkManagerFinder();
+        var networkManager = networkManagerFinder.GetNetworkManager();
+        var networkStateController = new NetworkStateController(networkManager);
+        return networkStateController.IsHost();
     }
 }

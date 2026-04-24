@@ -1,9 +1,9 @@
 #nullable enable
 
 using BepInEx.Logging;
+using CruiserJumpPractice.BaseGame.Controllers;
 using CruiserJumpPractice.BaseGame.Controllers.Client;
 using CruiserJumpPractice.BaseGame.Finders;
-using CruiserJumpPractice.Utils;
 using Unity.Netcode;
 
 namespace CruiserJumpPractice.NetworkBehaviours;
@@ -31,7 +31,7 @@ internal class CruiserStateNetworkBehaviour : NetworkBehaviour
     [ServerRpc(RequireOwnership = true)]
     public void SaveCruiserStateServerRpc()
     {
-        if (!NetworkUtils.IsServer())
+        if (!HasServerRole())
         {
             Logger.LogError("SaveCruiserStateServerRpc called on client. Ignoring.");
             return;
@@ -43,7 +43,7 @@ internal class CruiserStateNetworkBehaviour : NetworkBehaviour
     [ClientRpc]
     public void SaveCruiserStateDoneClientRpc(SaveCruiserStateResult result)
     {
-        if (!NetworkUtils.IsClient())
+        if (!HasClientRole())
         {
             Logger.LogError("SaveCruiserStateDoneClientRpc called on server. Ignoring.");
             return;
@@ -66,7 +66,7 @@ internal class CruiserStateNetworkBehaviour : NetworkBehaviour
     [ServerRpc(RequireOwnership = true)]
     public void LoadCruiserStateServerRpc()
     {
-        if (!NetworkUtils.IsServer())
+        if (!HasServerRole())
         {
             Logger.LogError("LoadCruiserStateServerRpc called on client. Ignoring.");
             return;
@@ -78,7 +78,7 @@ internal class CruiserStateNetworkBehaviour : NetworkBehaviour
     [ClientRpc]
     public void LoadCruiserStateDoneClientRpc(LoadCruiserStateResult result)
     {
-        if (!NetworkUtils.IsClient())
+        if (!HasClientRole())
         {
             Logger.LogError("LoadCruiserStateDoneClientRpc called on server. Ignoring.");
             return;
@@ -112,5 +112,21 @@ internal class CruiserStateNetworkBehaviour : NetworkBehaviour
         var hudManager = hudManagerFinder.GetHUDManager();
         var tipController = new TipController(hudManager);
         tipController.DisplayTip("CruiserJumpPractice", bodyText);
+    }
+
+    private static bool HasServerRole()
+    {
+        var networkManagerFinder = new NetworkManagerFinder();
+        var networkManager = networkManagerFinder.GetNetworkManager();
+        var networkStateController = new NetworkStateController(networkManager);
+        return networkStateController.IsServer();
+    }
+
+    private static bool HasClientRole()
+    {
+        var networkManagerFinder = new NetworkManagerFinder();
+        var networkManager = networkManagerFinder.GetNetworkManager();
+        var networkStateController = new NetworkStateController(networkManager);
+        return networkStateController.IsClient();
     }
 }

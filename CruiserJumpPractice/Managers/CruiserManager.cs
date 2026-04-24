@@ -4,7 +4,6 @@ using BepInEx.Logging;
 using CruiserJumpPractice.BaseGame.Controllers.Server.Cruiser;
 using CruiserJumpPractice.BaseGame.Finders;
 using CruiserJumpPractice.NetworkBehaviours;
-using CruiserJumpPractice.Utils;
 using UnityEngine;
 
 namespace CruiserJumpPractice.Managers;
@@ -64,12 +63,8 @@ internal class CruiserManager
 
     internal void SaveCruiserState()
     {
-        var cruiserStateNetworkBehaviour = NetworkBehaviourUtils.GetCruiserStateNetworkBehaviour();
-        if (cruiserStateNetworkBehaviour == null)
-        {
-            Logger.LogError("CruiserStateNetworkBehaviour is null.");
-            return;
-        }
+        var cruiserStateNetworkBehaviourFinder = new CruiserStateNetworkBehaviourFinder();
+        var cruiserStateNetworkBehaviour = cruiserStateNetworkBehaviourFinder.GetCruiserStateNetworkBehaviour();
 
         try
         {
@@ -116,12 +111,8 @@ internal class CruiserManager
 
     internal void LoadCruiserState()
     {
-        var cruiserStateNetworkBehaviour = NetworkBehaviourUtils.GetCruiserStateNetworkBehaviour();
-        if (cruiserStateNetworkBehaviour == null)
-        {
-            Logger.LogError("CruiserStateNetworkBehaviour is null.");
-            return;
-        }
+        var cruiserStateNetworkBehaviourFinder = new CruiserStateNetworkBehaviourFinder();
+        var cruiserStateNetworkBehaviour = cruiserStateNetworkBehaviourFinder.GetCruiserStateNetworkBehaviour();
 
         try
         {
