@@ -5,86 +5,94 @@
 - Project structure remains a single `.csproj` (`CruiserJumpPractice/CruiserJumpPractice.csproj`).
 - Naming is fixed to PascalCase and English only.
 - `Client` / `Server` vocabulary is retained (no forced rename to `Local` / `Host`).
-- Directory structure is fixed: no folder moves, no folder renames, no file relocation across directories.
-- `CruiserJumpPractice.cs` and `InputActions.cs` stay at current locations.
+- This plan prioritizes structure-first renaming, then namespace alignment, then wiring clarity.
+- `Bootstrap/CruiserJumpPractice.cs` and `Bootstrap/InputActions.cs` are fixed and excluded from rename scope.
 
 ## Refactoring Goals
 
-1. Keep current directory layout intact.
-2. Improve naming consistency within existing directories.
+1. Make the directory layout the source of truth for naming.
+2. Remove over-fragmented folders that increase navigation cost.
 3. Establish version-aware GameInterop naming for Lethal Company V73 and future versions.
-4. Keep runtime behavior stable while refactoring symbols only.
+4. Keep runtime behavior stable while refactoring structure and symbols.
 
 ## Directory Granularity Policy
 
 - `UseCases` classification is intentionally retained as a semantic boundary for application actions.
-- Existing folder granularity is preserved as-is.
-- No new top-level grouping (for example `Features` or `Interop`) is introduced.
-- Refinement is done via type/file naming and namespace consistency, not structural migration.
+- Current draft was too fine-grained for some other buckets (`Results`, `Services`, `Presenters`, `Handlers` under every area).
+- New policy: split only when a folder contains 4 or more files or clearly different lifecycle concerns.
+- Default is feature-level grouping with shallow layers.
 
-## Target Organization (Fixed Current Structure)
+## Target Organization (Simplified, Single Project)
 
 ```text
 CruiserJumpPractice/
-  CruiserJumpPractice.cs
-  InputActions.cs
-  Application/
-    ClientOperationResults.cs
-    CruiserStateOperationResults.cs
-    Services/
-      ServerCruiserStateService.cs
-    UseCases/
-      SaveCruiserStateUseCase.cs
-      LoadCruiserStateUseCase.cs
-      RequestSaveCruiserStateUseCase.cs
-      RequestLoadCruiserStateUseCase.cs
-      ToggleMagnetUseCase.cs
+  Bootstrap/
+    CruiserJumpPractice.cs
+    InputActions.cs
   Composition/
     CompositionRoot.cs
-  Domain/
-    CruiserStateStore.cs
-  GameInterop/
-    IGameInterop.cs
-    CurrentGameInterop.cs
-    CruiserSnapshot.cs
-    GameInteropException.cs
-    Features/
-      CruiserInterop.cs
-      GameObjectInterop.cs
-      HudInterop.cs
-      NetworkInterop.cs
-      PlayerInterop.cs
-      RpcSurrogateInterop.cs
-      ShipMagnetInterop.cs
-  NetworkBehaviours/
+  Features/
+    CruiserState/
+      UseCases/
+        SaveCruiserStateUseCase.cs
+        LoadCruiserStateUseCase.cs
+        RequestSaveCruiserStateUseCase.cs
+        RequestLoadCruiserStateUseCase.cs
+      CruiserStateResults.cs
+      ClientCruiserStateService.cs
+      ServerCruiserStateService.cs
+      CruiserStateStore.cs
+    Magnet/
+      UseCases/
+        ToggleMagnetUseCase.cs
+      MagnetResults.cs
+      ClientMagnetService.cs
+    Notifications/
+      ClientNotificationService.cs
+    Runtime/
+      FrameInputHandler.cs
+      StartupHandler.cs
+      ClientCruiserResultPresenter.cs
+  Interop/
+    Contracts/
+      IGameInterop.cs
+    Models/
+      CruiserSnapshot.cs
+    Exceptions/
+      GameInteropException.cs
+    Adapters/
+      V73/
+        GameInteropV73.cs
+        CruiserAdapterV73.cs
+        GameObjectAdapterV73.cs
+        HudAdapterV73.cs
+        NetworkAdapterV73.cs
+        PlayerAdapterV73.cs
+        RpcSurrogateAdapterV73.cs
+        ShipMagnetAdapterV73.cs
+  Network/
     RpcSurrogateNetworkBehaviour.cs
-  Presentation/
-    FrameHandler.cs
-    StartupHandler.cs
-    ClientCruiserStateService.cs
-    ClientMagnetService.cs
-    ClientNotificationService.cs
-    ClientCruiserResultPresenter.cs
   Patches/
     HudManagerPatch.cs
 ```
 
 Notes:
-- `UseCases` is preserved in `Application/UseCases`.
-- `NetworkBehaviours` folder name is preserved (no folder rename in this plan).
-- Version-aware naming is applied without moving files to new directories.
+- Folders are shallow by default.
+- `Features` is product-facing and stable in meaning.
+- `UseCases` folders are preserved in feature scope.
+- Technical version-specific implementation is isolated under `Interop/Adapters/V73`.
 
-## Naming Rules (Authoritative)
+## Structure-First Rename Rules (Authoritative)
 
 ### Naming Principle
 
-- Keep directory locations unchanged.
-- Rename only type/file symbols that improve clarity or version awareness.
+- Do not inherit legacy names when they no longer match target folder responsibility.
+- Rename from directory intent first, then adjust dependencies.
 - File name equals type name exactly.
 
 ### Role Suffix Policy
 
-- Keep existing role suffixes and normalize only when inconsistent.
+- Use functional names first (`SaveCruiserState`, `LoadCruiserState`, `ToggleMagnet`) and keep `UseCase` suffix for application actions.
 - Add suffix only when disambiguation is required:
   - `UseCase` for application action classes.
   - `Service` for orchestration and shared feature utilities.
@@ -95,7 +103,6 @@ Notes:
 ### Planned Renames (Core Examples)
 
 - `CruiserJumpPractice` -> `CruiserJumpPractice` (kept)
-- `InputActions` -> `InputActions` (kept)
 - `SaveCruiserStateUseCase` -> `SaveCruiserStateUseCase` (kept)
 - `LoadCruiserStateUseCase` -> `LoadCruiserStateUseCase` (kept)
 - `RequestSaveCruiserStateUseCase` -> `RequestSaveCruiserStateUseCase` (kept)
@@ -105,13 +112,13 @@ Notes:
 - `ClientMagnetService` -> `ClientMagnetService` (kept)
 - `FrameHandler` -> `FrameInputHandler`
 - `CurrentGameInterop` -> `GameInteropV73`
-- `CruiserInterop` -> `CruiserInteropV73`
-- `GameObjectInterop` -> `GameObjectInteropV73`
-- `HudInterop` -> `HudInteropV73`
-- `NetworkInterop` -> `NetworkInteropV73`
-- `PlayerInterop` -> `PlayerInteropV73`
-- `RpcSurrogateInterop` -> `RpcSurrogateInteropV73`
-- `ShipMagnetInterop` -> `ShipMagnetInteropV73`
+- `CruiserInterop` -> `CruiserAdapterV73`
+- `GameObjectInterop` -> `GameObjectAdapterV73`
+- `HudInterop` -> `HudAdapterV73`
+- `NetworkInterop` -> `NetworkAdapterV73`
+- `PlayerInterop` -> `PlayerAdapterV73`
+- `RpcSurrogateInterop` -> `RpcSurrogateAdapterV73`
+- `ShipMagnetInterop` -> `ShipMagnetAdapterV73`
 
 ## GameInterop Versioning Convention
 
@@ -122,85 +129,97 @@ Notes:
 
 ### Rules
 
-- Versioned interop class naming: `<Concern>InteropV<MajorVersion>`.
-  - Example: `HudInteropV73`.
+- Versioned adapter class naming: `<Concern>AdapterV<MajorVersion>`.
+  - Example: `HudAdapterV73`.
 - Versioned aggregate interop naming: `GameInteropV<MajorVersion>`.
   - Example: `GameInteropV73`.
-- Contracts remain unversioned in `GameInterop`.
+- Contracts remain unversioned in `Interop/Contracts`.
   - `IGameInterop` should describe stable capabilities.
 - Composition decides active version.
   - `CompositionRoot` maps `IGameInterop` to `GameInteropV73` for now.
 - Future version introduction pattern:
-  1. Add `*InteropVXX` classes in the same existing directories.
-  2. Implement `GameInteropVXX` and dependent interops.
+  1. Add `Interop/Adapters/VXX`.
+  2. Implement `GameInteropVXX` and adapters.
   3. Switch composition binding.
   4. Remove older version after validation window.
 
 ## Namespace Rules
 
 - Namespace must mirror physical path from `CruiserJumpPractice/`.
-- For versioned interop in current structure:
-  - `CruiserJumpPractice.GameInterop`
-  - `CruiserJumpPractice.GameInterop.Features`
+- For versioned interop:
+  - `CruiserJumpPractice.Interop.Adapters.V73`
+- No generic technical bucket names like `Features` inside interop.
 
 ## Migration Phases
 
-## Phase 1: Baseline Naming Cleanup (No behavior change)
+## Phase 1: Simplify Folders and Move Files (UseCases retained, no behavior change)
 
-1. Keep all files in current directories.
-2. Apply low-risk naming cleanups (for example `FrameHandler` -> `FrameInputHandler`).
-3. Update namespaces and using directives only when symbol rename requires it.
+1. Create simplified target folders.
+2. Move files based on feature ownership.
+3. Keep old symbol names temporarily.
 4. Build and verify.
 
 Exit Criteria:
 - `dotnet build` succeeds.
 - No runtime logic edits.
 
-## Phase 2: Interop Versioning Naming (In-place)
+## Phase 2: Structure-First Renaming
 
-1. Rename `CurrentGameInterop` and feature interops to `V73`-explicit names.
-2. Keep files in current `GameInterop` and `GameInterop/Features` directories.
+1. Apply planned class/file renames.
+2. Update namespaces and using directives.
 3. Keep behavior unchanged.
 4. Build and verify.
 
 Exit Criteria:
-- Version-aware names are applied without any directory migration.
+- Renamed symbols align with folder responsibility.
+- No legacy naming drift remains.
 
-## Phase 3: Composition and Runtime Validation
+## Phase 3: Interop Versioning Foundation
+
+1. Rename `CurrentGameInterop` family to `V73` series.
+2. Move all V73-specific implementations under `Interop/Adapters/V73`.
+3. Keep `IGameInterop` contract stable.
+4. Build and verify.
+
+Exit Criteria:
+- Version-specific code is physically isolated.
+- Contract remains version-agnostic.
+
+## Phase 4: Composition and Runtime Validation
 
 1. Keep `CompositionRoot` as single binding point.
 2. Verify startup, frame input, save/load, and magnet toggle flows.
-3. Update README architecture map and naming rules.
-4. Build and verify.
+3. Update README architecture map.
 
 Exit Criteria:
 - Debug startup works.
 - Save/load/toggle paths still function.
-- Documentation reflects real structure and naming with unchanged directories.
+- Documentation reflects real structure and naming.
 
 ## Risk Controls
 
 - Do not mix behavior refactor with folder/symbol refactor in the same commit.
 - Keep commits phase-scoped.
 - Run build after each phase.
-- Do not perform directory moves or folder renames.
 - Preserve `Client` / `Server` terms only where they represent runtime role, not historical naming.
 
 ## Suggested Commit Strategy
 
-1. `refactor(naming): align symbol names in current structure`
-2. `refactor(interop): introduce v73-based interop naming in place`
-3. `refactor(composition): rebind to versioned interop implementation`
-4. `docs: update README architecture and naming rules`
+1. `refactor(structure): simplify folders and align file placement`
+2. `refactor(naming): apply structure-first symbol renaming`
+3. `refactor(interop): introduce v73-based interop naming`
+4. `refactor(composition): rebind to versioned interop implementation`
+5. `docs: update README architecture and naming rules`
 
 ## Task Checklist
 
-- [ ] Existing directory layout preserved
+- [ ] Phase 1 folder simplification completed
 - [ ] Phase 1 build passes
-- [ ] Phase 2 interop naming updates completed
+- [ ] Phase 2 symbol/file renaming completed
 - [ ] Phase 2 build passes
-- [ ] Phase 3 runtime validation completed
+- [ ] Phase 3 interop versioning isolation completed
 - [ ] Phase 3 build passes
+- [ ] Phase 4 runtime validation completed
 - [ ] README updated
 
 ## Decision Log
@@ -208,5 +227,5 @@ Exit Criteria:
 - 2026-04-25: Keep single project architecture.
 - 2026-04-25: Enforce PascalCase + English-only naming.
 - 2026-04-25: Preserve `Client` / `Server` terminology.
-- 2026-04-25: Keep existing directory structure unchanged.
+- 2026-04-25: Prioritize structure-first renaming over legacy name inheritance.
 - 2026-04-25: Adopt V73-explicit naming for current interop implementation.
