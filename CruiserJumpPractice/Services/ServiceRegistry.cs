@@ -15,18 +15,22 @@ internal sealed class ServiceRegistry
 
     public ServerCruiserStateService ServerCruiserStateService { get; }
 
+    public ClientTickService ClientTickService { get; }
+
     public ClientMagnetService ClientMagnetService { get; }
 
     private ServiceRegistry(
         IGameInterop gameInterop,
         ClientCruiserStateService clientCruiserStateService,
         ServerCruiserStateService serverCruiserStateService,
+        ClientTickService clientTickService,
         ClientMagnetService clientMagnetService
     )
     {
         GameInterop = gameInterop;
         ClientCruiserStateService = clientCruiserStateService;
         ServerCruiserStateService = serverCruiserStateService;
+        ClientTickService = clientTickService;
         ClientMagnetService = clientMagnetService;
     }
 
@@ -40,6 +44,11 @@ internal sealed class ServiceRegistry
             gameInterop: gameInterop,
             clientCruiserStateService: clientCruiserStateService,
             serverCruiserStateService: new ServerCruiserStateService(gameInterop),
+            clientTickService: new ClientTickService(
+                gameInterop,
+                clientCruiserStateService,
+                clientMagnetService
+            ),
             clientMagnetService: clientMagnetService
         );
     }

@@ -21,49 +21,7 @@ internal class HUDManagerPatch
     [HarmonyPostfix]
     public static void UpdatePostfix(HUDManager __instance)
     {
-        if (!CruiserJumpPractice.GameInterop.IsClient())
-        {
-            return;
-        }
-
-        if (CruiserJumpPractice.GameInterop.IsLocalPlayerBusy())
-        {
-            return;
-        }
-
-        UpdateSaveCruiser(__instance);
-        UpdateLoadCruiser(__instance);
-        UpdateToggleMagnet(__instance);
-    }
-
-    internal static void UpdateSaveCruiser(HUDManager hudManager)
-    {
-        if (!(CruiserJumpPractice.InputActions?.SaveCruiserKey?.triggered ?? false))
-        {
-            return;
-        }
-
-        CruiserJumpPractice.ClientCruiserStateService.RequestSaveCruiserState(hudManager);
-    }
-
-    internal static void UpdateLoadCruiser(HUDManager hudManager)
-    {
-        if (!(CruiserJumpPractice.InputActions?.LoadCruiserKey?.triggered ?? false))
-        {
-            return;
-        }
-
-        CruiserJumpPractice.ClientCruiserStateService.RequestLoadCruiserState(hudManager);
-    }
-
-    internal static void UpdateToggleMagnet(HUDManager hudManager)
-    {
-        if (!(CruiserJumpPractice.InputActions?.ToggleMagnetKey?.triggered ?? false))
-        {
-            return;
-        }
-
-        CruiserJumpPractice.ClientMagnetService.ToggleMagnet(hudManager);
+        CruiserJumpPractice.ClientTickService.OnTick(__instance);
     }
 
 }
