@@ -4,7 +4,7 @@ using BepInEx.Logging;
 using CruiserJumpPractice.GameInterop;
 using CruiserJumpPractice.NetworkBehaviours;
 
-namespace CruiserJumpPractice.Services.Server;
+namespace CruiserJumpPractice.Services;
 
 class NoCruiserFoundException : System.Exception
 {
@@ -21,7 +21,7 @@ class MagnetedToShipException : System.Exception
     public MagnetedToShipException() : base() { }
 }
 
-internal class ServerCruiserStateService
+internal class CruiserStateServerService
 {
     internal static ManualLogSource Logger => CruiserJumpPractice.Logger!;
 
@@ -29,7 +29,7 @@ internal class ServerCruiserStateService
 
     private CruiserSnapshot? savedCruiserState;
 
-    public ServerCruiserStateService(IGameInterop gameInterop)
+    public CruiserStateServerService(IGameInterop gameInterop)
     {
         this.gameInterop = gameInterop;
     }

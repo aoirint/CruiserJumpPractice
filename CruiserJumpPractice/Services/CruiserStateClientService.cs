@@ -3,15 +3,15 @@
 using BepInEx.Logging;
 using CruiserJumpPractice.GameInterop;
 
-namespace CruiserJumpPractice.Services.Client;
+namespace CruiserJumpPractice.Services;
 
-internal class ClientCruiserStateService
+internal class CruiserStateClientService
 {
     internal static ManualLogSource Logger => CruiserJumpPractice.Logger!;
 
     private readonly IGameInterop gameInterop;
 
-    public ClientCruiserStateService(IGameInterop gameInterop)
+    public CruiserStateClientService(IGameInterop gameInterop)
     {
         this.gameInterop = gameInterop;
     }
