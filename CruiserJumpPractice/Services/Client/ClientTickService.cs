@@ -21,7 +21,7 @@ internal sealed class ClientTickService
         this.clientMagnetService = clientMagnetService;
     }
 
-    public void OnTick(HUDManager hudManager)
+    public void OnTick()
     {
         if (!gameInterop.IsClient())
         {
@@ -33,38 +33,38 @@ internal sealed class ClientTickService
             return;
         }
 
-        UpdateSaveCruiser(hudManager);
-        UpdateLoadCruiser(hudManager);
-        UpdateToggleMagnet(hudManager);
+        UpdateSaveCruiser();
+        UpdateLoadCruiser();
+        UpdateToggleMagnet();
     }
 
-    private void UpdateSaveCruiser(HUDManager hudManager)
+    private void UpdateSaveCruiser()
     {
         if (!(CruiserJumpPractice.InputActions?.SaveCruiserKey?.triggered ?? false))
         {
             return;
         }
 
-        clientCruiserStateService.RequestSaveCruiserState(hudManager);
+        clientCruiserStateService.RequestSaveCruiserState();
     }
 
-    private void UpdateLoadCruiser(HUDManager hudManager)
+    private void UpdateLoadCruiser()
     {
         if (!(CruiserJumpPractice.InputActions?.LoadCruiserKey?.triggered ?? false))
         {
             return;
         }
 
-        clientCruiserStateService.RequestLoadCruiserState(hudManager);
+        clientCruiserStateService.RequestLoadCruiserState();
     }
 
-    private void UpdateToggleMagnet(HUDManager hudManager)
+    private void UpdateToggleMagnet()
     {
         if (!(CruiserJumpPractice.InputActions?.ToggleMagnetKey?.triggered ?? false))
         {
             return;
         }
 
-        clientMagnetService.ToggleMagnet(hudManager);
+        clientMagnetService.ToggleMagnet();
     }
 }

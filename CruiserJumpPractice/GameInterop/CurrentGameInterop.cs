@@ -57,9 +57,9 @@ internal sealed class CurrentGameInterop : IGameInterop
         hudInterop.DisplayLocalTip(headerText, bodyText);
     }
 
-    public void SpawnRpcSurrogate(HUDManager hudManager)
+    public void SpawnRpcSurrogate()
     {
-        rpcSurrogateInterop.SpawnRpcSurrogate(hudManager);
+        rpcSurrogateInterop.SpawnRpcSurrogate();
     }
 
     public RpcSurrogateNetworkBehaviour GetRpcSurrogateNetworkBehaviour()

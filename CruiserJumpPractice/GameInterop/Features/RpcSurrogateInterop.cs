@@ -18,8 +18,9 @@ internal sealed class RpcSurrogateInterop
         this.gameObjects = gameObjects;
     }
 
-    public void SpawnRpcSurrogate(HUDManager hudManager)
+    public void SpawnRpcSurrogate()
     {
+        var hudManager = gameObjects.GetHUDManager();
         var gameObject = hudManager.gameObject;
         if (gameObject == null)
         {

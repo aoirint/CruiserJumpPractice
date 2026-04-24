@@ -12,16 +12,16 @@ internal class HUDManagerPatch
 
     [HarmonyPatch(nameof(HUDManager.Awake))]
     [HarmonyPostfix]
-    public static void AwakePostfix(HUDManager __instance)
+    public static void AwakePostfix()
     {
-        CruiserJumpPractice.ClientRpcSurrogateService.Spawn(__instance);
+        CruiserJumpPractice.ClientRpcSurrogateService.EnsureSpawned();
     }
 
     [HarmonyPatch(nameof(HUDManager.Update))]
     [HarmonyPostfix]
-    public static void UpdatePostfix(HUDManager __instance)
+    public static void UpdatePostfix()
     {
-        CruiserJumpPractice.ClientTickService.OnTick(__instance);
+        CruiserJumpPractice.ClientTickService.OnTick();
     }
 
 }

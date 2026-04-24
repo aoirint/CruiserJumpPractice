@@ -13,8 +13,8 @@ internal sealed class ClientRpcSurrogateService
         this.gameInterop = gameInterop;
     }
 
-    public void Spawn(HUDManager hudManager)
+    public void EnsureSpawned()
     {
-        gameInterop.SpawnRpcSurrogate(hudManager);
+        gameInterop.SpawnRpcSurrogate();
     }
 }

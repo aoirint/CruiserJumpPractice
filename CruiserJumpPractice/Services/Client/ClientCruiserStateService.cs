@@ -16,11 +16,11 @@ internal class ClientCruiserStateService
         this.gameInterop = gameInterop;
     }
 
-    internal void RequestSaveCruiserState(HUDManager hudManager)
+    internal void RequestSaveCruiserState()
     {
         if (!gameInterop.IsHost())
         {
-            gameInterop.DisplayTip(hudManager, "CruiserJumpPractice", "Only the host can save the cruiser state.");
+            gameInterop.DisplayLocalTip("CruiserJumpPractice", "Only the host can save the cruiser state.");
             return;
         }
 
@@ -28,11 +28,11 @@ internal class ClientCruiserStateService
         rpcSurrogateNetworkBehaviour.SaveCruiserStateServerRpc();
     }
 
-    internal void RequestLoadCruiserState(HUDManager hudManager)
+    internal void RequestLoadCruiserState()
     {
         if (!gameInterop.IsHost())
         {
-            gameInterop.DisplayTip(hudManager, "CruiserJumpPractice", "Only the host can load the cruiser state.");
+            gameInterop.DisplayLocalTip("CruiserJumpPractice", "Only the host can load the cruiser state.");
             return;
         }
 

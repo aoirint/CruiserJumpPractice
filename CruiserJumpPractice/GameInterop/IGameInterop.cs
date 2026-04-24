@@ -18,7 +18,7 @@ internal interface IGameInterop
 
     void DisplayLocalTip(string headerText, string bodyText);
 
-    void SpawnRpcSurrogate(HUDManager hudManager);
+    void SpawnRpcSurrogate();
 
     RpcSurrogateNetworkBehaviour GetRpcSurrogateNetworkBehaviour();
 

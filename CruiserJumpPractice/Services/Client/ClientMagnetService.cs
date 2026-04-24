@@ -16,11 +16,11 @@ internal class ClientMagnetService
         this.gameInterop = gameInterop;
     }
 
-    internal void ToggleMagnet(HUDManager hudManager)
+    internal void ToggleMagnet()
     {
         if (!gameInterop.IsHost())
         {
-            gameInterop.DisplayTip(hudManager, "CruiserJumpPractice", "Only the host can toggle the magnet.");
+            gameInterop.DisplayLocalTip("CruiserJumpPractice", "Only the host can toggle the magnet.");
             return;
         }
 
@@ -30,6 +30,6 @@ internal class ClientMagnetService
         gameInterop.ToggleShipMagnet();
 
         var magnetStateText = newMagnetState ? "ON" : "OFF";
-        gameInterop.DisplayTip(hudManager, "CruiserJumpPractice", $"Magnet is now {magnetStateText}.");
+        gameInterop.DisplayLocalTip("CruiserJumpPractice", $"Magnet is now {magnetStateText}.");
     }
 }
