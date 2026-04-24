@@ -1,6 +1,6 @@
 #nullable enable
 
-using CruiserJumpPractice.GameInterop;
+using CruiserJumpPractice.Interop.Domain;
 
 namespace CruiserJumpPractice.Domain;
 

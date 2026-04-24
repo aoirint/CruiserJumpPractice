@@ -2,10 +2,9 @@
 
 using BepInEx;
 using BepInEx.Logging;
-using CruiserJumpPractice.Application.Services;
-using CruiserJumpPractice.Composition;
-using CruiserJumpPractice.GameInterop;
-using CruiserJumpPractice.Presentation;
+using CruiserJumpPractice.Interop;
+using CruiserJumpPractice.Runtime;
+using CruiserJumpPractice.Services;
 using HarmonyLib;
 
 namespace CruiserJumpPractice;
