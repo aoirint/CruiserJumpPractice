@@ -21,8 +21,8 @@ public class CruiserJumpPractice : BaseUnityPlugin
 
     private static ServiceRegistry? Services { get; set; }
 
-    internal static Services.CruiserStateClientService CruiserStateClientService =>
-        Services!.CruiserStateClientService;
+    internal static Services.Client.ClientCruiserStateService ClientCruiserStateService =>
+        Services!.ClientCruiserStateService;
 
     internal static Runtime.FrameHandler FrameHandler =>
         Services!.FrameHandler;
@@ -33,11 +33,11 @@ public class CruiserJumpPractice : BaseUnityPlugin
     internal static IGameInterop GameInterop =>
         Services!.GameInterop;
 
-    internal static Services.CruiserStateServerService CruiserStateServerService =>
-        Services!.CruiserStateServerService;
+    internal static Services.Server.ServerCruiserStateService ServerCruiserStateService =>
+        Services!.ServerCruiserStateService;
 
-    internal static Services.MagnetService MagnetService =>
-        Services!.MagnetService;
+    internal static Services.Client.ClientMagnetService ClientMagnetService =>
+        Services!.ClientMagnetService;
 
     private void Awake()
     {

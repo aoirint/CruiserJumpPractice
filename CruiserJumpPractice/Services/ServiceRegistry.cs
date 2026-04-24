@@ -3,6 +3,8 @@
 using BepInEx.Logging;
 using CruiserJumpPractice.GameInterop;
 using CruiserJumpPractice.Runtime;
+using CruiserJumpPractice.Services.Client;
+using CruiserJumpPractice.Services.Server;
 
 namespace CruiserJumpPractice.Services;
 
@@ -10,51 +12,51 @@ internal sealed class ServiceRegistry
 {
     public IGameInterop GameInterop { get; }
 
-    public CruiserStateClientService CruiserStateClientService { get; }
+    public ClientCruiserStateService ClientCruiserStateService { get; }
 
-    public CruiserStateServerService CruiserStateServerService { get; }
+    public ServerCruiserStateService ServerCruiserStateService { get; }
 
     public FrameHandler FrameHandler { get; }
 
     public StartupHandler StartupHandler { get; }
 
-    public MagnetService MagnetService { get; }
+    public ClientMagnetService ClientMagnetService { get; }
 
     private ServiceRegistry(
         IGameInterop gameInterop,
-        CruiserStateClientService cruiserStateClientService,
-        CruiserStateServerService cruiserStateServerService,
+        ClientCruiserStateService clientCruiserStateService,
+        ServerCruiserStateService serverCruiserStateService,
         FrameHandler frameHandler,
         StartupHandler startupHandler,
-        MagnetService magnetService
+        ClientMagnetService clientMagnetService
     )
     {
         GameInterop = gameInterop;
-        CruiserStateClientService = cruiserStateClientService;
-        CruiserStateServerService = cruiserStateServerService;
+        ClientCruiserStateService = clientCruiserStateService;
+        ServerCruiserStateService = serverCruiserStateService;
         FrameHandler = frameHandler;
         StartupHandler = startupHandler;
-        MagnetService = magnetService;
+        ClientMagnetService = clientMagnetService;
     }
 
     public static ServiceRegistry Create(ManualLogSource logger)
     {
         IGameInterop gameInterop = new CurrentGameInterop(logger);
-        var cruiserStateClientService = new CruiserStateClientService(gameInterop);
-        var magnetService = new MagnetService(gameInterop);
+        var clientCruiserStateService = new ClientCruiserStateService(gameInterop);
+        var clientMagnetService = new ClientMagnetService(gameInterop);
         var frameHandler = new FrameHandler(
             gameInterop,
-            cruiserStateClientService,
-            magnetService
+            clientCruiserStateService,
+            clientMagnetService
         );
 
         return new ServiceRegistry(
             gameInterop: gameInterop,
-            cruiserStateClientService: cruiserStateClientService,
-            cruiserStateServerService: new CruiserStateServerService(gameInterop),
+            clientCruiserStateService: clientCruiserStateService,
+            serverCruiserStateService: new ServerCruiserStateService(gameInterop),
             frameHandler: frameHandler,
             startupHandler: new StartupHandler(gameInterop),
-            magnetService: magnetService
+            clientMagnetService: clientMagnetService
         );
     }
 }
