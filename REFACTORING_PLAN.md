@@ -6,7 +6,7 @@
 - Naming is fixed to PascalCase and English only.
 - `Client` / `Server` vocabulary is retained (no forced rename to `Local` / `Host`).
 - This plan prioritizes structure-first renaming, then namespace alignment, then wiring clarity.
-- `Bootstrap/ModEntryPoint.cs` and `Bootstrap/InputActions.cs` are fixed and excluded from rename scope.
+- `Bootstrap/CruiserJumpPractice.cs` and `Bootstrap/InputActions.cs` are fixed and excluded from rename scope.
 
 ## Refactoring Goals
 
@@ -27,7 +27,7 @@
 ```text
 CruiserJumpPractice/
   Bootstrap/
-    ModEntryPoint.cs
+    CruiserJumpPractice.cs
     InputActions.cs
   Composition/
     CompositionRoot.cs
@@ -102,7 +102,7 @@ Notes:
 
 ### Planned Renames (Core Examples)
 
-- `CruiserJumpPractice` -> `ModEntryPoint`
+- `CruiserJumpPractice` -> `CruiserJumpPractice` (kept)
 - `SaveCruiserStateUseCase` -> `SaveCruiserStateUseCase` (kept)
 - `LoadCruiserStateUseCase` -> `LoadCruiserStateUseCase` (kept)
 - `RequestSaveCruiserStateUseCase` -> `RequestSaveCruiserStateUseCase` (kept)
