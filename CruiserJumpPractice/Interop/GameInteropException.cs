@@ -1,6 +1,6 @@
 #nullable enable
 
-namespace CruiserJumpPractice.Interop.Domain;
+namespace CruiserJumpPractice.Domain;
 
 internal sealed class GameInteropException : System.Exception
 {

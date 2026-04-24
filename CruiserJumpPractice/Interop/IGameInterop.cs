@@ -1,7 +1,7 @@
 #nullable enable
 
 using CruiserJumpPractice.Interop.Behaviours;
-using CruiserJumpPractice.Interop.Domain;
+using CruiserJumpPractice.Domain;
 
 namespace CruiserJumpPractice.Interop;
 

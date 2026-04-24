@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-namespace CruiserJumpPractice.Interop.Domain;
+namespace CruiserJumpPractice.Domain;
 
 internal sealed class CruiserSnapshot
 {

@@ -1,7 +1,7 @@
 #nullable enable
 
 using BepInEx.Logging;
-using CruiserJumpPractice.Interop.Domain;
+using CruiserJumpPractice.Domain;
 using System.Reflection;
 using UnityEngine;
 

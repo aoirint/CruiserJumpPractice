@@ -4,7 +4,7 @@ using BepInEx.Logging;
 using GameNetcodeStuff;
 using Unity.Netcode;
 
-using CruiserJumpPractice.Interop.Domain;
+using CruiserJumpPractice.Domain;
 
 namespace CruiserJumpPractice.Interop.Adapters.V73;
 

@@ -2,7 +2,7 @@
 
 using BepInEx.Logging;
 
-using CruiserJumpPractice.Interop.Domain;
+using CruiserJumpPractice.Domain;
 
 namespace CruiserJumpPractice.Interop.Adapters.V73;
 
