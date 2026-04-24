@@ -6,7 +6,7 @@ using CruiserJumpPractice.Application.UseCases.Client;
 
 namespace CruiserJumpPractice.Application.Services.Client;
 
-internal sealed class CruiserStateOperationRequestService
+internal sealed class RequestCruiserStateService
 {
     internal static ManualLogSource Logger => CruiserJumpPractice.Logger!;
 
@@ -14,7 +14,7 @@ internal sealed class CruiserStateOperationRequestService
     private readonly RequestLoadCruiserStateUseCase requestLoadCruiserStateUseCase;
     private readonly NotificationUseCase notificationUseCase;
 
-    public CruiserStateOperationRequestService(
+    public RequestCruiserStateService(
         RequestSaveCruiserStateUseCase requestSaveCruiserStateUseCase,
         RequestLoadCruiserStateUseCase requestLoadCruiserStateUseCase,
         NotificationUseCase notificationUseCase

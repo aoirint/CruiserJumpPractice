@@ -19,7 +19,7 @@ internal class RpcSurrogateBehaviour : NetworkBehaviour
             return;
         }
 
-        var result = CruiserJumpPractice.CruiserStateOperationService.SaveCruiserState();
+        var result = CruiserJumpPractice.CruiserStateService.SaveCruiserState();
         SaveCruiserStateDoneClientRpc(result);
     }
 
@@ -32,7 +32,7 @@ internal class RpcSurrogateBehaviour : NetworkBehaviour
             return;
         }
 
-        CruiserJumpPractice.CruiserStateOperationRequestService.PresentSaveResult(result);
+        CruiserJumpPractice.RequestCruiserStateService.PresentSaveResult(result);
     }
 
     [ServerRpc(RequireOwnership = true)]
@@ -44,7 +44,7 @@ internal class RpcSurrogateBehaviour : NetworkBehaviour
             return;
         }
 
-        var result = CruiserJumpPractice.CruiserStateOperationService.LoadCruiserState();
+        var result = CruiserJumpPractice.CruiserStateService.LoadCruiserState();
         LoadCruiserStateDoneClientRpc(result);
     }
 
@@ -57,7 +57,7 @@ internal class RpcSurrogateBehaviour : NetworkBehaviour
             return;
         }
 
-        CruiserJumpPractice.CruiserStateOperationRequestService.PresentLoadResult(result);
+        CruiserJumpPractice.RequestCruiserStateService.PresentLoadResult(result);
     }
 
     private static bool HasServerRole()

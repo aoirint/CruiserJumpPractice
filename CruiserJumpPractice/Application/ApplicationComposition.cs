@@ -25,11 +25,11 @@ internal sealed class ApplicationComposition
 
     public ToggleMagnetUseCase ToggleMagnetUseCase { get; }
 
-    public CruiserStateOperationService CruiserStateOperationService { get; }
+    public CruiserStateService CruiserStateService { get; }
 
     public NotificationUseCase NotificationUseCase { get; }
 
-    public CruiserStateOperationRequestService CruiserStateOperationRequestService { get; }
+    public RequestCruiserStateService RequestCruiserStateService { get; }
 
     public MagnetService MagnetService { get; }
 
@@ -44,9 +44,9 @@ internal sealed class ApplicationComposition
         RequestSaveCruiserStateUseCase requestSaveCruiserStateUseCase,
         RequestLoadCruiserStateUseCase requestLoadCruiserStateUseCase,
         ToggleMagnetUseCase toggleMagnetUseCase,
-        CruiserStateOperationService cruiserStateOperationService,
+        CruiserStateService cruiserStateService,
         NotificationUseCase notificationUseCase,
-        CruiserStateOperationRequestService cruiserStateOperationRequestService,
+        RequestCruiserStateService requestCruiserStateService,
         MagnetService magnetService,
         FrameHandler frameHandler,
         StartupHandler startupHandler
@@ -58,9 +58,9 @@ internal sealed class ApplicationComposition
         RequestSaveCruiserStateUseCase = requestSaveCruiserStateUseCase;
         RequestLoadCruiserStateUseCase = requestLoadCruiserStateUseCase;
         ToggleMagnetUseCase = toggleMagnetUseCase;
-        CruiserStateOperationService = cruiserStateOperationService;
+        CruiserStateService = cruiserStateService;
         NotificationUseCase = notificationUseCase;
-        CruiserStateOperationRequestService = cruiserStateOperationRequestService;
+        RequestCruiserStateService = requestCruiserStateService;
         MagnetService = magnetService;
         FrameHandler = frameHandler;
         StartupHandler = startupHandler;
@@ -77,13 +77,13 @@ internal sealed class ApplicationComposition
         var requestSaveCruiserStateUseCase = new RequestSaveCruiserStateUseCase(gameInterop);
         var requestLoadCruiserStateUseCase = new RequestLoadCruiserStateUseCase(gameInterop);
         var toggleMagnetUseCase = new ToggleMagnetUseCase(gameInterop);
-        var cruiserStateOperationService = new CruiserStateOperationService(
+        var cruiserStateService = new CruiserStateService(
             saveCruiserStateUseCase,
             loadCruiserStateUseCase
         );
 
         var notificationUseCase = new NotificationUseCase(gameInterop);
-        var cruiserStateOperationRequestService = new CruiserStateOperationRequestService(
+        var requestCruiserStateService = new RequestCruiserStateService(
             requestSaveCruiserStateUseCase,
             requestLoadCruiserStateUseCase,
             notificationUseCase
@@ -95,7 +95,7 @@ internal sealed class ApplicationComposition
 
         var frameHandler = new FrameHandler(
             gameInterop,
-            cruiserStateOperationRequestService,
+            requestCruiserStateService,
             magnetService
         );
 
@@ -106,9 +106,9 @@ internal sealed class ApplicationComposition
             requestSaveCruiserStateUseCase: requestSaveCruiserStateUseCase,
             requestLoadCruiserStateUseCase: requestLoadCruiserStateUseCase,
             toggleMagnetUseCase: toggleMagnetUseCase,
-            cruiserStateOperationService: cruiserStateOperationService,
+            cruiserStateService: cruiserStateService,
             notificationUseCase: notificationUseCase,
-            cruiserStateOperationRequestService: cruiserStateOperationRequestService,
+            requestCruiserStateService: requestCruiserStateService,
             magnetService: magnetService,
             frameHandler: frameHandler,
             startupHandler: new StartupHandler(gameInterop)

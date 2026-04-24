@@ -33,11 +33,11 @@ public class CruiserJumpPractice : BaseUnityPlugin
     internal static IGameInterop GameInterop =>
         App!.GameInterop;
 
-    internal static CruiserStateOperationService CruiserStateOperationService =>
-        App!.CruiserStateOperationService;
+    internal static CruiserStateService CruiserStateService =>
+        App!.CruiserStateService;
 
-    internal static CruiserStateOperationRequestService CruiserStateOperationRequestService =>
-        App!.CruiserStateOperationRequestService;
+    internal static RequestCruiserStateService RequestCruiserStateService =>
+        App!.RequestCruiserStateService;
 
     private void Awake()
     {

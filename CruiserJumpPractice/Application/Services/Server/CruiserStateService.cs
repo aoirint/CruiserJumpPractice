@@ -5,12 +5,12 @@ using CruiserJumpPractice.Application.UseCases.Server;
 
 namespace CruiserJumpPractice.Application.Services.Server;
 
-internal sealed class CruiserStateOperationService
+internal sealed class CruiserStateService
 {
     private readonly SaveCruiserStateUseCase saveCruiserStateUseCase;
     private readonly LoadCruiserStateUseCase loadCruiserStateUseCase;
 
-    public CruiserStateOperationService(
+    public CruiserStateService(
         SaveCruiserStateUseCase saveCruiserStateUseCase,
         LoadCruiserStateUseCase loadCruiserStateUseCase
     )
