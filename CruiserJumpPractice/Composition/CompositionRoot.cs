@@ -1,14 +1,13 @@
 #nullable enable
 
+using CruiserJumpPractice.Application.Coordinators;
 using CruiserJumpPractice.Application.UseCases;
 using CruiserJumpPractice.Domain;
 using BepInEx.Logging;
 using CruiserJumpPractice.GameInterop;
 using CruiserJumpPractice.Presentation;
-using CruiserJumpPractice.Services.Client;
-using CruiserJumpPractice.Services.Server;
 
-namespace CruiserJumpPractice.Services;
+namespace CruiserJumpPractice.Composition;
 
 internal sealed class CompositionRoot
 {

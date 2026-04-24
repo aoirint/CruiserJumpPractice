@@ -3,7 +3,7 @@
 using CruiserJumpPractice.Application;
 using CruiserJumpPractice.Application.UseCases;
 
-namespace CruiserJumpPractice.Services.Server;
+namespace CruiserJumpPractice.Application.Coordinators;
 
 internal sealed class ServerCruiserStateCoordinator
 {

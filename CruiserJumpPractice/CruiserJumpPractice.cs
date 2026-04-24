@@ -2,8 +2,10 @@
 
 using BepInEx;
 using BepInEx.Logging;
+using CruiserJumpPractice.Composition;
 using CruiserJumpPractice.GameInterop;
-using CruiserJumpPractice.Services;
+using CruiserJumpPractice.Presentation;
+using CruiserJumpPractice.Application.Coordinators;
 using HarmonyLib;
 
 namespace CruiserJumpPractice;
@@ -19,35 +21,35 @@ public class CruiserJumpPractice : BaseUnityPlugin
 
     internal static InputActions? InputActions { get; private set; }
 
-    private static CompositionRoot? Services { get; set; }
+    private static CompositionRoot? Root { get; set; }
 
-    internal static Services.Client.ClientCruiserStateCoordinator ClientCruiserStateCoordinator =>
-        Services!.ClientCruiserStateCoordinator;
+    internal static ClientCruiserStateCoordinator ClientCruiserStateCoordinator =>
+        Root!.ClientCruiserStateCoordinator;
 
-    internal static Presentation.FrameInputCoordinator FrameInputCoordinator =>
-        Services!.FrameInputCoordinator;
+    internal static FrameInputCoordinator FrameInputCoordinator =>
+        Root!.FrameInputCoordinator;
 
-    internal static Presentation.StartupInitializer StartupInitializer =>
-        Services!.StartupInitializer;
+    internal static StartupInitializer StartupInitializer =>
+        Root!.StartupInitializer;
 
     internal static IGameInterop GameInterop =>
-        Services!.GameInterop;
+        Root!.GameInterop;
 
-    internal static Services.Server.ServerCruiserStateCoordinator ServerCruiserStateCoordinator =>
-        Services!.ServerCruiserStateCoordinator;
+    internal static ServerCruiserStateCoordinator ServerCruiserStateCoordinator =>
+        Root!.ServerCruiserStateCoordinator;
 
-    internal static Services.Client.ClientCruiserResultPresenter ClientCruiserResultPresenter =>
-        Services!.ClientCruiserResultPresenter;
+    internal static ClientCruiserResultPresenter ClientCruiserResultPresenter =>
+        Root!.ClientCruiserResultPresenter;
 
-    internal static Services.Client.ClientMagnetCoordinator ClientMagnetCoordinator =>
-        Services!.ClientMagnetCoordinator;
+    internal static ClientMagnetCoordinator ClientMagnetCoordinator =>
+        Root!.ClientMagnetCoordinator;
 
     private void Awake()
     {
         Logger = base.Logger;
 
         InputActions = new InputActions();
-        Services = CompositionRoot.Create(Logger);
+        Root = CompositionRoot.Create(Logger);
 
         Harmony.PatchAll();
 

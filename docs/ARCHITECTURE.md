@@ -4,7 +4,7 @@
 
 ### Presentation
 
-- Runtime input handling: `Runtime/FrameInputCoordinator.cs`
+- Runtime input handling: `Presentation/FrameInputCoordinator.cs`
 - Harmony entry points: `Patches/HUDManagerPatch.cs`
 - Purpose: react to frame/input events and call application-facing coordinators.
 
@@ -23,7 +23,7 @@
 
 - Game API adapters: `GameInterop/*`
 - RPC transport: `NetworkBehaviours/RpcSurrogateNetworkBehaviour.cs`
-- Composition root: `Services/CompositionRoot.cs`
+- Composition root: `Composition/CompositionRoot.cs`
 - Purpose: integrate with Lethal Company objects and Netcode runtime.
 
 ## Design Rules

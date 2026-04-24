@@ -3,7 +3,7 @@
 using BepInEx.Logging;
 using CruiserJumpPractice.Application;
 
-namespace CruiserJumpPractice.Services.Client;
+namespace CruiserJumpPractice.Presentation;
 
 internal sealed class ClientCruiserResultPresenter
 {

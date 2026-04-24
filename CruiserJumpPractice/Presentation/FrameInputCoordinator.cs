@@ -1,7 +1,6 @@
 #nullable enable
 
 using CruiserJumpPractice.GameInterop;
-using CruiserJumpPractice.Services.Client;
 
 namespace CruiserJumpPractice.Presentation;
 

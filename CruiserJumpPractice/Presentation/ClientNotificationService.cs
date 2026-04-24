@@ -2,7 +2,7 @@
 
 using CruiserJumpPractice.GameInterop;
 
-namespace CruiserJumpPractice.Services.Client;
+namespace CruiserJumpPractice.Presentation;
 
 internal sealed class ClientNotificationService
 {
