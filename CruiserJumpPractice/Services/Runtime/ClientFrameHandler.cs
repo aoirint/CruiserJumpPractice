@@ -1,16 +1,17 @@
 #nullable enable
 
 using CruiserJumpPractice.GameInterop;
+using CruiserJumpPractice.Services.Client;
 
-namespace CruiserJumpPractice.Services.Client;
+namespace CruiserJumpPractice.Services.Runtime;
 
-internal sealed class ClientTickService
+internal sealed class ClientFrameHandler
 {
     private readonly IGameInterop gameInterop;
     private readonly ClientCruiserStateService clientCruiserStateService;
     private readonly ClientMagnetService clientMagnetService;
 
-    public ClientTickService(
+    public ClientFrameHandler(
         IGameInterop gameInterop,
         ClientCruiserStateService clientCruiserStateService,
         ClientMagnetService clientMagnetService
@@ -21,7 +22,7 @@ internal sealed class ClientTickService
         this.clientMagnetService = clientMagnetService;
     }
 
-    public void OnTick()
+    public void HandleFrame()
     {
         if (!gameInterop.IsClient())
         {

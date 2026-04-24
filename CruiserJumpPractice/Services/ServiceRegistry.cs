@@ -3,6 +3,7 @@
 using BepInEx.Logging;
 using CruiserJumpPractice.GameInterop;
 using CruiserJumpPractice.Services.Client;
+using CruiserJumpPractice.Services.Runtime;
 using CruiserJumpPractice.Services.Server;
 
 namespace CruiserJumpPractice.Services;
@@ -15,9 +16,9 @@ internal sealed class ServiceRegistry
 
     public ServerCruiserStateService ServerCruiserStateService { get; }
 
-    public ClientTickService ClientTickService { get; }
+    public ClientFrameHandler ClientFrameHandler { get; }
 
-    public ClientRpcSurrogateService ClientRpcSurrogateService { get; }
+    public ClientStartupHandler ClientStartupHandler { get; }
 
     public ClientMagnetService ClientMagnetService { get; }
 
@@ -25,16 +26,16 @@ internal sealed class ServiceRegistry
         IGameInterop gameInterop,
         ClientCruiserStateService clientCruiserStateService,
         ServerCruiserStateService serverCruiserStateService,
-        ClientTickService clientTickService,
-        ClientRpcSurrogateService clientRpcSurrogateService,
+        ClientFrameHandler clientFrameHandler,
+        ClientStartupHandler clientStartupHandler,
         ClientMagnetService clientMagnetService
     )
     {
         GameInterop = gameInterop;
         ClientCruiserStateService = clientCruiserStateService;
         ServerCruiserStateService = serverCruiserStateService;
-        ClientTickService = clientTickService;
-        ClientRpcSurrogateService = clientRpcSurrogateService;
+        ClientFrameHandler = clientFrameHandler;
+        ClientStartupHandler = clientStartupHandler;
         ClientMagnetService = clientMagnetService;
     }
 
@@ -43,7 +44,7 @@ internal sealed class ServiceRegistry
         IGameInterop gameInterop = new CurrentGameInterop(logger);
         var clientCruiserStateService = new ClientCruiserStateService(gameInterop);
         var clientMagnetService = new ClientMagnetService(gameInterop);
-        var clientTickService = new ClientTickService(
+        var clientFrameHandler = new ClientFrameHandler(
             gameInterop,
             clientCruiserStateService,
             clientMagnetService
@@ -53,8 +54,8 @@ internal sealed class ServiceRegistry
             gameInterop: gameInterop,
             clientCruiserStateService: clientCruiserStateService,
             serverCruiserStateService: new ServerCruiserStateService(gameInterop),
-            clientTickService: clientTickService,
-            clientRpcSurrogateService: new ClientRpcSurrogateService(gameInterop),
+            clientFrameHandler: clientFrameHandler,
+            clientStartupHandler: new ClientStartupHandler(gameInterop),
             clientMagnetService: clientMagnetService
         );
     }

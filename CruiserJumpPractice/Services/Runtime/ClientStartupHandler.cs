@@ -2,18 +2,18 @@
 
 using CruiserJumpPractice.GameInterop;
 
-namespace CruiserJumpPractice.Services.Client;
+namespace CruiserJumpPractice.Services.Runtime;
 
-internal sealed class ClientRpcSurrogateService
+internal sealed class ClientStartupHandler
 {
     private readonly IGameInterop gameInterop;
 
-    public ClientRpcSurrogateService(IGameInterop gameInterop)
+    public ClientStartupHandler(IGameInterop gameInterop)
     {
         this.gameInterop = gameInterop;
     }
 
-    public void EnsureSpawned()
+    public void HandleStartup()
     {
         gameInterop.SpawnRpcSurrogate();
     }
