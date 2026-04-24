@@ -6,7 +6,7 @@ using CruiserJumpPractice.BaseGame.Controllers.Client;
 using CruiserJumpPractice.BaseGame.Controllers.Server;
 using CruiserJumpPractice.BaseGame.Finders;
 
-namespace CruiserJumpPractice.Services;
+namespace CruiserJumpPractice.Services.Client;
 
 internal class MagnetClientService
 {

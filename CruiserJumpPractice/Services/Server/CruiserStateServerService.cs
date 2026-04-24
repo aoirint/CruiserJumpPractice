@@ -6,7 +6,7 @@ using CruiserJumpPractice.BaseGame.Finders;
 using CruiserJumpPractice.NetworkBehaviours;
 using UnityEngine;
 
-namespace CruiserJumpPractice.Services;
+namespace CruiserJumpPractice.Services.Server;
 
 internal sealed class CruiserState
 {

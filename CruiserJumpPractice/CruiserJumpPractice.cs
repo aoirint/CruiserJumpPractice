@@ -3,6 +3,8 @@
 using BepInEx;
 using BepInEx.Logging;
 using CruiserJumpPractice.Services;
+using CruiserJumpPractice.Services.Client;
+using CruiserJumpPractice.Services.Server;
 using HarmonyLib;
 
 namespace CruiserJumpPractice;

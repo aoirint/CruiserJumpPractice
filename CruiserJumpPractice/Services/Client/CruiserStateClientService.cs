@@ -5,7 +5,7 @@ using CruiserJumpPractice.BaseGame.Controllers;
 using CruiserJumpPractice.BaseGame.Controllers.Client;
 using CruiserJumpPractice.BaseGame.Finders;
 
-namespace CruiserJumpPractice.Services;
+namespace CruiserJumpPractice.Services.Client;
 
 internal class CruiserStateClientService
 {
