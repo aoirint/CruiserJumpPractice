@@ -8,15 +8,15 @@ namespace CruiserJumpPractice.Application.Services.Client;
 internal sealed class MagnetService
 {
     private readonly ToggleMagnetUseCase toggleMagnetUseCase;
-    private readonly NotificationService notificationService;
+    private readonly NotificationUsecase notificationUsecase;
 
     public MagnetService(
         ToggleMagnetUseCase toggleMagnetUseCase,
-        NotificationService notificationService
+        NotificationUsecase notificationUsecase
     )
     {
         this.toggleMagnetUseCase = toggleMagnetUseCase;
-        this.notificationService = notificationService;
+        this.notificationUsecase = notificationUsecase;
     }
 
     internal void ToggleMagnet()
@@ -24,11 +24,11 @@ internal sealed class MagnetService
         var result = toggleMagnetUseCase.Execute();
         if (result == ToggleMagnetResult.HostOnly)
         {
-            notificationService.DisplayTip("Only the host can toggle the magnet.");
+            notificationUsecase.DisplayTip("Only the host can toggle the magnet.");
             return;
         }
 
         var magnetStateText = result == ToggleMagnetResult.MagnetOn ? "ON" : "OFF";
-        notificationService.DisplayTip($"Magnet is now {magnetStateText}.");
+        notificationUsecase.DisplayTip($"Magnet is now {magnetStateText}.");
     }
 }

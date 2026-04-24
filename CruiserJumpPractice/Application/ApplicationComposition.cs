@@ -26,7 +26,7 @@ internal sealed class ApplicationComposition
 
     public CruiserStateOperationService CruiserStateOperationService { get; }
 
-    public NotificationService NotificationService { get; }
+    public NotificationUsecase NotificationUsecase { get; }
 
     public CruiserStateOperationRequestService CruiserStateOperationRequestService { get; }
 
@@ -44,7 +44,7 @@ internal sealed class ApplicationComposition
         RequestLoadCruiserStateUseCase requestLoadCruiserStateUseCase,
         ToggleMagnetUseCase toggleMagnetUseCase,
         CruiserStateOperationService cruiserStateOperationService,
-        NotificationService notificationService,
+        NotificationUsecase notificationUsecase,
         CruiserStateOperationRequestService cruiserStateOperationRequestService,
         MagnetService magnetService,
         FrameHandler frameHandler,
@@ -58,7 +58,7 @@ internal sealed class ApplicationComposition
         RequestLoadCruiserStateUseCase = requestLoadCruiserStateUseCase;
         ToggleMagnetUseCase = toggleMagnetUseCase;
         CruiserStateOperationService = cruiserStateOperationService;
-        NotificationService = notificationService;
+        NotificationUsecase = notificationUsecase;
         CruiserStateOperationRequestService = cruiserStateOperationRequestService;
         MagnetService = magnetService;
         FrameHandler = frameHandler;
@@ -81,15 +81,15 @@ internal sealed class ApplicationComposition
             loadCruiserStateUseCase
         );
 
-        var notificationService = new NotificationService(gameInterop);
+        var notificationUsecase = new NotificationUsecase(gameInterop);
         var cruiserStateOperationRequestService = new CruiserStateOperationRequestService(
             requestSaveCruiserStateUseCase,
             requestLoadCruiserStateUseCase,
-            notificationService
+            notificationUsecase
         );
         var magnetService = new MagnetService(
             toggleMagnetUseCase,
-            notificationService
+            notificationUsecase
         );
 
         var frameHandler = new FrameHandler(
@@ -106,7 +106,7 @@ internal sealed class ApplicationComposition
             requestLoadCruiserStateUseCase: requestLoadCruiserStateUseCase,
             toggleMagnetUseCase: toggleMagnetUseCase,
             cruiserStateOperationService: cruiserStateOperationService,
-            notificationService: notificationService,
+            notificationUsecase: notificationUsecase,
             cruiserStateOperationRequestService: cruiserStateOperationRequestService,
             magnetService: magnetService,
             frameHandler: frameHandler,

@@ -12,17 +12,17 @@ internal sealed class CruiserStateOperationRequestService
 
     private readonly RequestSaveCruiserStateUseCase requestSaveCruiserStateUseCase;
     private readonly RequestLoadCruiserStateUseCase requestLoadCruiserStateUseCase;
-    private readonly NotificationService notificationService;
+    private readonly NotificationUsecase notificationUsecase;
 
     public CruiserStateOperationRequestService(
         RequestSaveCruiserStateUseCase requestSaveCruiserStateUseCase,
         RequestLoadCruiserStateUseCase requestLoadCruiserStateUseCase,
-        NotificationService notificationService
+        NotificationUsecase notificationUsecase
     )
     {
         this.requestSaveCruiserStateUseCase = requestSaveCruiserStateUseCase;
         this.requestLoadCruiserStateUseCase = requestLoadCruiserStateUseCase;
-        this.notificationService = notificationService;
+        this.notificationUsecase = notificationUsecase;
     }
 
     internal void RequestSaveCruiserState()
@@ -30,7 +30,7 @@ internal sealed class CruiserStateOperationRequestService
         var result = requestSaveCruiserStateUseCase.Execute();
         if (result == HostGuardResult.HostOnly)
         {
-            notificationService.DisplayTip("Only the host can save the cruiser state.");
+            notificationUsecase.DisplayTip("Only the host can save the cruiser state.");
         }
     }
 
@@ -39,7 +39,7 @@ internal sealed class CruiserStateOperationRequestService
         var result = requestLoadCruiserStateUseCase.Execute();
         if (result == HostGuardResult.HostOnly)
         {
-            notificationService.DisplayTip("Only the host can load the cruiser state.");
+            notificationUsecase.DisplayTip("Only the host can load the cruiser state.");
         }
     }
 
@@ -47,11 +47,11 @@ internal sealed class CruiserStateOperationRequestService
     {
         if (result == SaveCruiserStateResult.Success)
         {
-            notificationService.DisplayTip("Cruiser state saved.");
+            notificationUsecase.DisplayTip("Cruiser state saved.");
         }
         else if (result == SaveCruiserStateResult.NoCruiserFound)
         {
-            notificationService.DisplayTip("No cruiser found to save.");
+            notificationUsecase.DisplayTip("No cruiser found to save.");
         }
         else
         {
@@ -63,19 +63,19 @@ internal sealed class CruiserStateOperationRequestService
     {
         if (result == LoadCruiserStateResult.Success)
         {
-            notificationService.DisplayTip("Cruiser state loaded.");
+            notificationUsecase.DisplayTip("Cruiser state loaded.");
         }
         else if (result == LoadCruiserStateResult.NoCruiserFound)
         {
-            notificationService.DisplayTip("No cruiser found to load.");
+            notificationUsecase.DisplayTip("No cruiser found to load.");
         }
         else if (result == LoadCruiserStateResult.NoSavedState)
         {
-            notificationService.DisplayTip("No saved cruiser state to load.");
+            notificationUsecase.DisplayTip("No saved cruiser state to load.");
         }
         else if (result == LoadCruiserStateResult.MagnetedToShip)
         {
-            notificationService.DisplayTip("Cannot load cruiser state while magneted to ship.");
+            notificationUsecase.DisplayTip("Cannot load cruiser state while magneted to ship.");
         }
         else
         {
