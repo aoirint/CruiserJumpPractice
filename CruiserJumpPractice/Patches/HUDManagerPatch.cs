@@ -4,7 +4,6 @@ using BepInEx.Logging;
 using HarmonyLib;
 using CruiserJumpPractice.BaseGame.Controllers;
 using CruiserJumpPractice.BaseGame.Controllers.Client;
-using CruiserJumpPractice.BaseGame.Controllers.Server;
 using CruiserJumpPractice.BaseGame.Finders;
 using CruiserJumpPractice.NetworkBehaviours;
 
@@ -103,24 +102,7 @@ internal class HUDManagerPatch
             return;
         }
 
-        if (!IsHost())
-        {
-            var tipController = new TipController(hudManager);
-            tipController.DisplayTip("CruiserJumpPractice", "Only the host can toggle the magnet.");
-            return;
-        }
-
-        var startOfRoundFinder = new StartOfRoundFinder();
-        var startOfRound = startOfRoundFinder.GetStartOfRound();
-        var magnetController = new MagnetController(startOfRound);
-        var newMagnetState = !magnetController.IsMagnetOn();
-
-        // NOTE: This value will be synced with vanilla Server RPC
-        magnetController.ToggleMagnet();
-
-        var magnetStateText = newMagnetState ? "ON" : "OFF";
-        var localTipController = new TipController(hudManager);
-        localTipController.DisplayTip("CruiserJumpPractice", $"Magnet is now {magnetStateText}.");
+        CruiserJumpPractice.MagnetService.ToggleMagnet(hudManager);
     }
 
     private static bool IsHost()

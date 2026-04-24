@@ -20,6 +20,8 @@ public class CruiserJumpPractice : BaseUnityPlugin
 
     internal static CruiserStateService CruiserStateService { get; } = new();
 
+    internal static MagnetService MagnetService { get; } = new();
+
     private void Awake()
     {
         Logger = base.Logger;
