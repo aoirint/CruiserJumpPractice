@@ -2,6 +2,12 @@
 
 namespace CruiserJumpPractice.Domain;
 
+internal enum HostGuardResult
+{
+    Success,
+    HostOnly
+}
+
 internal enum SaveCruiserStateResult
 {
     Success,
@@ -16,4 +22,11 @@ internal enum LoadCruiserStateResult
     NoSavedState,
     MagnetedToShip,
     UnexpectedState
+}
+
+internal enum ToggleMagnetResult
+{
+    HostOnly,
+    MagnetOn,
+    MagnetOff
 }
