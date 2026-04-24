@@ -14,7 +14,7 @@ internal class HUDManagerPatch
     [HarmonyPostfix]
     public static void AwakePostfix(HUDManager __instance)
     {
-        CruiserJumpPractice.GameInterop.SpawnRpcSurrogate(__instance);
+        CruiserJumpPractice.ClientRpcSurrogateService.Spawn(__instance);
     }
 
     [HarmonyPatch(nameof(HUDManager.Update))]

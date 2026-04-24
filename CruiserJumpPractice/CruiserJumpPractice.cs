@@ -27,6 +27,9 @@ public class CruiserJumpPractice : BaseUnityPlugin
     internal static Services.Client.ClientTickService ClientTickService =>
         Services!.ClientTickService;
 
+    internal static Services.Client.ClientRpcSurrogateService ClientRpcSurrogateService =>
+        Services!.ClientRpcSurrogateService;
+
     internal static IGameInterop GameInterop =>
         Services!.GameInterop;
 

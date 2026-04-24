@@ -17,6 +17,8 @@ internal sealed class ServiceRegistry
 
     public ClientTickService ClientTickService { get; }
 
+    public ClientRpcSurrogateService ClientRpcSurrogateService { get; }
+
     public ClientMagnetService ClientMagnetService { get; }
 
     private ServiceRegistry(
@@ -24,6 +26,7 @@ internal sealed class ServiceRegistry
         ClientCruiserStateService clientCruiserStateService,
         ServerCruiserStateService serverCruiserStateService,
         ClientTickService clientTickService,
+        ClientRpcSurrogateService clientRpcSurrogateService,
         ClientMagnetService clientMagnetService
     )
     {
@@ -31,6 +34,7 @@ internal sealed class ServiceRegistry
         ClientCruiserStateService = clientCruiserStateService;
         ServerCruiserStateService = serverCruiserStateService;
         ClientTickService = clientTickService;
+        ClientRpcSurrogateService = clientRpcSurrogateService;
         ClientMagnetService = clientMagnetService;
     }
 
@@ -39,16 +43,18 @@ internal sealed class ServiceRegistry
         IGameInterop gameInterop = new CurrentGameInterop(logger);
         var clientCruiserStateService = new ClientCruiserStateService(gameInterop);
         var clientMagnetService = new ClientMagnetService(gameInterop);
+        var clientTickService = new ClientTickService(
+            gameInterop,
+            clientCruiserStateService,
+            clientMagnetService
+        );
 
         return new ServiceRegistry(
             gameInterop: gameInterop,
             clientCruiserStateService: clientCruiserStateService,
             serverCruiserStateService: new ServerCruiserStateService(gameInterop),
-            clientTickService: new ClientTickService(
-                gameInterop,
-                clientCruiserStateService,
-                clientMagnetService
-            ),
+            clientTickService: clientTickService,
+            clientRpcSurrogateService: new ClientRpcSurrogateService(gameInterop),
             clientMagnetService: clientMagnetService
         );
     }
