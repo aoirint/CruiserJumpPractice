@@ -1,6 +1,5 @@
 #nullable enable
 
-using CruiserJumpPractice.Application.Coordinators;
 using CruiserJumpPractice.Application.UseCases;
 using CruiserJumpPractice.Domain;
 using BepInEx.Logging;
@@ -13,35 +12,47 @@ internal sealed class CompositionRoot
 {
     public IGameInterop GameInterop { get; }
 
-    public ClientCruiserStateCoordinator ClientCruiserStateCoordinator { get; }
+    public SaveCruiserStateUseCase SaveCruiserStateUseCase { get; }
 
-    public ServerCruiserStateCoordinator ServerCruiserStateCoordinator { get; }
+    public LoadCruiserStateUseCase LoadCruiserStateUseCase { get; }
+
+    public RequestSaveCruiserStateUseCase RequestSaveCruiserStateUseCase { get; }
+
+    public RequestLoadCruiserStateUseCase RequestLoadCruiserStateUseCase { get; }
+
+    public ToggleMagnetUseCase ToggleMagnetUseCase { get; }
 
     public ClientCruiserResultPresenter ClientCruiserResultPresenter { get; }
+
+    public ClientNotificationService ClientNotificationService { get; }
 
     public FrameInputCoordinator FrameInputCoordinator { get; }
 
     public StartupInitializer StartupInitializer { get; }
 
-    public ClientMagnetCoordinator ClientMagnetCoordinator { get; }
-
     private CompositionRoot(
         IGameInterop gameInterop,
-        ClientCruiserStateCoordinator clientCruiserStateCoordinator,
-        ServerCruiserStateCoordinator serverCruiserStateCoordinator,
+        SaveCruiserStateUseCase saveCruiserStateUseCase,
+        LoadCruiserStateUseCase loadCruiserStateUseCase,
+        RequestSaveCruiserStateUseCase requestSaveCruiserStateUseCase,
+        RequestLoadCruiserStateUseCase requestLoadCruiserStateUseCase,
+        ToggleMagnetUseCase toggleMagnetUseCase,
         ClientCruiserResultPresenter clientCruiserResultPresenter,
+        ClientNotificationService clientNotificationService,
         FrameInputCoordinator frameInputCoordinator,
-        StartupInitializer startupInitializer,
-        ClientMagnetCoordinator clientMagnetCoordinator
+        StartupInitializer startupInitializer
     )
     {
         GameInterop = gameInterop;
-        ClientCruiserStateCoordinator = clientCruiserStateCoordinator;
-        ServerCruiserStateCoordinator = serverCruiserStateCoordinator;
+        SaveCruiserStateUseCase = saveCruiserStateUseCase;
+        LoadCruiserStateUseCase = loadCruiserStateUseCase;
+        RequestSaveCruiserStateUseCase = requestSaveCruiserStateUseCase;
+        RequestLoadCruiserStateUseCase = requestLoadCruiserStateUseCase;
+        ToggleMagnetUseCase = toggleMagnetUseCase;
         ClientCruiserResultPresenter = clientCruiserResultPresenter;
+        ClientNotificationService = clientNotificationService;
         FrameInputCoordinator = frameInputCoordinator;
         StartupInitializer = startupInitializer;
-        ClientMagnetCoordinator = clientMagnetCoordinator;
     }
 
     public static CompositionRoot Create(ManualLogSource logger)
@@ -57,34 +68,27 @@ internal sealed class CompositionRoot
         var toggleMagnetUseCase = new ToggleMagnetUseCase(gameInterop);
 
         var clientNotificationService = new ClientNotificationService(gameInterop);
-        var clientCruiserStateCoordinator = new ClientCruiserStateCoordinator(
+        var clientCruiserResultPresenter = new ClientCruiserResultPresenter(clientNotificationService);
+
+        var frameInputCoordinator = new FrameInputCoordinator(
+            gameInterop,
             requestSaveCruiserStateUseCase,
             requestLoadCruiserStateUseCase,
-            clientNotificationService
-        );
-        var clientCruiserResultPresenter = new ClientCruiserResultPresenter(clientNotificationService);
-        var clientMagnetCoordinator = new ClientMagnetCoordinator(
             toggleMagnetUseCase,
             clientNotificationService
         );
 
-        var frameInputCoordinator = new FrameInputCoordinator(
-            gameInterop,
-            clientCruiserStateCoordinator,
-            clientMagnetCoordinator
-        );
-
         return new CompositionRoot(
             gameInterop: gameInterop,
-            clientCruiserStateCoordinator: clientCruiserStateCoordinator,
-            serverCruiserStateCoordinator: new ServerCruiserStateCoordinator(
-                saveCruiserStateUseCase,
-                loadCruiserStateUseCase
-            ),
+            saveCruiserStateUseCase: saveCruiserStateUseCase,
+            loadCruiserStateUseCase: loadCruiserStateUseCase,
+            requestSaveCruiserStateUseCase: requestSaveCruiserStateUseCase,
+            requestLoadCruiserStateUseCase: requestLoadCruiserStateUseCase,
+            toggleMagnetUseCase: toggleMagnetUseCase,
             clientCruiserResultPresenter: clientCruiserResultPresenter,
+            clientNotificationService: clientNotificationService,
             frameInputCoordinator: frameInputCoordinator,
-            startupInitializer: new StartupInitializer(gameInterop),
-            clientMagnetCoordinator: clientMagnetCoordinator
+            startupInitializer: new StartupInitializer(gameInterop)
         );
     }
 }

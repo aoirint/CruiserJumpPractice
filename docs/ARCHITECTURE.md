@@ -6,7 +6,7 @@
 
 - Runtime input handling: `Presentation/FrameInputCoordinator.cs`
 - Harmony entry points: `Patches/HUDManagerPatch.cs`
-- Purpose: react to frame/input events and call application-facing coordinators.
+- Purpose: react to frame/input events and call application use cases.
 
 ### Application
 

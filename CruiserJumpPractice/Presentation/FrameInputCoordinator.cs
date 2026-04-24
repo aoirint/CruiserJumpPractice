@@ -1,5 +1,7 @@
 #nullable enable
 
+using CruiserJumpPractice.Application;
+using CruiserJumpPractice.Application.UseCases;
 using CruiserJumpPractice.GameInterop;
 
 namespace CruiserJumpPractice.Presentation;
@@ -7,18 +9,24 @@ namespace CruiserJumpPractice.Presentation;
 internal sealed class FrameInputCoordinator
 {
     private readonly IGameInterop gameInterop;
-    private readonly ClientCruiserStateCoordinator clientCruiserStateCoordinator;
-    private readonly ClientMagnetCoordinator clientMagnetCoordinator;
+    private readonly RequestSaveCruiserStateUseCase requestSaveCruiserStateUseCase;
+    private readonly RequestLoadCruiserStateUseCase requestLoadCruiserStateUseCase;
+    private readonly ToggleMagnetUseCase toggleMagnetUseCase;
+    private readonly ClientNotificationService clientNotificationService;
 
     public FrameInputCoordinator(
         IGameInterop gameInterop,
-        ClientCruiserStateCoordinator clientCruiserStateCoordinator,
-        ClientMagnetCoordinator clientMagnetCoordinator
+        RequestSaveCruiserStateUseCase requestSaveCruiserStateUseCase,
+        RequestLoadCruiserStateUseCase requestLoadCruiserStateUseCase,
+        ToggleMagnetUseCase toggleMagnetUseCase,
+        ClientNotificationService clientNotificationService
     )
     {
         this.gameInterop = gameInterop;
-        this.clientCruiserStateCoordinator = clientCruiserStateCoordinator;
-        this.clientMagnetCoordinator = clientMagnetCoordinator;
+        this.requestSaveCruiserStateUseCase = requestSaveCruiserStateUseCase;
+        this.requestLoadCruiserStateUseCase = requestLoadCruiserStateUseCase;
+        this.toggleMagnetUseCase = toggleMagnetUseCase;
+        this.clientNotificationService = clientNotificationService;
     }
 
     public void HandleFrame()
@@ -45,7 +53,11 @@ internal sealed class FrameInputCoordinator
             return;
         }
 
-        clientCruiserStateCoordinator.RequestSaveCruiserState();
+        var result = requestSaveCruiserStateUseCase.Execute();
+        if (result == HostGuardResult.HostOnly)
+        {
+            clientNotificationService.ShowCruiserTip("Only the host can save the cruiser state.");
+        }
     }
 
     private void UpdateLoadCruiser()
@@ -55,7 +67,11 @@ internal sealed class FrameInputCoordinator
             return;
         }
 
-        clientCruiserStateCoordinator.RequestLoadCruiserState();
+        var result = requestLoadCruiserStateUseCase.Execute();
+        if (result == HostGuardResult.HostOnly)
+        {
+            clientNotificationService.ShowCruiserTip("Only the host can load the cruiser state.");
+        }
     }
 
     private void UpdateToggleMagnet()
@@ -65,6 +81,14 @@ internal sealed class FrameInputCoordinator
             return;
         }
 
-        clientMagnetCoordinator.ToggleMagnet();
+        var result = toggleMagnetUseCase.Execute();
+        if (result == ToggleMagnetResult.HostOnly)
+        {
+            clientNotificationService.ShowCruiserTip("Only the host can toggle the magnet.");
+            return;
+        }
+
+        var magnetStateText = result == ToggleMagnetResult.MagnetOn ? "ON" : "OFF";
+        clientNotificationService.ShowCruiserTip($"Magnet is now {magnetStateText}.");
     }
 }

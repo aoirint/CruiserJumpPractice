@@ -2,10 +2,10 @@
 
 using BepInEx;
 using BepInEx.Logging;
+using CruiserJumpPractice.Application.UseCases;
 using CruiserJumpPractice.Composition;
 using CruiserJumpPractice.GameInterop;
 using CruiserJumpPractice.Presentation;
-using CruiserJumpPractice.Application.Coordinators;
 using HarmonyLib;
 
 namespace CruiserJumpPractice;
@@ -23,9 +23,6 @@ public class CruiserJumpPractice : BaseUnityPlugin
 
     private static CompositionRoot? Root { get; set; }
 
-    internal static ClientCruiserStateCoordinator ClientCruiserStateCoordinator =>
-        Root!.ClientCruiserStateCoordinator;
-
     internal static FrameInputCoordinator FrameInputCoordinator =>
         Root!.FrameInputCoordinator;
 
@@ -35,14 +32,14 @@ public class CruiserJumpPractice : BaseUnityPlugin
     internal static IGameInterop GameInterop =>
         Root!.GameInterop;
 
-    internal static ServerCruiserStateCoordinator ServerCruiserStateCoordinator =>
-        Root!.ServerCruiserStateCoordinator;
+    internal static SaveCruiserStateUseCase SaveCruiserStateUseCase =>
+        Root!.SaveCruiserStateUseCase;
+
+    internal static LoadCruiserStateUseCase LoadCruiserStateUseCase =>
+        Root!.LoadCruiserStateUseCase;
 
     internal static ClientCruiserResultPresenter ClientCruiserResultPresenter =>
         Root!.ClientCruiserResultPresenter;
-
-    internal static ClientMagnetCoordinator ClientMagnetCoordinator =>
-        Root!.ClientMagnetCoordinator;
 
     private void Awake()
     {
