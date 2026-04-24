@@ -1,8 +1,6 @@
 #nullable enable
 
 using BepInEx.Logging;
-using CruiserJumpPractice.BaseGame.Controllers;
-using CruiserJumpPractice.BaseGame.Controllers.Client;
 using CruiserJumpPractice.BaseGame.Controllers.Server.Cruiser;
 using CruiserJumpPractice.BaseGame.Finders;
 using CruiserJumpPractice.NetworkBehaviours;
@@ -57,43 +55,11 @@ class MagnetedToShipException : System.Exception
     public MagnetedToShipException() : base() { }
 }
 
-internal class CruiserStateService
+internal class CruiserStateServerService
 {
     internal static ManualLogSource Logger => CruiserJumpPractice.Logger!;
 
     private CruiserState? savedCruiserState;
-
-    internal void RequestSaveCruiserState(HUDManager hudManager)
-    {
-        if (!IsHost())
-        {
-            var tipController = new TipController(hudManager);
-            tipController.DisplayTip("CruiserJumpPractice", "Only the host can save the cruiser state.");
-            return;
-        }
-
-        var customRpcSurrogateNetworkBehaviourFinder = new CustomRpcSurrogateNetworkBehaviourFinder();
-        var customRpcSurrogateNetworkBehaviour =
-            customRpcSurrogateNetworkBehaviourFinder.GetCustomRpcSurrogateNetworkBehaviour();
-
-        customRpcSurrogateNetworkBehaviour.SaveCruiserStateServerRpc();
-    }
-
-    internal void RequestLoadCruiserState(HUDManager hudManager)
-    {
-        if (!IsHost())
-        {
-            var tipController = new TipController(hudManager);
-            tipController.DisplayTip("CruiserJumpPractice", "Only the host can load the cruiser state.");
-            return;
-        }
-
-        var customRpcSurrogateNetworkBehaviourFinder = new CustomRpcSurrogateNetworkBehaviourFinder();
-        var customRpcSurrogateNetworkBehaviour =
-            customRpcSurrogateNetworkBehaviourFinder.GetCustomRpcSurrogateNetworkBehaviour();
-
-        customRpcSurrogateNetworkBehaviour.LoadCruiserStateServerRpc();
-    }
 
     internal void SaveCruiserState()
     {
@@ -212,11 +178,4 @@ internal class CruiserStateService
         }
     }
 
-    private static bool IsHost()
-    {
-        var networkManagerFinder = new NetworkManagerFinder();
-        var networkManager = networkManagerFinder.GetNetworkManager();
-        var networkStateController = new NetworkStateController(networkManager);
-        return networkStateController.IsHost();
-    }
 }

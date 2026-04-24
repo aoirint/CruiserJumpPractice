@@ -18,7 +18,9 @@ public class CruiserJumpPractice : BaseUnityPlugin
 
     internal static InputActions? InputActions { get; private set; }
 
-    internal static CruiserStateService CruiserStateService { get; } = new();
+    internal static CruiserStateClientService CruiserStateClientService { get; } = new();
+
+    internal static CruiserStateServerService CruiserStateServerService { get; } = new();
 
     internal static CustomRpcSurrogateService CustomRpcSurrogateService { get; } = new();
 

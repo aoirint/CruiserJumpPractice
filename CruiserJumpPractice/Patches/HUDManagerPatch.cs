@@ -52,7 +52,7 @@ internal class HUDManagerPatch
             return;
         }
 
-        CruiserJumpPractice.CruiserStateService.RequestSaveCruiserState(hudManager);
+        CruiserJumpPractice.CruiserStateClientService.RequestSaveCruiserState(hudManager);
     }
 
     internal static void UpdateLoadCruiser(HUDManager hudManager)
@@ -62,7 +62,7 @@ internal class HUDManagerPatch
             return;
         }
 
-        CruiserJumpPractice.CruiserStateService.RequestLoadCruiserState(hudManager);
+        CruiserJumpPractice.CruiserStateClientService.RequestLoadCruiserState(hudManager);
     }
 
     internal static void UpdateToggleMagnet(HUDManager hudManager)
