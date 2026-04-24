@@ -1,9 +1,9 @@
 #nullable enable
 
 using CruiserJumpPractice.Interop;
-using CruiserJumpPractice.Services;
+using CruiserJumpPractice.Application.Services;
 
-namespace CruiserJumpPractice.Runtime;
+namespace CruiserJumpPractice.Application.Runtime;
 
 internal sealed class FrameHandler
 {

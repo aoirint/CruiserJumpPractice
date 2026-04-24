@@ -2,7 +2,7 @@
 
 using CruiserJumpPractice.Interop;
 
-namespace CruiserJumpPractice.Runtime;
+namespace CruiserJumpPractice.Application.Runtime;
 
 internal sealed class StartupHandler
 {

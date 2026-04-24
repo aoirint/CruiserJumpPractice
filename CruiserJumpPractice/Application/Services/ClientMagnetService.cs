@@ -1,9 +1,9 @@
 #nullable enable
 
 using CruiserJumpPractice.Domain;
-using CruiserJumpPractice.UseCases;
+using CruiserJumpPractice.Application.UseCases;
 
-namespace CruiserJumpPractice.Services;
+namespace CruiserJumpPractice.Application.Services;
 
 internal sealed class ClientMagnetService
 {

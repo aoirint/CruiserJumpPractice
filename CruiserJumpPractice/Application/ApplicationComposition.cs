@@ -1,14 +1,15 @@
 #nullable enable
 
-using CruiserJumpPractice.UseCases;
 using CruiserJumpPractice.Domain;
 using BepInEx.Logging;
 using CruiserJumpPractice.Interop;
-using CruiserJumpPractice.Runtime;
+using CruiserJumpPractice.Application.Runtime;
+using CruiserJumpPractice.Application.Services;
+using CruiserJumpPractice.Application.UseCases;
 
-namespace CruiserJumpPractice.Services;
+namespace CruiserJumpPractice.Application;
 
-internal sealed class ServiceComposition
+internal sealed class ApplicationComposition
 {
     public IGameInterop GameInterop { get; }
 
@@ -34,7 +35,7 @@ internal sealed class ServiceComposition
 
     public StartupHandler StartupHandler { get; }
 
-    private ServiceComposition(
+    private ApplicationComposition(
         IGameInterop gameInterop,
         SaveCruiserStateUseCase saveCruiserStateUseCase,
         LoadCruiserStateUseCase loadCruiserStateUseCase,
@@ -63,7 +64,7 @@ internal sealed class ServiceComposition
         StartupHandler = startupHandler;
     }
 
-    public static ServiceComposition Create(ManualLogSource logger)
+    public static ApplicationComposition Create(ManualLogSource logger)
     {
         IGameInterop gameInterop = new GameInteropV73(logger);
 
@@ -96,7 +97,7 @@ internal sealed class ServiceComposition
             clientMagnetService
         );
 
-        return new ServiceComposition(
+        return new ApplicationComposition(
             gameInterop: gameInterop,
             saveCruiserStateUseCase: saveCruiserStateUseCase,
             loadCruiserStateUseCase: loadCruiserStateUseCase,

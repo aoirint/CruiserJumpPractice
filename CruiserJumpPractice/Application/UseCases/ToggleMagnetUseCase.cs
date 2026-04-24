@@ -3,7 +3,7 @@
 using CruiserJumpPractice.Interop;
 using CruiserJumpPractice.Domain;
 
-namespace CruiserJumpPractice.UseCases;
+namespace CruiserJumpPractice.Application.UseCases;
 
 internal sealed class ToggleMagnetUseCase
 {

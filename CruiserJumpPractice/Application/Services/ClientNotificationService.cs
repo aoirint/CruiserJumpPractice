@@ -2,7 +2,7 @@
 
 using CruiserJumpPractice.Interop;
 
-namespace CruiserJumpPractice.Services;
+namespace CruiserJumpPractice.Application.Services;
 
 internal sealed class ClientNotificationService
 {

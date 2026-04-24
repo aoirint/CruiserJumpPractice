@@ -4,7 +4,7 @@ using BepInEx.Logging;
 using CruiserJumpPractice.Domain;
 using CruiserJumpPractice.Interop;
 
-namespace CruiserJumpPractice.UseCases;
+namespace CruiserJumpPractice.Application.UseCases;
 
 internal sealed class SaveCruiserStateUseCase
 {

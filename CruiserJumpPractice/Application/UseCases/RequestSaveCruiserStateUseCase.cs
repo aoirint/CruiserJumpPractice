@@ -3,13 +3,13 @@
 using CruiserJumpPractice.Interop;
 using CruiserJumpPractice.Domain;
 
-namespace CruiserJumpPractice.UseCases;
+namespace CruiserJumpPractice.Application.UseCases;
 
-internal sealed class RequestLoadCruiserStateUseCase
+internal sealed class RequestSaveCruiserStateUseCase
 {
     private readonly IGameInterop gameInterop;
 
-    public RequestLoadCruiserStateUseCase(IGameInterop gameInterop)
+    public RequestSaveCruiserStateUseCase(IGameInterop gameInterop)
     {
         this.gameInterop = gameInterop;
     }
@@ -22,7 +22,7 @@ internal sealed class RequestLoadCruiserStateUseCase
         }
 
         var rpcSurrogateNetworkBehaviour = gameInterop.GetRpcSurrogateBehaviour();
-        rpcSurrogateNetworkBehaviour.LoadCruiserStateServerRpc();
+        rpcSurrogateNetworkBehaviour.SaveCruiserStateServerRpc();
         return HostGuardResult.Success;
     }
 }
