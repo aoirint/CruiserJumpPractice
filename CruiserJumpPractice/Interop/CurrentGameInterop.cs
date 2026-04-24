@@ -63,9 +63,9 @@ internal sealed class CurrentGameInterop : IGameInterop
         rpcSurrogateInterop.SpawnRpcSurrogate();
     }
 
-    public RpcSurrogateNetworkBehaviour GetRpcSurrogateNetworkBehaviour()
+    public RpcSurrogateBehaviour GetRpcSurrogateBehaviour()
     {
-        return rpcSurrogateInterop.GetRpcSurrogateNetworkBehaviour();
+        return rpcSurrogateInterop.GetRpcSurrogateBehaviour();
     }
 
     public VehicleController? FindCruiser()

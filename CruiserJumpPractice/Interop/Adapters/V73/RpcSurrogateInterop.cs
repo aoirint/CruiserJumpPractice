@@ -12,7 +12,7 @@ internal sealed class RpcSurrogateInterop
     private readonly ManualLogSource logger;
     private readonly GameObjectInterop gameObjects;
 
-    private RpcSurrogateNetworkBehaviour? cachedRpcSurrogateNetworkBehaviour;
+    private RpcSurrogateBehaviour? cachedRpcSurrogateBehaviour;
 
     public RpcSurrogateInterop(ManualLogSource logger, GameObjectInterop gameObjects)
     {
@@ -30,43 +30,43 @@ internal sealed class RpcSurrogateInterop
             return;
         }
 
-        var rpcSurrogateNetworkBehaviour = gameObject.GetComponent<RpcSurrogateNetworkBehaviour>();
+        var rpcSurrogateNetworkBehaviour = gameObject.GetComponent<RpcSurrogateBehaviour>();
         if (rpcSurrogateNetworkBehaviour != null)
         {
-            cachedRpcSurrogateNetworkBehaviour = rpcSurrogateNetworkBehaviour;
+            cachedRpcSurrogateBehaviour = rpcSurrogateNetworkBehaviour;
             logger.LogDebug("RPC surrogate already exists on HUDManager.");
             return;
         }
 
-        cachedRpcSurrogateNetworkBehaviour = gameObject.AddComponent<RpcSurrogateNetworkBehaviour>();
+        cachedRpcSurrogateBehaviour = gameObject.AddComponent<RpcSurrogateBehaviour>();
         logger.LogInfo("Spawned RPC surrogate on HUDManager.");
     }
 
-    public RpcSurrogateNetworkBehaviour GetRpcSurrogateNetworkBehaviour()
+    public RpcSurrogateBehaviour GetRpcSurrogateBehaviour()
     {
-        if (cachedRpcSurrogateNetworkBehaviour != null)
+        if (cachedRpcSurrogateBehaviour != null)
         {
-            return cachedRpcSurrogateNetworkBehaviour;
+            return cachedRpcSurrogateBehaviour;
         }
 
         try
         {
             var rpcSurrogateNetworkBehaviour =
-                gameObjects.GetHUDManager().GetComponent<RpcSurrogateNetworkBehaviour>();
+                gameObjects.GetHUDManager().GetComponent<RpcSurrogateBehaviour>();
             if (rpcSurrogateNetworkBehaviour == null)
             {
                 throw new GameInteropException(
-                    "RpcSurrogateNetworkBehaviour component not found on HUDManager instance."
+                    "RpcSurrogateBehaviour component not found on HUDManager instance."
                 );
             }
 
-            cachedRpcSurrogateNetworkBehaviour = rpcSurrogateNetworkBehaviour;
+            cachedRpcSurrogateBehaviour = rpcSurrogateNetworkBehaviour;
             return rpcSurrogateNetworkBehaviour;
         }
         catch (System.Exception error)
         {
-            logger.LogError($"Exception while getting RpcSurrogateNetworkBehaviour: {error}");
-            throw new GameInteropException($"Exception while getting RpcSurrogateNetworkBehaviour: {error}");
+            logger.LogError($"Exception while getting RpcSurrogateBehaviour: {error}");
+            throw new GameInteropException($"Exception while getting RpcSurrogateBehaviour: {error}");
         }
     }
 }

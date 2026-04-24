@@ -20,7 +20,7 @@ public class CruiserJumpPractice : BaseUnityPlugin
 
     internal static InputActions? InputActions { get; private set; }
 
-    private static CompositionRoot? Root { get; set; }
+    private static ServiceComposition? Root { get; set; }
 
     internal static FrameHandler FrameHandler =>
         Root!.FrameHandler;
@@ -34,15 +34,15 @@ public class CruiserJumpPractice : BaseUnityPlugin
     internal static ServerCruiserStateService ServerCruiserStateService =>
         Root!.ServerCruiserStateService;
 
-    internal static ClientCruiserResultPresenter ClientCruiserResultPresenter =>
-        Root!.ClientCruiserResultPresenter;
+    internal static ClientCruiserStateService ClientCruiserStateService =>
+        Root!.ClientCruiserStateService;
 
     private void Awake()
     {
         Logger = base.Logger;
 
         InputActions = new InputActions();
-        Root = CompositionRoot.Create(Logger);
+        Root = ServiceComposition.Create(Logger);
 
         Harmony.PatchAll();
 

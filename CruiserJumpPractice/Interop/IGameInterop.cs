@@ -21,7 +21,7 @@ internal interface IGameInterop
 
     void SpawnRpcSurrogate();
 
-    RpcSurrogateNetworkBehaviour GetRpcSurrogateNetworkBehaviour();
+    RpcSurrogateBehaviour GetRpcSurrogateBehaviour();
 
     VehicleController? FindCruiser();
 

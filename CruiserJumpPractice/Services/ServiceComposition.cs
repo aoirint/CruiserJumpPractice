@@ -8,7 +8,7 @@ using CruiserJumpPractice.Runtime;
 
 namespace CruiserJumpPractice.Services;
 
-internal sealed class CompositionRoot
+internal sealed class ServiceComposition
 {
     public IGameInterop GameInterop { get; }
 
@@ -24,8 +24,6 @@ internal sealed class CompositionRoot
 
     public ServerCruiserStateService ServerCruiserStateService { get; }
 
-    public ClientCruiserResultPresenter ClientCruiserResultPresenter { get; }
-
     public ClientNotificationService ClientNotificationService { get; }
 
     public ClientCruiserStateService ClientCruiserStateService { get; }
@@ -36,7 +34,7 @@ internal sealed class CompositionRoot
 
     public StartupHandler StartupHandler { get; }
 
-    private CompositionRoot(
+    private ServiceComposition(
         IGameInterop gameInterop,
         SaveCruiserStateUseCase saveCruiserStateUseCase,
         LoadCruiserStateUseCase loadCruiserStateUseCase,
@@ -44,7 +42,6 @@ internal sealed class CompositionRoot
         RequestLoadCruiserStateUseCase requestLoadCruiserStateUseCase,
         ToggleMagnetUseCase toggleMagnetUseCase,
         ServerCruiserStateService serverCruiserStateService,
-        ClientCruiserResultPresenter clientCruiserResultPresenter,
         ClientNotificationService clientNotificationService,
         ClientCruiserStateService clientCruiserStateService,
         ClientMagnetService clientMagnetService,
@@ -59,7 +56,6 @@ internal sealed class CompositionRoot
         RequestLoadCruiserStateUseCase = requestLoadCruiserStateUseCase;
         ToggleMagnetUseCase = toggleMagnetUseCase;
         ServerCruiserStateService = serverCruiserStateService;
-        ClientCruiserResultPresenter = clientCruiserResultPresenter;
         ClientNotificationService = clientNotificationService;
         ClientCruiserStateService = clientCruiserStateService;
         ClientMagnetService = clientMagnetService;
@@ -67,7 +63,7 @@ internal sealed class CompositionRoot
         StartupHandler = startupHandler;
     }
 
-    public static CompositionRoot Create(ManualLogSource logger)
+    public static ServiceComposition Create(ManualLogSource logger)
     {
         IGameInterop gameInterop = new CurrentGameInterop(logger);
 
@@ -93,7 +89,6 @@ internal sealed class CompositionRoot
             toggleMagnetUseCase,
             clientNotificationService
         );
-        var clientCruiserResultPresenter = new ClientCruiserResultPresenter(clientNotificationService);
 
         var frameHandler = new FrameHandler(
             gameInterop,
@@ -101,7 +96,7 @@ internal sealed class CompositionRoot
             clientMagnetService
         );
 
-        return new CompositionRoot(
+        return new ServiceComposition(
             gameInterop: gameInterop,
             saveCruiserStateUseCase: saveCruiserStateUseCase,
             loadCruiserStateUseCase: loadCruiserStateUseCase,
@@ -109,7 +104,6 @@ internal sealed class CompositionRoot
             requestLoadCruiserStateUseCase: requestLoadCruiserStateUseCase,
             toggleMagnetUseCase: toggleMagnetUseCase,
             serverCruiserStateService: serverCruiserStateService,
-            clientCruiserResultPresenter: clientCruiserResultPresenter,
             clientNotificationService: clientNotificationService,
             clientCruiserStateService: clientCruiserStateService,
             clientMagnetService: clientMagnetService,

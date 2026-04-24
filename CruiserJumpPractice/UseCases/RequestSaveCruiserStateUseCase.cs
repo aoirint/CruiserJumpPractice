@@ -21,7 +21,7 @@ internal sealed class RequestSaveCruiserStateUseCase
             return HostGuardResult.HostOnly;
         }
 
-        var rpcSurrogateNetworkBehaviour = gameInterop.GetRpcSurrogateNetworkBehaviour();
+        var rpcSurrogateNetworkBehaviour = gameInterop.GetRpcSurrogateBehaviour();
         rpcSurrogateNetworkBehaviour.SaveCruiserStateServerRpc();
         return HostGuardResult.Success;
     }

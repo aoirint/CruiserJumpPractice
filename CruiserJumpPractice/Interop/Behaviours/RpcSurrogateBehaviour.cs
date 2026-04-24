@@ -6,7 +6,7 @@ using Unity.Netcode;
 
 namespace CruiserJumpPractice.Interop.Behaviours;
 
-internal class RpcSurrogateNetworkBehaviour : NetworkBehaviour
+internal class RpcSurrogateBehaviour : NetworkBehaviour
 {
     internal static ManualLogSource Logger => CruiserJumpPractice.Logger!;
 
@@ -32,7 +32,7 @@ internal class RpcSurrogateNetworkBehaviour : NetworkBehaviour
             return;
         }
 
-        CruiserJumpPractice.ClientCruiserResultPresenter.PresentSaveResult(result);
+        CruiserJumpPractice.ClientCruiserStateService.PresentSaveResult(result);
     }
 
     [ServerRpc(RequireOwnership = true)]
@@ -57,7 +57,7 @@ internal class RpcSurrogateNetworkBehaviour : NetworkBehaviour
             return;
         }
 
-        CruiserJumpPractice.ClientCruiserResultPresenter.PresentLoadResult(result);
+        CruiserJumpPractice.ClientCruiserStateService.PresentLoadResult(result);
     }
 
     private static bool HasServerRole()
