@@ -2,6 +2,9 @@
 
 using BepInEx.Logging;
 using HarmonyLib;
+using CruiserJumpPractice.BaseGame.Controllers.Client;
+using CruiserJumpPractice.BaseGame.Controllers.Server;
+using CruiserJumpPractice.BaseGame.Finders;
 using CruiserJumpPractice.Utils;
 using CruiserJumpPractice.NetworkBehaviours;
 
@@ -40,12 +43,12 @@ internal class HUDManagerPatch
             return;
         }
 
-        UpdateSaveCruiser();
-        UpdateLoadCruiser();
-        UpdateToggleMagnet();
+        UpdateSaveCruiser(__instance);
+        UpdateLoadCruiser(__instance);
+        UpdateToggleMagnet(__instance);
     }
 
-    internal static void UpdateSaveCruiser()
+    internal static void UpdateSaveCruiser(HUDManager hudManager)
     {
         if (!(CruiserJumpPractice.InputActions?.SaveCruiserKey?.triggered ?? false))
         {
@@ -55,7 +58,8 @@ internal class HUDManagerPatch
         // Only the host can save the cruiser state
         if (!NetworkUtils.IsHost())
         {
-            HUDManagerUtils.DisplayTip("CruiserJumpPractice", "Only the host can save the cruiser state.");
+            var tipController = new TipController(hudManager);
+            tipController.DisplayTip("CruiserJumpPractice", "Only the host can save the cruiser state.");
             return;
         }
 
@@ -69,7 +73,7 @@ internal class HUDManagerPatch
         cruiserStateNetworkBehaviour.SaveCruiserStateServerRpc();
     }
 
-    internal static void UpdateLoadCruiser()
+    internal static void UpdateLoadCruiser(HUDManager hudManager)
     {
         if (!(CruiserJumpPractice.InputActions?.LoadCruiserKey?.triggered ?? false))
         {
@@ -79,7 +83,8 @@ internal class HUDManagerPatch
         // Only the host can load the cruiser state
         if (!NetworkUtils.IsHost())
         {
-            HUDManagerUtils.DisplayTip("CruiserJumpPractice", "Only the host can load the cruiser state.");
+            var tipController = new TipController(hudManager);
+            tipController.DisplayTip("CruiserJumpPractice", "Only the host can load the cruiser state.");
             return;
         }
 
@@ -93,7 +98,7 @@ internal class HUDManagerPatch
         cruiserStateNetworkBehaviour.LoadCruiserStateServerRpc();
     }
 
-    internal static void UpdateToggleMagnet()
+    internal static void UpdateToggleMagnet(HUDManager hudManager)
     {
         if (!(CruiserJumpPractice.InputActions?.ToggleMagnetKey?.triggered ?? false))
         {
@@ -102,23 +107,21 @@ internal class HUDManagerPatch
 
         if (!NetworkUtils.IsHost())
         {
-            HUDManagerUtils.DisplayTip("CruiserJumpPractice", "Only the host can toggle the magnet.");
+            var tipController = new TipController(hudManager);
+            tipController.DisplayTip("CruiserJumpPractice", "Only the host can toggle the magnet.");
             return;
         }
 
-        var isMagnetOn = MagnetUtils.IsMagnetOn();
-        if (isMagnetOn == null)
-        {
-            Logger.LogError("IsMagnetOn returned null.");
-            return;
-        }
-
-        var newMagnetState = !isMagnetOn.Value;
+        var startOfRoundFinder = new StartOfRoundFinder();
+        var startOfRound = startOfRoundFinder.GetStartOfRound();
+        var magnetController = new MagnetController(startOfRound);
+        var newMagnetState = !magnetController.IsMagnetOn();
 
         // NOTE: This value will be synced with vanilla Server RPC
-        MagnetUtils.ToggleMagnet();
+        magnetController.ToggleMagnet();
 
         var magnetStateText = newMagnetState ? "ON" : "OFF";
-        HUDManagerUtils.DisplayTip("CruiserJumpPractice", $"Magnet is now {magnetStateText}.");
+        var localTipController = new TipController(hudManager);
+        localTipController.DisplayTip("CruiserJumpPractice", $"Magnet is now {magnetStateText}.");
     }
 }

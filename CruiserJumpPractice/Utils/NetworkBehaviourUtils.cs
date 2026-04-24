@@ -1,6 +1,7 @@
 #nullable enable
 
 using BepInEx.Logging;
+using CruiserJumpPractice.BaseGame.Finders;
 using CruiserJumpPractice.NetworkBehaviours;
 
 namespace CruiserJumpPractice.Utils;
@@ -18,12 +19,8 @@ internal static class NetworkBehaviourUtils
             return cachedCruiserStateNetworkBehaviour;
         }
 
-        var hudManager = HUDManagerUtils.GetHUDManager();
-        if (hudManager == null)
-        {
-            Logger.LogError("HUDManager instance is null.");
-            return null;
-        }
+        var hudManagerFinder = new HUDManagerFinder();
+        var hudManager = hudManagerFinder.GetHUDManager();
 
         var cruiserStateNetworkBehaviour = hudManager.GetComponent<CruiserStateNetworkBehaviour>();
         if (cruiserStateNetworkBehaviour == null)

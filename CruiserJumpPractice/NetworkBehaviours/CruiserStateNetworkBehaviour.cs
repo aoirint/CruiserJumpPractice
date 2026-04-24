@@ -1,6 +1,8 @@
 #nullable enable
 
 using BepInEx.Logging;
+using CruiserJumpPractice.BaseGame.Controllers.Client;
+using CruiserJumpPractice.BaseGame.Finders;
 using CruiserJumpPractice.Utils;
 using Unity.Netcode;
 
@@ -49,11 +51,11 @@ internal class CruiserStateNetworkBehaviour : NetworkBehaviour
 
         if (result == SaveCruiserStateResult.Success)
         {
-            HUDManagerUtils.DisplayTip("CruiserJumpPractice", "Cruiser state saved.");
+            DisplayTip("Cruiser state saved.");
         }
         else if (result == SaveCruiserStateResult.NoCruiserFound)
         {
-            HUDManagerUtils.DisplayTip("CruiserJumpPractice", "No cruiser found to save.");
+            DisplayTip("No cruiser found to save.");
         }
         else
         {
@@ -84,23 +86,31 @@ internal class CruiserStateNetworkBehaviour : NetworkBehaviour
 
         if (result == LoadCruiserStateResult.Success)
         {
-            HUDManagerUtils.DisplayTip("CruiserJumpPractice", "Cruiser state loaded.");
+            DisplayTip("Cruiser state loaded.");
         }
         else if (result == LoadCruiserStateResult.NoCruiserFound)
         {
-            HUDManagerUtils.DisplayTip("CruiserJumpPractice", "No cruiser found to load.");
+            DisplayTip("No cruiser found to load.");
         }
         else if (result == LoadCruiserStateResult.NoSavedState)
         {
-            HUDManagerUtils.DisplayTip("CruiserJumpPractice", "No saved cruiser state to load.");
+            DisplayTip("No saved cruiser state to load.");
         }
         else if (result == LoadCruiserStateResult.MagnetedToShip)
         {
-            HUDManagerUtils.DisplayTip("CruiserJumpPractice", "Cannot load cruiser state while magneted to ship.");
+            DisplayTip("Cannot load cruiser state while magneted to ship.");
         }
         else
         {
             Logger.LogError($"Unknown LoadCruiserStateResult: {result}");
         }
+    }
+
+    private static void DisplayTip(string bodyText)
+    {
+        var hudManagerFinder = new HUDManagerFinder();
+        var hudManager = hudManagerFinder.GetHUDManager();
+        var tipController = new TipController(hudManager);
+        tipController.DisplayTip("CruiserJumpPractice", bodyText);
     }
 }
