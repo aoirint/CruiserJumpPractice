@@ -26,9 +26,8 @@
 
 ```text
 CruiserJumpPractice/
-  Bootstrap/
-    CruiserJumpPractice.cs
-    InputActions.cs
+  CruiserJumpPractice.cs
+  InputActions.cs
   Composition/
     CompositionRoot.cs
   Features/
