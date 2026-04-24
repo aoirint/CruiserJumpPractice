@@ -60,18 +60,7 @@ internal class HUDManagerPatch
             return;
         }
 
-        // Only the host can save the cruiser state
-        if (!IsHost())
-        {
-            var tipController = new TipController(hudManager);
-            tipController.DisplayTip("CruiserJumpPractice", "Only the host can save the cruiser state.");
-            return;
-        }
-
-        var cruiserStateNetworkBehaviourFinder = new CruiserStateNetworkBehaviourFinder();
-        var cruiserStateNetworkBehaviour = cruiserStateNetworkBehaviourFinder.GetCruiserStateNetworkBehaviour();
-
-        cruiserStateNetworkBehaviour.SaveCruiserStateServerRpc();
+        CruiserJumpPractice.CruiserStateService.RequestSaveCruiserState(hudManager);
     }
 
     internal static void UpdateLoadCruiser(HUDManager hudManager)
@@ -81,18 +70,7 @@ internal class HUDManagerPatch
             return;
         }
 
-        // Only the host can load the cruiser state
-        if (!IsHost())
-        {
-            var tipController = new TipController(hudManager);
-            tipController.DisplayTip("CruiserJumpPractice", "Only the host can load the cruiser state.");
-            return;
-        }
-
-        var cruiserStateNetworkBehaviourFinder = new CruiserStateNetworkBehaviourFinder();
-        var cruiserStateNetworkBehaviour = cruiserStateNetworkBehaviourFinder.GetCruiserStateNetworkBehaviour();
-
-        cruiserStateNetworkBehaviour.LoadCruiserStateServerRpc();
+        CruiserJumpPractice.CruiserStateService.RequestLoadCruiserState(hudManager);
     }
 
     internal static void UpdateToggleMagnet(HUDManager hudManager)
@@ -105,11 +83,4 @@ internal class HUDManagerPatch
         CruiserJumpPractice.MagnetService.ToggleMagnet(hudManager);
     }
 
-    private static bool IsHost()
-    {
-        var networkManagerFinder = new NetworkManagerFinder();
-        var networkManager = networkManagerFinder.GetNetworkManager();
-        var networkStateController = new NetworkStateController(networkManager);
-        return networkStateController.IsHost();
-    }
 }
