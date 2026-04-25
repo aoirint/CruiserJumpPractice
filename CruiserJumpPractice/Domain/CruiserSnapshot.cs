@@ -1,8 +1,8 @@
 #nullable enable
 
-extern alias UnityEngine73;
+extern alias UnityEngine;
 
-using UnityEngine73::UnityEngine;
+using UnityEngine::UnityEngine;
 
 namespace CruiserJumpPractice.Domain;
 

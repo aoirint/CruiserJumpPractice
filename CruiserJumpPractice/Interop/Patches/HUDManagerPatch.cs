@@ -1,10 +1,10 @@
 #nullable enable
 
-extern alias LethalCompany73;
+extern alias LethalCompany;
 
 using BepInEx.Logging;
 using HarmonyLib;
-using LethalCompany73;
+using LethalCompany;
 
 namespace CruiserJumpPractice.Interop.Patches;
 
