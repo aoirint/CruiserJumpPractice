@@ -1,0 +1,58 @@
+#nullable enable
+
+using BepInEx.Logging;
+
+using CruiserJumpPractice.Domain;
+
+namespace CruiserJumpPractice.Interop.Adapters.V73;
+
+internal sealed class NetworkAdapterV73
+{
+    private readonly ManualLogSource logger;
+    private readonly GameObjectAdapterV73 gameObjects;
+
+    public NetworkAdapterV73(ManualLogSource logger, GameObjectAdapterV73 gameObjects)
+    {
+        this.logger = logger;
+        this.gameObjects = gameObjects;
+    }
+
+    public bool IsServer()
+    {
+        try
+        {
+            return gameObjects.GetNetworkManager().IsServer;
+        }
+        catch (System.Exception error)
+        {
+            logger.LogError($"Exception while getting 'IsServer': {error}");
+            throw new GameInteropException($"Exception while getting 'IsServer': {error}");
+        }
+    }
+
+    public bool IsClient()
+    {
+        try
+        {
+            return gameObjects.GetNetworkManager().IsClient;
+        }
+        catch (System.Exception error)
+        {
+            logger.LogError($"Exception while getting 'IsClient': {error}");
+            throw new GameInteropException($"Exception while getting 'IsClient': {error}");
+        }
+    }
+
+    public bool IsHost()
+    {
+        try
+        {
+            return gameObjects.GetNetworkManager().IsHost;
+        }
+        catch (System.Exception error)
+        {
+            logger.LogError($"Exception while getting 'IsHost': {error}");
+            throw new GameInteropException($"Exception while getting 'IsHost': {error}");
+        }
+    }
+}

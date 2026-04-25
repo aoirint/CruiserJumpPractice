@@ -2,7 +2,11 @@
 
 using BepInEx;
 using BepInEx.Logging;
-using CruiserJumpPractice.Managers;
+using CruiserJumpPractice.Interop;
+using CruiserJumpPractice.Application;
+using CruiserJumpPractice.Application.Runtime;
+using CruiserJumpPractice.Application.Services.Client;
+using CruiserJumpPractice.Application.Services.Server;
 using HarmonyLib;
 
 namespace CruiserJumpPractice;
@@ -18,13 +22,29 @@ public class CruiserJumpPractice : BaseUnityPlugin
 
     internal static InputActions? InputActions { get; private set; }
 
-    internal static CruiserManager CruiserManager { get; } = new();
+    private static ApplicationComposition? App { get; set; }
+
+    internal static FrameHandler FrameHandler =>
+        App!.FrameHandler;
+
+    internal static StartupHandler StartupHandler =>
+        App!.StartupHandler;
+
+    internal static IGameInterop GameInterop =>
+        App!.GameInterop;
+
+    internal static CruiserStateService CruiserStateService =>
+        App!.CruiserStateService;
+
+    internal static RequestCruiserStateService RequestCruiserStateService =>
+        App!.RequestCruiserStateService;
 
     private void Awake()
     {
         Logger = base.Logger;
 
         InputActions = new InputActions();
+        App = ApplicationComposition.Create(Logger);
 
         Harmony.PatchAll();
 
