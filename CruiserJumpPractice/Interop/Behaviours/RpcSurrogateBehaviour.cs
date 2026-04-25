@@ -1,8 +1,11 @@
 #nullable enable
 
-using CruiserJumpPractice.Domain;
+extern alias LethalCompany73;
+
 using BepInEx.Logging;
-using Unity.Netcode;
+using LethalCompany73::Unity.Netcode;
+
+using CruiserJumpPractice.Domain;
 
 namespace CruiserJumpPractice.Interop.Behaviours;
 

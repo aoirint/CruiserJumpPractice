@@ -1,9 +1,14 @@
 #nullable enable
 
+extern alias LethalCompany73;
+extern alias UnityEngine73;
+
 using BepInEx.Logging;
-using CruiserJumpPractice.Domain;
+using LethalCompany73;
 using System.Reflection;
-using UnityEngine;
+using UnityEngine73::UnityEngine;
+
+using CruiserJumpPractice.Domain;
 
 namespace CruiserJumpPractice.Interop.Adapters.V73;
 
