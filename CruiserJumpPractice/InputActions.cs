@@ -1,8 +1,11 @@
 #nullable enable
 
-using LethalCompanyInputUtils.Api;
-using LethalCompanyInputUtils.BindingPathEnums;
-using UnityEngine.InputSystem;
+extern alias LethalCompany73;
+extern alias LethalCompanyInputUtils73;
+
+using LethalCompany73::UnityEngine.InputSystem;
+using LethalCompanyInputUtils73::LethalCompanyInputUtils.Api;
+using LethalCompanyInputUtils73::LethalCompanyInputUtils.BindingPathEnums;
 
 namespace CruiserJumpPractice;
 

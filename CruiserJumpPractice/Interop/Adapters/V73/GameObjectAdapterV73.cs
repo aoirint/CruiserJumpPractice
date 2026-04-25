@@ -1,8 +1,11 @@
 #nullable enable
 
+extern alias LethalCompany73;
+
 using BepInEx.Logging;
-using GameNetcodeStuff;
-using Unity.Netcode;
+using LethalCompany73;
+using LethalCompany73::GameNetcodeStuff;
+using LethalCompany73::Unity.Netcode;
 
 using CruiserJumpPractice.Domain;
 

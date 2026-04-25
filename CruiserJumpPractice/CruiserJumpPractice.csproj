@@ -17,9 +17,15 @@
   <ItemGroup>
     <!-- Runtime-provided dependencies -->
     <PackageReference Include="BepInEx.Core" Version="5.4.21" IncludeAssets="compile" />
-    <PackageReference Include="LethalCompany.GameLibs.Steam" Version="73.0.0-ngd.0" IncludeAssets="compile" />
-    <PackageReference Include="UnityEngine.Modules" Version="2022.3.62" IncludeAssets="compile" />
-    <PackageReference Include="Rune580.Mods.LethalCompany.InputUtils" Version="0.7.12" IncludeAssets="compile" />
+    <PackageReference Include="LethalCompany.GameLibs.Steam" Version="73.0.0-ngd.0" IncludeAssets="compile">
+      <Aliases>LethalCompany73</Aliases>
+    </PackageReference>
+    <PackageReference Include="UnityEngine.Modules" Version="2022.3.62" IncludeAssets="compile">
+      <Aliases>UnityEngine73</Aliases>
+    </PackageReference>
+    <PackageReference Include="Rune580.Mods.LethalCompany.InputUtils" Version="0.7.12" IncludeAssets="compile">
+      <Aliases>LethalCompanyInputUtils73</Aliases>
+    </PackageReference>
 
     <!-- Build/development-only dependencies -->
     <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
