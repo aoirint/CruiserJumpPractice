@@ -19,6 +19,10 @@ This is a maintenance release reflecting internal improvements. No functional or
 
 - Enables keybind actions while the player is dead, same as Imperium.
 
+## v0.1.3 - 2025-11-30 UTC
+
+Yanked release due to a build issue.
+
 ## v0.1.2 - 2025-11-29 UTC
 
 ### Changed
