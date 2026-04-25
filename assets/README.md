@@ -4,7 +4,14 @@ A Lethal Company mod that saves/loads cruiser position, rotation, and condition,
 
 This mod helps you practice cruiser jumps repeatedly without having to manually reset the cruiser every attempt.
 
-This mod works for v73+. Maybe works for the earlier versions, but not tested.
+## Compatibility
+
+- Lethal Company v73 (2025-10-04 UTC, Manifest ID: 1749099131234587692)
+- [latest stable] Lethal Company v81 (2026-04-17 UTC, Manifest ID: 6423525044216269478)
+
+Support for non-latest stable versions may be discontinued without notice.
+
+Other versions are not tested.
 
 ## What it does
 
