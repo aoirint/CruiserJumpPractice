@@ -6,11 +6,11 @@ This mod helps you practice cruiser jumps repeatedly without having to manually 
 
 ## Compatibility
 
-- Lethal Company v73 (2025-10-04 UTC, Manifest ID: `1749099131234587692`)
-    - Imperium >= v1.1.0 and < v1.2.0 should be compatible.
 - [latest stable] Lethal Company v81 (2026-04-17 UTC, Manifest ID: `6423525044216269478`)
     - Imperium >= v1.3.0 should be compatible.
     - NOTE: Imperium v1.3.0 appears to have some cruiser-related issues. See this issue comment for a workaround: https://github.com/giosuel/imperium/issues/153#issuecomment-4317402735
+- Lethal Company v73 (2025-10-04 UTC, Manifest ID: `1749099131234587692`)
+    - Imperium >= v1.1.0 and < v1.2.0 should be compatible.
 
 Support for non-latest stable versions may be discontinued without notice.
 
