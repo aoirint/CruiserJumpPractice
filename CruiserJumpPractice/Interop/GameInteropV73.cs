@@ -63,23 +63,41 @@ internal sealed class GameInteropV73 : IGameInterop
         return rpcSurrogateInterop.GetRpcSurrogateBehaviour();
     }
 
-    public VehicleController? FindCruiser()
+    public bool CruiserExists()
     {
-        return cruiserInterop.FindCruiser();
+        return cruiserInterop.FindCruiser() != null;
     }
 
-    public CruiserSnapshot CaptureCruiser(VehicleController cruiser)
+    public CruiserSnapshot? CaptureCruiser()
     {
+        var cruiser = cruiserInterop.FindCruiser();
+        if (cruiser == null)
+        {
+            return null;
+        }
+
         return cruiserInterop.CaptureCruiser(cruiser);
     }
 
-    public void RestoreCruiser(VehicleController cruiser, CruiserSnapshot snapshot)
+    public void RestoreCruiser(CruiserSnapshot snapshot)
     {
+        var cruiser = cruiserInterop.FindCruiser();
+        if (cruiser == null)
+        {
+            throw new GameInteropException("No cruiser found.");
+        }
+
         cruiserInterop.RestoreCruiser(cruiser, snapshot);
     }
 
-    public bool IsCruiserMagnetedToShip(VehicleController cruiser)
+    public bool IsCruiserMagnetedToShip()
     {
+        var cruiser = cruiserInterop.FindCruiser();
+        if (cruiser == null)
+        {
+            throw new GameInteropException("No cruiser found.");
+        }
+
         return cruiserInterop.IsCruiserMagnetedToShip(cruiser);
     }
 

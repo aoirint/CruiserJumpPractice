@@ -21,13 +21,13 @@ internal interface IGameInterop
 
     RpcSurrogateBehaviour GetRpcSurrogateBehaviour();
 
-    VehicleController? FindCruiser();
+    bool CruiserExists();
 
-    CruiserSnapshot CaptureCruiser(VehicleController cruiser);
+    CruiserSnapshot? CaptureCruiser();
 
-    void RestoreCruiser(VehicleController cruiser, CruiserSnapshot snapshot);
+    void RestoreCruiser(CruiserSnapshot snapshot);
 
-    bool IsCruiserMagnetedToShip(VehicleController cruiser);
+    bool IsCruiserMagnetedToShip();
 
     bool IsShipMagnetOn();
 

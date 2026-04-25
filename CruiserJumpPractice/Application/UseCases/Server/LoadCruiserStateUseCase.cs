@@ -23,8 +23,7 @@ internal sealed class LoadCruiserStateUseCase
     {
         try
         {
-            var cruiser = gameInterop.FindCruiser();
-            if (cruiser == null)
+            if (!gameInterop.CruiserExists())
             {
                 Logger.LogInfo("No cruiser found.");
                 return LoadCruiserStateResult.NoCruiserFound;
@@ -37,14 +36,13 @@ internal sealed class LoadCruiserStateUseCase
                 return LoadCruiserStateResult.NoSavedState;
             }
 
-            var magnetedToShip = gameInterop.IsCruiserMagnetedToShip(cruiser);
-            if (magnetedToShip)
+            if (gameInterop.IsCruiserMagnetedToShip())
             {
                 Logger.LogInfo("Cruiser is currently magneted to the ship. Cannot load state.");
                 return LoadCruiserStateResult.MagnetedToShip;
             }
 
-            gameInterop.RestoreCruiser(cruiser, savedCruiserState);
+            gameInterop.RestoreCruiser(savedCruiserState);
             return LoadCruiserStateResult.Success;
         }
         catch (System.Exception error)

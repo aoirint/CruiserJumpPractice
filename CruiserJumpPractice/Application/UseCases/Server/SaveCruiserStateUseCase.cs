@@ -23,14 +23,14 @@ internal sealed class SaveCruiserStateUseCase
     {
         try
         {
-            var cruiser = gameInterop.FindCruiser();
-            if (cruiser == null)
+            var cruiserState = gameInterop.CaptureCruiser();
+            if (cruiserState == null)
             {
                 Logger.LogInfo("No cruiser found.");
                 return SaveCruiserStateResult.NoCruiserFound;
             }
 
-            cruiserStateStore.SavedCruiserState = gameInterop.CaptureCruiser(cruiser);
+            cruiserStateStore.SavedCruiserState = cruiserState;
             return SaveCruiserStateResult.Success;
         }
         catch (System.Exception error)
