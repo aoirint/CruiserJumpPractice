@@ -24,19 +24,7 @@ Restore NuGet packages.
 dotnet restore --locked-mode
 ```
 
-Create BeplnEx profiles in `./profiles` directory.
-
-```powershell
-pwsh ./InitProfiles.ps1
-```
-
 Open `CruiserJumpPractice.sln` in Visual Studio.
-
-Launch `HostAndGuest` profile to debug. Or manually run `Debug.ps1`.
-
-```powershell
-pwsh ./Debug.ps1
-```
 
 ## Code format
 
