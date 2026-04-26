@@ -4,15 +4,12 @@ This is a maintenance release reflecting internal improvements.
 
 No functional changes are introduced.
 
-You likely don’t need to update immediately as CruiserJumpPractice v0.1.4 also seems to work with both of Lethal Company v73 and Lethal Company v81.5, but staying up to date is recommended.
-
 ### Compatibility
 
-- Compatiable with Lethal Company v81.5.
+- Compatiable with Lethal Company v81.5 (2026-04-17 UTC, Manifest ID: `6423525044216269478`).
     - NOTE: Imperium v1.3.0 appears to have some cruiser-related issues. See this issue comment for a workaround: https://github.com/giosuel/imperium/issues/153#issuecomment-4317402735
-- Drop support for Lethal Company v73 and earlier.
     - Lethal Company v73: It still seems to work, but support will be dropped as future updates may break it.
-    - Lethal Company v56: Basic features seem to work, but there is a known issue: https://github.com/aoirint/CruiserJumpPractice/issues/5
+    - Lethal Company v56: Major features work as expected, but there is a minor known issue: https://github.com/aoirint/CruiserJumpPractice/issues/5
 
 ### Changed
 
@@ -31,6 +28,10 @@ You likely don’t need to update immediately as CruiserJumpPractice v0.1.4 also
 - BepInEx_MonoMod_Debug_Patcher v1.1.1 (2025-04-03 UTC)
 
 ## v0.1.4 - 2025-11-30 UTC
+
+### Compatibility
+
+- Compatiable with Lethal Company v73 (2025-10-04 UTC, Manifest ID: `1749099131234587692`).
 
 ### Changed
 
@@ -51,6 +52,10 @@ Yanked release due to a build issue.
 
 ## v0.1.2 - 2025-11-29 UTC
 
+### Compatibility
+
+- Compatiable with Lethal Company v73 (2025-10-04 UTC, Manifest ID: `1749099131234587692`).
+
 ### Changed
 
 - Disables keybind actions while the player is in a menu, using the terminal, typing in chat, or is dead.
@@ -61,11 +66,19 @@ Yanked release due to a build issue.
 
 ## v0.1.1 - 2025-11-29 UTC
 
+### Compatibility
+
+- Compatiable with Lethal Company v73 (2025-10-04 UTC, Manifest ID: `1749099131234587692`).
+
 ### Changed
 
 - Updated documentation.
 
 ## v0.1.0 - 2025-11-29 UTC
+
+### Compatibility
+
+- Compatiable with Lethal Company v73 (2025-10-04 UTC, Manifest ID: `1749099131234587692`).
 
 ### Added
 
