@@ -7,7 +7,8 @@ description: Quality-check repository commit messages. Use when Codex creates, e
 
 Check commit messages against Conventional Commits 1.0.0.
 
-Reference: https://www.conventionalcommits.org/en/v1.0.0/
+Reference:
+- Conventional Commits 1.0.0: https://www.conventionalcommits.org/en/v1.0.0/
 
 ## Format
 
