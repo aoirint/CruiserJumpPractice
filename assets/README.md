@@ -6,7 +6,7 @@ This mod helps you practice cruiser jumps repeatedly without having to manually 
 
 ## Compatibility
 
-- [latest stable] Lethal Company v81 (2026-04-17 UTC, Manifest ID: `6423525044216269478`)
+- Lethal Company v81 (2026-04-17 UTC, Manifest ID: `6423525044216269478`)
     - Test environment
         - BepInExPack v5.4.2305 (2026-03-17 UTC)
         - Imperium v1.3.0 (2026-04-08 UTC)
@@ -15,17 +15,6 @@ This mod helps you practice cruiser jumps repeatedly without having to manually 
         - OdinSerializer v2024.2.2700 (2025-05-18 UTC)
         - BepInEx_MonoMod_Debug_Patcher v1.1.1 (2025-04-03 UTC)
     - NOTE: Imperium v1.3.0 appears to have some cruiser-related issues. See this issue comment for a workaround: https://github.com/giosuel/imperium/issues/153#issuecomment-4317402735
-- Lethal Company v73 (2025-10-04 UTC, Manifest ID: `1749099131234587692`)
-    - Test environment
-        - BepInExPack v5.4.2305 (2026-03-17 UTC)
-        - Imperium v1.1.1 (2025-10-27 UTC)
-        - LethalCompany_InputUtils v0.7.12 (2025-10-24 UTC)
-        - LethalNetworkAPI v3.3.2 (2024-12-29 UTC)
-        - OdinSerializer v2024.2.2700 (2025-05-18 UTC)
-
-Support for non-latest stable versions may be discontinued without notice.
-
-Other versions are not tested.
 
 ## What it does
 
