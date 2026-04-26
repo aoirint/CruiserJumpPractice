@@ -1,8 +1,7 @@
 # Agent Instructions
 
-Use the repository-local Agent Skills below when the task matches their purpose:
+Use repository-local Agent Skills from:
 
-- `.agents/skills/commit-message-quality-check/SKILL.md`: commit message creation, review, or type selection quality checks.
-- `.agents/skills/pull-request-quality-check/SKILL.md`: pull request title/body creation or review quality checks.
+- `.agents/skills/`
 
-These skills define repository quality checks for Conventional Commits and pull request formatting.
+These skills define repository quality checks such as Conventional Commits and pull request formatting.

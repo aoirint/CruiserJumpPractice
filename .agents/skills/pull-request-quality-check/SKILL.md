@@ -15,11 +15,7 @@ Check that the title uses a Conventional Commits-style format:
 <type>[optional scope][optional !]: <description>
 ```
 
-Use the commit-message quality-check skill for type selection and breaking-change notation:
-
-```text
-.agents/skills/commit-message-quality-check/SKILL.md
-```
+Use `commit-message-quality-check` for type selection and breaking-change notation.
 
 Reference: https://www.conventionalcommits.org/en/v1.0.0/
 
