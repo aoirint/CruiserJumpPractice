@@ -4,14 +4,14 @@ using BepInEx.Logging;
 
 using CruiserJumpPractice.Domain;
 
-namespace CruiserJumpPractice.Interop.Adapters.V73;
+namespace CruiserJumpPractice.Interop.Adapters.Current;
 
-internal sealed class ShipMagnetAdapterV73
+internal sealed class ShipMagnetAdapterCurrent
 {
     private readonly ManualLogSource logger;
-    private readonly GameObjectAdapterV73 gameObjects;
+    private readonly GameObjectAdapterCurrent gameObjects;
 
-    public ShipMagnetAdapterV73(ManualLogSource logger, GameObjectAdapterV73 gameObjects)
+    public ShipMagnetAdapterCurrent(ManualLogSource logger, GameObjectAdapterCurrent gameObjects)
     {
         this.logger = logger;
         this.gameObjects = gameObjects;

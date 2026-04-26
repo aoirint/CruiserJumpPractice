@@ -68,7 +68,7 @@ internal sealed class ApplicationComposition
 
     public static ApplicationComposition Create(ManualLogSource logger)
     {
-        IGameInterop gameInterop = new GameInteropV73(logger);
+        IGameInterop gameInterop = new GameInteropCurrent(logger);
 
         var cruiserStateStore = new CruiserStateStore();
         var saveCruiserStateUseCase = new SaveCruiserStateUseCase(gameInterop, cruiserStateStore);

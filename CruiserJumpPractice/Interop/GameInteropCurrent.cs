@@ -1,31 +1,31 @@
 #nullable enable
 
 using BepInEx.Logging;
-using CruiserJumpPractice.Interop.Adapters.V73;
+using CruiserJumpPractice.Interop.Adapters.Current;
 using CruiserJumpPractice.Interop.Behaviours;
 using CruiserJumpPractice.Domain;
 
 namespace CruiserJumpPractice.Interop;
 
-internal sealed class GameInteropV73 : IGameInterop
+internal sealed class GameInteropCurrent : IGameInterop
 {
-    private readonly NetworkAdapterV73 networkInterop;
-    private readonly PlayerAdapterV73 playerInterop;
-    private readonly HudAdapterV73 hudInterop;
-    private readonly RpcSurrogateAdapterV73 rpcSurrogateInterop;
-    private readonly CruiserAdapterV73 cruiserInterop;
-    private readonly ShipMagnetAdapterV73 shipMagnetInterop;
+    private readonly NetworkAdapterCurrent networkInterop;
+    private readonly PlayerAdapterCurrent playerInterop;
+    private readonly HudAdapterCurrent hudInterop;
+    private readonly RpcSurrogateAdapterCurrent rpcSurrogateInterop;
+    private readonly CruiserAdapterCurrent cruiserInterop;
+    private readonly ShipMagnetAdapterCurrent shipMagnetInterop;
 
-    public GameInteropV73(ManualLogSource logger)
+    public GameInteropCurrent(ManualLogSource logger)
     {
-        var gameObjects = new GameObjectAdapterV73(logger);
+        var gameObjects = new GameObjectAdapterCurrent(logger);
 
-        networkInterop = new NetworkAdapterV73(logger, gameObjects);
-        playerInterop = new PlayerAdapterV73(logger, gameObjects);
-        hudInterop = new HudAdapterV73(logger, gameObjects);
-        rpcSurrogateInterop = new RpcSurrogateAdapterV73(logger, gameObjects);
-        cruiserInterop = new CruiserAdapterV73(logger, gameObjects);
-        shipMagnetInterop = new ShipMagnetAdapterV73(logger, gameObjects);
+        networkInterop = new NetworkAdapterCurrent(logger, gameObjects);
+        playerInterop = new PlayerAdapterCurrent(logger, gameObjects);
+        hudInterop = new HudAdapterCurrent(logger, gameObjects);
+        rpcSurrogateInterop = new RpcSurrogateAdapterCurrent(logger, gameObjects);
+        cruiserInterop = new CruiserAdapterCurrent(logger, gameObjects);
+        shipMagnetInterop = new ShipMagnetAdapterCurrent(logger, gameObjects);
     }
 
     public bool IsServer()
