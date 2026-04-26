@@ -16,12 +16,6 @@ internal class RpcSurrogateBehaviour : NetworkBehaviour
     [ServerRpc(RequireOwnership = true)]
     public void SaveCruiserStateServerRpc()
     {
-        if (!HasServerRole())
-        {
-            Logger.LogError("SaveCruiserStateServerRpc called on client. Ignoring.");
-            return;
-        }
-
         var result = CruiserJumpPractice.CruiserStateService.SaveCruiserState();
         SaveCruiserStateDoneClientRpc(result);
     }
@@ -29,24 +23,12 @@ internal class RpcSurrogateBehaviour : NetworkBehaviour
     [ClientRpc]
     public void SaveCruiserStateDoneClientRpc(SaveCruiserStateResult result)
     {
-        if (!HasClientRole())
-        {
-            Logger.LogError("SaveCruiserStateDoneClientRpc called on server. Ignoring.");
-            return;
-        }
-
         CruiserJumpPractice.RequestCruiserStateService.PresentSaveResult(result);
     }
 
     [ServerRpc(RequireOwnership = true)]
     public void LoadCruiserStateServerRpc()
     {
-        if (!HasServerRole())
-        {
-            Logger.LogError("LoadCruiserStateServerRpc called on client. Ignoring.");
-            return;
-        }
-
         var result = CruiserJumpPractice.CruiserStateService.LoadCruiserState();
         LoadCruiserStateDoneClientRpc(result);
     }
@@ -54,22 +36,6 @@ internal class RpcSurrogateBehaviour : NetworkBehaviour
     [ClientRpc]
     public void LoadCruiserStateDoneClientRpc(LoadCruiserStateResult result)
     {
-        if (!HasClientRole())
-        {
-            Logger.LogError("LoadCruiserStateDoneClientRpc called on server. Ignoring.");
-            return;
-        }
-
         CruiserJumpPractice.RequestCruiserStateService.PresentLoadResult(result);
-    }
-
-    private static bool HasServerRole()
-    {
-        return CruiserJumpPractice.GameInterop.IsServer();
-    }
-
-    private static bool HasClientRole()
-    {
-        return CruiserJumpPractice.GameInterop.IsClient();
     }
 }

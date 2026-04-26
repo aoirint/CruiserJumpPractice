@@ -28,11 +28,6 @@ internal sealed class GameInteropCurrent : IGameInterop
         shipMagnetInterop = new ShipMagnetAdapterCurrent(logger, gameObjects);
     }
 
-    public bool IsServer()
-    {
-        return networkInterop.IsServer();
-    }
-
     public bool IsClient()
     {
         return networkInterop.IsClient();

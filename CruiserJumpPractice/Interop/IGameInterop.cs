@@ -7,8 +7,6 @@ namespace CruiserJumpPractice.Interop;
 
 internal interface IGameInterop
 {
-    bool IsServer();
-
     bool IsClient();
 
     bool IsHost();
