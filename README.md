@@ -87,6 +87,12 @@ DOTNET_CLI_UI_LANGUAGE=en dotnet build --configuration Release
 4. Download the release artifact from the GitHub Release page.
 5. Upload the artifact to Thunderstore. **NOTE: prerelease version is not supported, e.g. `1.2.3-beta.1`.**
 
+### AI Disclosure
+
+Some parts of this project were developed with the assistance of AI tools, including agent-based tools.
+The code is reviewed by the author.
+This disclosure is made in compliance with Thunderstore policies.
+
 ## Debugging
 
 ### r2modman
