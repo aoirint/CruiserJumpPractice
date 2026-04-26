@@ -27,7 +27,7 @@ When the PR was prepared with LLM assistance, check that this GitHub alert appea
 
 ```markdown
 > [!WARNING]
-> This pull request was generated with assistance from an LLM. Please review the changes carefully.
+> This pull request was generated with LLM assistance.
 ```
 
 The alert should appear before every other heading, summary, checklist, or metadata block.
@@ -38,7 +38,7 @@ Check that the body is concise and uses these sections when applicable:
 
 ```markdown
 > [!WARNING]
-> This pull request was generated with assistance from an LLM. Please review the changes carefully.
+> This pull request was generated with LLM assistance.
 
 ## Summary
 - ...
