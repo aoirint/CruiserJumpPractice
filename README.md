@@ -89,7 +89,7 @@ DOTNET_CLI_UI_LANGUAGE=en dotnet build --configuration Release
 
 ### AI Disclosure
 
-Some parts of this project were developed with the assistance of AI tools, including agent-based tools.
+Some parts of this project were developed with the assistance of AI tools based on large language models (LLMs), including agent-based tools.
 The code is reviewed by the author.
 This disclosure is made in compliance with Thunderstore policies.
 
