@@ -6,7 +6,7 @@ This mod helps you practice cruiser jumps repeatedly without having to manually 
 
 ## Compatibility
 
-- Lethal Company v81 (2026-04-17 UTC, Manifest ID: `6423525044216269478`)
+- Lethal Company v81.5 (2026-04-17 UTC, Manifest ID: `6423525044216269478`)
     - Test environment
         - BepInExPack v5.4.2305 (2026-03-17 UTC)
         - Imperium v1.3.0 (2026-04-08 UTC)
