@@ -24,11 +24,6 @@ internal sealed class FrameHandler
 
     public void HandleFrame()
     {
-        if (!gameInterop.IsClient())
-        {
-            return;
-        }
-
         if (gameInterop.IsLocalPlayerBusy())
         {
             return;
