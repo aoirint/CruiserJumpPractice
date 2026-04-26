@@ -1,23 +1,23 @@
 ---
-name: commit-message-rules
-description: Apply repository commit-message rules. Use when Codex creates, edits, reviews, or suggests Git commit messages, especially when Conventional Commits format or commit type selection is requested.
+name: commit-message-quality-check
+description: Quality-check repository commit messages. Use when Codex creates, edits, reviews, or suggests Git commit messages, especially when Conventional Commits format, commit type selection, or release-impact clarity is requested.
 ---
 
-# Commit Message Rules
+# Commit Message Quality Check
 
-Use Conventional Commits 1.0.0 for commit messages.
+Check commit messages against Conventional Commits 1.0.0.
 
 Reference: https://www.conventionalcommits.org/en/v1.0.0/
 
 ## Format
 
-Write the first line as:
+Verify that the first line uses:
 
 ```text
 <type>[optional scope][optional !]: <description>
 ```
 
-Add an optional body after one blank line, and optional footer lines after one blank line from the body:
+Verify that an optional body starts after one blank line, and optional footer lines start after one blank line from the body:
 
 ```text
 <type>[optional scope][optional !]: <description>
@@ -56,7 +56,7 @@ BREAKING CHANGE: legacy save endpoint is no longer available.
 
 ## Type Selection
 
-Use these types consistently:
+Check that the type matches the dominant intent:
 
 - `feat`: add a user-visible feature or capability. SemVer: minor.
 - `fix`: correct a bug. SemVer: patch.
@@ -70,7 +70,7 @@ Use these types consistently:
 - `chore`: maintenance that does not fit the other types and does not affect source, tests, build, docs, or CI in a more specific way.
 - `revert`: revert previous commits; include references in the body or footers when useful.
 
-Prefer the most specific type. If one logical change needs multiple types, split it into multiple commits when practical.
+Prefer the most specific type. If one logical change needs multiple types, recommend splitting it into multiple commits when practical.
 
 ## Examples
 
