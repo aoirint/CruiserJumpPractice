@@ -14,6 +14,11 @@ Reference:
 
 - Use this skill when creating, updating, reviewing, or validating a commit message for this repository.
 
+### When Not to Use
+
+- Do not use this skill to alter existing commits on main branches. They should be immutable to preserve repository integrity and avoid disrupting other developers.
+- Do not use this skill to alter existing merge commits created by pull requests. They should be immutable to preserve repository integrity and avoid disrupting other developers.
+
 ## Format
 
 Verify that the first line uses:
