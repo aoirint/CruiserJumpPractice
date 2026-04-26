@@ -17,32 +17,6 @@ internal sealed class NetworkAdapterCurrent
         this.gameObjects = gameObjects;
     }
 
-    public bool IsServer()
-    {
-        try
-        {
-            return gameObjects.GetNetworkManager().IsServer;
-        }
-        catch (System.Exception error)
-        {
-            logger.LogError($"Exception while getting 'IsServer': {error}");
-            throw new GameInteropException($"Exception while getting 'IsServer': {error}");
-        }
-    }
-
-    public bool IsClient()
-    {
-        try
-        {
-            return gameObjects.GetNetworkManager().IsClient;
-        }
-        catch (System.Exception error)
-        {
-            logger.LogError($"Exception while getting 'IsClient': {error}");
-            throw new GameInteropException($"Exception while getting 'IsClient': {error}");
-        }
-    }
-
     public bool IsHost()
     {
         try
