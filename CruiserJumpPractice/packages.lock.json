@@ -26,22 +26,22 @@
       },
       "LethalCompany.GameLibs.Steam": {
         "type": "Direct",
-        "requested": "[73.0.0-ngd.0, )",
-        "resolved": "73.0.0-ngd.0",
-        "contentHash": "iaHCHoJTFiTnAyAYIrEbjCJOOuhcJ42+KJnEbmCmf4UdkhjSwwio2bcdPCbchodB9kEp+3v3ATgkBwYn56/Gdw==",
+        "requested": "[81.0.5-ngd.0, )",
+        "resolved": "81.0.5-ngd.0",
+        "contentHash": "q1+j5z4lP0TKO16uZ2NclNr9/mb3BUgl6mUO7zbPwbyEHIPJ4m6805rxP0w8mxe4NWNcQRoBkWrIpiNrwak8Hg==",
         "dependencies": {
           "Newtonsoft.JSON": "13.0.3",
-          "UnityEngine.Modules": "2022.3.9"
+          "UnityEngine.Modules": "2022.3.62"
         }
       },
       "Rune580.Mods.LethalCompany.InputUtils": {
         "type": "Direct",
-        "requested": "[0.7.12, )",
-        "resolved": "0.7.12",
-        "contentHash": "WjNgfydv5/3DlSIHrl24CTJSkPFVbkeWshmfrwpKCBXWneuoM0+WEj4mxLRPOdidRkakb6nJwvD+65zHH05GRg==",
+        "requested": "[0.7.13, )",
+        "resolved": "0.7.13",
+        "contentHash": "Hebm2vcU6R+02x27MJMAAnKwe9H6iIOSYB4bIVAaAPcv0vOqUktiG6FRQkN9v+POGRgAp6E2qTuuw09eAY40Lg==",
         "dependencies": {
           "BepInEx.Core": "5.4.21",
-          "BepInEx.PluginInfoProps": "1.1.0",
+          "BepInEx.PluginInfoProps": "2.1.0",
           "UnityEngine.Modules": "2022.3.62"
         }
       },
