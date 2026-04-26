@@ -1,6 +1,6 @@
 ---
 name: commit-message-quality-check
-description: Quality-check repository commit messages. Use when Codex creates, edits, reviews, or suggests Git commit messages, especially when Conventional Commits format, commit type selection, or release-impact clarity is requested.
+description: Quality-check repository commit messages. Use when creating or updating commit messages.
 ---
 
 # Commit Message Quality Check
@@ -9,6 +9,10 @@ Check commit messages against Conventional Commits 1.0.0.
 
 Reference:
 - Conventional Commits 1.0.0: https://www.conventionalcommits.org/en/v1.0.0/
+
+## When to Use
+
+- Use this skill when creating, updating, reviewing, or validating a commit message for this repository.
 
 ## Format
 

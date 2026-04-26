@@ -1,11 +1,13 @@
 ---
 name: pull-request-quality-check
-description: Quality-check repository pull requests. Use when Codex creates, edits, reviews, or suggests pull request titles and bodies, especially when an LLM-generated warning, Conventional Commits-aligned PR title, or concise review-ready body is requested.
+description: Quality-check repository pull requests. Use when creating or updating pull requests.
 ---
 
 # Pull Request Quality Check
 
-Use this skill when preparing or reviewing pull requests for this repository.
+## When to Use
+
+- Use this skill when creating, updating, reviewing, or validating pull request titles or bodies for this repository.
 
 ## Title
 
