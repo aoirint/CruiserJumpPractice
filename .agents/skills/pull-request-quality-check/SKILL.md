@@ -62,3 +62,11 @@ Recommend sections only when they carry useful information:
 - Do not paste large diffs.
 - Be explicit when verification was not run.
 - Align the PR title type with the dominant change: for example, `docs:` for documentation-only skill additions and `refactor:` for behavior-preserving code cleanup.
+
+## CLI Safety
+
+When creating or editing PR bodies with a shell command, avoid passing Markdown directly through command arguments if it contains backticks, quotes, dollar signs, backslashes, or multiple lines. Shells such as PowerShell and bash can interpret those characters and silently corrupt the body.
+
+- Prefer writing the body to a temporary Markdown file and passing it with `gh pr create --body-file <file>` or `gh pr edit --body-file <file>`.
+- After creating or editing a PR through `gh`, verify the stored body with `gh pr view --json body` and fix any quoting issues before finishing.
+- Remove any temporary body file from the worktree after verification.
