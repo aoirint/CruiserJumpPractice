@@ -1,13 +1,14 @@
 ---
-name: git-worktree-implementation
-description: Use Git worktrees for implementation tasks. Use when asked to implement code changes, create a branch, or prepare a pull request from the latest main branch.
+name: git-worktree-workflow
+description: Use Git worktrees for implementation tasks unless explicitly told not to. Use when asked to implement code changes, create a branch, or prepare a pull request from the latest main branch.
 ---
 
-# Git Worktree Implementation
+# Git Worktree Workflow
 
 ## When to Use
 
-- Use this skill when implementing repository changes that should be isolated from the user's current working tree.
+- Use this skill when implementing repository changes unless the user explicitly instructs you not to use Git worktrees.
+- Use this skill when implementation work should be isolated from the user's current working tree.
 - Use this skill when the user asks to create a pull request from the latest `main` branch.
 - Use this skill when the user explicitly asks to work in a Git worktree.
 
