@@ -41,7 +41,6 @@ If network access or Git metadata writes require approval, request it and contin
 - Do not edit implementation files in the original worktree after creating the task worktree.
 - Do not remove another worktree unless the user explicitly asks.
 - If the branch or worktree path already exists, choose a new descriptive name or inspect it before reuse.
-- Do not change Git safety settings casually. If Git reports dubious ownership and the task cannot continue otherwise, add only the specific new worktree's absolute path as a `safe.directory`.
 
 ## Implementation Flow
 
