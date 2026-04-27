@@ -2,7 +2,13 @@
 
 namespace CruiserJumpPractice.Domain;
 
-internal enum HostGuardResult
+internal enum RequestSaveCruiserStateResult
+{
+    Success,
+    HostOnly
+}
+
+internal enum RequestLoadCruiserStateResult
 {
     Success,
     HostOnly
