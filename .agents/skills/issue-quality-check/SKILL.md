@@ -25,7 +25,7 @@ When the issue was prepared with LLM assistance, check that this GitHub alert ap
 
 ```markdown
 > [!WARNING]
-> This issue was generated with LLM assistance.
+> This issue was generated with LLMs.
 ```
 
 The alert should appear before every other heading, summary, checklist, template field, or metadata block.
@@ -36,7 +36,7 @@ Check that the body is concise and uses these sections when applicable:
 
 ```markdown
 > [!WARNING]
-> This issue was generated with LLM assistance.
+> This issue was generated with LLMs.
 
 ## Summary
 - ...
@@ -80,7 +80,7 @@ When the issue reply was prepared with LLM assistance, check that this GitHub al
 
 ```markdown
 > [!WARNING]
-> This issue reply was generated with LLM assistance.
+> This comment was generated with LLMs.
 ```
 
 The alert should appear before every other paragraph, heading, checklist, quote, or metadata block.
@@ -89,7 +89,7 @@ Check that the reply is concise and uses only the structure needed for the situa
 
 ```markdown
 > [!WARNING]
-> This issue reply was generated with LLM assistance.
+> This comment was generated with LLMs.
 
 Thanks for the report. I can reproduce this with ...
 

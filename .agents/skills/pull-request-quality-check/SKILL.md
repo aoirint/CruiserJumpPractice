@@ -27,7 +27,7 @@ When the PR was prepared with LLM assistance, check that this GitHub alert appea
 
 ```markdown
 > [!WARNING]
-> This pull request was generated with LLM assistance.
+> This pull request was generated with LLMs.
 ```
 
 The alert should appear before every other heading, summary, checklist, or metadata block.
@@ -38,7 +38,7 @@ Check that the body is concise and uses these sections when applicable:
 
 ```markdown
 > [!WARNING]
-> This pull request was generated with LLM assistance.
+> This pull request was generated with LLMs.
 
 ## Summary
 - ...
@@ -62,6 +62,17 @@ Recommend sections only when they carry useful information:
 - Do not paste large diffs.
 - Be explicit when verification was not run.
 - Align the PR title type with the dominant change: for example, `docs:` for documentation-only skill additions and `refactor:` for behavior-preserving code cleanup.
+
+## Pull Request Replies and Reviews
+
+When a pull request reply or review was prepared with LLM assistance, check that this GitHub alert appears at the very top of the comment or review body:
+
+```markdown
+> [!WARNING]
+> This comment was generated with LLMs.
+```
+
+The alert should appear before every other paragraph, heading, checklist, quote, finding, or metadata block.
 
 ## CLI Safety
 
