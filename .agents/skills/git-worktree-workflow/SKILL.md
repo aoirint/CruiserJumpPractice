@@ -48,16 +48,18 @@ If network access or Git metadata writes require approval, request it and contin
 2. Fetch the latest base branch.
 3. Create a branch and worktree under `.agents/worktrees/`.
 4. Before editing, make an implementation plan split into practical phases.
-5. For each phase, do only that phase's implementation, formatting, and verification inside the new worktree.
+5. For each phase, do only that phase's implementation and quality check inside the new worktree.
 6. Commit that phase immediately using `commit-message-quality-check` before starting the next phase.
 7. Repeat steps 5 and 6 until the planned phases are complete.
 8. After all phases are complete, run a final quality check before pushing.
 9. Push the branch.
 10. Create or update the pull request using `pull-request-quality-check`.
 
-## Verification
+## Quality Check
 
-Run checks that match the change risk and repository conventions. For this repository, useful checks often include:
+A quality check means formatting plus verification appropriate to the change risk and repository conventions.
+
+For this repository, useful verification often includes:
 
 ```powershell
 dotnet build CruiserJumpPractice.sln
@@ -65,7 +67,7 @@ dotnet build CruiserJumpPractice.sln
 
 If verification is skipped, state why in the pull request body.
 
-Before pushing, review the complete diff and recent commits for accidental scope creep, missing verification, and commit-message quality.
+Before pushing, also review the complete diff and recent commits for accidental scope creep, missing verification, and commit-message quality.
 
 ## Pull Request Notes
 
