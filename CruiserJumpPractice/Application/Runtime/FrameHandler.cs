@@ -1,25 +1,28 @@
 #nullable enable
 
 using CruiserJumpPractice.Interop;
-using CruiserJumpPractice.Application.Services.Client;
+using CruiserJumpPractice.Application.UseCases.Client;
 
 namespace CruiserJumpPractice.Application.Runtime;
 
 internal sealed class FrameHandler
 {
     private readonly IGameInterop gameInterop;
-    private readonly RequestCruiserStateService requestCruiserStateService;
-    private readonly MagnetService magnetService;
+    private readonly RequestSaveCruiserStateUseCase requestSaveCruiserStateUseCase;
+    private readonly RequestLoadCruiserStateUseCase requestLoadCruiserStateUseCase;
+    private readonly ToggleMagnetUseCase toggleMagnetUseCase;
 
     public FrameHandler(
         IGameInterop gameInterop,
-        RequestCruiserStateService requestCruiserStateService,
-        MagnetService magnetService
+        RequestSaveCruiserStateUseCase requestSaveCruiserStateUseCase,
+        RequestLoadCruiserStateUseCase requestLoadCruiserStateUseCase,
+        ToggleMagnetUseCase toggleMagnetUseCase
     )
     {
         this.gameInterop = gameInterop;
-        this.requestCruiserStateService = requestCruiserStateService;
-        this.magnetService = magnetService;
+        this.requestSaveCruiserStateUseCase = requestSaveCruiserStateUseCase;
+        this.requestLoadCruiserStateUseCase = requestLoadCruiserStateUseCase;
+        this.toggleMagnetUseCase = toggleMagnetUseCase;
     }
 
     public void HandleFrame()
@@ -41,7 +44,7 @@ internal sealed class FrameHandler
             return;
         }
 
-        requestCruiserStateService.RequestSaveCruiserState();
+        requestSaveCruiserStateUseCase.Execute();
     }
 
     private void UpdateLoadCruiser()
@@ -51,7 +54,7 @@ internal sealed class FrameHandler
             return;
         }
 
-        requestCruiserStateService.RequestLoadCruiserState();
+        requestLoadCruiserStateUseCase.Execute();
     }
 
     private void UpdateToggleMagnet()
@@ -61,6 +64,6 @@ internal sealed class FrameHandler
             return;
         }
 
-        magnetService.ToggleMagnet();
+        toggleMagnetUseCase.Execute();
     }
 }

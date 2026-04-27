@@ -16,26 +16,26 @@ internal class RpcSurrogateBehaviour : NetworkBehaviour
     [ServerRpc(RequireOwnership = true)]
     public void SaveCruiserStateServerRpc()
     {
-        var result = CruiserJumpPractice.CruiserStateService.SaveCruiserState();
+        var result = CruiserJumpPractice.SaveCruiserStateUseCase.Execute();
         SaveCruiserStateDoneClientRpc(result);
     }
 
     [ClientRpc]
     public void SaveCruiserStateDoneClientRpc(SaveCruiserStateResult result)
     {
-        CruiserJumpPractice.RequestCruiserStateService.PresentSaveResult(result);
+        CruiserJumpPractice.PresentSaveCruiserStateResultUseCase.Execute(result);
     }
 
     [ServerRpc(RequireOwnership = true)]
     public void LoadCruiserStateServerRpc()
     {
-        var result = CruiserJumpPractice.CruiserStateService.LoadCruiserState();
+        var result = CruiserJumpPractice.LoadCruiserStateUseCase.Execute();
         LoadCruiserStateDoneClientRpc(result);
     }
 
     [ClientRpc]
     public void LoadCruiserStateDoneClientRpc(LoadCruiserStateResult result)
     {
-        CruiserJumpPractice.RequestCruiserStateService.PresentLoadResult(result);
+        CruiserJumpPractice.PresentLoadCruiserStateResultUseCase.Execute(result);
     }
 }

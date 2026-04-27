@@ -18,6 +18,7 @@ internal sealed class ToggleMagnetUseCase
     {
         if (!gameInterop.IsHost())
         {
+            gameInterop.DisplayTip("CruiserJumpPractice", "Only the host can toggle the magnet.");
             return ToggleMagnetResult.HostOnly;
         }
 
@@ -26,6 +27,9 @@ internal sealed class ToggleMagnetUseCase
         // This value is synchronized by the game's built-in server RPC flow.
         gameInterop.ToggleShipMagnet();
 
-        return newMagnetState ? ToggleMagnetResult.MagnetOn : ToggleMagnetResult.MagnetOff;
+        var result = newMagnetState ? ToggleMagnetResult.MagnetOn : ToggleMagnetResult.MagnetOff;
+        var magnetStateText = result == ToggleMagnetResult.MagnetOn ? "ON" : "OFF";
+        gameInterop.DisplayTip("CruiserJumpPractice", $"Magnet is now {magnetStateText}.");
+        return result;
     }
 }

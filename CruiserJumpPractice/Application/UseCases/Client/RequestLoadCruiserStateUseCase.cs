@@ -14,15 +14,16 @@ internal sealed class RequestLoadCruiserStateUseCase
         this.gameInterop = gameInterop;
     }
 
-    public HostGuardResult Execute()
+    public RequestLoadCruiserStateResult Execute()
     {
         if (!gameInterop.IsHost())
         {
-            return HostGuardResult.HostOnly;
+            gameInterop.DisplayTip("CruiserJumpPractice", "Only the host can load the cruiser state.");
+            return RequestLoadCruiserStateResult.HostOnly;
         }
 
         var rpcSurrogateNetworkBehaviour = gameInterop.GetRpcSurrogateBehaviour();
         rpcSurrogateNetworkBehaviour.LoadCruiserStateServerRpc();
-        return HostGuardResult.Success;
+        return RequestLoadCruiserStateResult.Success;
     }
 }
