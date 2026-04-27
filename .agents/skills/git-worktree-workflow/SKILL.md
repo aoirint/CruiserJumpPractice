@@ -10,7 +10,20 @@ description: Use Git worktrees for repository implementation tasks unless explic
 - Use this skill for repository implementation work unless the user explicitly instructs you not to use Git worktrees.
 - Implementation work includes code, tests, build files, documentation, repository guidance, and pull-request preparation.
 
-## Worktree Location
+## Workflow
+
+1. Check the current repository state.
+2. Fetch the latest base branch.
+3. Create a branch and worktree under `.agents/worktrees/`.
+4. Before editing, split the implementation plan into practical phases.
+5. For each phase, implement only that phase, then run its quality check inside the worktree.
+6. Commit the completed phase immediately using `commit-message-quality-check`.
+7. Repeat steps 5 and 6 until every planned phase is complete.
+8. Before pushing, run the final quality check.
+9. Push the branch.
+10. Create or update the pull request using `pull-request-quality-check`.
+
+## Worktree Setup
 
 Create implementation worktrees under:
 
@@ -23,8 +36,6 @@ Use a short, descriptive branch and directory name, such as:
 ```text
 .agents/worktrees/fix-cruiser-state-load
 ```
-
-## Starting Point
 
 Start from the latest base branch unless the user names a different base. The usual base is `main`:
 
@@ -41,19 +52,6 @@ If network access or Git metadata writes require approval, request it and contin
 - After creating the task worktree, make implementation changes there.
 - Do not remove another worktree unless the user explicitly asks.
 - If the branch or worktree path already exists, inspect it before reuse or choose a new descriptive name.
-
-## Implementation Flow
-
-1. Check the current repository state.
-2. Fetch the latest base branch.
-3. Create a branch and worktree under `.agents/worktrees/`.
-4. Before editing, split the implementation plan into practical phases.
-5. For each phase, implement only that phase, then run its quality check inside the worktree.
-6. Commit the completed phase immediately using `commit-message-quality-check`.
-7. Repeat steps 5 and 6 until every planned phase is complete.
-8. Before pushing, run the final quality check.
-9. Push the branch.
-10. Create or update the pull request using `pull-request-quality-check`.
 
 ## Quality Check
 
