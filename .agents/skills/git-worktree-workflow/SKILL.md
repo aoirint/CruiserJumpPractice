@@ -41,7 +41,7 @@ If network access or Git metadata writes require approval, request it and contin
 - Do not edit implementation files in the original worktree after creating the task worktree.
 - Do not remove another worktree unless the user explicitly asks.
 - If the branch or worktree path already exists, choose a new descriptive name or inspect it before reuse.
-- If Git reports dubious ownership for the new worktree, add only that worktree path as a `safe.directory`.
+- Do not change Git safety settings casually. If Git reports dubious ownership and the task cannot continue otherwise, add only the specific new worktree's absolute path as a `safe.directory`.
 
 ## Implementation Flow
 
@@ -52,8 +52,9 @@ If network access or Git metadata writes require approval, request it and contin
 5. For each phase, do only that phase's implementation, formatting, and verification inside the new worktree.
 6. Commit that phase immediately using `commit-message-quality-check` before starting the next phase.
 7. Repeat steps 5 and 6 until the planned phases are complete.
-8. Push the branch.
-9. Create or update the pull request using `pull-request-quality-check`.
+8. After all phases are complete, run a final quality check before pushing.
+9. Push the branch.
+10. Create or update the pull request using `pull-request-quality-check`.
 
 ## Verification
 
@@ -64,6 +65,8 @@ dotnet build CruiserJumpPractice.sln
 ```
 
 If verification is skipped, state why in the pull request body.
+
+Before pushing, review the complete diff and recent commits for accidental scope creep, missing verification, and commit-message quality.
 
 ## Pull Request Notes
 
