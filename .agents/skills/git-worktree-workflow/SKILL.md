@@ -1,6 +1,6 @@
 ---
 name: git-worktree-workflow
-description: Use Git worktrees for implementation tasks unless explicitly told not to. Use when asked to implement code changes, create a branch, or prepare a pull request from the latest main branch.
+description: Use Git worktrees for repository implementation tasks unless explicitly told not to.
 ---
 
 # Git Worktree Workflow
@@ -8,9 +8,7 @@ description: Use Git worktrees for implementation tasks unless explicitly told n
 ## When to Use
 
 - Use this skill when implementing repository changes unless the user explicitly instructs you not to use Git worktrees.
-- Use this skill when implementation work should be isolated from the user's current working tree.
-- Use this skill when the user asks to create a pull request from the latest `main` branch.
-- Use this skill when the user explicitly asks to work in a Git worktree.
+- This includes code, tests, build files, documentation, repository guidance, and pull-request preparation.
 
 ## Worktree Location
 
@@ -28,7 +26,7 @@ Use a short, descriptive branch and directory name, such as:
 
 ## Starting Point
 
-Start from the latest `main` branch unless the user names another base:
+Start from the latest base branch, usually `main`, unless the user names another base:
 
 ```powershell
 git fetch origin main
@@ -39,7 +37,6 @@ If network access or Git metadata writes require approval, request it and contin
 
 ## Safety Rules
 
-- Check the original worktree with `git status --short --branch` before creating a new worktree.
 - Treat uncommitted or untracked files in the original worktree as user work.
 - Do not edit implementation files in the original worktree after creating the task worktree.
 - Do not remove another worktree unless the user explicitly asks.
@@ -48,12 +45,13 @@ If network access or Git metadata writes require approval, request it and contin
 
 ## Implementation Flow
 
-1. Fetch the latest base branch.
-2. Create a branch and worktree under `.agents/worktrees/`.
-3. Do all implementation, formatting, and verification inside the new worktree.
-4. Commit changes using `commit-message-quality-check`.
-5. Push the branch.
-6. Create or update the pull request using `pull-request-quality-check`.
+1. Check the current repository state.
+2. Fetch the latest base branch.
+3. Create a branch and worktree under `.agents/worktrees/`.
+4. Do all implementation, formatting, and verification inside the new worktree.
+5. Commit changes using `commit-message-quality-check`.
+6. Push the branch.
+7. Create or update the pull request using `pull-request-quality-check`.
 
 ## Verification
 
@@ -68,5 +66,4 @@ If verification is skipped, state why in the pull request body.
 ## Pull Request Notes
 
 - Keep pull request titles and bodies consistent with `pull-request-quality-check`.
-- Mention the worktree path only when it helps the user find the local work.
 - Remove temporary PR body files from the worktree after creating or editing the pull request.
