@@ -49,10 +49,11 @@ If network access or Git metadata writes require approval, request it and contin
 2. Fetch the latest base branch.
 3. Create a branch and worktree under `.agents/worktrees/`.
 4. Before editing, make an implementation plan split into practical phases.
-5. Do implementation, formatting, and verification inside the new worktree.
-6. Commit each completed phase using `commit-message-quality-check` instead of waiting until all changes are finished.
-7. Push the branch.
-8. Create or update the pull request using `pull-request-quality-check`.
+5. For each phase, do only that phase's implementation, formatting, and verification inside the new worktree.
+6. Commit that phase immediately using `commit-message-quality-check` before starting the next phase.
+7. Repeat steps 5 and 6 until the planned phases are complete.
+8. Push the branch.
+9. Create or update the pull request using `pull-request-quality-check`.
 
 ## Verification
 
