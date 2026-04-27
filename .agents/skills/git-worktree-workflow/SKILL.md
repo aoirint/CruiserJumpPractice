@@ -7,8 +7,8 @@ description: Use Git worktrees for repository implementation tasks unless explic
 
 ## When to Use
 
-- Use this skill when implementing repository changes unless the user explicitly instructs you not to use Git worktrees.
-- This includes code, tests, build files, documentation, repository guidance, and pull-request preparation.
+- Use this skill for repository implementation work unless the user explicitly instructs you not to use Git worktrees.
+- Implementation work includes code, tests, build files, documentation, repository guidance, and pull-request preparation.
 
 ## Worktree Location
 
@@ -26,7 +26,7 @@ Use a short, descriptive branch and directory name, such as:
 
 ## Starting Point
 
-Start from the latest base branch, usually `main`, unless the user names another base:
+Start from the latest base branch unless the user names a different base. The usual base is `main`:
 
 ```powershell
 git fetch origin main
@@ -38,26 +38,26 @@ If network access or Git metadata writes require approval, request it and contin
 ## Safety Rules
 
 - Treat uncommitted or untracked files in the original worktree as user work.
-- Do not edit implementation files in the original worktree after creating the task worktree.
+- After creating the task worktree, make implementation changes there.
 - Do not remove another worktree unless the user explicitly asks.
-- If the branch or worktree path already exists, choose a new descriptive name or inspect it before reuse.
+- If the branch or worktree path already exists, inspect it before reuse or choose a new descriptive name.
 
 ## Implementation Flow
 
 1. Check the current repository state.
 2. Fetch the latest base branch.
 3. Create a branch and worktree under `.agents/worktrees/`.
-4. Before editing, make an implementation plan split into practical phases.
-5. For each phase, do only that phase's implementation and quality check inside the new worktree.
-6. Commit that phase immediately using `commit-message-quality-check` before starting the next phase.
-7. Repeat steps 5 and 6 until the planned phases are complete.
-8. After all phases are complete, run a final quality check before pushing.
+4. Before editing, split the implementation plan into practical phases.
+5. For each phase, implement only that phase, then run its quality check inside the worktree.
+6. Commit the completed phase immediately using `commit-message-quality-check`.
+7. Repeat steps 5 and 6 until every planned phase is complete.
+8. Before pushing, run the final quality check.
 9. Push the branch.
 10. Create or update the pull request using `pull-request-quality-check`.
 
 ## Quality Check
 
-A quality check means formatting plus verification appropriate to the change risk and repository conventions.
+A quality check means formatting and verification appropriate to the change risk and repository conventions.
 
 For this repository, useful verification often includes:
 
@@ -67,7 +67,7 @@ dotnet build CruiserJumpPractice.sln
 
 If verification is skipped, state why in the pull request body.
 
-Before pushing, also review the complete diff and recent commits for accidental scope creep, missing verification, and commit-message quality.
+The final quality check also includes reviewing the complete diff and recent commits for accidental scope creep, missing verification, and commit-message quality.
 
 ## Pull Request Notes
 
