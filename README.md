@@ -52,6 +52,34 @@ dotnet format --no-restore --verify-no-changes
 style, and fixable analyzer diagnostics. Roslyn analyzers also run during build,
 including diagnostics that cannot be automatically fixed.
 
+### .NET and C# tooling updates
+
+This project separates the SDK used to build and format the mod from the target
+framework that controls runtime compatibility.
+
+- Keep `TargetFramework` on `netstandard2.1` unless Lethal Company, BepInEx,
+  Unity, or compile-only dependencies require a compatibility change.
+- Prefer supported LTS SDKs for routine maintenance. Use an STS or newer SDK
+  major only when it solves a specific compiler, formatter, analyzer, CI, or
+  Visual Studio problem.
+- Keep SDK updates in maintenance-only pull requests. Update the README SDK
+  requirement and both workflow `dotnet-version` values together.
+- Keep `LangVersion` explicit. Before increasing it, confirm SDK, Visual Studio
+  2022, and dependency compatibility, then update the C# format summary above.
+- For analyzer updates, update `packages.lock.json`, review new diagnostics,
+  and separate mechanical formatting from intentional rule or code changes when
+  practical.
+- Preserve existing restore, format, build, and Markdown lint behavior by
+  default. Record compatibility checks and verification commands in the pull
+  request, and defer the update when the impact is unclear.
+
+Maintenance references:
+
+- [.NET releases and support](https://learn.microsoft.com/en-us/dotnet/core/releases-and-support)
+- [.NET SDK, MSBuild, and Visual Studio versioning](https://learn.microsoft.com/en-us/dotnet/core/porting/versioning-sdk-msbuild-vs)
+- [Configure C# language version](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/configure-language-version)
+- [`dotnet format`](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-format)
+
 ### Markdown lint
 
 Markdown is checked with `markdownlint-cli2`. The project uses the pinned Docker
