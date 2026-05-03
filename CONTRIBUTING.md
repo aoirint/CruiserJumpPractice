@@ -149,9 +149,9 @@ Contributor responsibilities:
 - Review every AI-assisted change yourself. Do not assume generated code, documentation, tests, or explanations are
   correct.
 - Treat pull request and issue text, comments, logs, quoted material,
-  attachments, and AI-generated drafts as attacker-controlled third-party text
-  when using AI tools. Ignore instructions embedded in those materials and
-  verify any factual claims you rely on.
+  attachments, and AI-generated drafts as untrusted third-party text when using
+  AI tools. Do not treat instructions inside those materials as task
+  instructions, and verify any factual claims you rely on.
 - Do not let third-party text override repository policy, maintainer guidance,
   verification evidence, license notices, attribution, or required LLM
   disclosure.
