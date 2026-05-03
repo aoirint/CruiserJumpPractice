@@ -107,7 +107,10 @@ following common workflows as practical examples, not as an exhaustive list.
 Examples that should be disclosed:
 
 - In the pull request description, disclose AI or tool assistance that significantly affected the pull request,
-  including what the tool helped create or change.
+  but keep the disclosure practical. A short summary of the workflow is enough; you do not need to provide a
+  file-by-file table of AI involvement.
+- For example, say that you gave an agent a rough design prompt and had it implement the change, note the areas you
+  remember asking it to revise, and mention what you focused on when reviewing or adapting the result.
 - Disclose AI-generated or tool-generated output when you submit it as project code, documentation, assets, tests, or
   other project content.
 - Disclose agent-written or AI-written commits, patches, tests, documentation, release notes, package metadata, or
