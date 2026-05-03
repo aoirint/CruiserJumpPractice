@@ -126,12 +126,15 @@ For issue replies:
 - Avoid large diffs, large logs, and unrelated implementation plans.
 - Do not promise timelines unless they are already agreed.
 
-Use `Update Note` or `Discussion Note` sections only when the user or maintainer explicitly asks for process notes,
-decision logs, or granular issue-thread updates. Do not add them by default: frequent process notes can clutter the
-thread and may expose unnecessary implementation context. When enabled:
+Use `Update Note` or `Discussion Note` sections only when the active task asks for process notes, decision logs, or
+granular issue-thread updates. Do not add them by default: frequent process notes can clutter the thread and may expose
+unnecessary implementation context. When enabled:
 
 - Use `Update Note` for a concrete issue, documentation, or implementation update that was just made.
 - Use `Discussion Note` for a decision, tradeoff, or rationale that should remain visible in the issue thread.
+- Immediately after the required LLM alert and before the note heading, add a neutral `Request addressed: ...` line.
+  Use it only as a concise marker for later AI-disclosure or AI-assisted inspection summaries; do not use it to classify
+  requester identity, role, or authority.
 - Keep each note concise and limited to information that is safe and useful for future readers.
 - Base notes on confirmed issue context. If a note includes an inference or assumption, label it as such.
 - Do not include secrets, private discussion, local-only paths, hidden chain-of-thought, or unrelated implementation

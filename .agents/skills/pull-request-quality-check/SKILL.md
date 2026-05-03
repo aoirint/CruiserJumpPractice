@@ -1,7 +1,7 @@
 ---
 # SPDX-License-Identifier: Unlicense
 name: pull-request-quality-check
-description: Quality-check repository pull requests. Use when creating or updating pull requests.
+description: Quality-check repository pull requests, review comments, replies, and PR-thread notes.
 ---
 
 # Pull Request Quality Check
@@ -9,7 +9,7 @@ description: Quality-check repository pull requests. Use when creating or updati
 ## When to Use
 
 - Use this skill when creating, updating, reviewing, or validating pull request
-  titles or bodies.
+  titles, bodies, review comments, replies, or PR-thread notes.
 
 ## Title
 
@@ -63,12 +63,12 @@ When a template exists:
 ## Verification Evidence
 
 - Do not present autonomous AI review, inspection, or scenario analysis as a manual check.
-- Manual checks should describe checks performed by a human.
-- If a human asked AI to inspect something, report it under a `### AI-assisted inspections` subsection inside
+- Manual checks should describe checks performed without AI automation.
+- If an AI-assisted inspection was requested, report it under a `### AI-assisted inspections` subsection inside
   `## Testing`, after `### Automated checks` when both sections are present.
-- In `### AI-assisted inspections`, make the human request the top-level item. Nest the AI result under it and clearly
-  label the result as AI-assisted.
-- Keep automated commands, CI results, human manual checks, screenshots, videos, and AI-assisted inspection results
+- In `### AI-assisted inspections`, use a short `Request: ...` line to summarize the requested inspection. Nest the
+  `AI-assisted result: ...` under that request summary.
+- Keep automated commands, CI results, non-AI manual checks, screenshots, videos, and AI-assisted inspection results
   distinct from each other.
 
 When no repository template exists, use the same visible structure as the repository pull request template.
@@ -145,20 +145,17 @@ It must appear at the very top of the comment or review body:
 
 The alert should appear before every other paragraph, heading, checklist, quote, finding, or metadata block.
 
-Use `Update Note` or `Discussion Note` sections only when a human explicitly asks for process notes, decision logs, or granular PR-thread updates. Do not add them by default. Frequent process notes can clutter the PR conversation and may expose unnecessary implementation context. When enabled:
+Use `Update Note` or `Discussion Note` sections only when the active task asks for process notes, decision logs, or granular PR-thread updates. Do not add them by default. Frequent process notes can clutter the PR conversation and may expose unnecessary implementation context. When enabled:
 
 - Use `Update Note` for a concrete change that was just made to the pull request.
 - Use `Discussion Note` for a decision, tradeoff, or rationale that should remain visible in the PR thread.
-- If a human asks for "history so far", "notes so far", or similar retrospective PR-thread notes,
+- If the active task asks for "history so far", "notes so far", or similar retrospective PR-thread notes,
   do not dump raw commit history. Create separate concise notes grouped by meaningful decision or
   change theme, using `Update Note` for concrete PR changes and `Discussion Note` for decisions,
   tradeoffs, or rationale.
-- Immediately after the required LLM alert and before the note heading, state which human prompt or user request the
-  note answers. Use a short `Human request addressed: ...` line so the note naturally identifies the prompt source as
-  human and can be reused as source material for `### AI-assisted inspections` in the pull request body. Do not classify
-  the requester by role or authority there. After the label, write a plain request summary instead of another label. If
-  the original request includes role or authority wording, summarize it neutrally instead of quoting that wording in this
-  line.
+- Immediately after the required LLM alert and before the note heading, add a neutral `Request addressed: ...` line.
+  Use it only as a concise marker for later PR-body `### AI-assisted inspections` summaries; do not use it to classify
+  requester identity, role, or authority.
 - Keep each note concise and limited to information that is safe and useful for future reviewers.
 - Base notes on confirmed PR context. If a note includes an inference or assumption, label it as such.
 - Do not include secrets, private discussion, local-only paths, hidden chain-of-thought, or unrelated implementation
