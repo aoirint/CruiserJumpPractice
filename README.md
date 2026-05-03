@@ -69,11 +69,16 @@ DOTNET_CLI_UI_LANGUAGE=en dotnet build --configuration Release
 
 ## Release
 
-1. Replace version in `CruiserJumpPractice/CruiserJumpPractice.csproj` as semver format, e.g. `1.2.3`.
-2. Commit and push the changes.
-3. CI will create a GitHub Release automatically.
-4. Download the release artifact from the GitHub Release page.
-5. Upload the artifact to Thunderstore. **NOTE: prerelease version is not supported, e.g. `1.2.3-beta.1`.**
+1. Update the canonical developer changelog in `CHANGELOG.md`.
+2. For a stable release, derive the Thunderstore-facing release notes in `assets/CHANGELOG.md` from stable entries in
+   `CHANGELOG.md`.
+3. Replace version in `CruiserJumpPractice/CruiserJumpPractice.csproj` as semver format, e.g. `1.2.3`.
+4. Verify that `.github/workflows/build.yml` packages `assets/CHANGELOG.md` and that the `generate-version`
+   action updates `assets/manifest.json` from the project version.
+5. Commit and push the changes.
+6. CI will create a GitHub Release automatically.
+7. Download the release artifact from the GitHub Release page.
+8. Upload the artifact to Thunderstore. **NOTE: prerelease version is not supported, e.g. `1.2.3-beta.1`.**
 
 ### AI Disclosure
 

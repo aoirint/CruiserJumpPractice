@@ -6,7 +6,7 @@ No functional changes are introduced.
 
 ### Compatibility
 
-- Compatiable with Lethal Company v81.5 (2026-04-17 UTC, Manifest ID: `6423525044216269478`).
+- Compatible with Lethal Company v81.5 (2026-04-17 UTC, Manifest ID: `6423525044216269478`).
     - NOTE: Imperium v1.3.0 appears to have some cruiser-related issues. See this issue comment for a workaround: https://github.com/giosuel/imperium/issues/153#issuecomment-4317402735
     - Lethal Company v73: It still seems to work.
     - Lethal Company v56: Major features work as expected, but there is a minor known issue: https://github.com/aoirint/CruiserJumpPractice/issues/5
@@ -31,7 +31,7 @@ No functional changes are introduced.
 
 ### Compatibility
 
-- Compatiable with Lethal Company v73 (2025-10-04 UTC, Manifest ID: `1749099131234587692`).
+- Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID: `1749099131234587692`).
 
 ### Changed
 
@@ -54,7 +54,7 @@ Yanked release due to a build issue.
 
 ### Compatibility
 
-- Compatiable with Lethal Company v73 (2025-10-04 UTC, Manifest ID: `1749099131234587692`).
+- Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID: `1749099131234587692`).
 
 ### Changed
 
@@ -68,7 +68,7 @@ Yanked release due to a build issue.
 
 ### Compatibility
 
-- Compatiable with Lethal Company v73 (2025-10-04 UTC, Manifest ID: `1749099131234587692`).
+- Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID: `1749099131234587692`).
 
 ### Changed
 
@@ -78,7 +78,7 @@ Yanked release due to a build issue.
 
 ### Compatibility
 
-- Compatiable with Lethal Company v73 (2025-10-04 UTC, Manifest ID: `1749099131234587692`).
+- Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID: `1749099131234587692`).
 
 ### Added
 

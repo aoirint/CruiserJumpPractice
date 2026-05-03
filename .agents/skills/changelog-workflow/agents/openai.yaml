@@ -1,0 +1,5 @@
+# SPDX-License-Identifier: Unlicense
+interface:
+  display_name: "Changelog Workflow"
+  short_description: "Update canonical changelog entries and Thunderstore-facing release notes."
+  default_prompt: "Update CHANGELOG.md first, then derive or review stable-release Thunderstore notes in assets/CHANGELOG.md with version and packaging verification."
