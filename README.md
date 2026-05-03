@@ -51,6 +51,9 @@ The repository uses GitHub Actions for CI.
 
 The version of the actions are pinned with [pinact](https://github.com/suzuki-shunsuke/pinact).
 
+Stable releases are published to Thunderstore from CI using the `THUNDERSTORE_TOKEN` repository secret.
+The token must belong to a Thunderstore service account that can publish to the `aoirint` team.
+
 ```powershell
 # Pin
 pinact run
@@ -79,8 +82,8 @@ DOTNET_CLI_UI_LANGUAGE=en dotnet build --configuration Release
    action updates `assets/manifest.json` from the project version.
 5. Commit and push the changes.
 6. CI will create a GitHub Release automatically.
-7. Download the release artifact from the GitHub Release page.
-8. Upload the artifact to Thunderstore. **NOTE: prerelease version is not supported, e.g. `1.2.3-beta.1`.**
+7. For stable releases, CI will upload the release artifact to Thunderstore automatically.
+   **NOTE: prerelease version is not supported, e.g. `1.2.3-beta.1`.**
 
 ### AI Disclosure
 
