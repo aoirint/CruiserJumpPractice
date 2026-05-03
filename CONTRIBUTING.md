@@ -4,6 +4,7 @@
 
 Thank you for your interest in improving CruiserJumpPractice. This project welcomes focused bug reports,
 documentation improvements, compatibility notes, and small code changes that are easy to review.
+The project maintainer is listed in [CODEOWNERS](./.github/CODEOWNERS).
 
 ## Before you start
 
