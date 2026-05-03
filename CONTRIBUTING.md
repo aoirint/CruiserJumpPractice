@@ -82,6 +82,9 @@ the Thunderstore-facing files under `assets/` are still correct.
 - If a pull request stalls, maintainers or another contributor may continue the work in a separate pull request,
   including by reusing or adapting the stalled pull request's commits, patch, tests, documentation, or ideas under the
   Contribution License Agreement.
+- If you want to continue work from a stalled pull request, leave a short comment for the maintainer and the original
+  contributor before opening a new pull request. The original contributor may not be available to respond, but the
+  maintainer can confirm whether the change is still wanted and coordinate attribution or next steps.
 - Pull requests that remain inactive for a reasonable period may be closed to keep the review queue current. This is not
   a judgment on the contributor, and it does not prevent you from opening a new pull request later if the change is
   still useful.
