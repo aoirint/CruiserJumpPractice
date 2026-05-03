@@ -62,7 +62,7 @@ categories.
 
 ```powershell
 # Pin
-pinact run
+pinact run --min-age 7
 
 # Update
 pinact run --update --min-age 7
