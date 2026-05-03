@@ -1,7 +1,6 @@
 #nullable enable
 
-using CruiserJumpPractice.Interop;
-using CruiserJumpPractice.Domain;
+using CruiserJumpPractice.Core.Ports;
 
 namespace CruiserJumpPractice.Core.UseCases.Client;
 
@@ -22,8 +21,7 @@ internal sealed class RequestLoadCruiserStateUseCase
             return RequestLoadCruiserStateResult.HostOnly;
         }
 
-        var rpcSurrogateNetworkBehaviour = gameInterop.GetRpcSurrogateBehaviour();
-        rpcSurrogateNetworkBehaviour.LoadCruiserStateServerRpc();
+        gameInterop.RequestLoadCruiserState();
         return RequestLoadCruiserStateResult.Success;
     }
 }

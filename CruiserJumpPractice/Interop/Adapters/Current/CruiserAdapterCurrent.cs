@@ -8,7 +8,7 @@ using LethalCompany;
 using System.Reflection;
 using UnityEngine::UnityEngine;
 
-using CruiserJumpPractice.Domain;
+using CruiserJumpPractice.Core.Snapshots;
 
 namespace CruiserJumpPractice.Interop.Adapters.Current;
 
@@ -54,8 +54,8 @@ internal sealed class CruiserAdapterCurrent
         try
         {
             return new CruiserSnapshot(
-                carPosition: cruiser.transform.position,
-                carRotation: cruiser.transform.eulerAngles,
+                carPosition: FromUnityVector3(cruiser.transform.position),
+                carRotation: FromUnityVector3(cruiser.transform.eulerAngles),
                 steeringInput: cruiser.moveInputVector.x,
                 engineRPM: cruiser.EngineRPM,
                 carHP: cruiser.carHP,
@@ -75,8 +75,8 @@ internal sealed class CruiserAdapterCurrent
         try
         {
             // NOTE: These values will be synced with vanilla VehicleController.Update and SyncCarPhysicsToOtherClients.
-            cruiser.transform.position = snapshot.CarPosition;
-            cruiser.transform.eulerAngles = snapshot.CarRotation;
+            cruiser.transform.position = ToUnityVector3(snapshot.CarPosition);
+            cruiser.transform.eulerAngles = ToUnityVector3(snapshot.CarRotation);
             cruiser.moveInputVector.x = snapshot.SteeringInput;
             cruiser.EngineRPM = snapshot.EngineRPM;
 
@@ -132,5 +132,15 @@ internal sealed class CruiserAdapterCurrent
             logger.LogError($"Exception while getting 'turboBoosts': {error}");
             throw new GameInteropException($"Exception while getting 'turboBoosts': {error}");
         }
+    }
+
+    private static Vector3Value FromUnityVector3(Vector3 value)
+    {
+        return new Vector3Value(value.x, value.y, value.z);
+    }
+
+    private static Vector3 ToUnityVector3(Vector3Value value)
+    {
+        return new Vector3(value.X, value.Y, value.Z);
     }
 }

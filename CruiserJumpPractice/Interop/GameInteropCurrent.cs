@@ -1,9 +1,9 @@
 #nullable enable
 
 using BepInEx.Logging;
+using CruiserJumpPractice.Core.Ports;
+using CruiserJumpPractice.Core.Snapshots;
 using CruiserJumpPractice.Interop.Adapters.Current;
-using CruiserJumpPractice.Interop.Behaviours;
-using CruiserJumpPractice.Domain;
 
 namespace CruiserJumpPractice.Interop;
 
@@ -48,9 +48,14 @@ internal sealed class GameInteropCurrent : IGameInterop
         rpcSurrogateInterop.SpawnRpcSurrogate();
     }
 
-    public RpcSurrogateBehaviour GetRpcSurrogateBehaviour()
+    public void RequestSaveCruiserState()
     {
-        return rpcSurrogateInterop.GetRpcSurrogateBehaviour();
+        rpcSurrogateInterop.GetRpcSurrogateBehaviour().SaveCruiserStateServerRpc();
+    }
+
+    public void RequestLoadCruiserState()
+    {
+        rpcSurrogateInterop.GetRpcSurrogateBehaviour().LoadCruiserStateServerRpc();
     }
 
     public bool CruiserExists()

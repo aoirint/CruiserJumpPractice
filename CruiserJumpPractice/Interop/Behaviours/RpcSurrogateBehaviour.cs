@@ -5,7 +5,7 @@ extern alias LethalCompany;
 using BepInEx.Logging;
 using LethalCompany::Unity.Netcode;
 
-using CruiserJumpPractice.Domain;
+using CruiserJumpPractice.Core.UseCases;
 
 namespace CruiserJumpPractice.Interop.Behaviours;
 

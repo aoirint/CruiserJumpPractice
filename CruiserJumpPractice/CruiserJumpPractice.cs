@@ -2,8 +2,8 @@
 
 using BepInEx;
 using BepInEx.Logging;
-using CruiserJumpPractice.Interop;
-using CruiserJumpPractice.Core;
+using CruiserJumpPractice.Composition;
+using CruiserJumpPractice.Core.Ports;
 using CruiserJumpPractice.Core.Runtime;
 using CruiserJumpPractice.Core.UseCases.Client;
 using CruiserJumpPractice.Core.UseCases.Server;
@@ -22,35 +22,35 @@ public class CruiserJumpPractice : BaseUnityPlugin
 
     internal static InputActions? InputActions { get; private set; }
 
-    private static CoreComposition? Core { get; set; }
+    private static PluginComposition? Composition { get; set; }
 
     internal static FrameHandler FrameHandler =>
-        Core!.FrameHandler;
+        Composition!.FrameHandler;
 
     internal static StartupHandler StartupHandler =>
-        Core!.StartupHandler;
+        Composition!.StartupHandler;
 
     internal static IGameInterop GameInterop =>
-        Core!.GameInterop;
+        Composition!.GameInterop;
 
     internal static SaveCruiserStateUseCase SaveCruiserStateUseCase =>
-        Core!.SaveCruiserStateUseCase;
+        Composition!.SaveCruiserStateUseCase;
 
     internal static LoadCruiserStateUseCase LoadCruiserStateUseCase =>
-        Core!.LoadCruiserStateUseCase;
+        Composition!.LoadCruiserStateUseCase;
 
     internal static PresentSaveCruiserStateResultUseCase PresentSaveCruiserStateResultUseCase =>
-        Core!.PresentSaveCruiserStateResultUseCase;
+        Composition!.PresentSaveCruiserStateResultUseCase;
 
     internal static PresentLoadCruiserStateResultUseCase PresentLoadCruiserStateResultUseCase =>
-        Core!.PresentLoadCruiserStateResultUseCase;
+        Composition!.PresentLoadCruiserStateResultUseCase;
 
     private void Awake()
     {
         Logger = base.Logger;
 
         InputActions = new InputActions();
-        Core = CoreComposition.Create(Logger);
+        Composition = PluginComposition.Create(Logger);
 
         Harmony.PatchAll();
 

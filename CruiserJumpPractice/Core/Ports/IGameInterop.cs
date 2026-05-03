@@ -1,9 +1,8 @@
 #nullable enable
 
-using CruiserJumpPractice.Interop.Behaviours;
-using CruiserJumpPractice.Domain;
+using CruiserJumpPractice.Core.Snapshots;
 
-namespace CruiserJumpPractice.Interop;
+namespace CruiserJumpPractice.Core.Ports;
 
 internal interface IGameInterop
 {
@@ -15,7 +14,9 @@ internal interface IGameInterop
 
     void SpawnRpcSurrogate();
 
-    RpcSurrogateBehaviour GetRpcSurrogateBehaviour();
+    void RequestSaveCruiserState();
+
+    void RequestLoadCruiserState();
 
     bool CruiserExists();
 

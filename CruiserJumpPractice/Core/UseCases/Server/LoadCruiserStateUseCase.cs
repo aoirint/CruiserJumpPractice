@@ -1,8 +1,8 @@
 #nullable enable
 
 using BepInEx.Logging;
-using CruiserJumpPractice.Domain;
-using CruiserJumpPractice.Interop;
+using CruiserJumpPractice.Core.Ports;
+using CruiserJumpPractice.Core.State;
 
 namespace CruiserJumpPractice.Core.UseCases.Server;
 

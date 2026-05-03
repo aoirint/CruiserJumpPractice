@@ -1,6 +1,8 @@
 #nullable enable
 
-namespace CruiserJumpPractice.Domain;
+using CruiserJumpPractice.Core.Snapshots;
+
+namespace CruiserJumpPractice.Core.State;
 
 internal sealed class CruiserStateStore
 {

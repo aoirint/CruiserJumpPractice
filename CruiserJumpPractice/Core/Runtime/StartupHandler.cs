@@ -1,6 +1,6 @@
 #nullable enable
 
-using CruiserJumpPractice.Interop;
+using CruiserJumpPractice.Core.Ports;
 
 namespace CruiserJumpPractice.Core.Runtime;
 

@@ -1,15 +1,16 @@
 #nullable enable
 
-using CruiserJumpPractice.Domain;
 using BepInEx.Logging;
-using CruiserJumpPractice.Interop;
+using CruiserJumpPractice.Core.Ports;
 using CruiserJumpPractice.Core.Runtime;
+using CruiserJumpPractice.Core.State;
 using CruiserJumpPractice.Core.UseCases.Client;
 using CruiserJumpPractice.Core.UseCases.Server;
+using CruiserJumpPractice.Interop;
 
-namespace CruiserJumpPractice.Core;
+namespace CruiserJumpPractice.Composition;
 
-internal sealed class CoreComposition
+internal sealed class PluginComposition
 {
     public IGameInterop GameInterop { get; }
 
@@ -31,7 +32,7 @@ internal sealed class CoreComposition
 
     public StartupHandler StartupHandler { get; }
 
-    private CoreComposition(
+    private PluginComposition(
         IGameInterop gameInterop,
         SaveCruiserStateUseCase saveCruiserStateUseCase,
         LoadCruiserStateUseCase loadCruiserStateUseCase,
@@ -56,7 +57,7 @@ internal sealed class CoreComposition
         StartupHandler = startupHandler;
     }
 
-    public static CoreComposition Create(ManualLogSource logger)
+    public static PluginComposition Create(ManualLogSource logger)
     {
         IGameInterop gameInterop = new GameInteropCurrent(logger);
 
@@ -77,7 +78,7 @@ internal sealed class CoreComposition
             toggleMagnetUseCase
         );
 
-        return new CoreComposition(
+        return new PluginComposition(
             gameInterop: gameInterop,
             saveCruiserStateUseCase: saveCruiserStateUseCase,
             loadCruiserStateUseCase: loadCruiserStateUseCase,

@@ -1,6 +1,6 @@
 #nullable enable
 
-namespace CruiserJumpPractice.Domain;
+namespace CruiserJumpPractice.Core.UseCases;
 
 internal enum RequestSaveCruiserStateResult
 {
