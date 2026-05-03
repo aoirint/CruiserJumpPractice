@@ -142,6 +142,6 @@ Contributor responsibilities:
 ## Reporting security issues
 
 If you believe you found a security issue, do not share exploit details publicly or with untrusted recipients. This
-includes public issues, social media, blog posts, livestreams, video uploads, and similar public channels. Contact the
-maintainer privately when possible, report it to a trusted security organization, or open a minimal public issue that
-asks how to report a sensitive problem.
+includes, but is not limited to, public issues, social media, blog posts, livestreams, video uploads, and similar public
+channels. Contact the maintainer privately when possible, report it to a trusted security organization, or open a
+minimal public issue that asks how to report a sensitive problem.
