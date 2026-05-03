@@ -32,7 +32,8 @@ description: "Create or update .gitignore files. Use when editing ignore rules."
 
 ## Recommended Section Order
 
-Use this structure when the user requests Python with project-local rules. For other stacks, keep the same pattern and swap template sections as needed.
+Use this structure when the user requests Python with project-local rules. For other stacks, keep the
+same pattern and swap template sections as needed.
 
 ```text
 # Project specific files
@@ -67,7 +68,8 @@ hash=$(git ls-remote https://github.com/github/gitignore.git refs/heads/main | a
 curl -fsSL "https://raw.githubusercontent.com/github/gitignore/$hash/Python.gitignore"
 ```
 
-For other templates, replace paths with exact file paths from `github/gitignore`, for example `Global/VisualStudioCode.gitignore`.
+For other templates, replace paths with exact file paths from `github/gitignore`, for example
+`Global/VisualStudioCode.gitignore`.
 
 ## Safety Checks
 

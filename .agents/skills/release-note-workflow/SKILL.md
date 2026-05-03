@@ -111,26 +111,27 @@ description: Create, update, or review user-facing release notes. Use when deriv
    - Put `Notes` after all change-category sections within each release entry
      unless the publication channel explicitly requires another order.
 10. Before publication, verify:
-   - The user-facing release-note file has a stable version heading at
-     the top, not `Unreleased`, and does not contain placeholder release
-     metadata such as `TBD`.
-   - The release version source contains the intended stable version.
-   - The intended release version is not already present in a way that would
-     collide with the planned stable release.
-   - The intended stable tag, using the repository's documented tag convention,
-     does not already exist locally or remotely. Existing versions or tags are
-     blockers for stable publication until the maintainer chooses a new version
-     or a documented edge-release path. If remote tag verification cannot be
-     performed, report it as a release-readiness blocker.
-   - The release workflow will publish or include the user-facing release-note
-     file in the intended destination.
-   - Manual publication is allowed, but report it as a manual workflow state
-     and required maintainer action unless docs confirm automated inclusion.
-   - Undocumented publication or a missing user-facing release-note destination
-     is a blocker until docs or maintainer input confirm where release notes are
-     published and how they are included.
-   - The repository's documented build, release-note, or publication
-     verification succeeds after any related changes.
+
+    - The user-facing release-note file has a stable version heading at
+      the top, not `Unreleased`, and does not contain placeholder release
+      metadata such as `TBD`.
+    - The release version source contains the intended stable version.
+    - The intended release version is not already present in a way that would
+      collide with the planned stable release.
+    - The intended stable tag, using the repository's documented tag convention,
+      does not already exist locally or remotely. Existing versions or tags are
+      blockers for stable publication until the maintainer chooses a new version
+      or a documented edge-release path. If remote tag verification cannot be
+      performed, report it as a release-readiness blocker.
+    - The release workflow will publish or include the user-facing release-note
+      file in the intended destination.
+    - Manual publication is allowed, but report it as a manual workflow state
+      and required maintainer action unless docs confirm automated inclusion.
+    - Undocumented publication or a missing user-facing release-note destination
+      is a blocker until docs or maintainer input confirm where release notes are
+      published and how they are included.
+    - The repository's documented build, release-note, or publication
+      verification succeeds after any related changes.
 
 ## Review-Only Output
 

@@ -4,11 +4,10 @@
 globs:
   - "**/*.md"
 
-# Exclude Agent-local work areas for the first Markdown lint rollout. Revisit
-# this ignore when #41 is resolved: skill Markdown should be included with a
-# narrower ignore that still excludes transient .agents/worktrees content.
+# Exclude transient Agent worktrees while keeping committed Agent Skill
+# documentation under .agents/skills covered by the repository-wide rules.
 ignores:
-  - ".agents/**"
+  - ".agents/worktrees/**"
 
 # Respect .gitignore so generated, local, or tool cache Markdown files do not
 # affect CI when they are intentionally outside version control.

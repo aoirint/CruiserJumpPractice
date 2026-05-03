@@ -21,7 +21,7 @@ Check that the title uses a Conventional Commits-style format:
 
 Use `commit-message-quality-check` for type selection and breaking-change notation.
 
-Reference: https://www.conventionalcommits.org/en/v1.0.0/
+Reference: <https://www.conventionalcommits.org/en/v1.0.0/>
 
 ## Required LLM Alert
 
@@ -56,9 +56,12 @@ When a template exists:
 - Do not replace template-specific headings with generic defaults such as `Verification` when the template uses another
   heading such as `Testing`.
 - Do not add obsolete checklist items that are no longer present in the repository template.
-- Copy required checklist wording from the current template exactly. Change unchecked boxes to checked boxes only when the author can truthfully confirm the item.
-- When updating an existing PR body, remove or revise stale body text that describes removed template items. For example, remove an old AI-disclosure checkbox that no longer exists.
-- If the template should apply but the exact file or selected variant is unavailable, stop and get the template. Do not invent placeholder headings or checklist text.
+- Copy required checklist wording from the current template exactly. Change unchecked boxes to
+  checked boxes only when the author can truthfully confirm the item.
+- When updating an existing PR body, remove or revise stale body text that describes removed
+  template items. For example, remove an old AI-disclosure checkbox that no longer exists.
+- If the template should apply but the exact file or selected variant is unavailable, stop and get
+  the template. Do not invent placeholder headings or checklist text.
 
 ## Verification Evidence
 
@@ -131,7 +134,8 @@ Use fallback sections this way:
 - Mention paths or commands in backticks.
 - Do not paste large diffs.
 - Be explicit when verification was not run.
-- Align the PR title type with the dominant change. For example, use `docs:` for documentation-only skill additions and `refactor:` for behavior-preserving code cleanup.
+- Align the PR title type with the dominant change. For example, use `docs:` for documentation-only
+  skill additions and `refactor:` for behavior-preserving code cleanup.
 
 ## Pull Request Replies and Reviews
 
@@ -145,7 +149,9 @@ It must appear at the very top of the comment or review body:
 
 The alert should appear before every other paragraph, heading, checklist, quote, finding, or metadata block.
 
-Use `Update Note` or `Discussion Note` sections only when the active task asks for process notes, decision logs, or granular PR-thread updates. Do not add them by default. Frequent process notes can clutter the PR conversation and may expose unnecessary implementation context. When enabled:
+Use `Update Note` or `Discussion Note` sections only when the active task asks for process notes,
+decision logs, or granular PR-thread updates. Do not add them by default. Frequent process notes can
+clutter the PR conversation and may expose unnecessary implementation context. When enabled:
 
 - Use `Update Note` for a concrete change that was just made to the pull request.
 - Use `Discussion Note` for a decision, tradeoff, or rationale that should remain visible in the PR thread.
@@ -160,12 +166,18 @@ Use `Update Note` or `Discussion Note` sections only when the active task asks f
 - Base notes on confirmed PR context. If a note includes an inference or assumption, label it as such.
 - Do not include secrets, private discussion, local-only paths, hidden chain-of-thought, or unrelated implementation
   details.
-- Prefer a normal short reply when the comment only needs to answer a question, report review results, or acknowledge completion.
+- Prefer a normal short reply when the comment only needs to answer a question, report review
+  results, or acknowledge completion.
 
 ## CLI Safety
 
-When creating or editing PR bodies with a shell command, avoid passing Markdown directly through command arguments. Backticks, quotes, dollar signs, backslashes, and multiple lines are easy to corrupt in shell arguments. Shells such as PowerShell and bash can interpret those characters silently.
+When creating or editing PR bodies with a shell command, avoid passing Markdown directly through
+command arguments. Backticks, quotes, dollar signs, backslashes, and multiple lines are easy to
+corrupt in shell arguments. Shells such as PowerShell and bash can interpret those characters
+silently.
 
-- Prefer writing the body to a temporary Markdown file. Pass it with `gh pr create --body-file <file>` or `gh pr edit --body-file <file>`.
-- After creating or editing a PR through `gh`, verify the stored body with `gh pr view --json body`. Fix any quoting issues before finishing.
+- Prefer writing the body to a temporary Markdown file. Pass it with
+  `gh pr create --body-file <file>` or `gh pr edit --body-file <file>`.
+- After creating or editing a PR through `gh`, verify the stored body with `gh pr view --json body`.
+  Fix any quoting issues before finishing.
 - Remove any temporary body file from the worktree after verification.

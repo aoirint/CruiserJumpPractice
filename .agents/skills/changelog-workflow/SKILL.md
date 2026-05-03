@@ -29,7 +29,7 @@ description: Create and update a canonical developer changelog. Use when adding 
 
 Reference:
 
-- Keep a Changelog 1.1.0: http://keepachangelog.com/en/1.1.0/
+- Keep a Changelog 1.1.0: <http://keepachangelog.com/en/1.1.0/>
 
 ## Workflow
 

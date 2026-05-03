@@ -9,7 +9,8 @@ description: Use Git worktrees for repository implementation tasks unless explic
 ## When to Use
 
 - Use this skill for repository implementation work unless the user explicitly instructs you not to use Git worktrees.
-- Implementation work includes code, tests, build files, documentation, repository guidance, and pull-request preparation.
+- Implementation work includes code, tests, build files, documentation, repository guidance, and
+  pull-request preparation.
 
 ## Workflow
 
@@ -66,7 +67,8 @@ files changed.
 
 If verification is skipped, state why in the pull request body.
 
-The final quality check also includes reviewing the complete diff and recent commits for accidental scope creep, missing verification, and commit-message quality.
+The final quality check also includes reviewing the complete diff and recent commits for accidental
+scope creep, missing verification, and commit-message quality.
 
 ## Pull Request Notes
 

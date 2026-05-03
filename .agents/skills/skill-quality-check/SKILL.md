@@ -73,8 +73,9 @@ description: Quality-check Agent Skills for trigger clarity, scope, structure, p
    - Stop only after convergence, divergence, or a stated resource cutoff. Treat convergence as two
      consecutive rounds with no new unclear points and no meaningful accuracy or effort improvement.
 10. Record verification:
-   - Note external sources consulted, why they were needed, and how their guidance was applied.
-   - Note whether docs, changelog, PR notes, or follow-up domain skills are needed.
+
+    - Note external sources consulted, why they were needed, and how their guidance was applied.
+    - Note whether docs, changelog, PR notes, or follow-up domain skills are needed.
 
 When validating with scenarios, keep the report categories separate:
 
