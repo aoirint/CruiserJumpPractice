@@ -118,7 +118,7 @@ Examples that should be disclosed:
 Examples that normally do not need disclosure:
 
 - Ordinary spell-checking, formatting, search, translation used only for your own understanding, or small completion
-  suggestions normally do not need disclosure when they were not a main part of the change itself.
+  suggestions normally do not need disclosure unless they make up a main part of the change itself.
 
 When in doubt:
 
