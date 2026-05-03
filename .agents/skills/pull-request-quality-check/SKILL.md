@@ -27,7 +27,14 @@ When the PR was prepared with LLM assistance, check that this GitHub alert appea
 
 ```markdown
 > [!WARNING]
-> This pull request was generated with LLMs.
+> This pull request was created with assistance from LLMs.
+```
+
+For Japanese pull request bodies, use this alert text instead:
+
+```markdown
+> [!WARNING]
+> このプルリクエストはLLMの支援を受けて作成されました。
 ```
 
 The alert should appear before every other heading, summary, checklist, or metadata block.
@@ -38,7 +45,7 @@ Check that the body is concise and uses these sections when applicable:
 
 ```markdown
 > [!WARNING]
-> This pull request was generated with LLMs.
+> This pull request was created with assistance from LLMs.
 
 ## Summary
 - ...
@@ -69,7 +76,14 @@ When a pull request reply or review was prepared with LLM assistance, check that
 
 ```markdown
 > [!WARNING]
-> This comment was generated with LLMs.
+> This comment was created with assistance from LLMs.
+```
+
+For Japanese pull request replies or reviews, use this alert text instead:
+
+```markdown
+> [!WARNING]
+> このコメントはLLMの支援を受けて作成されました。
 ```
 
 The alert should appear before every other paragraph, heading, checklist, quote, finding, or metadata block.

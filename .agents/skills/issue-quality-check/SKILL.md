@@ -25,7 +25,14 @@ When the issue was prepared with LLM assistance, check that this GitHub alert ap
 
 ```markdown
 > [!WARNING]
-> This issue was generated with LLMs.
+> This issue was created with assistance from LLMs.
+```
+
+For Japanese issue bodies, use this alert text instead:
+
+```markdown
+> [!WARNING]
+> このIssueはLLMの支援を受けて作成されました。
 ```
 
 The alert should appear before every other heading, summary, checklist, template field, or metadata block.
@@ -36,7 +43,7 @@ Check that the body is concise and uses these sections when applicable:
 
 ```markdown
 > [!WARNING]
-> This issue was generated with LLMs.
+> This issue was created with assistance from LLMs.
 
 ## Summary
 - ...
@@ -80,7 +87,14 @@ When the issue reply was prepared with LLM assistance, check that this GitHub al
 
 ```markdown
 > [!WARNING]
-> This comment was generated with LLMs.
+> This comment was created with assistance from LLMs.
+```
+
+For Japanese issue replies, use this alert text instead:
+
+```markdown
+> [!WARNING]
+> このコメントはLLMの支援を受けて作成されました。
 ```
 
 The alert should appear before every other paragraph, heading, checklist, quote, or metadata block.
@@ -89,7 +103,7 @@ Check that the reply is concise and uses only the structure needed for the situa
 
 ```markdown
 > [!WARNING]
-> This comment was generated with LLMs.
+> This comment was created with assistance from LLMs.
 
 Thanks for the report. I can reproduce this with ...
 
