@@ -11,8 +11,8 @@ defaults:
 
 jobs:
   build:
-    # Build keeps ubuntu-latest because the artifact step depends on the
-    # image-provided .NET, jq, and 7z toolchain used by the release package.
+    # Build keeps ubuntu-latest because packaging currently relies on
+    # runner-provided shell tools such as jq and 7z.
     runs-on: ubuntu-latest
 
     outputs:
