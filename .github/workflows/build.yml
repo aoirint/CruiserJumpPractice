@@ -158,6 +158,7 @@ jobs:
           namespace: aoirint
           community: lethal-company
           community_categories: |
+            ai-generated
             mods
             tweaks-and-quality-of-life
 
