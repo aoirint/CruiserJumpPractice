@@ -103,7 +103,7 @@ DOTNET_CLI_UI_LANGUAGE=en dotnet build --configuration Release
    community with the `Mods`, `Tweaks & Quality Of Life`, and `AI Generated` categories.
    The `THUNDERSTORE_TOKEN` secret must belong to a Thunderstore service account that can publish to that team.
 
-   **NOTE: prerelease version is not supported, e.g. `1.2.3-beta.1`.**
+   **NOTE: prerelease version is not supported by Thunderstore, e.g. `1.2.3-beta.1`.**
 
 ### AI Disclosure
 
