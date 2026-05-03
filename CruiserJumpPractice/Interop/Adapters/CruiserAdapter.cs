@@ -10,14 +10,14 @@ using UnityEngine::UnityEngine;
 
 using CruiserJumpPractice.Core.Snapshots;
 
-namespace CruiserJumpPractice.Interop.Adapters.Current;
+namespace CruiserJumpPractice.Interop.Adapters;
 
-internal sealed class CruiserAdapterCurrent
+internal sealed class CruiserAdapter
 {
     private readonly ManualLogSource logger;
-    private readonly GameObjectAdapterCurrent gameObjects;
+    private readonly GameObjectAdapter gameObjects;
 
-    public CruiserAdapterCurrent(ManualLogSource logger, GameObjectAdapterCurrent gameObjects)
+    public CruiserAdapter(ManualLogSource logger, GameObjectAdapter gameObjects)
     {
         this.logger = logger;
         this.gameObjects = gameObjects;

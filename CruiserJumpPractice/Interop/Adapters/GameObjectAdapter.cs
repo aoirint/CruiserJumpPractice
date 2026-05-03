@@ -9,13 +9,13 @@ using LethalCompany::Unity.Netcode;
 
 using CruiserJumpPractice.Interop;
 
-namespace CruiserJumpPractice.Interop.Adapters.Current;
+namespace CruiserJumpPractice.Interop.Adapters;
 
-internal sealed class GameObjectAdapterCurrent
+internal sealed class GameObjectAdapter
 {
     private readonly ManualLogSource logger;
 
-    public GameObjectAdapterCurrent(ManualLogSource logger)
+    public GameObjectAdapter(ManualLogSource logger)
     {
         this.logger = logger;
     }

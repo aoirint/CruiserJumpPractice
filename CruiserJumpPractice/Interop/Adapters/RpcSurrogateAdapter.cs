@@ -5,16 +5,16 @@ using CruiserJumpPractice.Interop.Behaviours;
 
 using CruiserJumpPractice.Interop;
 
-namespace CruiserJumpPractice.Interop.Adapters.Current;
+namespace CruiserJumpPractice.Interop.Adapters;
 
-internal sealed class RpcSurrogateAdapterCurrent
+internal sealed class RpcSurrogateAdapter
 {
     private readonly ManualLogSource logger;
-    private readonly GameObjectAdapterCurrent gameObjects;
+    private readonly GameObjectAdapter gameObjects;
 
     private RpcSurrogateBehaviour? cachedRpcSurrogateBehaviour;
 
-    public RpcSurrogateAdapterCurrent(ManualLogSource logger, GameObjectAdapterCurrent gameObjects)
+    public RpcSurrogateAdapter(ManualLogSource logger, GameObjectAdapter gameObjects)
     {
         this.logger = logger;
         this.gameObjects = gameObjects;

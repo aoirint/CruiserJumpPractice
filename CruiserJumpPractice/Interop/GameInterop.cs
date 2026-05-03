@@ -3,29 +3,29 @@
 using BepInEx.Logging;
 using CruiserJumpPractice.Core.Ports;
 using CruiserJumpPractice.Core.Snapshots;
-using CruiserJumpPractice.Interop.Adapters.Current;
+using CruiserJumpPractice.Interop.Adapters;
 
 namespace CruiserJumpPractice.Interop;
 
-internal sealed class GameInteropCurrent : IGameInterop
+internal sealed class GameInterop : IGameInterop
 {
-    private readonly NetworkAdapterCurrent networkInterop;
-    private readonly PlayerAdapterCurrent playerInterop;
-    private readonly HudAdapterCurrent hudInterop;
-    private readonly RpcSurrogateAdapterCurrent rpcSurrogateInterop;
-    private readonly CruiserAdapterCurrent cruiserInterop;
-    private readonly ShipMagnetAdapterCurrent shipMagnetInterop;
+    private readonly NetworkAdapter networkInterop;
+    private readonly PlayerAdapter playerInterop;
+    private readonly HudAdapter hudInterop;
+    private readonly RpcSurrogateAdapter rpcSurrogateInterop;
+    private readonly CruiserAdapter cruiserInterop;
+    private readonly ShipMagnetAdapter shipMagnetInterop;
 
-    public GameInteropCurrent(ManualLogSource logger)
+    public GameInterop(ManualLogSource logger)
     {
-        var gameObjects = new GameObjectAdapterCurrent(logger);
+        var gameObjects = new GameObjectAdapter(logger);
 
-        networkInterop = new NetworkAdapterCurrent(logger, gameObjects);
-        playerInterop = new PlayerAdapterCurrent(logger, gameObjects);
-        hudInterop = new HudAdapterCurrent(logger, gameObjects);
-        rpcSurrogateInterop = new RpcSurrogateAdapterCurrent(logger, gameObjects);
-        cruiserInterop = new CruiserAdapterCurrent(logger, gameObjects);
-        shipMagnetInterop = new ShipMagnetAdapterCurrent(logger, gameObjects);
+        networkInterop = new NetworkAdapter(logger, gameObjects);
+        playerInterop = new PlayerAdapter(logger, gameObjects);
+        hudInterop = new HudAdapter(logger, gameObjects);
+        rpcSurrogateInterop = new RpcSurrogateAdapter(logger, gameObjects);
+        cruiserInterop = new CruiserAdapter(logger, gameObjects);
+        shipMagnetInterop = new ShipMagnetAdapter(logger, gameObjects);
     }
 
     public bool IsHost()

@@ -7,6 +7,7 @@ using CruiserJumpPractice.Core.Ports;
 using CruiserJumpPractice.Core.Runtime;
 using CruiserJumpPractice.Core.UseCases.Client;
 using CruiserJumpPractice.Core.UseCases.Server;
+using CruiserJumpPractice.Interop.InputUtils;
 using HarmonyLib;
 
 namespace CruiserJumpPractice;
@@ -20,7 +21,7 @@ public class CruiserJumpPractice : BaseUnityPlugin
 
     internal static Harmony Harmony { get; } = new(MyPluginInfo.PLUGIN_GUID);
 
-    internal static InputActions? InputActions { get; private set; }
+    internal static InputUtilsActions? InputUtilsActions { get; private set; }
 
     private static PluginComposition? Composition { get; set; }
 
@@ -49,8 +50,8 @@ public class CruiserJumpPractice : BaseUnityPlugin
     {
         Logger = base.Logger;
 
-        InputActions = new InputActions();
-        Composition = PluginComposition.Create(Logger, InputActions);
+        InputUtilsActions = new InputUtilsActions();
+        Composition = PluginComposition.Create(Logger, InputUtilsActions);
 
         Harmony.PatchAll();
 

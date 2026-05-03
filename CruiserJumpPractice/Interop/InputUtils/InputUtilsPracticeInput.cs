@@ -2,13 +2,13 @@
 
 using CruiserJumpPractice.Core.Ports;
 
-namespace CruiserJumpPractice.Composition;
+namespace CruiserJumpPractice.Interop.InputUtils;
 
-internal sealed class InputActionsPracticeInput : IPracticeInput
+internal sealed class InputUtilsPracticeInput : IPracticeInput
 {
-    private readonly InputActions inputActions;
+    private readonly InputUtilsActions inputActions;
 
-    public InputActionsPracticeInput(InputActions inputActions)
+    public InputUtilsPracticeInput(InputUtilsActions inputActions)
     {
         this.inputActions = inputActions;
     }

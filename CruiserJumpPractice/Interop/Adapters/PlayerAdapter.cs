@@ -4,14 +4,14 @@ using BepInEx.Logging;
 
 using CruiserJumpPractice.Interop;
 
-namespace CruiserJumpPractice.Interop.Adapters.Current;
+namespace CruiserJumpPractice.Interop.Adapters;
 
-internal sealed class PlayerAdapterCurrent
+internal sealed class PlayerAdapter
 {
     private readonly ManualLogSource logger;
-    private readonly GameObjectAdapterCurrent gameObjects;
+    private readonly GameObjectAdapter gameObjects;
 
-    public PlayerAdapterCurrent(ManualLogSource logger, GameObjectAdapterCurrent gameObjects)
+    public PlayerAdapter(ManualLogSource logger, GameObjectAdapter gameObjects)
     {
         this.logger = logger;
         this.gameObjects = gameObjects;

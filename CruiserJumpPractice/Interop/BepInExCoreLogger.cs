@@ -3,7 +3,7 @@
 using BepInEx.Logging;
 using CruiserJumpPractice.Core.Ports;
 
-namespace CruiserJumpPractice.Composition;
+namespace CruiserJumpPractice.Interop;
 
 internal sealed class BepInExCoreLogger : ICoreLogger
 {

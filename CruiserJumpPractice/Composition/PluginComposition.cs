@@ -7,6 +7,7 @@ using CruiserJumpPractice.Core.State;
 using CruiserJumpPractice.Core.UseCases.Client;
 using CruiserJumpPractice.Core.UseCases.Server;
 using CruiserJumpPractice.Interop;
+using CruiserJumpPractice.Interop.InputUtils;
 
 namespace CruiserJumpPractice.Composition;
 
@@ -57,11 +58,11 @@ internal sealed class PluginComposition
         StartupHandler = startupHandler;
     }
 
-    public static PluginComposition Create(ManualLogSource logger, InputActions inputActions)
+    public static PluginComposition Create(ManualLogSource logger, InputUtilsActions inputActions)
     {
         var coreLogger = new BepInExCoreLogger(logger);
-        var practiceInput = new InputActionsPracticeInput(inputActions);
-        IGameInterop gameInterop = new GameInteropCurrent(logger);
+        var practiceInput = new InputUtilsPracticeInput(inputActions);
+        IGameInterop gameInterop = new GameInterop(logger);
 
         var cruiserStateStore = new CruiserStateStore();
         var saveCruiserStateUseCase = new SaveCruiserStateUseCase(

@@ -7,9 +7,9 @@ using LethalCompany::UnityEngine.InputSystem;
 using LethalCompanyInputUtils::LethalCompanyInputUtils.Api;
 using LethalCompanyInputUtils::LethalCompanyInputUtils.BindingPathEnums;
 
-namespace CruiserJumpPractice;
+namespace CruiserJumpPractice.Interop.InputUtils;
 
-class InputActions : LcInputActions
+internal sealed class InputUtilsActions : LcInputActions
 {
     // Keymap: JP109 @, US [
     [InputAction(KeyboardControl.LeftBracket, Name = "Load Cruiser")]
