@@ -50,7 +50,7 @@ public class CruiserJumpPractice : BaseUnityPlugin
         Logger = base.Logger;
 
         InputActions = new InputActions();
-        Composition = PluginComposition.Create(Logger);
+        Composition = PluginComposition.Create(Logger, InputActions);
 
         Harmony.PatchAll();
 

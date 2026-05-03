@@ -57,22 +57,39 @@ internal sealed class PluginComposition
         StartupHandler = startupHandler;
     }
 
-    public static PluginComposition Create(ManualLogSource logger)
+    public static PluginComposition Create(ManualLogSource logger, InputActions inputActions)
     {
+        var coreLogger = new BepInExCoreLogger(logger);
+        var practiceInput = new InputActionsPracticeInput(inputActions);
         IGameInterop gameInterop = new GameInteropCurrent(logger);
 
         var cruiserStateStore = new CruiserStateStore();
-        var saveCruiserStateUseCase = new SaveCruiserStateUseCase(gameInterop, cruiserStateStore);
-        var loadCruiserStateUseCase = new LoadCruiserStateUseCase(gameInterop, cruiserStateStore);
+        var saveCruiserStateUseCase = new SaveCruiserStateUseCase(
+            gameInterop,
+            cruiserStateStore,
+            coreLogger
+        );
+        var loadCruiserStateUseCase = new LoadCruiserStateUseCase(
+            gameInterop,
+            cruiserStateStore,
+            coreLogger
+        );
 
         var requestSaveCruiserStateUseCase = new RequestSaveCruiserStateUseCase(gameInterop);
         var requestLoadCruiserStateUseCase = new RequestLoadCruiserStateUseCase(gameInterop);
         var toggleMagnetUseCase = new ToggleMagnetUseCase(gameInterop);
-        var presentSaveCruiserStateResultUseCase = new PresentSaveCruiserStateResultUseCase(gameInterop);
-        var presentLoadCruiserStateResultUseCase = new PresentLoadCruiserStateResultUseCase(gameInterop);
+        var presentSaveCruiserStateResultUseCase = new PresentSaveCruiserStateResultUseCase(
+            gameInterop,
+            coreLogger
+        );
+        var presentLoadCruiserStateResultUseCase = new PresentLoadCruiserStateResultUseCase(
+            gameInterop,
+            coreLogger
+        );
 
         var frameHandler = new FrameHandler(
             gameInterop,
+            practiceInput,
             requestSaveCruiserStateUseCase,
             requestLoadCruiserStateUseCase,
             toggleMagnetUseCase

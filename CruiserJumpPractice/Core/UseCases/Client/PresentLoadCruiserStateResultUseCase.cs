@@ -1,19 +1,18 @@
 #nullable enable
 
-using BepInEx.Logging;
 using CruiserJumpPractice.Core.Ports;
 
 namespace CruiserJumpPractice.Core.UseCases.Client;
 
 internal sealed class PresentLoadCruiserStateResultUseCase
 {
-    internal static ManualLogSource Logger => CruiserJumpPractice.Logger!;
-
     private readonly IGameInterop gameInterop;
+    private readonly ICoreLogger logger;
 
-    public PresentLoadCruiserStateResultUseCase(IGameInterop gameInterop)
+    public PresentLoadCruiserStateResultUseCase(IGameInterop gameInterop, ICoreLogger logger)
     {
         this.gameInterop = gameInterop;
+        this.logger = logger;
     }
 
     public void Execute(LoadCruiserStateResult result)
@@ -36,7 +35,7 @@ internal sealed class PresentLoadCruiserStateResultUseCase
         }
         else
         {
-            Logger.LogError($"Unknown LoadCruiserStateResult: {result}");
+            logger.LogError($"Unknown LoadCruiserStateResult: {result}");
         }
     }
 

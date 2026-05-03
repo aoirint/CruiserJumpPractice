@@ -8,18 +8,21 @@ namespace CruiserJumpPractice.Core.Runtime;
 internal sealed class FrameHandler
 {
     private readonly IGameInterop gameInterop;
+    private readonly IPracticeInput practiceInput;
     private readonly RequestSaveCruiserStateUseCase requestSaveCruiserStateUseCase;
     private readonly RequestLoadCruiserStateUseCase requestLoadCruiserStateUseCase;
     private readonly ToggleMagnetUseCase toggleMagnetUseCase;
 
     public FrameHandler(
         IGameInterop gameInterop,
+        IPracticeInput practiceInput,
         RequestSaveCruiserStateUseCase requestSaveCruiserStateUseCase,
         RequestLoadCruiserStateUseCase requestLoadCruiserStateUseCase,
         ToggleMagnetUseCase toggleMagnetUseCase
     )
     {
         this.gameInterop = gameInterop;
+        this.practiceInput = practiceInput;
         this.requestSaveCruiserStateUseCase = requestSaveCruiserStateUseCase;
         this.requestLoadCruiserStateUseCase = requestLoadCruiserStateUseCase;
         this.toggleMagnetUseCase = toggleMagnetUseCase;
@@ -39,7 +42,7 @@ internal sealed class FrameHandler
 
     private void UpdateSaveCruiser()
     {
-        if (!(CruiserJumpPractice.InputActions?.SaveCruiserKey?.triggered ?? false))
+        if (!practiceInput.SaveCruiserTriggered)
         {
             return;
         }
@@ -49,7 +52,7 @@ internal sealed class FrameHandler
 
     private void UpdateLoadCruiser()
     {
-        if (!(CruiserJumpPractice.InputActions?.LoadCruiserKey?.triggered ?? false))
+        if (!practiceInput.LoadCruiserTriggered)
         {
             return;
         }
@@ -59,7 +62,7 @@ internal sealed class FrameHandler
 
     private void UpdateToggleMagnet()
     {
-        if (!(CruiserJumpPractice.InputActions?.ToggleMagnetKey?.triggered ?? false))
+        if (!practiceInput.ToggleMagnetTriggered)
         {
             return;
         }
