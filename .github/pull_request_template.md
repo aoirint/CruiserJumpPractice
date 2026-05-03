@@ -11,8 +11,9 @@ If this summary cannot stay brief, consider splitting unrelated work into separa
 ## Related Issues
 
 <!--
-Link related issues or discussions.
-Use "Closes #123" when this pull request should close an issue.
+Prefer Markdown list items for GitHub issues or pull requests so GitHub can render rich references.
+Use closing keywords, such as "Closes #123", when this pull request should close an issue.
+For non-GitHub references, include enough context for reviewers to understand why the link matters.
 Use "None" if there is no related issue.
 -->
 
