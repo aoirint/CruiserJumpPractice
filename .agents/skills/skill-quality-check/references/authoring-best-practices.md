@@ -25,7 +25,7 @@ review checklist.
 - Write `description` in third person, with the main use case and trigger terms early.
 - Include both positive triggers and practical boundaries. The body is loaded only after selection,
   so do not rely on body-only "When to Use" text for discovery.
-- Check candidate user prompts against the description:
+- Check candidate requester prompts against the description:
   - Obvious in-scope prompts should select the skill.
   - Adjacent but out-of-scope prompts should not select it unless paired with another skill.
 

@@ -94,7 +94,7 @@ Reference:
 - This skill owns the canonical developer changelog; it does not own generated
   or user-facing release-note files.
 - Do not publish, tag, create releases, upload artifacts, or edit release
-  metadata unless another workflow and explicit user request call for those
+  metadata unless another workflow and explicit request call for those
   side effects.
 - Keep private workspace paths, temporary worktree names, command transcripts,
   and authentication details out of public changelog text.
