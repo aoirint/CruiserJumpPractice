@@ -10,15 +10,15 @@ reset the cruiser every attempt.
 
 - Lethal Company v81.5 (2026-04-17 UTC, Manifest ID:
   `6423525044216269478`)
-  - Test environment
-    - BepInExPack v5.4.2305 (2026-03-17 UTC)
-    - Imperium v1.3.0 (2026-04-08 UTC)
-    - LethalCompany_InputUtils v0.7.13 (2026-03-31 UTC)
-    - LethalNetworkAPI v3.3.3 (2026-04-02 UTC)
-    - OdinSerializer v2024.2.2700 (2025-05-18 UTC)
-    - BepInEx_MonoMod_Debug_Patcher v1.1.1 (2025-04-03 UTC)
-  - NOTE: Imperium v1.3.0 appears to have some cruiser-related issues. See
-    [this issue comment][imperium-cruiser-workaround] for a workaround.
+    - Test environment
+        - BepInExPack v5.4.2305 (2026-03-17 UTC)
+        - Imperium v1.3.0 (2026-04-08 UTC)
+        - LethalCompany_InputUtils v0.7.13 (2026-03-31 UTC)
+        - LethalNetworkAPI v3.3.3 (2026-04-02 UTC)
+        - OdinSerializer v2024.2.2700 (2025-05-18 UTC)
+        - BepInEx_MonoMod_Debug_Patcher v1.1.1 (2025-04-03 UTC)
+    - NOTE: Imperium v1.3.0 appears to have some cruiser-related issues. See
+      [this issue comment][imperium-cruiser-workaround] for a workaround.
 
 ## What it does
 
