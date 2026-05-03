@@ -104,6 +104,8 @@ AI tools may be used as aids, but the human contributor remains responsible for 
 There is no exact percentage or universal rule for when assistance significantly affects a pull request. Use the
 following common workflows as practical examples, not as an exhaustive list.
 
+Examples that should be disclosed:
+
 - In the pull request description, disclose AI or tool assistance that significantly affected the pull request,
   including what the tool helped create or change.
 - Disclose AI-generated or tool-generated output when you submit it as project code, documentation, assets, tests, or
@@ -112,9 +114,18 @@ following common workflows as practical examples, not as an exhaustive list.
   assets that you edited and submitted.
 - Disclose workflows where AI proposed the implementation approach, debugging steps, compatibility decisions, or review
   response that shaped the final contribution.
+
+Examples that normally do not need disclosure:
+
 - Ordinary spell-checking, formatting, search, translation used only for your own understanding, or small completion
   suggestions normally do not need disclosure when they did not shape the substance of the contribution.
+
+When in doubt:
+
 - If you are unsure whether assistance was significant, disclose it briefly.
+
+Contributor responsibilities:
+
 - Review every AI-assisted change yourself. Do not assume generated code, documentation, tests, or explanations are
   correct.
 - Provide verification evidence that matches the change, such as test output, build output, screenshots, or a clear
