@@ -30,6 +30,23 @@ dotnet restore --locked-mode
 - Update files under `assets/` when the Thunderstore package metadata, icon, README, or release notes change.
 - Do not commit build output, downloaded game files, local mod manager profiles, or local machine configuration.
 
+## Contribution License Agreement
+
+By submitting a contribution to this project, you agree to the following terms:
+
+- You have the right to submit the contribution and to grant the permissions described here.
+- You grant the maintainer and downstream recipients a perpetual, worldwide, non-exclusive, no-charge, royalty-free,
+  irrevocable license to use, copy, modify, merge, publish, distribute, sublicense, and otherwise use your contribution
+  as part of this project.
+- Unless you clearly state otherwise before the contribution is accepted, your contribution may be distributed under
+  the same license as this project.
+- If your contribution includes patentable material, you grant any patent license you are able to grant that is needed
+  to use your contribution as part of this project.
+- You understand that you keep any copyright you hold in your contribution. This agreement is a license grant, not a
+  copyright assignment.
+- Do not submit code, documentation, assets, generated output, or other materials if you do not have the right to
+  contribute them under these terms.
+
 ## Verification
 
 Run the checks that match your change before opening a pull request:
