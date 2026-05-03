@@ -165,6 +165,9 @@ For issue replies:
 - Be clear whether something is confirmed, inferred, untested, or still unknown.
 - Ask for specific missing information when needed, such as logs, package or
   application versions, reproduction steps, or relevant data files.
+- When an issue may contain security-sensitive information, read the repository's security reporting guidance before
+  drafting exact public instructions. If no trusted reporting path is available, keep the reply conservative and ask for
+  maintainer confirmation or private-channel handling.
 - Avoid large diffs, large logs, and unrelated implementation plans.
 - Do not promise timelines unless they are already agreed.
 
