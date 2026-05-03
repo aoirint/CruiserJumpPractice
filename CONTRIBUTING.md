@@ -100,14 +100,14 @@ By submitting a contribution, you represent and agree that:
 ## AI-assisted contributions
 
 AI tools may be used as aids, but the human contributor remains responsible for the contribution.
-When AI or tool assistance significantly affects a pull request, disclosure is required in the pull request
+When AI assistance significantly affects a pull request, disclosure is required in the pull request
 description. The purpose of disclosure is to give reviewers enough context to understand where to focus, including
 areas you may not have reviewed closely. There is no exact percentage or universal rule for when assistance is
 "significant", so use the following common workflows as practical examples, not as an exhaustive list.
 
 Examples that should be disclosed:
 
-- In the pull request description, specifically disclose AI or tool assistance that significantly affected the pull
+- In the pull request description, specifically disclose AI assistance that significantly affected the pull
   request, but keep the disclosure practical. You do not need to provide a file-by-file table of AI involvement.
 - When possible, mention the rough prompt you gave an agent, the changes you asked it to make, changes made after
   automated review, and what you focused on when reviewing or adapting the result.

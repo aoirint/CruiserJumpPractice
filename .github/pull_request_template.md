@@ -29,12 +29,12 @@ Markdown list examples:
 
 <!--
 Tell reviewers where to focus.
-If AI or tool assistance significantly affected this pull request, describe it here in practical terms:
+If AI assistance significantly affected this pull request, describe it here in practical terms:
 what assistance was used, what you reviewed or adapted yourself, and any areas you want checked closely.
 Use "None" for items that do not apply.
 
 Optional H3 examples:
-### AI or tool assistance
+### AI assistance
 ### Review focus
 ### Lower-confidence areas
 -->
