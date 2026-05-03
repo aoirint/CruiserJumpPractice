@@ -14,4 +14,4 @@
 
 ## Contributor agreement
 
-- [ ] I agree to the Contribution License Agreement in `CONTRIBUTING.md`.
+- [ ] I have read the latest `CONTRIBUTING.md` and agree to the current Contribution License Agreement.
