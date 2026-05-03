@@ -104,6 +104,10 @@ description: Create, update, or review user-facing release notes. Use when deriv
    - Use maintainer-confirmed compatibility metadata from the canonical
      changelog, prior release notes, tested product/dependency versions, or
      explicit maintainer input. Do not invent compatibility claims.
+   - Place user-facing supplemental metadata under a `Notes` section, with
+     labeled bullets such as `Compatibility:` or `Known limitations:`, instead
+     of creating standalone headings for metadata that is not a Keep a
+     Changelog change category.
 10. Before publication, verify:
    - The user-facing release-note file has a stable version heading at
      the top, not `Unreleased`, and does not contain placeholder release
@@ -165,6 +169,11 @@ Classify review items as:
 
 - Release-ready stable notes use the publication channel's required heading
   format with a confirmed stable version and UTC release date.
+- User-facing supplemental metadata that is not itself a change type, such as
+  compatibility notes or known limitations, appears under `Notes` with labeled
+  bullets. Do not use standalone `Compatibility`, `Test Environment`, or
+  similar metadata headings unless the publication channel explicitly requires
+  them.
 - Each user-visible change includes one concise reason or background sentence,
   sourced from the canonical changelog or maintainer input.
   This applies to the target release; untouched historical entries in a
