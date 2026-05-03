@@ -101,14 +101,15 @@ By submitting a contribution, you represent and agree that:
 ## AI-assisted contributions
 
 AI tools may be used as aids, but the human contributor remains responsible for the contribution.
+The purpose of disclosure is to help reviewers understand where to focus and to help them find issues in areas the
+contributor may not have reviewed closely.
 There is no exact percentage or universal rule for when assistance significantly affects a pull request. Use the
 following common workflows as practical examples, not as an exhaustive list.
 
 Examples that should be disclosed:
 
 - In the pull request description, disclose AI or tool assistance that significantly affected the pull request,
-  but keep the disclosure practical. The goal is to help reviewers know where to focus, not to provide a
-  file-by-file table of AI involvement.
+  but keep the disclosure practical. You do not need to provide a file-by-file table of AI involvement.
 - For example, mention that you gave an agent a rough design prompt and had it implement the change, describe the areas
   you remember asking it to revise, and say what you focused on when reviewing or adapting the result.
 - If there are areas you did not review closely or are less confident about, mention them so reviewers can check those
