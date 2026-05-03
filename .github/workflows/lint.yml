@@ -42,9 +42,7 @@ jobs:
         run: dotnet restore --locked-mode
 
       - name: Run dotnet format
+        # dotnet format is the aggregate check here: it verifies whitespace,
+        # built-in code style, and fixable analyzer diagnostics. Build still
+        # reports Roslyn analyzer diagnostics, including non-fixable ones.
         run: dotnet format --no-restore --verify-no-changes
-
-      - name: Run dotnet format analyzers
-        # Build runs Roslyn analyzers too; this step fails earlier when a
-        # fixable analyzer diagnostic would change source.
-        run: dotnet format analyzers --no-restore --verify-no-changes

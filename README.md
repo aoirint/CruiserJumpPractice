@@ -41,16 +41,12 @@ Run the relevant checks before opening a pull request.
   [.NET standard 2.1](https://learn.microsoft.com/en-us/dotnet/standard/net-standard?tabs=net-standard-2-1)
 
 ```powershell
-dotnet format
+dotnet format --no-restore --verify-no-changes
 ```
 
-Run fixable C# analyzer checks.
-
-```powershell
-dotnet format analyzers --no-restore --verify-no-changes
-```
-
-Roslyn analyzers also run during build.
+`dotnet format` is an aggregate formatter that checks whitespace, built-in code
+style, and fixable analyzer diagnostics. Roslyn analyzers also run during build,
+including diagnostics that cannot be automatically fixed.
 
 ### Markdown lint
 
