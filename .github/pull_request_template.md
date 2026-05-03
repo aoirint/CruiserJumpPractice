@@ -15,4 +15,4 @@
 
 ## Contributor agreement
 
-- [ ] I have read the latest `CONTRIBUTING.md` and agree to the current Contribution License Agreement.
+- [ ] I have read `CONTRIBUTING.md` and agree to the Contribution License Agreement.
