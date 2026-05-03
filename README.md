@@ -60,15 +60,18 @@ framework that controls runtime compatibility.
 - Keep `TargetFramework` on `netstandard2.1` unless the supported Lethal
   Company, BepInEx, Unity, and dependency versions justify a compatibility
   change.
-- Prefer the latest supported .NET SDK major that works in GitHub Actions and
-  Visual Studio 2022. .NET even-numbered releases are LTS and odd-numbered
-  releases are STS; do not move CI or contributor setup to an unsupported SDK.
-- Update `actions/setup-dotnet` `dotnet-version` values in build and lint
-  workflows together so compilation, analyzer, and formatter behavior stay
-  aligned.
+- Prefer a supported LTS .NET SDK for routine maintenance. Adopt an STS or
+  newer SDK major only when a specific compiler, formatter, analyzer, CI, or
+  Visual Studio compatibility reason justifies the shorter support window.
+  .NET even-numbered releases are LTS and odd-numbered releases are STS; do
+  not move CI or contributor setup to an unsupported SDK.
+- Update the README SDK requirement and `actions/setup-dotnet` `dotnet-version`
+  values in build and lint workflows together so compilation, analyzer, and
+  formatter behavior stay aligned.
 - Keep `LangVersion` explicit when the project intentionally uses a specific
   C# version. Review Visual Studio support, CI SDK support, and mod dependency
-  compatibility before increasing it.
+  compatibility before increasing it, and keep the C# format summary above in
+  sync with the project file.
 - Treat analyzer package, formatter, SDK, and workflow action updates as
   tooling changes. Preserve `dotnet restore --locked-mode`,
   `dotnet format --no-restore --verify-no-changes`, and
