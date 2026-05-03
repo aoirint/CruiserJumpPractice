@@ -51,15 +51,21 @@ Reference:
    - Prerelease entries and why they matter.
    - Compatibility notes, test environments, known limitations, yanked
      releases, and migration constraints.
+   - Record compatibility, support, environment, and migration claims only when
+     they are maintainer-confirmed or clearly sourced. Otherwise list them as
+     missing inputs or draft source material needing confirmation, not as final
+     compatibility facts.
 7. When prerelease entries are later superseded, keep enough canonical history
    to explain what changed and what reached the stable release. If the stable
    release is still only planned, leave the stable roll-up material under
    `Unreleased` instead of creating an unfinished stable heading.
-8. If the user asks for user-facing release notes, derive only the canonical
-   source material here, then use the appropriate release-note workflow for the
-   user-facing rewrite and release-readiness checks.
+8. If the user asks for user-facing release notes, verify or prepare only the
+   canonical source material here, then use the appropriate release-note
+   workflow for the user-facing rewrite and release-readiness checks.
    - Update the canonical changelog only when the source material is missing,
      stale, or needs maintainer-facing correction.
+   - If the canonical changelog already contains enough source material, stop
+     there and hand off user-facing rewriting and readiness checks.
    - Identify the release-note workflow by name when it exists; otherwise
      discover the relevant release-note guidance before producing user-facing
      notes.

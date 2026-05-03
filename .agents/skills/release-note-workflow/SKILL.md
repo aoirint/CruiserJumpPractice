@@ -37,6 +37,17 @@ description: Create, update, or review user-facing release notes. Use when deriv
    - When multiple candidate version sources, publication channels, tag
      conventions, or workflows conflict, report all candidates and treat the
      conflict as a blocker unless repository docs establish precedence.
+   - Separate the discovered publication channel from the channel's release-note
+     format requirements. If the channel is known but its required format is
+     not, report the missing format as a blocker or required maintainer action.
+     Do not infer format requirements from the channel name alone; use
+     maintained docs, existing release-note history, workflow/config behavior,
+     or maintainer input.
+   - Use read-only evidence gathering for readiness reviews. Useful examples
+     include reading version metadata, listing local tags with `git tag --list`,
+     checking remote tags with `git ls-remote --tags <remote>`, inspecting
+     workflow or release scripts for release-note inclusion, and reading docs
+     for verification commands.
 2. Read the exact stable release section in the canonical developer changelog.
    - If the exact canonical section is unavailable, write draft release notes
      and list the missing inputs instead of presenting the output as final.
@@ -49,6 +60,8 @@ description: Create, update, or review user-facing release notes. Use when deriv
    - Prerelease versions, such as `1.2.3-alpha.1`, remain developer-facing and
      are not published as stable user-facing notes unless the publication
      channel explicitly supports prerelease notes.
+   - Do not infer an intended stable version from a prerelease version without
+     maintainer confirmation.
    - Accept prerelease support only from maintained publication-channel policy,
      release documentation, explicit maintainer input, or existing release-note
      history.
