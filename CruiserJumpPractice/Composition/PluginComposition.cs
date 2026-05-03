@@ -12,54 +12,9 @@ using CruiserJumpPractice.Interop.InputUtils;
 
 namespace CruiserJumpPractice.Composition;
 
-internal sealed class PluginComposition
+internal static class PluginComposition
 {
-    public IGameInterop GameInterop { get; }
-
-    public SaveCruiserStateUseCase SaveCruiserStateUseCase { get; }
-
-    public LoadCruiserStateUseCase LoadCruiserStateUseCase { get; }
-
-    public RequestSaveCruiserStateUseCase RequestSaveCruiserStateUseCase { get; }
-
-    public RequestLoadCruiserStateUseCase RequestLoadCruiserStateUseCase { get; }
-
-    public ToggleMagnetUseCase ToggleMagnetUseCase { get; }
-
-    public PresentSaveCruiserStateResultUseCase PresentSaveCruiserStateResultUseCase { get; }
-
-    public PresentLoadCruiserStateResultUseCase PresentLoadCruiserStateResultUseCase { get; }
-
-    public FrameHandler FrameHandler { get; }
-
-    public StartupHandler StartupHandler { get; }
-
-    private PluginComposition(
-        IGameInterop gameInterop,
-        SaveCruiserStateUseCase saveCruiserStateUseCase,
-        LoadCruiserStateUseCase loadCruiserStateUseCase,
-        RequestSaveCruiserStateUseCase requestSaveCruiserStateUseCase,
-        RequestLoadCruiserStateUseCase requestLoadCruiserStateUseCase,
-        ToggleMagnetUseCase toggleMagnetUseCase,
-        PresentSaveCruiserStateResultUseCase presentSaveCruiserStateResultUseCase,
-        PresentLoadCruiserStateResultUseCase presentLoadCruiserStateResultUseCase,
-        FrameHandler frameHandler,
-        StartupHandler startupHandler
-    )
-    {
-        GameInterop = gameInterop;
-        SaveCruiserStateUseCase = saveCruiserStateUseCase;
-        LoadCruiserStateUseCase = loadCruiserStateUseCase;
-        RequestSaveCruiserStateUseCase = requestSaveCruiserStateUseCase;
-        RequestLoadCruiserStateUseCase = requestLoadCruiserStateUseCase;
-        ToggleMagnetUseCase = toggleMagnetUseCase;
-        PresentSaveCruiserStateResultUseCase = presentSaveCruiserStateResultUseCase;
-        PresentLoadCruiserStateResultUseCase = presentLoadCruiserStateResultUseCase;
-        FrameHandler = frameHandler;
-        StartupHandler = startupHandler;
-    }
-
-    public static PluginComposition Create(ManualLogSource logger)
+    public static PluginRuntime Create(ManualLogSource logger)
     {
         var coreLogger = new BepInExCoreLogger(logger);
         var inputActions = new InputUtilsActions();
@@ -98,17 +53,13 @@ internal sealed class PluginComposition
             toggleMagnetUseCase
         );
 
-        return new PluginComposition(
-            gameInterop: gameInterop,
+        return new PluginRuntime(
+            frameHandler: frameHandler,
+            startupHandler: new StartupHandler(gameInterop),
             saveCruiserStateUseCase: saveCruiserStateUseCase,
             loadCruiserStateUseCase: loadCruiserStateUseCase,
-            requestSaveCruiserStateUseCase: requestSaveCruiserStateUseCase,
-            requestLoadCruiserStateUseCase: requestLoadCruiserStateUseCase,
-            toggleMagnetUseCase: toggleMagnetUseCase,
             presentSaveCruiserStateResultUseCase: presentSaveCruiserStateResultUseCase,
-            presentLoadCruiserStateResultUseCase: presentLoadCruiserStateResultUseCase,
-            frameHandler: frameHandler,
-            startupHandler: new StartupHandler(gameInterop)
+            presentLoadCruiserStateResultUseCase: presentLoadCruiserStateResultUseCase
         );
     }
 }

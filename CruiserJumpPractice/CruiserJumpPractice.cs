@@ -3,10 +3,6 @@
 using BepInEx;
 using BepInEx.Logging;
 using CruiserJumpPractice.Composition;
-using CruiserJumpPractice.Core.Ports;
-using CruiserJumpPractice.Core.Runtime;
-using CruiserJumpPractice.Core.UseCases.Client;
-using CruiserJumpPractice.Core.UseCases.Server;
 using HarmonyLib;
 
 namespace CruiserJumpPractice;
@@ -20,34 +16,15 @@ public class CruiserJumpPractice : BaseUnityPlugin
 
     internal static Harmony Harmony { get; } = new(MyPluginInfo.PLUGIN_GUID);
 
-    private static PluginComposition? Composition { get; set; }
+    private static PluginRuntime? runtime;
 
-    internal static FrameHandler FrameHandler =>
-        Composition!.FrameHandler;
-
-    internal static StartupHandler StartupHandler =>
-        Composition!.StartupHandler;
-
-    internal static IGameInterop GameInterop =>
-        Composition!.GameInterop;
-
-    internal static SaveCruiserStateUseCase SaveCruiserStateUseCase =>
-        Composition!.SaveCruiserStateUseCase;
-
-    internal static LoadCruiserStateUseCase LoadCruiserStateUseCase =>
-        Composition!.LoadCruiserStateUseCase;
-
-    internal static PresentSaveCruiserStateResultUseCase PresentSaveCruiserStateResultUseCase =>
-        Composition!.PresentSaveCruiserStateResultUseCase;
-
-    internal static PresentLoadCruiserStateResultUseCase PresentLoadCruiserStateResultUseCase =>
-        Composition!.PresentLoadCruiserStateResultUseCase;
+    internal static PluginRuntime Runtime => runtime!;
 
     private void Awake()
     {
         Logger = base.Logger;
 
-        Composition = PluginComposition.Create(Logger);
+        runtime = PluginComposition.Create(Logger);
 
         Harmony.PatchAll();
 
