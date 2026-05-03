@@ -2,7 +2,8 @@
 
 # CruiserJumpPractice
 
-A Lethal Company mod that saves/loads cruiser position, rotation, and condition, and lets you toggle the magnet remotely.
+A Lethal Company mod that saves/loads cruiser position, rotation, and condition, and lets you toggle the magnet
+remotely.
 
 - [User guide](./assets/README.md)
 
@@ -30,11 +31,17 @@ Open `CruiserJumpPractice.sln` in Visual Studio.
 
 ## Code format
 
-- Language version: [C# 13.0](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13)
-- Target framework: [.NET standard 2.1](https://learn.microsoft.com/en-us/dotnet/standard/net-standard?tabs=net-standard-2-1)
+- Language version:
+  [C# 13.0](https://learn.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-13)
+- Target framework:
+  [.NET standard 2.1](https://learn.microsoft.com/en-us/dotnet/standard/net-standard?tabs=net-standard-2-1)
 
 ```powershell
 dotnet format
+```
+
+```powershell
+docker run --rm -v "${PWD}:/workdir" davidanson/markdownlint-cli2:v0.22.1@sha256:0ed9a5f4c77ef447da2a2ac6e67caf74b214a7f80288819565e8b7d2ac148fe5
 ```
 
 ## Package management
@@ -90,11 +97,11 @@ DOTNET_CLI_UI_LANGUAGE=en dotnet build --configuration Release
 ## Release
 
 1. Update the canonical developer changelog in `CHANGELOG.md`.
-2. For a stable release, derive the Thunderstore-facing release notes in `assets/CHANGELOG.md` from stable entries in
-   `CHANGELOG.md`.
+2. For a stable release, derive the Thunderstore-facing release notes in `assets/CHANGELOG.md` from stable entries
+   in `CHANGELOG.md`.
 3. Replace version in `CruiserJumpPractice/CruiserJumpPractice.csproj` as semver format, e.g. `1.2.3`.
-4. Verify that `.github/workflows/build.yml` packages `assets/CHANGELOG.md` and that the `generate-version`
-   action updates `assets/manifest.json` from the project version.
+4. Verify that `.github/workflows/build.yml` packages `assets/CHANGELOG.md` and that the `generate-version` action
+   updates `assets/manifest.json` from the project version.
 5. Commit and push the changes.
 6. CI will create a GitHub Release automatically.
 7. For stable releases, CI will upload the release artifact to Thunderstore automatically.
@@ -107,7 +114,8 @@ DOTNET_CLI_UI_LANGUAGE=en dotnet build --configuration Release
 
 ### AI Disclosure
 
-Some parts of this project were developed with the assistance of AI tools based on large language models (LLMs), including agent-based tools.
+Some parts of this project were developed with the assistance of AI tools based on large language models (LLMs),
+including agent-based tools.
 The code is reviewed by the author.
 This disclosure is made in compliance with Thunderstore policies.
 
@@ -125,10 +133,12 @@ This disclosure is made in compliance with Thunderstore policies.
 
 ### Manual
 
-1. Install BepInEx: https://docs.bepinex.dev/articles/user_guide/installation/index.html
+1. Install BepInEx:
+   <https://docs.bepinex.dev/articles/user_guide/installation/index.html>
 2. Launch `Lethal Company.exe` and exit to generate the BepInEx config files.
 3. Open `C:/Program Files (x86)/Steam/steamapps/common/Lethal Company/BepInEx/config/BepInEx.cfg`.
-4. Copy the DLL file into `C:/Program Files (x86)/Steam/steamapps/common/Lethal Company/BepInEx/plugins/` from `bin/Debug/netstandard2.1/`.
+4. Copy the DLL file from `bin/Debug/netstandard2.1/` into
+   `C:/Program Files (x86)/Steam/steamapps/common/Lethal Company/BepInEx/plugins/`.
 5. Set `Logging.Console.Enabled` to `true`.
 6. Set `Logging.Console.LogLevels` to `All`.
 7. Launch `Lethal Company.exe` again.
