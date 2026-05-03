@@ -4,8 +4,9 @@ using CruiserJumpPractice.Core.Ports;
 
 namespace CruiserJumpPractice.Interop.InputUtils;
 
-// InputUtils actions can be absent while bindings initialize, but Core only cares whether a
-// practice command fired this frame. Missing actions are therefore treated as not triggered here.
+// InputUtilsPracticeInput turns the InputUtilsActions declaration table into Core's IPracticeInput.
+// Missing InputAction objects are treated as not triggered, so frame handling sees only simple
+// one-frame practice commands.
 internal sealed class InputUtilsPracticeInput : IPracticeInput
 {
     private readonly InputUtilsActions inputActions;
