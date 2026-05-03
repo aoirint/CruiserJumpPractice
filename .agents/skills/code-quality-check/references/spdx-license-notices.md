@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: Unlicense -->
+
 # SPDX License Notice Decision Guide
 
 ## Purpose

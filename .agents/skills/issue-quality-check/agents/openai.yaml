@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Unlicense
 interface:
   display_name: "Issue Quality Check"
   short_description: "Quality-check repository issues and issue replies."

@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Unlicense
 interface:
   display_name: "Pull Request Quality Check"
   short_description: "Quality-check repository pull requests."

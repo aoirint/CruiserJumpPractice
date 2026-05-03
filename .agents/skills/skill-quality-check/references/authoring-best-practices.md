@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: Unlicense -->
+
 # Agent Skill Authoring Best Practices
 
 ## Purpose
