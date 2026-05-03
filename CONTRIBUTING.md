@@ -108,8 +108,8 @@ areas you may not have reviewed closely. There is no exact percentage or univers
 
 Examples that should be disclosed:
 
-- In the pull request description, disclose AI or tool assistance that significantly affected the pull request,
-  but keep the disclosure practical. You do not need to provide a file-by-file table of AI involvement.
+- In the pull request description, specifically disclose AI or tool assistance that significantly affected the pull
+  request, but keep the disclosure practical. You do not need to provide a file-by-file table of AI involvement.
 - When possible, mention the rough prompt you gave an agent, the changes you asked it to make, changes made after
   automated review, and what you focused on when reviewing or adapting the result.
 - If there are areas you did not review closely or are less confident about, mention them so reviewers can check those
