@@ -21,6 +21,8 @@ description: Create, update, or review user-facing release notes. Use when deriv
   a second source of truth.
 - Rewrite stable release notes for users, focusing on behavior, installation,
   compatibility, update impact, known limitations, and security.
+- Include a concise reason or background sentence for each user-visible change
+  so users can understand why the change was made or why it affects them.
 - Make version, source material, publication-channel requirements, and release
   readiness explicit before publication.
 
@@ -72,17 +74,37 @@ description: Create, update, or review user-facing release notes. Use when deriv
    maintainers.
 6. Rewrite the stable entries around user-visible behavior, installation,
    compatibility, update impact, security, and known limitations.
-7. Preserve user-critical notes in the user-facing release notes,
+7. For each user-visible change, include one concise reason or background
+   sentence from the canonical changelog or maintainer input.
+   - Apply this requirement to the target release being prepared or reviewed.
+     Improve older cumulative entries when they are touched, but do not block
+     the target release only because untouched historical entries lack
+     rationale.
+   - Good source material includes the user problem being solved, why behavior
+     changed, compatibility or migration constraints, known limitation context,
+     or why a release was yanked.
+   - A sourced user impact statement can serve as the reason/background sentence
+     only when it explains why users should care.
+   - Use conservative negative-impact summaries, such as "no gameplay changes",
+     only when the canonical changelog or maintainer input supports that
+     conclusion for the target release.
+   - Generic source bullets such as documentation updates, dependency updates,
+     crash fixes, or save-format changes are draft-only until the canonical
+     changelog or maintainer input explains the user-facing benefit, risk,
+     security impact, compatibility impact, or migration reason.
+   - If a change lacks enough rationale or history, mark it as draft or a
+     missing input instead of inventing an explanation.
+8. Preserve user-critical notes in the user-facing release notes,
    including breaking changes, compatibility changes, installation or update
    notes, removals, deprecations, security fixes, yanked releases, and known
    limitations.
-8. Keep test environment details in the canonical developer changelog. Include
+9. Keep test environment details in the canonical developer changelog. Include
    them in user-facing release notes only when they are needed as
    user-facing compatibility or support context.
    - Use maintainer-confirmed compatibility metadata from the canonical
      changelog, prior release notes, tested product/dependency versions, or
      explicit maintainer input. Do not invent compatibility claims.
-9. Before publication, verify:
+10. Before publication, verify:
    - The user-facing release-note file has a stable version heading at
      the top, not `Unreleased`, and does not contain placeholder release
      metadata such as `TBD`.
@@ -143,6 +165,10 @@ Classify review items as:
 
 - Release-ready stable notes use the publication channel's required heading
   format with a confirmed stable version and UTC release date.
+- Each user-visible change includes one concise reason or background sentence,
+  sourced from the canonical changelog or maintainer input.
+  This applies to the target release; untouched historical entries in a
+  cumulative file are not blockers solely because they predate this rule.
 - Draft notes are clearly labeled as draft review text and list missing inputs
   before any proposed user-facing wording.
 - Blockers name the missing or failed readiness item directly, such as stable

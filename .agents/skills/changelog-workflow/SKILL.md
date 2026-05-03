@@ -22,6 +22,8 @@ description: Create and update a canonical developer changelog. Use when adding 
   format.
 - Preserve prerelease and internal context in the canonical changelog even when
   it will not appear in user-facing release notes.
+- Preserve enough rationale and history for user-facing release notes to explain
+  why each user-visible change matters.
 - Keep user-facing release-note rewriting and release-readiness checks in the
   dedicated release-note workflow.
 
@@ -49,6 +51,14 @@ Reference:
    - Internal migrations or architecture changes.
    - CI, build, packaging, or dependency context.
    - Prerelease entries and why they matter.
+   - User-impact rationale or history for each user-visible change, such as
+     the problem it solves, why behavior changed, compatibility constraints, or
+     migration reason.
+   - A sourced user impact statement may be enough when it explains why users
+     should care. Generic bullets such as documentation updates, dependency
+     updates, crash fixes, or save-format changes still need source material
+     describing the user-facing benefit, risk, security impact, compatibility
+     impact, or migration reason.
    - Compatibility notes, test environments, known limitations, yanked
      releases, and migration constraints.
    - Record compatibility, support, environment, and migration claims only when
@@ -64,6 +74,8 @@ Reference:
    workflow for the user-facing rewrite and release-readiness checks.
    - Update the canonical changelog only when the source material is missing,
      stale, or needs maintainer-facing correction.
+   - Treat missing rationale or history for a user-visible change as missing
+     canonical source material; add or request it before user-facing rewriting.
    - If the canonical changelog already contains enough source material, stop
      there and hand off user-facing rewriting and readiness checks.
    - Identify the release-note workflow by name when it exists; otherwise
