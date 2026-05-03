@@ -33,6 +33,7 @@ dotnet restore --locked-mode
 ## Contribution License Agreement
 
 By submitting a contribution to this project, you agree to this Contribution License Agreement.
+If this agreement changes, new pull requests must use the current agreement.
 
 For this agreement, "you" means the person or organization submitting the contribution, and "contribution" means code,
 documentation, assets, patches, generated output, or other material that you intentionally submit for inclusion in this
