@@ -101,10 +101,15 @@ By submitting a contribution, you represent and agree that:
 ## AI-assisted contributions
 
 AI tools may be used as aids, but the human contributor remains responsible for the contribution.
+For the pull request checklist, AI or tool assistance significantly affects a pull request when it helps create,
+rewrite, design, or make substantive decisions about project material in a way a reviewer should know about.
 
 - Disclose material AI assistance in the pull request description, including what the tool helped create or change.
 - Disclose AI-generated or tool-generated output when you submit it as project code, documentation, assets, tests, or
   other project material.
+- You do not need to disclose ordinary spell-checking, formatting, search, translation used only for your own
+  understanding, or small completion suggestions that did not shape the substance of the contribution.
+- If you are unsure whether assistance was significant, disclose it briefly.
 - Review every AI-assisted change yourself. Do not assume generated code, documentation, tests, or explanations are
   correct.
 - Provide verification evidence that matches the change, such as test output, build output, screenshots, or a clear
