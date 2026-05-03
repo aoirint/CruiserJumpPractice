@@ -111,10 +111,6 @@ Examples that should be disclosed:
   file-by-file table of AI involvement.
 - For example, say that you gave an agent a rough design prompt and had it implement the change, note the areas you
   remember asking it to revise, and mention what you focused on when reviewing or adapting the result.
-- Disclose AI-generated or tool-generated output when you submit it as project code, documentation, assets, tests, or
-  other project content.
-- Disclose agent-written or AI-written commits, patches, tests, documentation, release notes, package metadata, or
-  assets that you edited and submitted.
 - Disclose workflows where AI proposed the implementation approach, debugging steps, compatibility decisions, or review
   response that shaped the final contribution.
 
