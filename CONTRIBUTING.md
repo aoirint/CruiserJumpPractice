@@ -74,6 +74,8 @@ the Thunderstore-facing files under `assets/` are still correct.
 - Link related issues when applicable.
 - Keep the pull request small enough for maintainers to review without guessing at unrelated intent.
 - Mention any skipped checks and why they were skipped.
+- Maintainers may require the Contribution License Agreement checkbox in the pull request template to be checked before
+  reviewing or merging a pull request.
 - Respond to maintainer feedback when possible. If you need more time, are blocked, or no longer plan to continue the
   pull request, leave a short comment so maintainers know what to expect. Even if a long time has passed, it is always
   fine to reply with an update.
@@ -85,6 +87,8 @@ the Thunderstore-facing files under `assets/` are still correct.
 - If you want to continue work from a stalled pull request, leave a short comment for the maintainer and the original
   contributor before opening a new pull request. The original contributor may not be available to respond, but the
   maintainer can confirm whether the change is still wanted and coordinate attribution or next steps.
+- If your pull request reuses substantial work from another pull request, credit the original pull request and
+  contributor in your pull request description.
 - Pull requests that remain inactive for a reasonable period may be closed to keep the review queue current. This is not
   a judgment on the contributor, and it does not prevent you from opening a new pull request later if the change is
   still useful.
@@ -94,6 +98,8 @@ the Thunderstore-facing files under `assets/` are still correct.
 AI tools may be used as aids, but the human contributor remains responsible for the contribution.
 
 - Disclose material AI assistance in the pull request description, including what the tool helped create or change.
+- Disclose AI-generated or tool-generated output when you submit it as project code, documentation, assets, tests, or
+  other project material.
 - Review every AI-assisted change yourself. Do not assume generated code, documentation, tests, or explanations are
   correct.
 - Provide verification evidence that matches the change, such as test output, build output, screenshots, or a clear
