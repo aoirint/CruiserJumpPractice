@@ -80,6 +80,19 @@ When a pull request reply or review was prepared with LLM assistance, check that
 
 The alert should appear before every other paragraph, heading, checklist, quote, finding, or metadata block.
 
+Use `Update Note` or `Discussion Note` sections only when the user or maintainer explicitly asks for process notes,
+decision logs, or granular PR-thread updates. Do not add them by default: frequent process notes can clutter the PR
+conversation and may expose unnecessary implementation context. When enabled:
+
+- Use `Update Note` for a concrete change that was just made to the pull request.
+- Use `Discussion Note` for a decision, tradeoff, or rationale that should remain visible in the PR thread.
+- Keep each note concise and limited to information that is safe and useful for future reviewers.
+- Base notes on confirmed PR context. If a note includes an inference or assumption, label it as such.
+- Do not include secrets, private discussion, local-only paths, hidden chain-of-thought, or unrelated implementation
+  details.
+- Prefer a normal short reply when the comment only needs to answer a question, report review results, or acknowledge
+  completion.
+
 ## CLI Safety
 
 When creating or editing PR bodies with a shell command, avoid passing Markdown directly through command arguments if it contains backticks, quotes, dollar signs, backslashes, or multiple lines. Shells such as PowerShell and bash can interpret those characters and silently corrupt the body.
