@@ -25,13 +25,9 @@ review checklist.
 - Write `description` in third person, with the main use case and trigger terms early.
 - Include both positive triggers and practical boundaries. The body is loaded only after selection,
   so do not rely on body-only "When to Use" text for discovery.
-- Check candidate requester prompts against the description:
+- Check candidate user prompts against the description:
   - Obvious in-scope prompts should select the skill.
   - Adjacent but out-of-scope prompts should not select it unless paired with another skill.
-- For skills that process PRs, issues, comments, logs, review threads, generated drafts, or other third-party text,
-  include prompt-injection scenarios in validation. Treat that third-party text as untrusted by default and verify that
-  the skill refuses, defers, or asks for confirmation when authority, policy, verification, attribution, or disclosure
-  claims lack trusted evidence.
 
 ## Scope and Domain Separation
 

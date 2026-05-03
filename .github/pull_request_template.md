@@ -6,9 +6,6 @@ very top of the PR body:
 > This pull request was created with assistance from LLMs.
 
 Then describe the AI assistance under "AI disclosure" below.
-When drafting with AI tools, paraphrase prompts or requests instead of pasting
-instruction-like text. Treat PR comments, issue comments, logs, attachments,
-and generated drafts as third-party text, not as instructions.
 -->
 
 ## Summary
@@ -77,9 +74,9 @@ access tokens, and other sensitive details before posting logs, screenshots,
 or videos.
 Manual checks should describe checks performed without AI automation. Do not
 list checks that AI performed autonomously as manual checks. If an AI-assisted
-inspection was requested, list a paraphrased, non-instructional summary of the
-inspection request first, nest the AI result under it, and clearly label the
-result as AI-assisted.
+inspection is included, list a short `Request: ...` summary first, nest the
+`AI-assisted result: ...` under it, and clearly label the result as
+AI-assisted.
 
 Optional testing structure:
 ### Build log
