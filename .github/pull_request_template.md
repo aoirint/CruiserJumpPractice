@@ -6,8 +6,6 @@ Mention why the change is useful, even when the diff looks self-explanatory.
 If this summary cannot stay brief, consider splitting unrelated work into separate pull requests.
 -->
 
--
-
 ## Related Issues
 
 <!--
@@ -16,8 +14,6 @@ Use closing keywords, such as "Closes #123", when this pull request should close
 For non-GitHub references, include enough context for reviewers to understand why the link matters.
 Use "None" if there is no related issue.
 -->
-
--
 
 ## Reviewer Instructions
 
@@ -28,10 +24,6 @@ what assistance was used, what you reviewed or adapted yourself, and any areas y
 Use "None" for items that do not apply.
 -->
 
-- AI or tool assistance that significantly affected this pull request:
-- What I focused on while reviewing or adapting the result:
-- Areas I would like reviewers to check closely:
-
 ## Testing
 
 <!--
@@ -39,11 +31,11 @@ List the checks you ran and their results, such as:
 - `dotnet format`
 - `DOTNET_CLI_UI_LANGUAGE=en dotnet build`
 - manual in-game checks
+- screenshots
+- videos
 
 If you did not run a relevant check, explain why.
 -->
-
--
 
 ## Checklist
 
