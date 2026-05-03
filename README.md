@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: Unlicense -->
+
 # CruiserJumpPractice
 
 A Lethal Company mod that saves/loads cruiser position, rotation, and condition, and lets you toggle the magnet remotely.

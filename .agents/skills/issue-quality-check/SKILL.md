@@ -1,4 +1,5 @@
 ---
+# SPDX-License-Identifier: Unlicense
 name: issue-quality-check
 description: Quality-check repository issues and issue replies. Use when creating or updating GitHub issues or comments on issues.
 ---

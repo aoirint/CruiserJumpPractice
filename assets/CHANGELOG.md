@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: Unlicense -->
+
 ## Unreleased
 
 This is a maintenance release reflecting internal improvements.

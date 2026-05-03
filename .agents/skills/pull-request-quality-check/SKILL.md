@@ -1,4 +1,5 @@
 ---
+# SPDX-License-Identifier: Unlicense
 name: pull-request-quality-check
 description: Quality-check repository pull requests. Use when creating or updating pull requests.
 ---
