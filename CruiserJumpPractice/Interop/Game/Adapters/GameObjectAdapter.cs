@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Unlicense
 #nullable enable
 
 extern alias LethalCompany;

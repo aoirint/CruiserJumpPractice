@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: Unlicense
 #nullable enable
 
 using BepInEx.Logging;
