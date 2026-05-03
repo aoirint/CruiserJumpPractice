@@ -1,12 +1,8 @@
+// SPDX-License-Identifier: Unlicense
 #nullable enable
 
 using BepInEx;
 using BepInEx.Logging;
-using CruiserJumpPractice.Interop;
-using CruiserJumpPractice.Application;
-using CruiserJumpPractice.Application.Runtime;
-using CruiserJumpPractice.Application.UseCases.Client;
-using CruiserJumpPractice.Application.UseCases.Server;
 using HarmonyLib;
 
 namespace CruiserJumpPractice;
@@ -20,38 +16,21 @@ public class CruiserJumpPractice : BaseUnityPlugin
 
     internal static Harmony Harmony { get; } = new(MyPluginInfo.PLUGIN_GUID);
 
-    internal static InputActions? InputActions { get; private set; }
+    private static PluginController? controller;
 
-    private static ApplicationComposition? App { get; set; }
-
-    internal static FrameHandler FrameHandler =>
-        App!.FrameHandler;
-
-    internal static StartupHandler StartupHandler =>
-        App!.StartupHandler;
-
-    internal static IGameInterop GameInterop =>
-        App!.GameInterop;
-
-    internal static SaveCruiserStateUseCase SaveCruiserStateUseCase =>
-        App!.SaveCruiserStateUseCase;
-
-    internal static LoadCruiserStateUseCase LoadCruiserStateUseCase =>
-        App!.LoadCruiserStateUseCase;
-
-    internal static PresentSaveCruiserStateResultUseCase PresentSaveCruiserStateResultUseCase =>
-        App!.PresentSaveCruiserStateResultUseCase;
-
-    internal static PresentLoadCruiserStateResultUseCase PresentLoadCruiserStateResultUseCase =>
-        App!.PresentLoadCruiserStateResultUseCase;
+    // Harmony and Netcode construct their callback objects outside our construction path. This
+    // static entry exposes one plugin-level controller instead of scattering use cases across
+    // patch and NetworkBehaviour classes.
+    internal static PluginController Controller => controller!;
 
     private void Awake()
     {
         Logger = base.Logger;
 
-        InputActions = new InputActions();
-        App = ApplicationComposition.Create(Logger);
+        controller = PluginController.Create(Logger);
 
+        // Startup order matters: construct the controller before patching so the first game
+        // callback can enter a fully wired plugin boundary.
         Harmony.PatchAll();
 
         Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_NAME} v{MyPluginInfo.PLUGIN_VERSION} is loaded!");
