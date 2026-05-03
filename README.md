@@ -52,6 +52,39 @@ dotnet format --no-restore --verify-no-changes
 style, and fixable analyzer diagnostics. Roslyn analyzers also run during build,
 including diagnostics that cannot be automatically fixed.
 
+### .NET and C# tooling updates
+
+This project separates the SDK used to build and format the mod from the target
+framework that controls runtime compatibility.
+
+- Keep `TargetFramework` on `netstandard2.1` unless the supported Lethal
+  Company, BepInEx, Unity, and dependency versions justify a compatibility
+  change.
+- Prefer the latest supported .NET SDK major that works in GitHub Actions and
+  Visual Studio 2022. .NET even-numbered releases are LTS and odd-numbered
+  releases are STS; do not move CI or contributor setup to an unsupported SDK.
+- Update `actions/setup-dotnet` `dotnet-version` values in build and lint
+  workflows together so compilation, analyzer, and formatter behavior stay
+  aligned.
+- Keep `LangVersion` explicit when the project intentionally uses a specific
+  C# version. Review Visual Studio support, CI SDK support, and mod dependency
+  compatibility before increasing it.
+- Treat analyzer package, formatter, SDK, and workflow action updates as
+  tooling changes. Preserve `dotnet restore --locked-mode`,
+  `dotnet format --no-restore --verify-no-changes`, and
+  `dotnet build --no-restore --configuration Release` behavior unless the
+  pull request explicitly documents why a behavior change is needed.
+- When updating analyzer packages, update `packages.lock.json` with
+  `dotnet restore --use-lock-file`, review new diagnostics, and document
+  intentional rule or severity changes in the pull request.
+
+Maintenance references:
+
+- [.NET releases and support](https://learn.microsoft.com/en-us/dotnet/core/releases-and-support)
+- [.NET SDK, MSBuild, and Visual Studio versioning](https://learn.microsoft.com/en-us/dotnet/core/porting/versioning-sdk-msbuild-vs)
+- [Configure C# language version](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/configure-language-version)
+- [`dotnet format`](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-format)
+
 ### Markdown lint
 
 Markdown is checked with `markdownlint-cli2`. The project uses the pinned Docker
