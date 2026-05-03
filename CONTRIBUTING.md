@@ -107,12 +107,12 @@ following common workflows as practical examples, not as an exhaustive list.
 Examples that should be disclosed:
 
 - In the pull request description, disclose AI or tool assistance that significantly affected the pull request,
-  but keep the disclosure practical. A short summary of the workflow is enough; you do not need to provide a
+  but keep the disclosure practical. The goal is to help reviewers know where to focus, not to provide a
   file-by-file table of AI involvement.
-- For example, say that you gave an agent a rough design prompt and had it implement the change, note the areas you
-  remember asking it to revise, and mention what you focused on when reviewing or adapting the result.
-- Disclose workflows where AI proposed the implementation approach, debugging steps, compatibility decisions, or review
-  response that shaped the final contribution.
+- For example, mention that you gave an agent a rough design prompt and had it implement the change, describe the areas
+  you remember asking it to revise, and say what you focused on when reviewing or adapting the result.
+- If there are areas you did not review closely or are less confident about, mention them so reviewers can check those
+  areas more carefully.
 
 Examples that normally do not need disclosure:
 
