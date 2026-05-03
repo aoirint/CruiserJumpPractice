@@ -104,7 +104,7 @@ AI tools may be used as aids, but the human contributor remains responsible for 
 When AI or tool assistance significantly affects a pull request, disclosure is required in the pull request
 description. The purpose of disclosure is to give reviewers enough context to understand where to focus, including
 areas you may not have reviewed closely. There is no exact percentage or universal rule for when assistance is
-significant, so use the following common workflows as practical examples, not as an exhaustive list.
+"significant", so use the following common workflows as practical examples, not as an exhaustive list.
 
 Examples that should be disclosed:
 
