@@ -45,28 +45,37 @@ To update the lock file after modifying your package references, run:
 dotnet restore --use-lock-file
 ```
 
-## GitHub Actions management
+## GitHub Actions
 
 The repository uses GitHub Actions for CI.
 
+### Action pinning
+
 The version of the actions are pinned with [pinact](https://github.com/suzuki-shunsuke/pinact).
-
-Stable releases are published to Thunderstore from CI using the local
-`.github/actions/publish-thunderstore` composite action and the
-`THUNDERSTORE_TOKEN` repository secret.
-
-The token must belong to a Thunderstore service account that can publish to the
-`aoirint` team. The current workflow publishes to the `lethal-company`
-community with the `Mods`, `Tweaks & Quality Of Life`, and `AI Generated`
-categories.
 
 ```powershell
 # Pin
-pinact run
+pinact run --min-age 7
 
 # Update
-pinact run --update
+pinact run --update --min-age 7
 ```
+
+### GitHub Actions configuration
+
+#### GitHub Variables
+
+This repository currently does not use GitHub Actions variables.
+
+| Name | Used by | Description |
+| :--- | :------ | :---------- |
+| None | Not applicable | No repository variables are currently used. |
+
+#### GitHub Secrets
+
+| Name | Used by | Description |
+| :--- | :------ | :---------- |
+| `THUNDERSTORE_TOKEN` | `.github/workflows/build.yml` | Thunderstore service account token used by `.github/actions/publish-thunderstore`. |
 
 ## Build
 
@@ -89,7 +98,12 @@ DOTNET_CLI_UI_LANGUAGE=en dotnet build --configuration Release
 5. Commit and push the changes.
 6. CI will create a GitHub Release automatically.
 7. For stable releases, CI will upload the release artifact to Thunderstore automatically.
-   **NOTE: prerelease version is not supported, e.g. `1.2.3-beta.1`.**
+
+   The current workflow deploys to the Thunderstore `aoirint` team and publishes to the `lethal-company`
+   community with the `Mods`, `Tweaks & Quality Of Life`, and `AI Generated` categories.
+   The `THUNDERSTORE_TOKEN` secret must belong to a Thunderstore service account that can publish to that team.
+
+   **NOTE: prerelease version is not supported by Thunderstore, e.g. `1.2.3-beta.1`.**
 
 ### AI Disclosure
 
