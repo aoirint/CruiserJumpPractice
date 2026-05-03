@@ -59,8 +59,9 @@ Recommend sections only when they carry useful information:
 
 ## Style
 
-- Write issue titles, issue bodies, and issue comments in English by default.
-- Use another language only when the user explicitly requests it, when preserving quoted or source text, or when the existing maintainer conversation has already chosen that language.
+- Write issue titles, issue bodies, and issue comments in English.
+- Preserve non-English text only when quoting source text, branch names, commit messages, file
+  contents, logs, or existing discussion snippets that must remain exact.
 - Keep issue bodies short and scannable.
 - Prefer bullets for facts, steps, and criteria.
 - Mention paths, commands, classes, and config keys in backticks.
