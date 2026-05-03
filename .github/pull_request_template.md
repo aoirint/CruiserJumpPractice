@@ -1,5 +1,3 @@
-<!-- SPDX-License-Identifier: Unlicense -->
-
 ## Summary
 
 <!--
