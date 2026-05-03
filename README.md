@@ -65,7 +65,7 @@ categories.
 pinact run
 
 # Update
-pinact run --update
+pinact run --update --min-age 7
 ```
 
 ## Build
