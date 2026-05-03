@@ -45,7 +45,7 @@ To update the lock file after modifying your package references, run:
 dotnet restore --use-lock-file
 ```
 
-## GitHub Actions management
+## GitHub Actions
 
 The repository uses GitHub Actions for CI.
 
@@ -61,14 +61,23 @@ pinact run --min-age 7
 pinact run --update --min-age 7
 ```
 
-### Thunderstore publishing secret
+### GitHub Actions configuration
 
-Stable releases are published to Thunderstore from CI using the local
-`.github/actions/publish-thunderstore` composite action and the
-`THUNDERSTORE_TOKEN` repository secret.
+#### GitHub Variables
 
-The token must belong to a Thunderstore service account that can publish to the
-`aoirint` team. The current workflow publishes to the `lethal-company`
+This repository currently does not use GitHub Actions variables.
+
+| Name | Used by | Description |
+| :--- | :------ | :---------- |
+| None | Not applicable | No repository variables are currently used. |
+
+#### GitHub Secrets
+
+| Name | Used by | Description |
+| :--- | :------ | :---------- |
+| `THUNDERSTORE_TOKEN` | `.github/workflows/build.yml` | Thunderstore service account token used by `.github/actions/publish-thunderstore` to publish stable releases to the `aoirint` team. |
+
+The current workflow publishes stable releases to the `lethal-company`
 community with the `Mods`, `Tweaks & Quality Of Life`, and `AI Generated`
 categories.
 
