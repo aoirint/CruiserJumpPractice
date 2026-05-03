@@ -112,7 +112,8 @@ For issue replies:
 - Quote only the smallest useful part of a previous comment.
 - Mention paths, commands, classes, and config keys in backticks.
 - Be clear whether something is confirmed, inferred, untested, or still unknown.
-- Ask for specific missing information when needed, such as logs, mod versions, reproduction steps, or save data details.
+- Ask for specific missing information when needed, such as logs, package or
+  application versions, reproduction steps, or relevant data files.
 - Avoid large diffs, large logs, and unrelated implementation plans.
 - Do not promise timelines unless they are already agreed.
 

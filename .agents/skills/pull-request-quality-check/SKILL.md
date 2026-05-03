@@ -7,7 +7,8 @@ description: Quality-check repository pull requests. Use when creating or updati
 
 ## When to Use
 
-- Use this skill when creating, updating, reviewing, or validating pull request titles or bodies for this repository.
+- Use this skill when creating, updating, reviewing, or validating pull request
+  titles or bodies.
 
 ## Title
 
@@ -50,7 +51,8 @@ Check that the body is concise and uses these sections when applicable:
 Recommend sections only when they carry useful information:
 
 - `Summary`: user-facing or maintainer-facing changes, grouped by behavior or area.
-- `Verification`: commands run and their results, such as `dotnet build CruiserJumpPractice.sln`.
+- `Verification`: commands run and their results, such as project builds,
+  tests, linters, formatters, or structural validators.
 - `Notes`: limitations, skipped checks, migration notes, or reviewer attention points.
 - `Breaking Changes`: required when the title or commits include `!` or `BREAKING CHANGE`.
 

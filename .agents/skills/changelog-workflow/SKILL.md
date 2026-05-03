@@ -1,14 +1,14 @@
 ---
 # SPDX-License-Identifier: Unlicense
 name: changelog-workflow
-description: Create and update this repository's canonical developer changelog in CHANGELOG.md. Use when adding developer-facing release history, maintaining Keep a Changelog sections, or preparing canonical version entries.
+description: Create and update a canonical developer changelog. Use when adding developer-facing release history, maintaining Keep a Changelog sections, or preparing canonical version entries.
 ---
 
 # Changelog Workflow
 
 ## When to Use
 
-- Use this skill when updating `CHANGELOG.md`.
+- Use this skill when updating the canonical developer changelog.
 - Use this skill when preparing canonical versioned release history before a
   release.
 - Use this skill when preserving developer-facing prerelease, compatibility,
@@ -16,13 +16,14 @@ description: Create and update this repository's canonical developer changelog i
 
 ## Goals
 
-- Keep `CHANGELOG.md` as the canonical Keep a Changelog-style release history.
+- Keep the confirmed canonical changelog, often `CHANGELOG.md`, as the
+  Keep a Changelog-style release history.
 - Record notable changes for maintainers in a human-readable, newest-first
   format.
 - Preserve prerelease and internal context in the canonical changelog even when
-  it will not appear in Thunderstore-facing release notes.
-- Keep Thunderstore-specific derivation and release-readiness checks in
-  `release-note-workflow`.
+  it will not appear in user-facing release notes.
+- Keep package-registry-specific derivation and release-readiness checks in the
+  dedicated release-note workflow for that package target.
 
 Reference:
 
@@ -30,7 +31,9 @@ Reference:
 
 ## Workflow
 
-1. Update `CHANGELOG.md` first when a release-history change is needed.
+1. Update the canonical changelog first when a release-history change is
+   needed. If the file is not clearly `CHANGELOG.md`, locate or confirm the
+   canonical changelog before editing.
 2. Keep `Unreleased` at the top.
 3. Move `Unreleased` entries into a versioned section only when the maintainer
    has selected the release version and UTC release date.
@@ -52,15 +55,24 @@ Reference:
    to explain what changed and what reached the stable release. If the stable
    release is still only planned, leave the stable roll-up material under
    `Unreleased` instead of creating an unfinished stable heading.
-8. If the user asks for Thunderstore-facing notes, derive only the canonical
-   source material here, then use `release-note-workflow` for the user-facing
-   rewrite and release-readiness checks.
+8. If the user asks for package-registry-facing notes, derive only the
+   canonical source material here, then use the appropriate release-note
+   workflow for the user-facing rewrite and release-readiness checks.
+   - Update the canonical changelog only when the source material is missing,
+     stale, or needs maintainer-facing correction.
+   - Identify the package-specific release-note workflow by name when it exists;
+     otherwise discover the relevant release-note guidance before producing
+     package-facing notes.
+   - If confirmed version, UTC release date, package target, or release-note
+     workflow are missing, state those as input gaps and stop after canonical
+     source preparation.
 
 ## Boundaries
 
-- This skill owns `CHANGELOG.md`; it does not own `assets/CHANGELOG.md`.
-- Do not publish, tag, create GitHub releases, upload to Thunderstore, or edit
-  package metadata unless another workflow and explicit user request call for
-  those side effects.
+- This skill owns the canonical developer changelog; it does not own generated
+  or package-registry-facing release-note files.
+- Do not publish, tag, create releases, upload packages, or edit package
+  metadata unless another workflow and explicit user request call for those
+  side effects.
 - Keep private workspace paths, temporary worktree names, command transcripts,
   and authentication details out of public changelog text.

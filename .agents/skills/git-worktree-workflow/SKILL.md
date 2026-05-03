@@ -34,7 +34,7 @@ Create implementation worktrees under:
 Use a short, descriptive branch and directory name, such as:
 
 ```text
-.agents/worktrees/fix-cruiser-state-load
+.agents/worktrees/fix-state-load
 ```
 
 Start from the latest base branch unless the user names a different base. The usual base is `main`:
@@ -55,13 +55,10 @@ If network access or Git metadata writes require approval, request it and contin
 
 ## Quality Check
 
-A quality check means formatting and verification appropriate to the change risk and repository conventions.
-
-For this repository, useful verification often includes:
-
-```powershell
-dotnet build CruiserJumpPractice.sln
-```
+A quality check means formatting and verification appropriate to the change
+risk and repository conventions. Prefer documented project commands such as
+builds, tests, linters, formatters, or structural validators that cover the
+files changed.
 
 If verification is skipped, state why in the pull request body.
 
