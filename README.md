@@ -66,7 +66,7 @@ docker run --rm --network none --user 1000:1000 -v ".:/workdir" davidanson/markd
 On Linux, pass the host user's UID and GID instead:
 
 ```bash
-docker run --rm --network none --user "$(id -u):$(id -g)" -v ".:/workdir" davidanson/markdownlint-cli2:v0.22.1@sha256:0ed9a5f4c77ef447da2a2ac6e67caf74b214a7f80288819565e8b7d2ac148fe5
+sudo docker run --rm --network none --user "$(id -u):$(id -g)" -v ".:/workdir" davidanson/markdownlint-cli2:v0.22.1@sha256:0ed9a5f4c77ef447da2a2ac6e67caf74b214a7f80288819565e8b7d2ac148fe5
 ```
 
 ## Package management
