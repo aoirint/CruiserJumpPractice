@@ -57,11 +57,16 @@ including diagnostics that cannot be automatically fixed.
 Markdown is checked with `markdownlint-cli2`. The project uses the pinned Docker
 image below so contributors do not need a local Node.js project.
 The image's default working directory is `/workdir`, so mount the repository
-there. The image already defaults to UID 1000; pass the user explicitly to keep
-local linting non-root and run it without network access.
+there. Run it without network access and as a non-root user.
 
 ```powershell
 docker run --rm --network none --user 1000:1000 -v ".:/workdir" davidanson/markdownlint-cli2:v0.22.1@sha256:0ed9a5f4c77ef447da2a2ac6e67caf74b214a7f80288819565e8b7d2ac148fe5
+```
+
+On Linux, pass the host user's UID and GID instead:
+
+```bash
+docker run --rm --network none --user "$(id -u):$(id -g)" -v ".:/workdir" davidanson/markdownlint-cli2:v0.22.1@sha256:0ed9a5f4c77ef447da2a2ac6e67caf74b214a7f80288819565e8b7d2ac148fe5
 ```
 
 ## Package management

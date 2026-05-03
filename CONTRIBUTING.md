@@ -42,6 +42,8 @@ docker run --rm --network none --user 1000:1000 -v ".:/workdir" davidanson/markd
 DOTNET_CLI_UI_LANGUAGE=en dotnet build
 ```
 
+On Linux, use `--user "$(id -u):$(id -g)"` for the Markdown lint command.
+
 For package or release changes, also verify the release documentation in
 [README.md](./README.md) and confirm that the Thunderstore-facing files under
 `assets/` are still correct.
