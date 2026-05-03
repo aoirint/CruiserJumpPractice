@@ -4,6 +4,9 @@ using CruiserJumpPractice.Core.Ports;
 
 namespace CruiserJumpPractice.Interop.InputUtils;
 
+// InputUtils-specific action objects are translated into Core's practice input port here.
+// Null actions are treated as not-triggered so Core does not need to handle partially initialized
+// keybinding state during plugin startup or InputUtils reloads.
 internal sealed class InputUtilsPracticeInput : IPracticeInput
 {
     private readonly InputUtilsActions inputActions;

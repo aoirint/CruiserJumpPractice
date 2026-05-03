@@ -2,6 +2,8 @@
 
 namespace CruiserJumpPractice.Core.UseCases;
 
+// Result enums are the narrow contract between Core decisions, Netcode callbacks, and HUD
+// presentation. They avoid passing exceptions or adapter details across the client/server boundary.
 internal enum RequestSaveCruiserStateResult
 {
     Success,

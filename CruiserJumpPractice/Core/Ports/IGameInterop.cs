@@ -4,6 +4,9 @@ using CruiserJumpPractice.Core.Snapshots;
 
 namespace CruiserJumpPractice.Core.Ports;
 
+// Core depends on game capabilities instead of Lethal Company or Unity types directly.
+// The method names are phrased as practice-mode needs, so use cases can stay stable when
+// reflection fields, NetworkBehaviour plumbing, or concrete game objects move in Interop.
 internal interface IGameInterop
 {
     bool IsHost();

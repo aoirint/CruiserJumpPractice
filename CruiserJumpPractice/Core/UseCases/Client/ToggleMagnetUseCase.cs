@@ -4,6 +4,9 @@ using CruiserJumpPractice.Core.Ports;
 
 namespace CruiserJumpPractice.Core.UseCases.Client;
 
+// The ship magnet already has game-provided synchronization, so Core treats toggling as a
+// client-side command guarded by host authority instead of routing it through the custom
+// cruiser-state RPC surrogate.
 internal sealed class ToggleMagnetUseCase
 {
     private readonly IGameInterop gameInterop;

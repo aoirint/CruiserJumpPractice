@@ -5,6 +5,9 @@ using CruiserJumpPractice.Core.State;
 
 namespace CruiserJumpPractice.Core.UseCases.Server;
 
+// Saving on the server is the only path that mutates stored cruiser state. It returns compact
+// result values so the Netcode behaviour can send outcomes back to the client without knowing
+// how the snapshot was captured.
 internal sealed class SaveCruiserStateUseCase
 {
     private readonly IGameInterop gameInterop;

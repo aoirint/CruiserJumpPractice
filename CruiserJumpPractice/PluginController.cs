@@ -13,6 +13,10 @@ using CruiserJumpPractice.Interop.InputUtils;
 
 namespace CruiserJumpPractice;
 
+// Harmony patches and Netcode behaviours enter the mod through this plugin boundary.
+// The file stays next to the BepInEx entrypoint because it describes plugin-level operations,
+// not game adapters or Core policy. Keeping the dependency graph here also prevents Core from
+// learning about BepInEx, InputUtils, Harmony, or the concrete Lethal Company objects.
 internal sealed class PluginController
 {
     private readonly FrameHandler frameHandler;
@@ -41,6 +45,8 @@ internal sealed class PluginController
 
     public static PluginController Create(ManualLogSource logger)
     {
+        // External tools are adapted to Core ports in one place, then game callbacks go through
+        // the semantic methods below instead of reaching into individual use cases.
         var coreLogger = new BepInExCoreLogger(logger);
         var inputActions = new InputUtilsActions();
         var practiceInput = new InputUtilsPracticeInput(inputActions);

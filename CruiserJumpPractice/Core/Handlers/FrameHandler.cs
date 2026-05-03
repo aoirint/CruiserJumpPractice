@@ -5,6 +5,9 @@ using CruiserJumpPractice.Core.UseCases.Client;
 
 namespace CruiserJumpPractice.Core.Handlers;
 
+// FrameHandler owns only per-frame coordination: read current practice input, ignore unsafe
+// player states, and dispatch client-side requests. Server-side save/load rules stay in use
+// cases so this class does not become a second policy layer.
 internal sealed class FrameHandler
 {
     private readonly IGameInterop gameInterop;

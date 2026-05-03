@@ -9,6 +9,9 @@ using CruiserJumpPractice.Core.UseCases;
 
 namespace CruiserJumpPractice.Interop.Game.Behaviours;
 
+// Netcode RPC methods must live on a NetworkBehaviour, which is why this bridge exists. The
+// actual save/load decisions are still owned by Core use cases through PluginController; this
+// class only crosses the client/server boundary and returns the result to the requesting client.
 internal class RpcSurrogateBehaviour : NetworkBehaviour
 {
     internal static ManualLogSource Logger => CruiserJumpPractice.Logger!;

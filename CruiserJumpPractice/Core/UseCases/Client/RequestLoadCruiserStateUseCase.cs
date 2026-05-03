@@ -4,6 +4,8 @@ using CruiserJumpPractice.Core.Ports;
 
 namespace CruiserJumpPractice.Core.UseCases.Client;
 
+// Loading starts as a client-side input event, but restoring physics state is server work.
+// Host-only feedback is handled before Interop sends the RPC.
 internal sealed class RequestLoadCruiserStateUseCase
 {
     private readonly IGameInterop gameInterop;

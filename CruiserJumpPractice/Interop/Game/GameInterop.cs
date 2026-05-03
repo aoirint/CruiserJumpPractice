@@ -7,6 +7,9 @@ using CruiserJumpPractice.Interop.Game.Adapters;
 
 namespace CruiserJumpPractice.Interop.Game;
 
+// GameInterop is the concrete implementation of Core's game port. It gathers several small
+// adapters into one practice-oriented surface so Core does not coordinate HUD, networking,
+// cruiser reflection, and ship magnet details separately.
 internal sealed class GameInterop : IGameInterop
 {
     private readonly NetworkAdapter networkInterop;
