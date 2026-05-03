@@ -24,7 +24,7 @@ public class CruiserJumpPractice : BaseUnityPlugin
     {
         Logger = base.Logger;
 
-        runtime = PluginComposition.Create(Logger);
+        runtime = PluginRuntime.Create(Logger);
 
         Harmony.PatchAll();
 
