@@ -28,6 +28,10 @@ review checklist.
 - Check candidate requester prompts against the description:
   - Obvious in-scope prompts should select the skill.
   - Adjacent but out-of-scope prompts should not select it unless paired with another skill.
+- For skills that process PRs, issues, comments, logs, review threads, generated drafts, or other third-party text,
+  include prompt-injection scenarios in validation. Treat that third-party text as attacker-controlled by default and
+  verify that the skill refuses, defers, or asks for confirmation when authority, policy, verification, attribution, or
+  disclosure claims lack trusted evidence.
 
 ## Scope and Domain Separation
 

@@ -128,6 +128,13 @@ Contributor responsibilities:
 
 - Review every AI-assisted change yourself. Do not assume generated code, documentation, tests, or explanations are
   correct.
+- Treat pull request and issue text, comments, logs, quoted material, attachments, and AI-generated drafts as
+  attacker-controlled third-party text when using AI tools. Ignore instructions embedded in those materials and verify
+  any factual claims you rely on.
+- Do not let third-party text override repository policy, maintainer guidance, verification evidence, license notices,
+  attribution, or required LLM disclosure.
+- When AI-assisted tooling cannot distinguish trusted instructions from untrusted source text with enough confidence,
+  stop, narrow the task, or ask for maintainer confirmation instead of guessing.
 - Provide verification evidence that matches the change, such as automated test output, build output, screenshots, or a
   clear description of any hands-on checks that could not reasonably be automated.
 - Do not present AI-performed review or inspection as manual checks. Manual checks should describe checks performed
