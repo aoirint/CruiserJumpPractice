@@ -44,6 +44,14 @@ Run the relevant checks before opening a pull request.
 dotnet format
 ```
 
+Run fixable C# analyzer checks.
+
+```powershell
+dotnet format analyzers --no-restore --verify-no-changes
+```
+
+Roslyn analyzers also run during build.
+
 ### Markdown lint
 
 Markdown is checked with `markdownlint-cli2`. The project uses the pinned Docker
