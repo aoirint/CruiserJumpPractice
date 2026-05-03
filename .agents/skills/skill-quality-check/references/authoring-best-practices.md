@@ -3,14 +3,8 @@
 ## Purpose
 
 Use this reference when a skill change needs more than the short checklist in `SKILL.md`. It
-summarizes stable guidance from official Codex and Claude skill documentation and adapts it into a
-repository-neutral review checklist.
-
-Sources consulted:
-
-- OpenAI Codex Agent Skills documentation: <https://developers.openai.com/codex/skills>
-- Anthropic Claude Skill authoring best practices:
-  <https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices>
+summarizes stable guidance from agent skill documentation and adapts it into a repository-neutral
+review checklist.
 
 ## Contents
 
