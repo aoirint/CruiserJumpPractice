@@ -43,4 +43,4 @@ runs:
         THUNDERSTORE_COMMUNITY: ${{ inputs.community }}
         THUNDERSTORE_COMMUNITY_CATEGORIES: ${{ inputs.community_categories }}
         THUNDERSTORE_REPO: ${{ inputs.repo }}
-      run: bash "${{ github.action_path }}/publish-thunderstore.sh" "${{ inputs.artifact_path }}"
+      run: bash "${GITHUB_ACTION_PATH}/publish-thunderstore.sh" "${{ inputs.artifact_path }}"
