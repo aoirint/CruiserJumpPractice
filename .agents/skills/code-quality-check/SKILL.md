@@ -19,8 +19,10 @@ description: Review code changes for correctness, maintainability, clarity, desi
 - Make behavior, ownership, design boundaries, data shapes, failure modes, and external constraints visible where they matter.
 - Keep the implementation aligned with existing local patterns unless the diff clearly justifies a new pattern.
 - Find missing tests, verification gaps, stale names, hidden coupling, and accidental scope creep before review.
-- Prefer comments that explain why a boundary, exception, adapter, synchronization rule, or data shape exists, not comments that restate what the code already says.
-- Prefer XML documentation for types and members whose design intent should appear in IDE navigation or completion, even when they are not public APIs. Prioritize members whose callers need the intent; do not require XML documentation for local implementation details that are clear in place.
+- Follow standard comment best practices first: prefer clear names, types, and structure, then add comments or documentation where intent, summary, boundary, ordering, external constraints, or safe-change guidance would otherwise be hard to read.
+- Preserve or add concise summary comments when they give readers a useful entry point into responsibility, structure, or non-obvious behavior. Improve or remove only comments that are misleading, stale, mechanically duplicated, or low-value paraphrases of obvious code.
+- Prefer comments that explain why a boundary, exception, adapter, synchronization rule, or data shape exists. Include short what/context summaries when they reduce reading cost; avoid comments that merely restate an obvious operation.
+- Prefer XML documentation for types and members whose design intent should appear in IDE navigation or completion, even when they are not public APIs. Prioritize members whose callers need the intent; do not require XML documentation for local implementation details that are clear in place. In C# XML docs, use or revise `<summary>` when the type or member needs a concise call-site explanation.
 - Avoid mechanical comment templates. Repeated table-like documentation is acceptable only when the repeated shape is the clearest form, such as attribute lists, key assignments, protocol fields, or input-action tables; keep the reason close enough that a reader sees why the repeated shape is intentional before or while reading the table.
 - Keep comments concentrated at entry points: classes, interfaces, adapters, boundary/result types, and non-obvious integration surfaces. Use method-body comments only for non-obvious synchronization, side effects, reflection, lifecycle dependencies, or external API constraints.
 - Verify behavior with the checks that fit the risk of the change, and make skipped checks explicit.
@@ -47,7 +49,10 @@ description: Review code changes for correctness, maintainability, clarity, desi
    - Check whether dependencies, side effects, logging, allocation, and error propagation are proportionate to the risk of the code path.
 5. Review comments and documentation:
    - Prefer XML documentation on navigable types and members when the intent should be visible from call sites or IDE hover text.
-   - Replace implementation paraphrases with design-intent comments, or remove them when the code is already clear.
+   - Preserve concise summaries that orient a reader to responsibility, structure, or non-obvious behavior.
+   - Improve comments that are useful but too focused on low-level what by adding the missing context, intent, or constraint.
+   - Replace or remove comments that are misleading, stale, mechanically duplicated, or only paraphrase obvious implementation details.
+   - Classify comments as `Keep` when they reduce navigation or change risk, `Revise` when the useful idea is present but missing context or current names, and `Remove` when maintenance cost exceeds reading value.
    - Check for mechanical repetition across files. If a repeated shape is intentional table-like documentation, confirm the surrounding text explains why repetition helps.
    - Do not require comments in every file. Missing comments are a problem only when a first-time reader cannot infer responsibility, boundary, or reason from code and names.
 6. Review tests and verification:
