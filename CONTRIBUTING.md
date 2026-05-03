@@ -92,9 +92,9 @@ the Thunderstore-facing files under `assets/` are still correct.
   maintainer can confirm whether the change is still wanted and coordinate attribution or next steps.
 - If your pull request reuses substantial work from another pull request, credit the original pull request and
   contributor in your pull request description.
-- Pull requests that remain inactive for a reasonable period may be closed to keep the review queue current. This is not
-  a judgment on the contributor, and it does not prevent you from opening a new pull request later if the change is
-  still useful.
+- To keep maintainer work manageable and the review queue current, pull requests that remain inactive for a reasonable
+  period may be closed. This is not a judgment on the contributor, and it does not prevent you from opening a new pull
+  request later if the change is still useful.
 
 ## AI-assisted contributions
 
