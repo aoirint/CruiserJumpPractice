@@ -143,5 +143,5 @@ Contributor responsibilities:
 
 If you believe you found a security issue, do not share exploit details publicly or with untrusted recipients. This
 includes, but is not limited to, public issues, social media, blog posts, livestreams, video uploads, and similar public
-channels. Contact the maintainer privately when possible, report it to a trusted security organization, or open a
-minimal public issue that asks how to report a sensitive problem.
+channels. Report it to the maintainer through a private and secure channel when possible, or to a trusted security
+organization.
