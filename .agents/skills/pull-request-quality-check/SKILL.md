@@ -30,13 +30,6 @@ When the PR was prepared with LLM assistance, check that this GitHub alert appea
 > This pull request was created with assistance from LLMs.
 ```
 
-For Japanese pull request bodies, use this alert text instead:
-
-```markdown
-> [!WARNING]
-> このプルリクエストはLLMの支援を受けて作成されました。
-```
-
 The alert should appear before every other heading, summary, checklist, or metadata block.
 
 ## Body Structure
@@ -63,6 +56,8 @@ Recommend sections only when they carry useful information:
 
 ## Style
 
+- Write pull request titles, pull request bodies, review comments, and replies in English by default.
+- Use another language only when the user explicitly requests it, when preserving quoted or source text, or when the existing maintainer conversation has already chosen that language.
 - Keep PR bodies short and reviewable.
 - Prefer bullets over long paragraphs.
 - Mention paths or commands in backticks.
@@ -77,13 +72,6 @@ When a pull request reply or review was prepared with LLM assistance, check that
 ```markdown
 > [!WARNING]
 > This comment was created with assistance from LLMs.
-```
-
-For Japanese pull request replies or reviews, use this alert text instead:
-
-```markdown
-> [!WARNING]
-> このコメントはLLMの支援を受けて作成されました。
 ```
 
 The alert should appear before every other paragraph, heading, checklist, quote, finding, or metadata block.

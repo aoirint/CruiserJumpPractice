@@ -28,13 +28,6 @@ When the issue was prepared with LLM assistance, check that this GitHub alert ap
 > This issue was created with assistance from LLMs.
 ```
 
-For Japanese issue bodies, use this alert text instead:
-
-```markdown
-> [!WARNING]
-> このIssueはLLMの支援を受けて作成されました。
-```
-
 The alert should appear before every other heading, summary, checklist, template field, or metadata block.
 
 ## Body Structure
@@ -65,6 +58,8 @@ Recommend sections only when they carry useful information:
 
 ## Style
 
+- Write issue titles, issue bodies, and issue comments in English by default.
+- Use another language only when the user explicitly requests it, when preserving quoted or source text, or when the existing maintainer conversation has already chosen that language.
 - Keep issue bodies short and scannable.
 - Prefer bullets for facts, steps, and criteria.
 - Mention paths, commands, classes, and config keys in backticks.
@@ -88,13 +83,6 @@ When the issue reply was prepared with LLM assistance, check that this GitHub al
 ```markdown
 > [!WARNING]
 > This comment was created with assistance from LLMs.
-```
-
-For Japanese issue replies, use this alert text instead:
-
-```markdown
-> [!WARNING]
-> このコメントはLLMの支援を受けて作成されました。
 ```
 
 The alert should appear before every other paragraph, heading, checklist, quote, or metadata block.
