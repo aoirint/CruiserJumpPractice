@@ -34,9 +34,10 @@ dotnet restore --locked-mode
 
 By submitting a contribution to this project, you agree to this Contribution License Agreement.
 
-For this agreement, "you" means the person or organization submitting the contribution, and "contribution" means any
-code, documentation, asset, issue text, pull request text, suggestion, patch, generated output, or other material that
-you intentionally submit for inclusion in this project.
+For this agreement, "you" means the person or organization submitting the contribution, and "contribution" means code,
+documentation, assets, patches, generated output, or other material that you intentionally submit for inclusion in this
+project. Ordinary issue reports, pull request discussion, questions, and suggestions are not contributions under this
+agreement unless you clearly submit them for inclusion in the project.
 
 By submitting a contribution, you represent and agree that:
 
@@ -45,10 +46,10 @@ By submitting a contribution, you represent and agree that:
 - You grant the maintainer and downstream recipients a perpetual, worldwide, non-exclusive, no-charge, royalty-free,
   irrevocable copyright license to use, copy, modify, merge, publish, distribute, sublicense, and otherwise use your
   contribution as part of this project.
-- If your contribution includes patentable material, you grant the maintainer and downstream recipients a perpetual,
-  worldwide, non-exclusive, no-charge, royalty-free, irrevocable patent license to make, have made, use, offer to sell,
-  sell, import, and otherwise transfer your contribution as part of this project, to the extent you are able to grant
-  that license.
+- You grant the maintainer and downstream recipients a perpetual, worldwide, non-exclusive, no-charge, royalty-free,
+  irrevocable patent license to make, have made, use, offer to sell, sell, import, and otherwise transfer your
+  contribution as part of this project. This patent license applies only to patent claims that you can license and that
+  are necessarily infringed by your contribution alone or by combining your contribution with the project.
 - You keep any copyright you hold in your contribution. This agreement is a license grant, not a copyright assignment.
 - The maintainer is not required to accept, publish, retain, or distribute any contribution.
 - Do not submit code, documentation, assets, generated output, or other materials if you do not have the right to
