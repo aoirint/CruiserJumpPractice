@@ -4,6 +4,16 @@
 
 -
 
+## Related Issues
+
+-
+
+## Reviewer Focus
+
+- AI or tool assistance that significantly affected this pull request:
+- What I focused on while reviewing or adapting the result:
+- Areas I would like reviewers to check closely:
+
 ## Verification
 
 -
@@ -12,5 +22,4 @@
 
 As the pull request author, I have checked all required items:
 
-- [ ] I have disclosed any AI or tool assistance that significantly affected this pull request, or no such assistance was used.
 - [ ] I have read `CONTRIBUTING.md` and agree to the Contribution License Agreement.
