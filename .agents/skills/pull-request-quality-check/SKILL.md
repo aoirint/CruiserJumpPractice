@@ -149,10 +149,10 @@ Use `Update Note` or `Discussion Note` sections only when the user or maintainer
 
 - Use `Update Note` for a concrete change that was just made to the pull request.
 - Use `Discussion Note` for a decision, tradeoff, or rationale that should remain visible in the PR thread.
-- Immediately after the required LLM alert and before the note heading, state which human prompt, user request, or
-  maintainer request the note answers. Use a short `Human request addressed: ...` line so the note naturally identifies
-  the prompt source as human and can be reused as source material for `### AI-assisted inspections` in the pull request
-  body. After the label, write a plain request summary instead of another label such as `Maintainer request:`.
+- Immediately after the required LLM alert and before the note heading, state which human prompt or user request the
+  note answers. Use a short `Human request addressed: ...` line so the note naturally identifies the prompt source as
+  human and can be reused as source material for `### AI-assisted inspections` in the pull request body. Do not classify
+  the requester by role or authority there. After the label, write a plain request summary instead of another label.
 - Keep each note concise and limited to information that is safe and useful for future reviewers.
 - Base notes on confirmed PR context. If a note includes an inference or assumption, label it as such.
 - Do not include secrets, private discussion, local-only paths, hidden chain-of-thought, or unrelated implementation
