@@ -11,6 +11,8 @@ defaults:
 
 jobs:
   build:
+    # Build keeps ubuntu-latest because the artifact step depends on the
+    # image-provided .NET, jq, and 7z toolchain used by the release package.
     runs-on: ubuntu-latest
 
     outputs:
@@ -19,6 +21,8 @@ jobs:
       git_version: ${{ steps.generate-version.outputs.git_version }}
 
     steps:
+      # Checkout is required before generating versions because the local
+      # composite action reads project files and fetches tags from this clone.
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Generate version
@@ -37,6 +41,8 @@ jobs:
           cache-dependency-path: CruiserJumpPractice/packages.lock.json
 
       - name: Restore NuGet packages
+        # Restore once in locked mode so build uses the committed dependency
+        # graph and does not rewrite package resolution in CI.
         run: dotnet restore --locked-mode
 
       - name: Record start time
@@ -58,7 +64,8 @@ jobs:
 
           mkdir -p "${TMP_ARTIFACT_DIR}/${ARTIFACT_STEM}"
 
-          # Package format
+          # Keep this layout as the Thunderstore package root; consumers expect
+          # the DLL, manifest, icon, docs, changelog, and license at zip root.
           # https://thunderstore.io/c/lethal-company/create/docs/
 
           mv ./CruiserJumpPractice/bin/Release/netstandard2.1/com.aoirint.CruiserJumpPractice.dll  "${TMP_ARTIFACT_DIR}/${ARTIFACT_STEM}/"
@@ -78,6 +85,8 @@ jobs:
  
       - name: Upload artifact
         id: upload-artifact
+        # The package is already a zip file, so upload it without recompressing
+        # to keep the digest and download size tied to the release payload.
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: artifact
@@ -120,6 +129,8 @@ jobs:
   release:
     needs:
       - build
+    # Edge builds are validation artifacts only; GitHub releases are created
+    # only for new project versions that should receive a tag.
     if: needs.build.outputs.release_mode != 'edge'
 
     # Keep this on ubuntu-slim: release publishing only needs standard shell tools
@@ -130,6 +141,8 @@ jobs:
       contents: write
 
     steps:
+      # Checkout is needed even though the package is downloaded, because the
+      # Thunderstore publisher is a repository-local composite action.
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Download build artifact
@@ -139,6 +152,8 @@ jobs:
           path: ./tmp_artifacts
 
       - name: Publish release
+        # Create immutable releases so an already-published version cannot be
+        # silently replaced by a later workflow run for the same tag.
         uses: ncipollo/release-action@339a81892b84b4eeb0f6e744e4574d79d0d9b8dd # v1.21.0
         with:
           tag: ${{ needs.build.outputs.git_version }}
@@ -154,6 +169,8 @@ jobs:
 
       - name: Publish stable release to Thunderstore
         id: publish-thunderstore
+        # Thunderstore does not accept the prerelease versions generated here,
+        # so only stable latest releases are published to the community.
         if: needs.build.outputs.release_mode == 'latest'
         uses: ./.github/actions/publish-thunderstore
         with:
