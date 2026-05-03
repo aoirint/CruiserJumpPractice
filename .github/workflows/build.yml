@@ -120,7 +120,7 @@ jobs:
       - build
     if: needs.build.outputs.release_mode != 'edge'
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
 
     permissions:
       contents: write
