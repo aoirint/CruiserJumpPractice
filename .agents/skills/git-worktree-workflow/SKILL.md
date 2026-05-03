@@ -53,6 +53,9 @@ If network access or Git metadata writes require approval, request it and contin
 - After creating the task worktree, make implementation changes there.
 - Do not remove another worktree unless the user explicitly asks.
 - If the branch or worktree path already exists, inspect it before reuse or choose a new descriptive name.
+- Once a branch has been pushed or attached to a pull request, do not amend, rebase, squash,
+  force-push, or otherwise rewrite its history unless the user explicitly asks for history
+  rewriting.
 
 ## Quality Check
 
@@ -68,4 +71,6 @@ The final quality check also includes reviewing the complete diff and recent com
 ## Pull Request Notes
 
 - Keep pull request titles and bodies consistent with `pull-request-quality-check`.
+- For later corrections on an already-pushed pull request branch, add follow-up commits on top of
+  the branch so review history remains visible.
 - Remove temporary PR body files from the worktree after creating or editing the pull request.

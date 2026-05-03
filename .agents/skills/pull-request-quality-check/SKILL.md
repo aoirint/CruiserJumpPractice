@@ -149,6 +149,10 @@ Use `Update Note` or `Discussion Note` sections only when a human explicitly ask
 
 - Use `Update Note` for a concrete change that was just made to the pull request.
 - Use `Discussion Note` for a decision, tradeoff, or rationale that should remain visible in the PR thread.
+- If a human asks for "history so far", "notes so far", or similar retrospective PR-thread notes,
+  do not dump raw commit history. Create separate concise notes grouped by meaningful decision or
+  change theme, using `Update Note` for concrete PR changes and `Discussion Note` for decisions,
+  tradeoffs, or rationale.
 - Immediately after the required LLM alert and before the note heading, state which human prompt or user request the
   note answers. Use a short `Human request addressed: ...` line so the note naturally identifies the prompt source as
   human and can be reused as source material for `### AI-assisted inspections` in the pull request body. Do not classify
