@@ -57,7 +57,7 @@ Stable releases are published to Thunderstore from CI using the local
 
 The token must belong to a Thunderstore service account that can publish to the
 `aoirint` team. The current workflow publishes to the `lethal-company`
-community with the `AI Generated`, `Mods`, and `Tweaks & Quality Of Life`
+community with the `Mods`, `Tweaks & Quality Of Life`, and `AI Generated`
 categories.
 
 ```powershell
