@@ -9,9 +9,9 @@ using LethalCompanyInputUtils::LethalCompanyInputUtils.BindingPathEnums;
 
 namespace CruiserJumpPractice.Interop.InputUtils;
 
-// InputUtilsActions is a declaration table for InputUtils attributes; practice-facing input
-// behavior is adapted in InputUtilsPracticeInput.
-// Keep the layout notes beside the attributes because these bindings are easier to audit as a table.
+// InputUtilsActions declares the keybindings that InputUtils registers for the plugin.
+// Practice-facing input behavior is adapted in InputUtilsPracticeInput, so this file stays as a
+// small attribute table with layout notes beside each binding.
 // The repeated "Keymap:" rows are intentional table data, not prose that needs varied wording.
 internal sealed class InputUtilsActions : LcInputActions
 {

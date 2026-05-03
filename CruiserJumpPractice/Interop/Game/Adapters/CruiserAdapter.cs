@@ -12,9 +12,9 @@ using CruiserJumpPractice.Core.Snapshots;
 
 namespace CruiserJumpPractice.Interop.Game.Adapters;
 
-// CruiserAdapter is the translation point between a live VehicleController and Core's plain
-// snapshot data. Reflection and Unity vector conversion stay here so save/load use cases only
-// handle practice rules.
+// CruiserAdapter finds live cruisers and turns them into the snapshots used by save/load.
+// Unity vector conversion and reflection for private cruiser fields stay here, away from Core
+// practice rules.
 internal sealed class CruiserAdapter
 {
     private readonly ManualLogSource logger;
