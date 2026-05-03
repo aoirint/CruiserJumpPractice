@@ -6,6 +6,10 @@ This is a maintenance release reflecting internal improvements.
 
 No gameplay changes are introduced.
 
+### Changed
+
+- This release is not backward-compatible with CruiserJumpPractice v0.1.4 and earlier.
+
 ### Notes
 
 - Compatibility:
@@ -14,31 +18,22 @@ No gameplay changes are introduced.
     - Lethal Company v73: It still seems to work.
     - Lethal Company v56: Major features work as expected, but there is a minor known issue: https://github.com/aoirint/CruiserJumpPractice/issues/5
 
+## v0.1.4 - 2025-11-30 UTC
+
 ### Changed
 
-- This release is not backward-compatible with CruiserJumpPractice v0.1.4 and earlier.
-
-## v0.1.4 - 2025-11-30 UTC
+- Enables keybind actions while the player is dead, same as Imperium.
 
 ### Notes
 
 - Compatibility:
     - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID: `1749099131234587692`).
-
-### Changed
-
-- Enables keybind actions while the player is dead, same as Imperium.
 
 ## v0.1.3 - 2025-11-30 UTC [YANKED]
 
 Yanked release due to a build issue.
 
 ## v0.1.2 - 2025-11-29 UTC
-
-### Notes
-
-- Compatibility:
-    - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID: `1749099131234587692`).
 
 ### Changed
 
@@ -48,24 +43,29 @@ Yanked release due to a build issue.
 
 - Fixed an issue where the magnet lever on the ship wall did not reflect the magnet status when toggled via keybind.
 
-## v0.1.1 - 2025-11-29 UTC
-
 ### Notes
 
 - Compatibility:
     - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID: `1749099131234587692`).
+
+## v0.1.1 - 2025-11-29 UTC
 
 ### Changed
 
 - Updated documentation.
 
-## v0.1.0 - 2025-11-29 UTC
-
 ### Notes
 
 - Compatibility:
     - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID: `1749099131234587692`).
 
+## v0.1.0 - 2025-11-29 UTC
+
 ### Added
 
 - Initial release on Thunderstore.
+
+### Notes
+
+- Compatibility:
+    - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID: `1749099131234587692`).

@@ -48,6 +48,7 @@ Reference:
    - Put supplemental release metadata that is not itself a change type, such as
      compatibility notes and test environments, under `Notes` instead of making
      separate top-level change-category headings.
+   - Put `Notes` after all change-category sections within each release entry.
 5. Keep versioned sections newest first, with headings such as
    `## v1.2.3 - 2026-05-03 UTC`.
 6. Record developer-facing details that help future maintainers, including:
