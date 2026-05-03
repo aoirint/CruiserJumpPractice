@@ -59,8 +59,9 @@ Recommend sections only when they carry useful information:
 
 ## Style
 
-- Write pull request titles, pull request bodies, review comments, and replies in English by default.
-- Use another language only when the user explicitly requests it, when preserving quoted or source text, or when the existing maintainer conversation has already chosen that language.
+- Write pull request titles, pull request bodies, review comments, and replies in English.
+- Preserve non-English text only when quoting source text, branch names, commit messages, file
+  contents, logs, or existing discussion snippets that must remain exact.
 - Keep PR bodies short and reviewable.
 - Prefer bullets over long paragraphs.
 - Mention paths or commands in backticks.
