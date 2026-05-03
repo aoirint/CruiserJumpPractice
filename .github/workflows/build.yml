@@ -160,9 +160,9 @@ jobs:
           namespace: aoirint
           community: lethal-company
           community_categories: |
-            ai-generated
             mods
             tweaks-and-quality-of-life
+            ai-generated
 
       - name: Add Thunderstore summary
         if: steps.publish-thunderstore.outcome == 'success'
