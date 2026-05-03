@@ -75,22 +75,22 @@ the Thunderstore-facing files under `assets/` are still correct.
 - Link related issues when applicable.
 - Keep the pull request small enough for maintainers to review without guessing at unrelated intent.
 - Mention any skipped checks and why they were skipped.
-- Pull requests must confirm the Contribution License Agreement in the pull request template. Pull requests without
-  that confirmation may be closed without further notice.
+- Pull requests must include the pull request template checkbox confirmation for the Contribution License Agreement
+  before they can be merged. Pull requests without that confirmation may be closed without further notice.
 
 ### Stalled pull requests
 
 - Respond to maintainer feedback when possible. If you need more time, are blocked, or no longer plan to continue the
   pull request, leave a short comment so maintainers know what to expect. Even if a long time has passed, it is always
   fine to reply with an update.
+- If you want to continue work from a stalled pull request, leave a short comment for the maintainer and the original
+  contributor before opening a new pull request. The original contributor may not be available to respond, but the
+  maintainer can confirm whether the change is still wanted and coordinate attribution or next steps.
 - To keep work moving, maintainers may accept another contribution for the same issue without first rejecting an
   inactive pull request.
 - If a pull request stalls, maintainers or another contributor may continue the work in a separate pull request,
   including by reusing or adapting the stalled pull request's commits, patch, tests, documentation, or ideas under the
   Contribution License Agreement.
-- If you want to continue work from a stalled pull request, leave a short comment for the maintainer and the original
-  contributor before opening a new pull request. The original contributor may not be available to respond, but the
-  maintainer can confirm whether the change is still wanted and coordinate attribution or next steps.
 - If your pull request reuses substantial work from another pull request, credit the original pull request and
   contributor in your pull request description.
 - To keep maintainer work manageable and the review queue current, pull requests that remain inactive for a reasonable
