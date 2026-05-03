@@ -81,6 +81,26 @@ framework that controls runtime compatibility.
   `dotnet restore --use-lock-file`, review new diagnostics, and document
   intentional rule or severity changes in the pull request.
 
+Use this operating model for tooling maintenance:
+
+- Handle routine SDK, formatter, analyzer, and workflow action updates in
+  maintenance-only pull requests, separate from gameplay or mod behavior
+  changes.
+- Before proposing an SDK or `LangVersion` change, confirm the new combination
+  is supported by GitHub Actions, Visual Studio 2022, and the current
+  `netstandard2.1` target. Record that compatibility check in the pull request.
+- If `dotnet format` or analyzers report new diagnostics after a tooling
+  update, split mechanical formatting fixes from intentional rule or code
+  changes when practical. Call out any new diagnostic category that reviewers
+  should inspect.
+- Keep build and lint behavior stable by default. A tooling update PR should
+  run and report `dotnet restore --locked-mode`,
+  `dotnet format --no-restore --verify-no-changes`,
+  `dotnet build --no-restore --configuration Release`, and Markdown lint.
+- Defer a tooling update instead of merging around it when CI image support,
+  Visual Studio support, dependency compatibility, or analyzer impact is
+  unclear.
+
 Maintenance references:
 
 - [.NET releases and support](https://learn.microsoft.com/en-us/dotnet/core/releases-and-support)
