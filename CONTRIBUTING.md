@@ -74,12 +74,27 @@ the Thunderstore-facing files under `assets/` are still correct.
 - Link related issues when applicable.
 - Keep the pull request small enough for maintainers to review without guessing at unrelated intent.
 - Mention any skipped checks and why they were skipped.
+- Respond to maintainer feedback when possible. If you need more time, are blocked, or no longer plan to continue the
+  pull request, leave a short comment so maintainers know what to expect.
+- To keep work moving, maintainers may accept another contribution for the same issue without first rejecting an
+  inactive pull request.
+- Pull requests that remain inactive for a reasonable period may be closed without prejudice. Closing a stale pull
+  request does not prevent you from opening a new one later if the change is still useful.
 
 ## AI-assisted contributions
 
-If you used AI tools or LLM-based agents to create or substantially modify a contribution, disclose that assistance in
-the pull request description. The contributor is responsible for reviewing the result, checking licenses, and verifying
-that the change is appropriate for the project.
+AI tools may be used as aids, but the human contributor remains responsible for the contribution.
+
+- Disclose material AI assistance in the pull request description, including what the tool helped create or change.
+- Review every AI-assisted change yourself. Do not assume generated code, documentation, tests, or explanations are
+  correct.
+- Provide verification evidence that matches the change, such as test output, build output, screenshots, or a clear
+  manual test description.
+- Do not submit low-effort AI-generated, "vibe-coded", or agent-generated pull requests that you do not understand,
+  have not adapted to this codebase, or cannot personally explain and maintain.
+- Write pull request descriptions and review replies in your own words. Use AI for editing help only if you still
+  review and stand behind the final text.
+- Maintainers may close undisclosed, unverified, low-quality, or spam-like AI-assisted contributions.
 
 ## Reporting security issues
 
