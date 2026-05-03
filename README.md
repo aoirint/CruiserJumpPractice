@@ -99,9 +99,9 @@ DOTNET_CLI_UI_LANGUAGE=en dotnet build --configuration Release
 6. CI will create a GitHub Release automatically.
 7. For stable releases, CI will upload the release artifact to Thunderstore automatically.
 
-   The `THUNDERSTORE_TOKEN` secret must belong to a Thunderstore service account that can publish to the
-   `aoirint` team. The current workflow publishes to the `lethal-company` community with the `Mods`,
-   `Tweaks & Quality Of Life`, and `AI Generated` categories.
+   The current workflow deploys to the Thunderstore `aoirint` team and publishes to the `lethal-company`
+   community with the `Mods`, `Tweaks & Quality Of Life`, and `AI Generated` categories.
+   The `THUNDERSTORE_TOKEN` secret must belong to a Thunderstore service account that can publish to that team.
 
    **NOTE: prerelease version is not supported, e.g. `1.2.3-beta.1`.**
 
