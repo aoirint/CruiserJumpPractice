@@ -27,6 +27,8 @@ Markdown list examples:
 
 ## Reviewer Instructions
 
+### AI disclosure
+
 <!--
 Tell reviewers where to focus.
 If AI assistance significantly affected this pull request, describe it here in practical terms:
@@ -34,7 +36,6 @@ what assistance was used, what you reviewed or adapted yourself, and any areas y
 Use "None" for items that do not apply.
 
 Optional H3 examples:
-### AI assistance
 ### Review focus
 ### Lower-confidence areas
 -->
@@ -61,7 +62,7 @@ Paste the relevant output here.
 
 ### Automated checks
 ### Manual checks
-### Screenshots / Videos
+### Screenshots / videos
 -->
 
 ## Checklist
