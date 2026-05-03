@@ -122,7 +122,7 @@ Examples that normally do not need disclosure:
 
 When in doubt:
 
-- If you are unsure whether assistance was significant, write what you can.
+- If you are unsure whether assistance was "significant", treat it as significant and write what you can.
 
 Contributor responsibilities:
 
