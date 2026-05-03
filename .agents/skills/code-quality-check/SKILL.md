@@ -12,6 +12,7 @@ description: Review code changes for correctness, maintainability, clarity, desi
 - Use this skill when a review should start from a blank reading of the diff instead of only checking whether the implementation matches the original plan.
 - When a task asks you to both fix code and quality-check it, use the normal implementation workflow for the edit, then apply this skill before and after the fix as the review loop.
 - Do not use this skill as a substitute for repository-specific format, commit-message, issue, or pull-request quality checks. Run those skills separately when they apply.
+- Treat this as a language-agnostic code quality review skill. Language-specific documentation forms are examples; map them to the target language and repository conventions.
 
 ## Goals
 
@@ -22,10 +23,17 @@ description: Review code changes for correctness, maintainability, clarity, desi
 - Follow standard comment best practices first: prefer clear names, types, and structure, then add comments or documentation where intent, summary, boundary, ordering, external constraints, or safe-change guidance would otherwise be hard to read.
 - Preserve or add concise summary comments when they give readers a useful entry point into responsibility, structure, or non-obvious behavior. Improve or remove only comments that are misleading, stale, mechanically duplicated, or low-value paraphrases of obvious code.
 - Prefer comments that explain why a boundary, exception, adapter, synchronization rule, or data shape exists. Include short what/context summaries when they reduce reading cost; avoid comments that merely restate an obvious operation.
-- Prefer XML documentation for types and members whose design intent should appear in IDE navigation or completion, even when they are not public APIs. Prioritize members whose callers need the intent; do not require XML documentation for local implementation details that are clear in place. In C# XML docs, use or revise `<summary>` when the type or member needs a concise call-site explanation.
+- Prefer the target language's documentation convention for APIs, types, functions, members, modules, or commands whose design intent should appear in IDE navigation, completion, hover text, generated docs, or call-site help. Prioritize surfaces whose callers need the intent; do not require formal documentation for local implementation details that are clear in place.
 - Avoid mechanical comment templates. Repeated table-like documentation is acceptable only when the repeated shape is the clearest form, such as attribute lists, key assignments, protocol fields, or input-action tables; keep the reason close enough that a reader sees why the repeated shape is intentional before or while reading the table.
 - Keep comments concentrated at entry points: classes, interfaces, adapters, boundary/result types, and non-obvious integration surfaces. Use method-body comments only for non-obvious synchronization, side effects, reflection, lifecycle dependencies, or external API constraints.
 - Verify behavior with the checks that fit the risk of the change, and make skipped checks explicit.
+
+## Language-Specific Notes
+
+- Apply the same review principles across languages, then use the documentation form expected by that language and repository.
+- For C#, XML documentation is a common way to surface intent in IDE navigation and generated docs. Use or revise `<summary>` when a type or member needs a concise call-site explanation.
+- For other ecosystems, use their local equivalents, such as JSDoc or TSDoc in TypeScript, docstrings in Python, Javadoc in Java, Rustdoc in Rust, Go doc comments in Go, or the repository's established convention.
+- Do not transfer a language-specific form across languages. For example, do not ask a Python or TypeScript project for C# XML documentation; ask whether the relevant docstring, JSDoc, or local convention communicates the same intent.
 
 ## Workflow
 
@@ -48,7 +56,7 @@ description: Review code changes for correctness, maintainability, clarity, desi
    - Check whether new abstractions remove real complexity instead of hiding a one-off case.
    - Check whether dependencies, side effects, logging, allocation, and error propagation are proportionate to the risk of the code path.
 5. Review comments and documentation:
-   - Prefer XML documentation on navigable types and members when the intent should be visible from call sites or IDE hover text.
+   - Prefer the target language's documentation convention on navigable surfaces when intent should be visible from call sites, generated docs, or IDE help.
    - Preserve concise summaries that orient a reader to responsibility, structure, or non-obvious behavior.
    - Improve comments that are useful but too focused on low-level what by adding the missing context, intent, or constraint.
    - Replace or remove comments that are misleading, stale, mechanically duplicated, or only paraphrase obvious implementation details.
