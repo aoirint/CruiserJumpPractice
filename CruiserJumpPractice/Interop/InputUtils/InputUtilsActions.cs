@@ -9,8 +9,10 @@ using LethalCompanyInputUtils::LethalCompanyInputUtils.BindingPathEnums;
 
 namespace CruiserJumpPractice.Interop.InputUtils;
 
+// InputUtilsActions is a declaration table for InputUtils attributes; practice-facing input
+// behavior is adapted in InputUtilsPracticeInput.
 // Keep the layout notes beside the attributes because these bindings are easier to audit as a table.
-// The repeated "Keymap:" rows are intentional; comment-template checks should treat them like data.
+// The repeated "Keymap:" rows are intentional table data, not prose that needs varied wording.
 internal sealed class InputUtilsActions : LcInputActions
 {
     // Keymap: JP109 @, US [

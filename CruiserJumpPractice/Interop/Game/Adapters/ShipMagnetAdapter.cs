@@ -40,7 +40,7 @@ internal sealed class ShipMagnetAdapter
                 throw new GameInteropException("StartOfRound.magnetLever is null.");
             }
 
-            // NOTE: This AnimatedObjectTrigger method calls StartOfRound.SetMagnetOn and sends a ServerRpc internally.
+            // NOTE: AnimatedObjectTrigger calls StartOfRound.SetMagnetOn and sends a ServerRpc internally.
             magnetLever.TriggerAnimation(gameObjects.GetLocalPlayer());
         }
         catch (System.Exception error)

@@ -25,7 +25,7 @@ internal sealed class ToggleMagnetUseCase
 
         var newMagnetState = !gameInterop.IsShipMagnetOn();
 
-        // This value is synchronized by the game's built-in server RPC flow.
+        // The game's built-in server RPC flow synchronizes this value.
         gameInterop.ToggleShipMagnet();
 
         var result = newMagnetState ? ToggleMagnetResult.MagnetOn : ToggleMagnetResult.MagnetOff;
