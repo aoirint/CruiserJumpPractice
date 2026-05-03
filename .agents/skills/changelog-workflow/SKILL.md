@@ -45,6 +45,9 @@ Reference:
      known.
 4. Use Keep a Changelog categories when applicable: `Added`, `Changed`,
    `Deprecated`, `Removed`, `Fixed`, and `Security`.
+   - Put supplemental release metadata that is not itself a change type, such as
+     compatibility notes and test environments, under `Notes` instead of making
+     separate top-level change-category headings.
 5. Keep versioned sections newest first, with headings such as
    `## v1.2.3 - 2026-05-03 UTC`.
 6. Record developer-facing details that help future maintainers, including:
