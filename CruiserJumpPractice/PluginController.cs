@@ -1,8 +1,8 @@
 #nullable enable
 
 using BepInEx.Logging;
+using CruiserJumpPractice.Core.Handlers;
 using CruiserJumpPractice.Core.Ports;
-using CruiserJumpPractice.Core.Runtime;
 using CruiserJumpPractice.Core.State;
 using CruiserJumpPractice.Core.UseCases;
 using CruiserJumpPractice.Core.UseCases.Client;
@@ -11,9 +11,9 @@ using CruiserJumpPractice.Interop;
 using CruiserJumpPractice.Interop.Game;
 using CruiserJumpPractice.Interop.InputUtils;
 
-namespace CruiserJumpPractice.Composition;
+namespace CruiserJumpPractice;
 
-internal sealed class PluginRuntime
+internal sealed class PluginController
 {
     private readonly FrameHandler frameHandler;
     private readonly StartupHandler startupHandler;
@@ -22,7 +22,7 @@ internal sealed class PluginRuntime
     private readonly PresentSaveCruiserStateResultUseCase presentSaveCruiserStateResultUseCase;
     private readonly PresentLoadCruiserStateResultUseCase presentLoadCruiserStateResultUseCase;
 
-    private PluginRuntime(
+    private PluginController(
         FrameHandler frameHandler,
         StartupHandler startupHandler,
         SaveCruiserStateUseCase saveCruiserStateUseCase,
@@ -39,7 +39,7 @@ internal sealed class PluginRuntime
         this.presentLoadCruiserStateResultUseCase = presentLoadCruiserStateResultUseCase;
     }
 
-    public static PluginRuntime Create(ManualLogSource logger)
+    public static PluginController Create(ManualLogSource logger)
     {
         var coreLogger = new BepInExCoreLogger(logger);
         var inputActions = new InputUtilsActions();
@@ -78,7 +78,7 @@ internal sealed class PluginRuntime
             toggleMagnetUseCase
         );
 
-        return new PluginRuntime(
+        return new PluginController(
             frameHandler: frameHandler,
             startupHandler: new StartupHandler(gameInterop),
             saveCruiserStateUseCase: saveCruiserStateUseCase,

@@ -2,7 +2,7 @@
 
 using CruiserJumpPractice.Core.Ports;
 
-namespace CruiserJumpPractice.Core.Runtime;
+namespace CruiserJumpPractice.Core.Handlers;
 
 internal sealed class StartupHandler
 {

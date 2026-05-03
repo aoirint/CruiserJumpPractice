@@ -3,7 +3,7 @@
 using CruiserJumpPractice.Core.Ports;
 using CruiserJumpPractice.Core.UseCases.Client;
 
-namespace CruiserJumpPractice.Core.Runtime;
+namespace CruiserJumpPractice.Core.Handlers;
 
 internal sealed class FrameHandler
 {

@@ -2,7 +2,6 @@
 
 using BepInEx;
 using BepInEx.Logging;
-using CruiserJumpPractice.Composition;
 using HarmonyLib;
 
 namespace CruiserJumpPractice;
@@ -16,15 +15,15 @@ public class CruiserJumpPractice : BaseUnityPlugin
 
     internal static Harmony Harmony { get; } = new(MyPluginInfo.PLUGIN_GUID);
 
-    private static PluginRuntime? runtime;
+    private static PluginController? controller;
 
-    internal static PluginRuntime Runtime => runtime!;
+    internal static PluginController Controller => controller!;
 
     private void Awake()
     {
         Logger = base.Logger;
 
-        runtime = PluginRuntime.Create(Logger);
+        controller = PluginController.Create(Logger);
 
         Harmony.PatchAll();
 

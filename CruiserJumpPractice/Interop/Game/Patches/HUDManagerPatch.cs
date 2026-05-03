@@ -17,14 +17,14 @@ internal class HUDManagerPatch
     [HarmonyPostfix]
     public static void AwakePostfix()
     {
-        CruiserJumpPractice.Runtime.HandleStartup();
+        CruiserJumpPractice.Controller.HandleStartup();
     }
 
     [HarmonyPatch(nameof(HUDManager.Update))]
     [HarmonyPostfix]
     public static void UpdatePostfix()
     {
-        CruiserJumpPractice.Runtime.HandleFrame();
+        CruiserJumpPractice.Controller.HandleFrame();
     }
 
 }
