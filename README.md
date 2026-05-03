@@ -51,8 +51,14 @@ The repository uses GitHub Actions for CI.
 
 The version of the actions are pinned with [pinact](https://github.com/suzuki-shunsuke/pinact).
 
-Stable releases are published to Thunderstore from CI using the `THUNDERSTORE_TOKEN` repository secret.
-The token must belong to a Thunderstore service account that can publish to the `aoirint` team.
+Stable releases are published to Thunderstore from CI using the local
+`.github/actions/publish-thunderstore` composite action and the
+`THUNDERSTORE_TOKEN` repository secret.
+
+The token must belong to a Thunderstore service account that can publish to the
+`aoirint` team. The current workflow publishes to the `lethal-company`
+community with the `AI Generated`, `Mods`, and `Tweaks & Quality Of Life`
+categories.
 
 ```powershell
 # Pin
