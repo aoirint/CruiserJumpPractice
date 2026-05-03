@@ -42,18 +42,23 @@ Optional H3 examples:
 ## Testing
 
 <!--
-List the checks you ran and their results, such as:
-- `DOTNET_CLI_UI_LANGUAGE=en dotnet build`
-- manual in-game checks
-- screenshots
-- videos
-
+List the checks you ran and their results.
 If you did not run a relevant check, explain why.
 
-Optional H3 examples:
+Optional testing structure:
+### Build log
+
+<details>
+
+```plain
+DOTNET_CLI_UI_LANGUAGE=en dotnet build
+```
+
+</details>
+
 ### Automated checks
 ### Manual checks
-### Screenshots and videos
+### Screenshots / Videos
 -->
 
 ## Checklist
