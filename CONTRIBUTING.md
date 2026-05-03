@@ -110,8 +110,8 @@ Examples that should be disclosed:
 
 - In the pull request description, disclose AI or tool assistance that significantly affected the pull request,
   but keep the disclosure practical. You do not need to provide a file-by-file table of AI involvement.
-- For example, mention that you gave an agent a rough design prompt and had it implement the change, describe the areas
-  you remember asking it to revise, and say what you focused on when reviewing or adapting the result.
+- When possible, mention the rough prompt you gave an agent, the changes you asked it to make, changes made after
+  automated review, and what you focused on when reviewing or adapting the result.
 - If there are areas you did not review closely or are less confident about, mention them so reviewers can check those
   areas more carefully.
 
@@ -122,7 +122,7 @@ Examples that normally do not need disclosure:
 
 When in doubt:
 
-- If you are unsure whether assistance was significant, disclose it briefly.
+- If you are unsure whether assistance was significant, write what you can.
 
 Contributor responsibilities:
 
