@@ -3,7 +3,7 @@
 
 set -euo pipefail
 
-artifact_path="${1:?Usage: publish-thunderstore.sh <package.zip>}"
+artifact_pattern="${1:?Usage: publish-thunderstore.sh <package.zip>}"
 
 : "${THUNDERSTORE_TOKEN:?THUNDERSTORE_TOKEN is required}"
 : "${THUNDERSTORE_NAMESPACE:?THUNDERSTORE_NAMESPACE is required}"
@@ -11,6 +11,20 @@ artifact_path="${1:?Usage: publish-thunderstore.sh <package.zip>}"
 : "${THUNDERSTORE_COMMUNITY_CATEGORIES:?THUNDERSTORE_COMMUNITY_CATEGORIES is required}"
 
 thunderstore_repo="${THUNDERSTORE_REPO:-https://thunderstore.io}"
+
+if [ -f "${artifact_pattern}" ]; then
+  artifact_path="${artifact_pattern}"
+else
+  mapfile -t artifact_matches < <(compgen -G "${artifact_pattern}")
+
+  if [ "${#artifact_matches[@]}" -ne 1 ]; then
+    echo "Expected exactly one Thunderstore artifact, found ${#artifact_matches[@]} for: ${artifact_pattern}" >&2
+    exit 1
+  fi
+
+  artifact_path="${artifact_matches[0]}"
+fi
+
 artifact_name=$(basename "${artifact_path}")
 artifact_size=$(wc -c < "${artifact_path}" | tr -d '[:space:]')
 

@@ -151,14 +151,15 @@ jobs:
       - name: Publish stable release to Thunderstore
         id: publish-thunderstore
         if: needs.build.outputs.release_mode == 'latest'
-        env:
-          THUNDERSTORE_TOKEN: ${{ secrets.THUNDERSTORE_TOKEN }}
-          THUNDERSTORE_NAMESPACE: aoirint
-          THUNDERSTORE_COMMUNITY: lethal-company
-          THUNDERSTORE_COMMUNITY_CATEGORIES: |
+        uses: ./.github/actions/publish-thunderstore
+        with:
+          artifact_path: ./tmp_artifacts/*.zip
+          token: ${{ secrets.THUNDERSTORE_TOKEN }}
+          namespace: aoirint
+          community: lethal-company
+          community_categories: |
             mods
             tweaks-and-quality-of-life
-        run: bash ./.github/scripts/publish-thunderstore.sh ./tmp_artifacts/*.zip
 
       - name: Add Thunderstore summary
         if: steps.publish-thunderstore.outcome == 'success'
