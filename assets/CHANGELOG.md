@@ -25,7 +25,7 @@ No gameplay changes are introduced.
 
 - Enables keybind actions while the player is dead, same as Imperium.
 
-## v0.1.3 - 2025-11-30 UTC
+## v0.1.3 - 2025-11-30 UTC [YANKED]
 
 Yanked release due to a build issue.
 
