@@ -92,22 +92,6 @@ When adding a comment:
   rewrite or reject, use a same-line comment or another nearby location that preserves the group.
 - Update nearby tests or verification notes if the comment documents behavior that must stay true.
 
-### CI and Configuration Comments
-
-For configuration-as-code, CI workflows, build files, and tool configuration, intent comments are
-most useful near non-obvious fixed values: pinned tool versions, runtime images, lockfile paths,
-ordering constraints, suppressions, generated-file exclusions, timeout values, matrices, or external
-action references.
-
-When commenting on those values:
-
-- Explain the maintenance signal as well as the initial reason: when maintainers should revisit the
-  value and what compatibility, reproducibility, security, or operational constraint must stay true.
-- Keep broad repeated update policy in one maintained document or shared workflow guidance when
-  repeating it beside every value would drift.
-- Use local comments for site-specific constraints, exceptions, or links to central policy.
-- Avoid comments that merely restate the YAML key, tool option, version literal, or file path.
-
 ## Developer-Facing Language
 
 Treat developer-facing text separately from user-facing text. This includes comments, log messages,
