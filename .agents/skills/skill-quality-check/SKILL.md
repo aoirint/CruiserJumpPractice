@@ -27,40 +27,62 @@ description: Quality-check Agent Skills for trigger clarity, scope, structure, p
 ## Workflow
 
 1. Read the changed skill files and nearby related skills.
-2. Check frontmatter:
+2. Check description/body consistency before scenario validation:
+   - Compare the `description` trigger promise with the scope actually covered by `SKILL.md`.
+   - Reconcile any mismatch before treating scenario results as reliable.
+   - State whether adjacent scopes, such as publishing, deployment, or side-effecting operations,
+     are in scope, guidance-only, or require explicit confirmation.
+3. Check frontmatter:
    - `name` uses lowercase letters, digits, and hyphens.
    - `description` states what the skill does and when to use it.
    - Trigger words are front-loaded enough to survive shortened skill lists.
-3. Check scope:
+4. Check scope:
    - One primary job per skill.
    - No unrelated project policy, domain knowledge, or historical notes in a general-purpose skill.
    - Split domain knowledge into a dedicated skill or a directly linked reference file when it would
      otherwise make the skill broad or stale.
-4. Check structure:
-   - Prefer `When to Use`, `Goals`, and `Workflow` for repository skills.
+5. Check structure:
+   - Prefer `When to Use`, `Goals`, and `Workflow` for Agent Skills.
    - Keep required steps explicit, ordered, and written as imperatives.
    - Match specificity to risk: flexible guidance for judgment-heavy work, exact commands or scripts
      for fragile operations.
-5. Check progressive disclosure:
+6. Check progressive disclosure:
    - Keep `SKILL.md` short enough to scan quickly.
    - Link every optional reference directly from `SKILL.md`; avoid nested reference chains.
    - Add a table of contents to reference files longer than 100 lines.
    - Do not duplicate detailed guidance between `SKILL.md` and references.
-6. Check bundled resources:
+7. Check bundled resources:
    - Include `scripts/` only for repeatable or fragile automation, and test representative scripts.
    - Include `assets/` only for files used in outputs.
    - Remove placeholder or auxiliary files that do not directly support the skill.
    - For copied, adapted, generated, vendored, or reusable example files, preserve upstream
      copyright/license notices and apply the SPDX guidance from `code-quality-check`.
-7. Validate and iterate:
-   - Run the available skill validator, if the repository has one.
-   - Run spelling, formatting, or repository checks appropriate to Markdown-only changes.
-   - For each new or substantially revised skill, prepare realistic validation scenarios, evaluate
-     whether the skill produces the intended behavior, apply one theme of fixes per iteration, and
-     stop only when the scenarios converge or a stated cutoff is reached.
-8. Record verification:
+8. Check metadata alignment:
+   - Keep `agents/openai.yaml` aligned with `SKILL.md` trigger wording, scope, and expected output.
+   - Update or remove metadata that no longer directly supports the skill.
+9. Validate and iterate:
+   - Run the available skill validator, if the project has one.
+   - Run spelling, formatting, or project checks appropriate to Markdown-only changes.
+   - For each new or substantially revised skill, prepare two or three realistic validation
+     scenarios before evaluation, including at least one median case and one edge or out-of-scope
+     case.
+   - Give each scenario at least one critical requirement and evaluate with a fresh executor.
+   - Record unclear points, discretionary fill-ins, and repeated failure patterns.
+   - Apply one related theme of fixes per iteration.
+   - Stop only after convergence, divergence, or a stated resource cutoff. Treat convergence as two
+     consecutive rounds with no new unclear points and no meaningful accuracy or effort improvement.
+10. Record verification:
    - Note external sources consulted, why they were needed, and how their guidance was applied.
    - Note whether docs, changelog, PR notes, or follow-up domain skills are needed.
+
+When validating with scenarios, keep the report categories separate:
+
+- **Target skill findings**: problems in the skill being reviewed, such as description/body mismatch,
+  repository-specific leakage, stale metadata, missing validation, or unsupported bundled files.
+- **Input gaps**: unavailable source files, exact command text, unknown provenance, or missing
+  metadata. Record these as assumptions or blockers.
+- **Skill-quality-check ambiguity**: places where this skill did not say what to inspect or how to
+  decide. Only these count as unclear points for improving `skill-quality-check` itself.
 
 ## Reference Checks
 

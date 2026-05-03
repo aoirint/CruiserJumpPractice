@@ -36,12 +36,20 @@ validation expectations.
 4. Add or update comments only when the design intent is not obvious from the code and cannot be
    made obvious with a small refactor.
 5. Remove stale, redundant, or misleading comments.
-6. Re-run the repository's language-specific quality checks after edits.
-7. Summarize which checks ran, which passed, and why any relevant check was skipped.
+6. Classify changed text as developer-facing, user-facing, or external-contract text before
+   recommending wording changes.
+7. Re-run the project's language-specific quality checks after edits.
+8. Summarize which checks ran, which passed, and why any relevant check was skipped.
 
 When reviewing an abstract scenario or a proposed change without concrete files, produce a review
 plan instead of pretending to inspect code. State the assumptions, the readability changes you would
-try first, the comments you would keep or add, and the checks you would run once real files exist.
+try first, the comments you would keep or add, the text-audience classifications that must be made,
+and the checks you would run once real files exist.
+
+Separate missing input from skill ambiguity. If exact files, commands, release metadata, or
+provenance are unavailable, report them as assumptions, verification blockers, or target-change
+risks. Do not treat them as unclear points in this skill unless the workflow itself fails to say how
+to proceed.
 
 ## Comment Policy
 
@@ -138,13 +146,13 @@ the final summary or PR notes for maintainer review.
 ## Verification Discipline
 
 - Start with the narrowest check that exercises the changed behavior, then run the broader
-  language-, framework-, or tool-specific checks expected by the repository.
+  language-, framework-, or tool-specific checks expected by the project.
 - If a check fails, fix the narrow cause and rerun that same check before widening scope.
 - Do not skip executable checks only because dependencies or tools are not installed yet; install or
-  provision them using the repository's documented workflow when that is safe and reproducible.
+  provision them using the project's documented workflow when that is safe and reproducible.
 - If verification is still impossible after setup, state the concrete blocker and the command that
   could not run.
-- Keep verification consistent across worktrees, local fixes, and PR preparation.
+- Keep verification consistent across local fixes, commits, and review or handoff preparation.
 - Record skipped checks with a concrete reason, not a generic "not run" note.
 
 ## Supply-Chain Baseline
@@ -174,6 +182,8 @@ the final summary or PR notes for maintainer review.
   existing nearby convention, or have a documented reason for omitting/changing the notice.
 - Language-specific formatting, linting, typing, and tests were run or any skipped check has a
   concrete reason.
+- Missing files, commands, metadata, or provenance were reported as assumptions, target-change
+  risks, or verification blockers rather than as findings invented from unavailable evidence.
 - Agent Skill changes were checked with `skill-quality-check` when applicable.
 - New or updated dependencies, downloaded tools, and CI actions were checked against the
   repository's supply-chain policy, including the minimum 7-day cooldown or a recorded
