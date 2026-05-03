@@ -21,6 +21,10 @@ Install Visual Studio 2022.
 
 - <https://visualstudio.microsoft.com/en-us/vs/>
 
+Install Docker for local Markdown linting.
+
+- <https://docs.docker.com/get-started/get-docker/>
+
 Restore NuGet packages.
 
 ```powershell
@@ -52,9 +56,11 @@ including diagnostics that cannot be automatically fixed.
 
 Markdown is checked with `markdownlint-cli2`. The project uses the pinned Docker
 image below so contributors do not need a local Node.js project.
+The image's default working directory is `/workdir`, so mount the repository
+there and run it without network access.
 
 ```powershell
-docker run --rm -v "${PWD}:/workdir" davidanson/markdownlint-cli2:v0.22.1@sha256:0ed9a5f4c77ef447da2a2ac6e67caf74b214a7f80288819565e8b7d2ac148fe5
+docker run --rm --network none -v ".:/workdir" davidanson/markdownlint-cli2:v0.22.1@sha256:0ed9a5f4c77ef447da2a2ac6e67caf74b214a7f80288819565e8b7d2ac148fe5
 ```
 
 ## Package management
