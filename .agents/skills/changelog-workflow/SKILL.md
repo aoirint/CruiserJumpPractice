@@ -22,8 +22,8 @@ description: Create and update a canonical developer changelog. Use when adding 
   format.
 - Preserve prerelease and internal context in the canonical changelog even when
   it will not appear in user-facing release notes.
-- Keep package-registry-specific derivation and release-readiness checks in the
-  dedicated release-note workflow for that package target.
+- Keep user-facing release-note rewriting and release-readiness checks in the
+  dedicated release-note workflow.
 
 Reference:
 
@@ -55,23 +55,23 @@ Reference:
    to explain what changed and what reached the stable release. If the stable
    release is still only planned, leave the stable roll-up material under
    `Unreleased` instead of creating an unfinished stable heading.
-8. If the user asks for package-registry-facing notes, derive only the
-   canonical source material here, then use the appropriate release-note
-   workflow for the user-facing rewrite and release-readiness checks.
+8. If the user asks for user-facing release notes, derive only the canonical
+   source material here, then use the appropriate release-note workflow for the
+   user-facing rewrite and release-readiness checks.
    - Update the canonical changelog only when the source material is missing,
      stale, or needs maintainer-facing correction.
-   - Identify the package-specific release-note workflow by name when it exists;
-     otherwise discover the relevant release-note guidance before producing
-     package-facing notes.
-   - If confirmed version, UTC release date, package target, or release-note
-     workflow are missing, state those as input gaps and stop after canonical
-     source preparation.
+   - Identify the release-note workflow by name when it exists; otherwise
+     discover the relevant release-note guidance before producing user-facing
+     notes.
+   - If confirmed version, UTC release date, target audience, publication
+     channel, or release-note workflow are missing, state those as input gaps
+     and stop after canonical source preparation.
 
 ## Boundaries
 
 - This skill owns the canonical developer changelog; it does not own generated
-  or package-registry-facing release-note files.
-- Do not publish, tag, create releases, upload packages, or edit package
+  or user-facing release-note files.
+- Do not publish, tag, create releases, upload artifacts, or edit release
   metadata unless another workflow and explicit user request call for those
   side effects.
 - Keep private workspace paths, temporary worktree names, command transcripts,
