@@ -108,6 +108,8 @@ description: Create, update, or review user-facing release notes. Use when deriv
      labeled bullets such as `Compatibility:` or `Known limitations:`, instead
      of creating standalone headings for metadata that is not a Keep a
      Changelog change category.
+   - Put `Notes` after all change-category sections within each release entry
+     unless the publication channel explicitly requires another order.
 10. Before publication, verify:
    - The user-facing release-note file has a stable version heading at
      the top, not `Unreleased`, and does not contain placeholder release
@@ -174,6 +176,8 @@ Classify review items as:
   bullets. Do not use standalone `Compatibility`, `Test Environment`, or
   similar metadata headings unless the publication channel explicitly requires
   them.
+- `Notes` appears after all change-category sections within each release entry
+  unless the publication channel explicitly requires another order.
 - Each user-visible change includes one concise reason or background sentence,
   sourced from the canonical changelog or maintainer input.
   This applies to the target release; untouched historical entries in a
