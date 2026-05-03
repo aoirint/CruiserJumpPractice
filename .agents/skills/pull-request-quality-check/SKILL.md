@@ -1,4 +1,5 @@
 ---
+# SPDX-License-Identifier: Unlicense
 name: pull-request-quality-check
 description: Quality-check repository pull requests. Use when creating or updating pull requests.
 ---
@@ -7,7 +8,8 @@ description: Quality-check repository pull requests. Use when creating or updati
 
 ## When to Use
 
-- Use this skill when creating, updating, reviewing, or validating pull request titles or bodies for this repository.
+- Use this skill when creating, updating, reviewing, or validating pull request
+  titles or bodies.
 
 ## Title
 
@@ -27,7 +29,7 @@ When the PR was prepared with LLM assistance, check that this GitHub alert appea
 
 ```markdown
 > [!WARNING]
-> This pull request was generated with LLMs.
+> This pull request was created with assistance from LLMs.
 ```
 
 The alert should appear before every other heading, summary, checklist, or metadata block.
@@ -38,7 +40,7 @@ Check that the body is concise and uses these sections when applicable:
 
 ```markdown
 > [!WARNING]
-> This pull request was generated with LLMs.
+> This pull request was created with assistance from LLMs.
 
 ## Summary
 - ...
@@ -50,12 +52,15 @@ Check that the body is concise and uses these sections when applicable:
 Recommend sections only when they carry useful information:
 
 - `Summary`: user-facing or maintainer-facing changes, grouped by behavior or area.
-- `Verification`: commands run and their results, such as `dotnet build CruiserJumpPractice.sln`.
+- `Verification`: commands run and their results, such as project builds,
+  tests, linters, formatters, or structural validators.
 - `Notes`: limitations, skipped checks, migration notes, or reviewer attention points.
 - `Breaking Changes`: required when the title or commits include `!` or `BREAKING CHANGE`.
 
 ## Style
 
+- Write pull request titles, pull request bodies, review comments, and replies in English by default.
+- Use another language only when the user explicitly requests it, when preserving quoted or source text, or when the existing maintainer conversation has already chosen that language.
 - Keep PR bodies short and reviewable.
 - Prefer bullets over long paragraphs.
 - Mention paths or commands in backticks.
@@ -69,7 +74,7 @@ When a pull request reply or review was prepared with LLM assistance, check that
 
 ```markdown
 > [!WARNING]
-> This comment was generated with LLMs.
+> This comment was created with assistance from LLMs.
 ```
 
 The alert should appear before every other paragraph, heading, checklist, quote, finding, or metadata block.

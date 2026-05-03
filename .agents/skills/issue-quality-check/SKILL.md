@@ -1,4 +1,5 @@
 ---
+# SPDX-License-Identifier: Unlicense
 name: issue-quality-check
 description: Quality-check repository issues and issue replies. Use when creating or updating GitHub issues or comments on issues.
 ---
@@ -25,7 +26,7 @@ When the issue was prepared with LLM assistance, check that this GitHub alert ap
 
 ```markdown
 > [!WARNING]
-> This issue was generated with LLMs.
+> This issue was created with assistance from LLMs.
 ```
 
 The alert should appear before every other heading, summary, checklist, template field, or metadata block.
@@ -36,7 +37,7 @@ Check that the body is concise and uses these sections when applicable:
 
 ```markdown
 > [!WARNING]
-> This issue was generated with LLMs.
+> This issue was created with assistance from LLMs.
 
 ## Summary
 - ...
@@ -58,6 +59,8 @@ Recommend sections only when they carry useful information:
 
 ## Style
 
+- Write issue titles, issue bodies, and issue comments in English by default.
+- Use another language only when the user explicitly requests it, when preserving quoted or source text, or when the existing maintainer conversation has already chosen that language.
 - Keep issue bodies short and scannable.
 - Prefer bullets for facts, steps, and criteria.
 - Mention paths, commands, classes, and config keys in backticks.
@@ -80,7 +83,7 @@ When the issue reply was prepared with LLM assistance, check that this GitHub al
 
 ```markdown
 > [!WARNING]
-> This comment was generated with LLMs.
+> This comment was created with assistance from LLMs.
 ```
 
 The alert should appear before every other paragraph, heading, checklist, quote, or metadata block.
@@ -89,7 +92,7 @@ Check that the reply is concise and uses only the structure needed for the situa
 
 ```markdown
 > [!WARNING]
-> This comment was generated with LLMs.
+> This comment was created with assistance from LLMs.
 
 Thanks for the report. I can reproduce this with ...
 
@@ -112,7 +115,8 @@ For issue replies:
 - Quote only the smallest useful part of a previous comment.
 - Mention paths, commands, classes, and config keys in backticks.
 - Be clear whether something is confirmed, inferred, untested, or still unknown.
-- Ask for specific missing information when needed, such as logs, mod versions, reproduction steps, or save data details.
+- Ask for specific missing information when needed, such as logs, package or
+  application versions, reproduction steps, or relevant data files.
 - Avoid large diffs, large logs, and unrelated implementation plans.
 - Do not promise timelines unless they are already agreed.
 
