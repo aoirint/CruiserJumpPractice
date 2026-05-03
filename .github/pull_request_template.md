@@ -51,10 +51,14 @@ Optional testing structure:
 <details>
 
 ```plain
-DOTNET_CLI_UI_LANGUAGE=en dotnet build
+$ DOTNET_CLI_UI_LANGUAGE=en dotnet build
+Paste the relevant output here.
 ```
 
 </details>
+
+Mask personal information, local absolute paths, access tokens, and other sensitive details before posting logs,
+screenshots, or videos.
 
 ### Automated checks
 ### Manual checks
