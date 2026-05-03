@@ -29,7 +29,7 @@ When the PR was prepared with LLM assistance, check that this GitHub alert appea
 
 ```markdown
 > [!WARNING]
-> This pull request was generated with LLMs.
+> This pull request was created with assistance from LLMs.
 ```
 
 The alert should appear before every other heading, summary, checklist, or metadata block.
@@ -40,7 +40,7 @@ Check that the body is concise and uses these sections when applicable:
 
 ```markdown
 > [!WARNING]
-> This pull request was generated with LLMs.
+> This pull request was created with assistance from LLMs.
 
 ## Summary
 - ...
@@ -59,6 +59,8 @@ Recommend sections only when they carry useful information:
 
 ## Style
 
+- Write pull request titles, pull request bodies, review comments, and replies in English by default.
+- Use another language only when the user explicitly requests it, when preserving quoted or source text, or when the existing maintainer conversation has already chosen that language.
 - Keep PR bodies short and reviewable.
 - Prefer bullets over long paragraphs.
 - Mention paths or commands in backticks.
@@ -72,7 +74,7 @@ When a pull request reply or review was prepared with LLM assistance, check that
 
 ```markdown
 > [!WARNING]
-> This comment was generated with LLMs.
+> This comment was created with assistance from LLMs.
 ```
 
 The alert should appear before every other paragraph, heading, checklist, quote, finding, or metadata block.
