@@ -57,49 +57,21 @@ including diagnostics that cannot be automatically fixed.
 This project separates the SDK used to build and format the mod from the target
 framework that controls runtime compatibility.
 
-- Keep `TargetFramework` on `netstandard2.1` unless the supported Lethal
-  Company, BepInEx, Unity, and dependency versions justify a compatibility
-  change.
-- Prefer a supported LTS .NET SDK for routine maintenance. Adopt an STS or
-  newer SDK major only when a specific compiler, formatter, analyzer, CI, or
-  Visual Studio compatibility reason justifies the shorter support window.
-  .NET even-numbered releases are LTS and odd-numbered releases are STS; do
-  not move CI or contributor setup to an unsupported SDK.
-- Update the README SDK requirement and `actions/setup-dotnet` `dotnet-version`
-  values in build and lint workflows together so compilation, analyzer, and
-  formatter behavior stay aligned.
-- Keep `LangVersion` explicit when the project intentionally uses a specific
-  C# version. Review Visual Studio support, CI SDK support, and mod dependency
-  compatibility before increasing it, and keep the C# format summary above in
-  sync with the project file.
-- Treat analyzer package, formatter, SDK, and workflow action updates as
-  tooling changes. Preserve `dotnet restore --locked-mode`,
-  `dotnet format --no-restore --verify-no-changes`, and
-  `dotnet build --no-restore --configuration Release` behavior unless the
-  pull request explicitly documents why a behavior change is needed.
-- When updating analyzer packages, update `packages.lock.json` with
-  `dotnet restore --use-lock-file`, review new diagnostics, and document
-  intentional rule or severity changes in the pull request.
-
-Use this operating model for tooling maintenance:
-
-- Handle routine SDK, formatter, analyzer, and workflow action updates in
-  maintenance-only pull requests, separate from gameplay or mod behavior
-  changes.
-- Before proposing an SDK or `LangVersion` change, confirm the new combination
-  is supported by GitHub Actions, Visual Studio 2022, and the current
-  `netstandard2.1` target. Record that compatibility check in the pull request.
-- If `dotnet format` or analyzers report new diagnostics after a tooling
-  update, split mechanical formatting fixes from intentional rule or code
-  changes when practical. Call out any new diagnostic category that reviewers
-  should inspect.
-- Keep build and lint behavior stable by default. A tooling update PR should
-  run and report `dotnet restore --locked-mode`,
-  `dotnet format --no-restore --verify-no-changes`,
-  `dotnet build --no-restore --configuration Release`, and Markdown lint.
-- Defer a tooling update instead of merging around it when CI image support,
-  Visual Studio support, dependency compatibility, or analyzer impact is
-  unclear.
+- Keep `TargetFramework` on `netstandard2.1` unless Lethal Company, BepInEx,
+  Unity, or compile-only dependencies require a compatibility change.
+- Prefer supported LTS SDKs for routine maintenance. Use an STS or newer SDK
+  major only when it solves a specific compiler, formatter, analyzer, CI, or
+  Visual Studio problem.
+- Keep SDK updates in maintenance-only pull requests. Update the README SDK
+  requirement and both workflow `dotnet-version` values together.
+- Keep `LangVersion` explicit. Before increasing it, confirm SDK, Visual Studio
+  2022, and dependency compatibility, then update the C# format summary above.
+- For analyzer updates, update `packages.lock.json`, review new diagnostics,
+  and separate mechanical formatting from intentional rule or code changes when
+  practical.
+- Preserve existing restore, format, build, and Markdown lint behavior by
+  default. Record compatibility checks and verification commands in the pull
+  request, and defer the update when the impact is unclear.
 
 Maintenance references:
 
