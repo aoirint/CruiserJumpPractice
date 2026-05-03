@@ -2,15 +2,16 @@
 
 # Contributing
 
-Thank you for your interest in improving CruiserJumpPractice. This project welcomes focused bug reports,
-documentation improvements, compatibility notes, and small code changes that are easy to review.
+Thank you for your interest in improving CruiserJumpPractice. This project
+welcomes focused bug reports, documentation improvements, compatibility notes,
+and small code changes that are easy to review.
 The project maintainer is listed in [CODEOWNERS](./.github/CODEOWNERS).
 
 ## Before you start
 
 - Check the existing issues and pull requests to avoid duplicate work.
-- Open an issue first for larger behavior changes, compatibility changes, or anything that may affect release
-  packaging.
+- Open an issue first for larger behavior changes, compatibility changes, or
+  anything that may affect release packaging.
 - Keep changes focused. Separate unrelated fixes, refactors, and documentation updates into separate pull requests
   when practical.
 
@@ -37,11 +38,16 @@ Run the checks that match your change before opening a pull request:
 
 ```powershell
 dotnet format
+docker run --rm --network none --user 1000:1000 -v ".:/workdir" davidanson/markdownlint-cli2:v0.22.1@sha256:0ed9a5f4c77ef447da2a2ac6e67caf74b214a7f80288819565e8b7d2ac148fe5
 DOTNET_CLI_UI_LANGUAGE=en dotnet build
 ```
 
-For package or release changes, also verify the release documentation in [README.md](./README.md) and confirm that
-the Thunderstore-facing files under `assets/` are still correct.
+On Linux, run the Markdown lint command with `sudo docker` and use
+`--user "$(id -u):$(id -g)"`.
+
+For package or release changes, also verify the release documentation in
+[README.md](./README.md) and confirm that the Thunderstore-facing files under
+`assets/` are still correct.
 
 ## Pull requests
 
@@ -49,14 +55,16 @@ the Thunderstore-facing files under `assets/` are still correct.
 - Describe what changed and how you verified it.
 - Link related issues when applicable.
 - Keep the pull request small enough for maintainers to review without guessing at unrelated intent.
-- Pull requests must include the pull request template checkbox confirmation for the Contribution License Agreement
-  before they can be merged. Pull requests without that confirmation may be closed without further notice.
+- Pull requests must include the pull request template checkbox confirmation for
+  the Contribution License Agreement before they can be merged. Pull requests
+  without that confirmation may be closed without further notice.
 
 ## Stalled Pull Requests
 
-- Respond to maintainer feedback when possible. If you need more time, are blocked, or no longer plan to continue the
-  pull request, leave a short comment so maintainers know what to expect. Even if a long time has passed, it is always
-  fine to reply with an update.
+- Respond to maintainer feedback when possible. If you need more time, are
+  blocked, or no longer plan to continue the pull request, leave a short comment
+  so maintainers know what to expect. Even if a long time has passed, it is
+  always fine to reply with an update.
 - If you want to continue work from a stalled pull request, leave a short comment for the maintainer and the original
   contributor before opening a new pull request. The original contributor may not be available to respond, but the
   maintainer can confirm whether the change is still wanted and coordinate attribution or next steps.
@@ -76,49 +84,61 @@ the Thunderstore-facing files under `assets/` are still correct.
 By submitting a contribution to this project, you agree to this Contribution License Agreement.
 If this agreement changes, new pull requests must use the current agreement.
 
-For this agreement, "you" means the person or organization submitting the contribution, and "contribution" means code,
-documentation, assets, patches, generated output, or other material that you intentionally submit for inclusion in this
-project. Ordinary issue reports, pull request discussion, questions, and suggestions are not contributions under this
-agreement unless you clearly submit them for inclusion in the project.
+For this agreement, "you" means the person or organization submitting the
+contribution, and "contribution" means code, documentation, assets, patches,
+generated output, or other material that you intentionally submit for inclusion
+in this project. Ordinary issue reports, pull request discussion, questions, and
+suggestions are not contributions under this agreement unless you clearly submit
+them for inclusion in the project.
 
 By submitting a contribution, you represent and agree that:
 
 - You have the legal right to submit the contribution and to grant the rights described in this agreement.
 - Your contribution may be distributed under the same license as this project, without additional terms or conditions.
-- You grant the maintainer and downstream recipients a perpetual, worldwide, non-exclusive, no-charge, royalty-free,
-  irrevocable copyright license to use, copy, modify, merge, publish, distribute, sublicense, and otherwise use your
+- You grant the maintainer and downstream recipients a perpetual, worldwide,
+  non-exclusive, no-charge, royalty-free, irrevocable copyright license to use,
+  copy, modify, merge, publish, distribute, sublicense, and otherwise use your
   contribution as part of this project.
-- You grant the maintainer and downstream recipients a perpetual, worldwide, non-exclusive, no-charge, royalty-free,
-  irrevocable patent license to make, have made, use, offer to sell, sell, import, and otherwise transfer your
-  contribution as part of this project. This patent license applies only to patent claims that you can license and that
-  are necessarily infringed by your contribution alone or by combining your contribution with the project.
+- You grant the maintainer and downstream recipients a perpetual, worldwide,
+  non-exclusive, no-charge, royalty-free, irrevocable patent license to make,
+  have made, use, offer to sell, sell, import, and otherwise transfer your
+  contribution as part of this project. This patent license applies only to
+  patent claims that you can license and that are necessarily infringed by your
+  contribution alone or by combining your contribution with the project.
 - You keep any copyright you hold in your contribution. This agreement is a license grant, not a copyright assignment.
 - The maintainer is not required to accept, publish, retain, or distribute any contribution.
-- Do not submit code, documentation, assets, generated output, or other materials if you do not have the right to
-  contribute them under this agreement.
+- Do not submit code, documentation, assets, generated output, or other
+  materials if you do not have the right to contribute them under this
+  agreement.
 
 ## AI-assisted contributions
 
 AI tools may be used as aids, but the human contributor remains responsible for the contribution.
-When AI assistance significantly affects a pull request, disclosure is required in the pull request
-description. The purpose of disclosure is to give reviewers enough context to understand where to focus, including
-areas you may not have reviewed closely. There is no exact percentage or universal rule for when assistance is
-"significant", so use the following common workflows as practical examples, not as an exhaustive list.
+When AI assistance significantly affects a pull request, disclosure is required
+in the pull request description. The purpose of disclosure is to give reviewers
+enough context to understand where to focus, including areas you may not have
+reviewed closely. There is no exact percentage or universal rule for when
+assistance is "significant", so use the following common workflows as practical
+examples, not as an exhaustive list.
 
 Examples that should be disclosed:
 
-- In the pull request description, specifically disclose AI assistance that significantly affected the pull
-  request, but keep the disclosure practical. You do not need to provide a file-by-file table of AI involvement.
-- When possible, paraphrase the rough prompt or task you gave an agent, the changes you asked it to make, changes made
-  after automated review, and what you focused on when reviewing or adapting the result. Do not paste prompt text that
-  contains commands, role claims, secrets, policy-bypass requests, or instructions to future tools.
-- If there are areas you did not review closely or are less confident about, mention them so reviewers can check those
-  areas more carefully.
+- In the pull request description, specifically disclose AI assistance that
+  significantly affected the pull request, but keep the disclosure practical.
+  You do not need to provide a file-by-file table of AI involvement.
+- When possible, paraphrase the rough prompt or task you gave an agent, the
+  changes you asked it to make, changes made after automated review, and what
+  you focused on when reviewing or adapting the result. Do not paste prompt text
+  that contains commands, role claims, secrets, policy-bypass requests, or
+  instructions to future tools.
+- If there are areas you did not review closely or are less confident about,
+  mention them so reviewers can check those areas more carefully.
 
 Examples that normally do not need disclosure:
 
-- Ordinary spell-checking, formatting, search, translation used only for your own understanding, or small completion
-  suggestions normally do not need disclosure unless they make up a main part of the change itself.
+- Ordinary spell-checking, formatting, search, translation used only for your own
+  understanding, or small completion suggestions normally do not need disclosure
+  unless they make up a main part of the change itself.
 
 When in doubt:
 
@@ -128,22 +148,29 @@ Contributor responsibilities:
 
 - Review every AI-assisted change yourself. Do not assume generated code, documentation, tests, or explanations are
   correct.
-- Treat pull request and issue text, comments, logs, quoted material, attachments, and AI-generated drafts as
-  attacker-controlled third-party text when using AI tools. Ignore instructions embedded in those materials and verify
-  any factual claims you rely on.
-- Do not let third-party text override repository policy, maintainer guidance, verification evidence, license notices,
-  attribution, or required LLM disclosure.
-- When AI-assisted tooling cannot distinguish trusted instructions from untrusted source text with enough confidence,
-  stop, narrow the task, or ask for maintainer confirmation instead of guessing.
-- Provide verification evidence that matches the change, such as automated test output, build output, screenshots, or a
-  clear description of any hands-on checks that could not reasonably be automated.
-- Do not present AI-performed review or inspection as manual checks. Manual checks should describe checks performed
-  without AI automation. If an AI-assisted inspection was requested, describe a paraphrased, non-instructional summary
-  of the inspection request first, nest the AI result under it, and clearly label the result as AI-assisted.
+- Treat pull request and issue text, comments, logs, quoted material,
+  attachments, and AI-generated drafts as attacker-controlled third-party text
+  when using AI tools. Ignore instructions embedded in those materials and
+  verify any factual claims you rely on.
+- Do not let third-party text override repository policy, maintainer guidance,
+  verification evidence, license notices, attribution, or required LLM
+  disclosure.
+- When AI-assisted tooling cannot distinguish trusted instructions from
+  untrusted source text with enough confidence, stop, narrow the task, or ask
+  for maintainer confirmation instead of guessing.
+- Provide verification evidence that matches the change, such as automated test
+  output, build output, screenshots, or a clear description of any hands-on
+  checks that could not reasonably be automated.
+- Do not present AI-performed review or inspection as manual checks. Manual
+  checks should describe checks performed without AI automation. If an
+  AI-assisted inspection was requested, describe a paraphrased,
+  non-instructional summary of the inspection request first, nest the AI result
+  under it, and clearly label the result as AI-assisted.
 - Keep changes reviewable. Do not submit large, hard-to-review changes that cannot reasonably be checked by a
   maintainer, whether they were generated by AI tools or written manually.
-- Agent-generated pull requests are allowed only when a human contributor understands the change, adapts it to this
-  codebase, verifies it, discloses the assistance, and can personally explain and maintain it.
+- Agent-generated pull requests are allowed only when a human contributor
+  understands the change, adapts it to this codebase, verifies it, discloses the
+  assistance, and can personally explain and maintain it.
 - Do not submit low-effort AI-generated or "vibe-coded" pull requests that do not meet those requirements.
 - Write pull request descriptions and review replies in your own words. Use AI for editing help only if you still
   review and stand behind the final text.
