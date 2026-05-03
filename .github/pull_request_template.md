@@ -25,12 +25,16 @@ Markdown list examples:
 - Refs owner/repository#789
 -->
 
-## Reviewer Instructions
+## Notes for reviewers
+
+<!--
+Share context that helps reviewers understand or prioritize this pull request.
+Use "None" if there are no additional notes for reviewers.
+-->
 
 ### AI disclosure
 
 <!--
-Tell reviewers where to focus.
 If AI assistance significantly affected this pull request, describe it here in practical terms:
 what assistance was used, what you reviewed or adapted yourself, and any areas you want checked closely.
 Use "None" for items that do not apply.
