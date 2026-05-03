@@ -44,6 +44,8 @@ Optional H3 examples:
 <!--
 List the checks you ran and their results.
 If you did not run a relevant check, explain why.
+You are responsible for masking personal information, local absolute paths, access tokens, and other sensitive details
+before posting logs, screenshots, or videos.
 
 Optional testing structure:
 ### Build log
@@ -56,9 +58,6 @@ Paste the relevant output here.
 ```
 
 </details>
-
-Mask personal information, local absolute paths, access tokens, and other sensitive details before posting logs,
-screenshots, or videos.
 
 ### Automated checks
 ### Manual checks
