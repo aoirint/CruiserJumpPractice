@@ -75,11 +75,16 @@ the Thunderstore-facing files under `assets/` are still correct.
 - Keep the pull request small enough for maintainers to review without guessing at unrelated intent.
 - Mention any skipped checks and why they were skipped.
 - Respond to maintainer feedback when possible. If you need more time, are blocked, or no longer plan to continue the
-  pull request, leave a short comment so maintainers know what to expect.
+  pull request, leave a short comment so maintainers know what to expect. Even if a long time has passed, it is always
+  fine to reply with an update.
 - To keep work moving, maintainers may accept another contribution for the same issue without first rejecting an
   inactive pull request.
-- Pull requests that remain inactive for a reasonable period may be closed without prejudice. Closing a stale pull
-  request does not prevent you from opening a new one later if the change is still useful.
+- If a pull request stalls, maintainers or another contributor may continue the work in a separate pull request,
+  including by reusing or adapting the stalled pull request's commits, patch, tests, documentation, or ideas under the
+  Contribution License Agreement.
+- Pull requests that remain inactive for a reasonable period may be closed to keep the review queue current. This is not
+  a judgment on the contributor, and it does not prevent you from opening a new pull request later if the change is
+  still useful.
 
 ## AI-assisted contributions
 
