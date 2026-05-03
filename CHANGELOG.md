@@ -59,7 +59,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   - LethalNetworkAPI v3.3.2 (2024-12-29 UTC)
   - OdinSerializer v2024.2.2700 (2025-05-18 UTC)
 
-## v0.1.3 - 2025-11-30 UTC
+## v0.1.3 - 2025-11-30 UTC [YANKED]
 
 ### Removed
 
