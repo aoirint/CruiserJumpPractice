@@ -3,7 +3,7 @@
 using CruiserJumpPractice.Interop;
 using CruiserJumpPractice.Domain;
 
-namespace CruiserJumpPractice.Application.UseCases.Client;
+namespace CruiserJumpPractice.Core.UseCases.Client;
 
 internal sealed class RequestSaveCruiserStateUseCase
 {

@@ -3,10 +3,10 @@
 using BepInEx;
 using BepInEx.Logging;
 using CruiserJumpPractice.Interop;
-using CruiserJumpPractice.Application;
-using CruiserJumpPractice.Application.Runtime;
-using CruiserJumpPractice.Application.UseCases.Client;
-using CruiserJumpPractice.Application.UseCases.Server;
+using CruiserJumpPractice.Core;
+using CruiserJumpPractice.Core.Runtime;
+using CruiserJumpPractice.Core.UseCases.Client;
+using CruiserJumpPractice.Core.UseCases.Server;
 using HarmonyLib;
 
 namespace CruiserJumpPractice;
@@ -22,35 +22,35 @@ public class CruiserJumpPractice : BaseUnityPlugin
 
     internal static InputActions? InputActions { get; private set; }
 
-    private static ApplicationComposition? App { get; set; }
+    private static CoreComposition? Core { get; set; }
 
     internal static FrameHandler FrameHandler =>
-        App!.FrameHandler;
+        Core!.FrameHandler;
 
     internal static StartupHandler StartupHandler =>
-        App!.StartupHandler;
+        Core!.StartupHandler;
 
     internal static IGameInterop GameInterop =>
-        App!.GameInterop;
+        Core!.GameInterop;
 
     internal static SaveCruiserStateUseCase SaveCruiserStateUseCase =>
-        App!.SaveCruiserStateUseCase;
+        Core!.SaveCruiserStateUseCase;
 
     internal static LoadCruiserStateUseCase LoadCruiserStateUseCase =>
-        App!.LoadCruiserStateUseCase;
+        Core!.LoadCruiserStateUseCase;
 
     internal static PresentSaveCruiserStateResultUseCase PresentSaveCruiserStateResultUseCase =>
-        App!.PresentSaveCruiserStateResultUseCase;
+        Core!.PresentSaveCruiserStateResultUseCase;
 
     internal static PresentLoadCruiserStateResultUseCase PresentLoadCruiserStateResultUseCase =>
-        App!.PresentLoadCruiserStateResultUseCase;
+        Core!.PresentLoadCruiserStateResultUseCase;
 
     private void Awake()
     {
         Logger = base.Logger;
 
         InputActions = new InputActions();
-        App = ApplicationComposition.Create(Logger);
+        Core = CoreComposition.Create(Logger);
 
         Harmony.PatchAll();
 

@@ -3,13 +3,13 @@
 using CruiserJumpPractice.Domain;
 using BepInEx.Logging;
 using CruiserJumpPractice.Interop;
-using CruiserJumpPractice.Application.Runtime;
-using CruiserJumpPractice.Application.UseCases.Client;
-using CruiserJumpPractice.Application.UseCases.Server;
+using CruiserJumpPractice.Core.Runtime;
+using CruiserJumpPractice.Core.UseCases.Client;
+using CruiserJumpPractice.Core.UseCases.Server;
 
-namespace CruiserJumpPractice.Application;
+namespace CruiserJumpPractice.Core;
 
-internal sealed class ApplicationComposition
+internal sealed class CoreComposition
 {
     public IGameInterop GameInterop { get; }
 
@@ -31,7 +31,7 @@ internal sealed class ApplicationComposition
 
     public StartupHandler StartupHandler { get; }
 
-    private ApplicationComposition(
+    private CoreComposition(
         IGameInterop gameInterop,
         SaveCruiserStateUseCase saveCruiserStateUseCase,
         LoadCruiserStateUseCase loadCruiserStateUseCase,
@@ -56,7 +56,7 @@ internal sealed class ApplicationComposition
         StartupHandler = startupHandler;
     }
 
-    public static ApplicationComposition Create(ManualLogSource logger)
+    public static CoreComposition Create(ManualLogSource logger)
     {
         IGameInterop gameInterop = new GameInteropCurrent(logger);
 
@@ -77,7 +77,7 @@ internal sealed class ApplicationComposition
             toggleMagnetUseCase
         );
 
-        return new ApplicationComposition(
+        return new CoreComposition(
             gameInterop: gameInterop,
             saveCruiserStateUseCase: saveCruiserStateUseCase,
             loadCruiserStateUseCase: loadCruiserStateUseCase,
