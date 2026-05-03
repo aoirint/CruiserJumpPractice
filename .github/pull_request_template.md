@@ -72,6 +72,10 @@ If you did not run a relevant check, explain why.
 You are responsible for masking personal information, local absolute paths,
 access tokens, and other sensitive details before posting logs, screenshots,
 or videos.
+Manual checks should describe human-performed checks. Do not list checks that
+AI performed autonomously as manual checks. If a human asked AI to inspect
+something, list the human request first, nest the AI result under it, and
+clearly label the result as AI-assisted.
 
 Optional testing structure:
 ### Build log

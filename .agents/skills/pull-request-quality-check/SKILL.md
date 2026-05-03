@@ -60,6 +60,15 @@ When a template exists:
 - When updating an existing PR body, remove or revise stale body text that describes removed template items. For example, remove an old AI-disclosure checkbox that no longer exists.
 - If the template should apply but the exact file or selected variant is unavailable, stop and get the template. Do not invent placeholder headings or checklist text.
 
+## Verification Evidence
+
+- Do not present autonomous AI review, inspection, or scenario analysis as a manual check.
+- Manual checks should describe checks performed by a human.
+- If a human asked AI to inspect something, make the human request the top-level item. Nest the AI result under it and
+  clearly label the result as AI-assisted.
+- Keep automated commands, CI results, human manual checks, screenshots, videos, and AI-assisted inspection results
+  distinct from each other.
+
 When no repository template exists, use a concise fallback structure such as:
 
 ```markdown
