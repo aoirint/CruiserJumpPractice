@@ -151,8 +151,15 @@ the final summary or PR notes for maintainer review.
 
 - Treat newly introduced or updated third-party packages, downloaded CI binaries, and GitHub Actions
   as supply-chain-sensitive changes.
+- Require a minimum 7-day cooldown before adopting newly released third-party packages, downloaded
+  CI binaries, GitHub Actions, or other external executable artifacts, unless the user explicitly
+  approves an exception.
 - Follow the repository's cooldown, pinning, and lockfile policies before adopting new versions.
 - Prefer pinned, reviewable versions over floating references.
+- If a package manager, registry, hosting site, or security tool cannot report release age or
+  provenance directly, look for another reliable source such as tags, release pages, changelogs,
+  signed artifacts, lockfile metadata, or upstream commit history. If release age or provenance
+  still cannot be verified, treat the dependency as not satisfying the cooldown principle.
 - Record any user-approved exception to the repository policy in the final summary and PR notes.
 - For copied, generated, vendored, or downloaded files, verify that the SPDX notice matches the
   upstream license and record the source, version or commit, and validation method when relevant.
@@ -169,6 +176,7 @@ the final summary or PR notes for maintainer review.
   concrete reason.
 - Agent Skill changes were checked with `skill-quality-check` when applicable.
 - New or updated dependencies, downloaded tools, and CI actions were checked against the
-  repository's supply-chain policy.
+  repository's supply-chain policy, including the minimum 7-day cooldown or a recorded
+  user-approved exception.
 - If no concrete code was available, the output clearly says that this was a review plan and lists
   the assumptions instead of presenting file-specific findings.
