@@ -49,7 +49,6 @@ the Thunderstore-facing files under `assets/` are still correct.
 - Describe what changed and how you verified it.
 - Link related issues when applicable.
 - Keep the pull request small enough for maintainers to review without guessing at unrelated intent.
-- Mention any skipped checks and why they were skipped.
 - Pull requests must include the pull request template checkbox confirmation for the Contribution License Agreement
   before they can be merged. Pull requests without that confirmation may be closed without further notice.
 
