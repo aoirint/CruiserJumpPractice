@@ -1,0 +1,46 @@
+# SPDX-License-Identifier: Unlicense
+name: Publish Thunderstore Package
+description: Upload and submit a prebuilt Thunderstore package zip.
+
+inputs:
+  artifact_path:
+    description: Path or shell glob for the package zip to upload.
+    required: true
+  token:
+    description: Thunderstore service account token.
+    required: true
+  namespace:
+    description: Thunderstore team namespace to publish under.
+    required: true
+  community:
+    description: Thunderstore community slug to publish to.
+    required: true
+  community_categories:
+    description: Newline-separated community category slugs.
+    required: true
+  repo:
+    description: Thunderstore repository base URL.
+    required: false
+    default: https://thunderstore.io
+
+outputs:
+  thunderstore_download_url:
+    description: Download URL of the published package version.
+    value: ${{ steps.publish.outputs.thunderstore_download_url }}
+  thunderstore_community_url:
+    description: Community package URL returned by Thunderstore.
+    value: ${{ steps.publish.outputs.thunderstore_community_url }}
+
+runs:
+  using: composite
+  steps:
+    - name: Publish package
+      id: publish
+      shell: bash
+      env:
+        THUNDERSTORE_TOKEN: ${{ inputs.token }}
+        THUNDERSTORE_NAMESPACE: ${{ inputs.namespace }}
+        THUNDERSTORE_COMMUNITY: ${{ inputs.community }}
+        THUNDERSTORE_COMMUNITY_CATEGORIES: ${{ inputs.community_categories }}
+        THUNDERSTORE_REPO: ${{ inputs.repo }}
+      run: bash "${GITHUB_ACTION_PATH}/publish-thunderstore.sh" "${{ inputs.artifact_path }}"
