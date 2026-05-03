@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: Unlicense -->
+
 # SPDX License Notice Decision Guide
 
 ## Purpose
@@ -43,7 +45,7 @@ For files created wholly for this repository, use the repository's existing noti
 nearby files, `LICENSE*`, package metadata, repository docs, templates, generation scripts, and task
 instructions before adding a new header style.
 
-Default to [`MIT`](https://spdx.org/licenses/MIT.html) only when both checks are true:
+Default to [`Unlicense`](https://spdx.org/licenses/Unlicense.html) only when both checks are true:
 
 1. No project-specific instruction overrides it.
 2. The file is not copied, translated, generated from, adapted from, vendored from, or substantially
@@ -106,7 +108,7 @@ for the new file. Cite the source only when it materially helps reviewers unders
 
 ```python
 # SPDX-FileCopyrightText: 2026 Example Maintainer
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: Unlicense
 # Design note: behavior cross-checked against Example Tool v2.0 documentation.
 ```
 
@@ -121,7 +123,7 @@ that one license identifier.
 
 ```shell
 # SPDX-FileCopyrightText: 2026 Example Maintainer
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: Unlicense
 ```
 
 For a copied file:
@@ -154,8 +156,8 @@ reviewable in a nearby source comment or PR note:
  */
 ```
 
-Do not rewrite `MIT OR Apache-2.0` to `MIT` just because the repository default is MIT unless the
-upstream grant allows that choice and the project intentionally makes it.
+Do not rewrite `MIT OR Apache-2.0` to `Unlicense` just because the repository default is Unlicense
+unless the upstream grant allows that choice and the project intentionally makes it.
 
 ### Mixed Original and Copyleft Code
 
@@ -202,7 +204,7 @@ file.
 Use this when neighboring files use license-only headers and provenance is fully project-local:
 
 ```python
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: Unlicense
 ```
 
 ### Recommended Header
@@ -211,7 +213,7 @@ Use this for most new reusable source, scripts, templates, and examples:
 
 ```python
 # SPDX-FileCopyrightText: 2026 Example Maintainer
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: Unlicense
 ```
 
 ### Derivative Header
@@ -248,7 +250,7 @@ For generated files, prefer generator metadata when available:
 
 ```typescript
 // SPDX-FileCopyrightText: 2026 Example Maintainer
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: Unlicense
 // Generated from schemas/widget.schema.json by scripts/generate-widget-types.ts.
 ```
 
@@ -270,28 +272,28 @@ Do not remove upstream notices:
 ```python
 # Bad: replaced the upstream copyright holder.
 # SPDX-FileCopyrightText: 2026 Example Maintainer
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: Unlicense
 ```
 
 Do not change licenses casually:
 
 ```python
 # Bad: file was copied from Apache-2.0 upstream but relicensed without permission.
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: Unlicense
 ```
 
 Do not erase dual-license choices without a recorded decision:
 
 ```python
 # Bad: upstream said MIT OR Apache-2.0, but the choice is not documented.
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: Unlicense
 ```
 
 Do not label a file as original when it contains adapted copyleft code:
 
 ```python
 # Bad: adapted GPL logic cannot be hidden under a project-default permissive header.
-# SPDX-License-Identifier: MIT
+# SPDX-License-Identifier: Unlicense
 ```
 
 ## Decision Flow

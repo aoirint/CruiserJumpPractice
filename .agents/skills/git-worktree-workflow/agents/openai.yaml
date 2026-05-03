@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: Unlicense
 interface:
   display_name: "Git Worktree Workflow"
   short_description: "Use Git worktrees for repository implementation tasks."
