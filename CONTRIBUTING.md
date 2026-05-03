@@ -90,8 +90,9 @@ AI tools may be used as aids, but the human contributor remains responsible for 
   correct.
 - Provide verification evidence that matches the change, such as test output, build output, screenshots, or a clear
   manual test description.
-- Do not submit low-effort AI-generated, "vibe-coded", or agent-generated pull requests that you do not understand,
-  have not adapted to this codebase, or cannot personally explain and maintain.
+- Agent-generated pull requests are allowed only when a human contributor understands the change, adapts it to this
+  codebase, verifies it, discloses the assistance, and can personally explain and maintain it.
+- Do not submit low-effort AI-generated or "vibe-coded" pull requests that do not meet those requirements.
 - Write pull request descriptions and review replies in your own words. Use AI for editing help only if you still
   review and stand behind the final text.
 - Maintainers may close undisclosed, unverified, low-quality, or spam-like AI-assisted contributions.
