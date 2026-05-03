@@ -2,8 +2,8 @@
 
 namespace CruiserJumpPractice.Core.Ports;
 
-// Use cases log decisions and failure details, but the Core layer should not depend on the
-// BepInEx logging API. Interop supplies the adapter that chooses the actual log sink.
+// Use cases report decisions and caught failures through this port so Core can be explicit about
+// diagnostics without referencing ManualLogSource.
 internal interface ICoreLogger
 {
     void LogInfo(string message);

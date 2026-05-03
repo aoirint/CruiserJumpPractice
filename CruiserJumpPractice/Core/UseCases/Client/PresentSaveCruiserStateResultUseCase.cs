@@ -4,8 +4,8 @@ using CruiserJumpPractice.Core.Ports;
 
 namespace CruiserJumpPractice.Core.UseCases.Client;
 
-// Presentation use cases translate server results into local HUD messages. Keeping that mapping
-// in Core makes the wording part of practice behavior while HUD rendering remains behind a port.
+// Save result wording belongs with practice behavior, but displaying the tip is still a game
+// operation. This keeps the message mapping in Core and the HUD call behind IGameInterop.
 internal sealed class PresentSaveCruiserStateResultUseCase
 {
     private readonly IGameInterop gameInterop;

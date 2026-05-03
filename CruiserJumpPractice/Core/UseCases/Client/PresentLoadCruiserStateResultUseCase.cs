@@ -4,8 +4,8 @@ using CruiserJumpPractice.Core.Ports;
 
 namespace CruiserJumpPractice.Core.UseCases.Client;
 
-// Load results are presented on the requesting client after the RPC returns. Server execution
-// stays free of HUD concerns while player-facing messages remain centralized in Core.
+// Load result messages are emitted after the RPC returns to the requesting client. The server
+// restores state and reports a result; this use case owns how that result is explained to players.
 internal sealed class PresentLoadCruiserStateResultUseCase
 {
     private readonly IGameInterop gameInterop;

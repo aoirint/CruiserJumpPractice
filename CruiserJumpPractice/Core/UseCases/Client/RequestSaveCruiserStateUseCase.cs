@@ -4,8 +4,8 @@ using CruiserJumpPractice.Core.Ports;
 
 namespace CruiserJumpPractice.Core.UseCases.Client;
 
-// Client-side request use cases validate local intent before crossing into Netcode RPCs.
-// The actual snapshot write happens on the server path so host authority stays explicit.
+// A save key press is handled locally first so non-host players get immediate feedback. Only a
+// host request crosses into the RPC path where the server captures the snapshot.
 internal sealed class RequestSaveCruiserStateUseCase
 {
     private readonly IGameInterop gameInterop;

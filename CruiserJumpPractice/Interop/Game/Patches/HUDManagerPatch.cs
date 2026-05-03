@@ -8,9 +8,8 @@ using LethalCompany;
 
 namespace CruiserJumpPractice.Interop.Game.Patches;
 
-// HUDManager hooks are kept as thin event bridges. They identify stable game lifecycle
-// moments, then immediately delegate to the plugin controller so Core and construction details
-// do not leak into attributes tied to Lethal Company types.
+// HUDManager is patched only to find lifecycle moments the game already owns. Once those moments
+// are found, work is delegated to PluginController rather than embedding practice logic here.
 [HarmonyPatch(typeof(HUDManager))]
 internal class HUDManagerPatch
 {

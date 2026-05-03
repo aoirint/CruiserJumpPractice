@@ -5,8 +5,8 @@ using CruiserJumpPractice.Core.State;
 
 namespace CruiserJumpPractice.Core.UseCases.Server;
 
-// Restoring a cruiser snapshot touches live game physics, so the checks live in the server
-// use case with the restore operation. Client presentation receives only the result enum.
+// Loading can move a live vehicle, so the preconditions stay next to the server restore call.
+// The client gets only the result enum that describes why the restore did or did not happen.
 internal sealed class LoadCruiserStateUseCase
 {
     private readonly IGameInterop gameInterop;

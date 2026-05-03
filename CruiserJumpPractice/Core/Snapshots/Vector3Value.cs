@@ -2,8 +2,8 @@
 
 namespace CruiserJumpPractice.Core.Snapshots;
 
-// Core uses its own vector shape to avoid depending on UnityEngine.Vector3. That keeps snapshot
-// data portable across tests and makes Unity conversion an Interop concern.
+// Position and rotation values cross the Core boundary without UnityEngine.Vector3 so snapshot
+// data remains plain and Unity conversion stays in adapters.
 internal readonly struct Vector3Value
 {
     public float X { get; }

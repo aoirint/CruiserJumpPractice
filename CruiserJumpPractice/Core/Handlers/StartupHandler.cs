@@ -4,9 +4,8 @@ using CruiserJumpPractice.Core.Ports;
 
 namespace CruiserJumpPractice.Core.Handlers;
 
-// StartupHandler models the one game-start side effect Core needs: ensure the RPC surrogate
-// exists before frame input can request server work. The Harmony patch that detects startup
-// remains in Interop; Core only describes the action that should happen.
+// On HUD startup, practice mode needs its RPC surrogate present before input can request server
+// work. Interop detects the HUD lifecycle event; Core names the side effect to perform.
 internal sealed class StartupHandler
 {
     private readonly IGameInterop gameInterop;

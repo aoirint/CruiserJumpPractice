@@ -17,9 +17,9 @@ public class CruiserJumpPractice : BaseUnityPlugin
 
     private static PluginController? controller;
 
-    // Patched game methods and NetworkBehaviour callbacks are constructed by the game, not by us.
-    // The static access point is deliberately narrow so those objects can reach plugin actions
-    // without exposing Core use cases or interop adapters one by one.
+    // Harmony and Netcode construct their callback objects outside our construction path. This
+    // static entry exposes one plugin-level controller instead of scattering use cases across
+    // patch and NetworkBehaviour classes.
     internal static PluginController Controller => controller!;
 
     private void Awake()
@@ -28,8 +28,8 @@ public class CruiserJumpPractice : BaseUnityPlugin
 
         controller = PluginController.Create(Logger);
 
-        // Harmony is still invoked at the BepInEx entrypoint so startup order is obvious:
-        // build the plugin controller first, then let patched game callbacks enter through it.
+        // Startup order matters: construct the controller before patching so the first game
+        // callback can enter a fully wired plugin boundary.
         Harmony.PatchAll();
 
         Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_NAME} v{MyPluginInfo.PLUGIN_VERSION} is loaded!");
