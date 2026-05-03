@@ -12,6 +12,9 @@ using CruiserJumpPractice.Core.Snapshots;
 
 namespace CruiserJumpPractice.Interop.Game.Adapters;
 
+// CruiserAdapter is the translation point between a live VehicleController and Core's plain
+// snapshot data. Reflection and Unity vector conversion stay here so save/load use cases only
+// handle practice rules.
 internal sealed class CruiserAdapter
 {
     private readonly ManualLogSource logger;
@@ -74,7 +77,8 @@ internal sealed class CruiserAdapter
         var localPlayerId = gameObjects.GetLocalPlayerId();
         try
         {
-            // NOTE: These values will be synced with vanilla VehicleController.Update and SyncCarPhysicsToOtherClients.
+            // VehicleController already syncs transform and driving fields during its vanilla
+            // update flow, while oil and turbo counts need the game's RPC helpers below.
             cruiser.transform.position = ToUnityVector3(snapshot.CarPosition);
             cruiser.transform.eulerAngles = ToUnityVector3(snapshot.CarRotation);
             cruiser.moveInputVector.x = snapshot.SteeringInput;

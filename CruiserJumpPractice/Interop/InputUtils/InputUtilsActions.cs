@@ -9,6 +9,7 @@ using LethalCompanyInputUtils::LethalCompanyInputUtils.BindingPathEnums;
 
 namespace CruiserJumpPractice.Interop.InputUtils;
 
+// Keep the layout notes beside the attributes because these bindings are easier to audit as a table.
 internal sealed class InputUtilsActions : LcInputActions
 {
     // Keymap: JP109 @, US [
