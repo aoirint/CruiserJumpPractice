@@ -76,6 +76,9 @@ the Thunderstore-facing files under `assets/` are still correct.
 - Mention any skipped checks and why they were skipped.
 - Maintainers may require the Contribution License Agreement checkbox in the pull request template to be checked before
   reviewing or merging a pull request.
+
+### Stalled pull requests
+
 - Respond to maintainer feedback when possible. If you need more time, are blocked, or no longer plan to continue the
   pull request, leave a short comment so maintainers know what to expect. Even if a long time has passed, it is always
   fine to reply with an update.
