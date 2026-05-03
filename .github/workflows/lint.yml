@@ -21,6 +21,8 @@ jobs:
     runs-on: ubuntu-slim
 
     steps:
+      # Checkout is required before Markdown linting because the action reads
+      # the repository-local config and all Markdown files from the workspace.
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Run markdownlint-cli2
@@ -32,6 +34,10 @@ jobs:
           globs: "**/*.md"
 
       - name: Setup .NET
+        # Lint uses the same SDK major as build so formatter and analyzer
+        # behavior stays aligned with compilation. Cache only the locked NuGet
+        # graph to avoid restoring stale packages from unrelated dependency
+        # changes.
         uses: actions/setup-dotnet@c2fa09f4bde5ebb9d1777cf28262a3eb3db3ced7 # v5.2.0
         with:
           dotnet-version: '10.x'
@@ -39,6 +45,8 @@ jobs:
           cache-dependency-path: CruiserJumpPractice/packages.lock.json
 
       - name: Restore NuGet packages
+        # Restore once in locked mode so later checks are deterministic and can
+        # use --no-restore without silently changing dependency resolution.
         run: dotnet restore --locked-mode
 
       - name: Run dotnet format
