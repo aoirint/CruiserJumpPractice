@@ -25,7 +25,8 @@ Reference: https://www.conventionalcommits.org/en/v1.0.0/
 
 ## Required LLM Alert
 
-When the PR was prepared with LLM assistance, check that this GitHub alert appears at the very top of the PR body:
+When the PR was prepared with LLM assistance, check for this GitHub alert.
+It must appear at the very top of the PR body:
 
 ```markdown
 > [!WARNING]
@@ -34,9 +35,32 @@ When the PR was prepared with LLM assistance, check that this GitHub alert appea
 
 The alert should appear before every other heading, summary, checklist, or metadata block.
 
-## Body Structure
+## Pull Request Template
 
-Check that the body is concise and uses these sections when applicable:
+Before creating or replacing a pull request body, check for a repository pull request template.
+Use the first applicable template found in the normal GitHub locations, such as:
+
+- `.github/pull_request_template.md`
+- `.github/PULL_REQUEST_TEMPLATE.md`
+- `docs/pull_request_template.md`
+- `docs/PULL_REQUEST_TEMPLATE.md`
+- A user-selected file under `.github/PULL_REQUEST_TEMPLATE/` or `docs/PULL_REQUEST_TEMPLATE/`
+
+When a template exists:
+
+- Read the template file before drafting the body. Do not rely on memory, previous PR bodies, or heading summaries.
+- Follow the template's visible headings, required checkboxes, and required-if-applicable sections.
+- Use HTML comments in the template as author guidance. Do not copy those comments into the rendered PR body.
+- Keep required alerts, checklist confirmations, and section names compatible with the template.
+- Fill sections with `None` or `Not applicable` only when the template or surrounding policy asks for an explicit value.
+- Do not replace template-specific headings with generic defaults such as `Verification` when the template uses another
+  heading such as `Testing`.
+- Do not add obsolete checklist items that are no longer present in the repository template.
+- Copy required checklist wording from the current template exactly. Change unchecked boxes to checked boxes only when the author can truthfully confirm the item.
+- When updating an existing PR body, remove or revise stale body text that describes removed template items. For example, remove an old AI-disclosure checkbox that no longer exists.
+- If the template should apply but the exact file or selected variant is unavailable, stop and get the template. Do not invent placeholder headings or checklist text.
+
+When no repository template exists, use a concise fallback structure such as:
 
 ```markdown
 > [!WARNING]
@@ -49,7 +73,7 @@ Check that the body is concise and uses these sections when applicable:
 - ...
 ```
 
-Recommend sections only when they carry useful information:
+For fallback bodies, recommend sections only when they carry useful information:
 
 - `Summary`: user-facing or maintainer-facing changes, grouped by behavior or area.
 - `Verification`: commands run and their results, such as project builds,
@@ -67,11 +91,12 @@ Recommend sections only when they carry useful information:
 - Mention paths or commands in backticks.
 - Do not paste large diffs.
 - Be explicit when verification was not run.
-- Align the PR title type with the dominant change: for example, `docs:` for documentation-only skill additions and `refactor:` for behavior-preserving code cleanup.
+- Align the PR title type with the dominant change. For example, use `docs:` for documentation-only skill additions and `refactor:` for behavior-preserving code cleanup.
 
 ## Pull Request Replies and Reviews
 
-When a pull request reply or review was prepared with LLM assistance, check that this GitHub alert appears at the very top of the comment or review body:
+When a pull request reply or review was prepared with LLM assistance, check for this GitHub alert.
+It must appear at the very top of the comment or review body:
 
 ```markdown
 > [!WARNING]
@@ -80,9 +105,7 @@ When a pull request reply or review was prepared with LLM assistance, check that
 
 The alert should appear before every other paragraph, heading, checklist, quote, finding, or metadata block.
 
-Use `Update Note` or `Discussion Note` sections only when the user or maintainer explicitly asks for process notes,
-decision logs, or granular PR-thread updates. Do not add them by default: frequent process notes can clutter the PR
-conversation and may expose unnecessary implementation context. When enabled:
+Use `Update Note` or `Discussion Note` sections only when the user or maintainer explicitly asks for process notes, decision logs, or granular PR-thread updates. Do not add them by default. Frequent process notes can clutter the PR conversation and may expose unnecessary implementation context. When enabled:
 
 - Use `Update Note` for a concrete change that was just made to the pull request.
 - Use `Discussion Note` for a decision, tradeoff, or rationale that should remain visible in the PR thread.
@@ -90,13 +113,12 @@ conversation and may expose unnecessary implementation context. When enabled:
 - Base notes on confirmed PR context. If a note includes an inference or assumption, label it as such.
 - Do not include secrets, private discussion, local-only paths, hidden chain-of-thought, or unrelated implementation
   details.
-- Prefer a normal short reply when the comment only needs to answer a question, report review results, or acknowledge
-  completion.
+- Prefer a normal short reply when the comment only needs to answer a question, report review results, or acknowledge completion.
 
 ## CLI Safety
 
-When creating or editing PR bodies with a shell command, avoid passing Markdown directly through command arguments if it contains backticks, quotes, dollar signs, backslashes, or multiple lines. Shells such as PowerShell and bash can interpret those characters and silently corrupt the body.
+When creating or editing PR bodies with a shell command, avoid passing Markdown directly through command arguments. Backticks, quotes, dollar signs, backslashes, and multiple lines are easy to corrupt in shell arguments. Shells such as PowerShell and bash can interpret those characters silently.
 
-- Prefer writing the body to a temporary Markdown file and passing it with `gh pr create --body-file <file>` or `gh pr edit --body-file <file>`.
-- After creating or editing a PR through `gh`, verify the stored body with `gh pr view --json body` and fix any quoting issues before finishing.
+- Prefer writing the body to a temporary Markdown file. Pass it with `gh pr create --body-file <file>` or `gh pr edit --body-file <file>`.
+- After creating or editing a PR through `gh`, verify the stored body with `gh pr view --json body`. Fix any quoting issues before finishing.
 - Remove any temporary body file from the worktree after verification.
