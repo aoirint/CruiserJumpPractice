@@ -1,0 +1,5 @@
+# SPDX-License-Identifier: Unlicense
+interface:
+  display_name: "Release Note Workflow"
+  short_description: "Derive Thunderstore-facing stable release notes from CHANGELOG.md."
+  default_prompt: "Derive or review stable Thunderstore release notes in assets/CHANGELOG.md from canonical CHANGELOG.md entries, then check version, tag, manifest, and packaging readiness."
