@@ -1,8 +1,8 @@
 ## Summary
 
 <!--
-Briefly describe what changed and why.
-Keep this focused on reviewer- and maintainer-facing impact.
+Briefly describe the user-facing, contributor-facing, or maintainer-facing impact of this change.
+Mention why the change is useful when that is not obvious from the diff.
 -->
 
 -
