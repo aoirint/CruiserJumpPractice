@@ -45,7 +45,7 @@ or areas that need extra attention for reasons other than AI assistance.
 ### AI disclosure
 
 <!--
-If AI assistance drafted, rewrote, reviewed, or materially shaped this pull request, disclose it here.
+If AI assistance significantly affected this pull request, disclose it here.
 Mention what the AI helped with, how you reviewed or adapted the result, and any AI-assisted areas you did
 not review closely.
 Use "None" if no significant AI assistance was used.
@@ -59,7 +59,7 @@ Optional H3 examples:
 
 <!--
 List the checks you ran and their results.
-Include commands, manual in-game checks, package/Thunderstore review, screenshots, or videos when relevant.
+Include commands, manual in-game checks, screenshots, or videos when relevant.
 For docs-only changes, mention proofreading, link checks, formatting checks, or "Not run - docs only."
 If you did not run a relevant check, explain why.
 You are responsible for masking personal information, local absolute paths, access tokens, and other sensitive details
@@ -79,7 +79,6 @@ Paste the relevant output here.
 
 ### Automated checks
 ### Manual checks
-### Package / Thunderstore checks
 ### Screenshots / videos
 -->
 
