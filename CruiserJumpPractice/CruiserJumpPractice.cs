@@ -3,7 +3,7 @@
 
 using BepInEx;
 using BepInEx.Logging;
-using HarmonyLib;
+using CruiserJumpPractice.Interop.Game.Patches;
 
 namespace CruiserJumpPractice;
 
@@ -13,8 +13,6 @@ namespace CruiserJumpPractice;
 public class CruiserJumpPractice : BaseUnityPlugin
 {
     internal static new ManualLogSource? Logger { get; private set; }
-
-    internal static Harmony Harmony { get; } = new(MyPluginInfo.PLUGIN_GUID);
 
     private static PluginController? controller;
 
@@ -31,7 +29,7 @@ public class CruiserJumpPractice : BaseUnityPlugin
 
         // Startup order matters: construct the controller before patching so the first game
         // callback can enter a fully wired plugin boundary.
-        Harmony.PatchAll();
+        HarmonyPatchInstaller.Install();
 
         Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_NAME} v{MyPluginInfo.PLUGIN_VERSION} is loaded!");
     }
