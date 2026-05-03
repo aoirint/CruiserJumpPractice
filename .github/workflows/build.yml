@@ -120,6 +120,8 @@ jobs:
       - build
     if: needs.build.outputs.release_mode != 'edge'
 
+    # Keep this on ubuntu-slim: release publishing only needs standard shell tools
+    # included in that image, and does not require ubuntu-latest's larger toolset.
     runs-on: ubuntu-slim
 
     permissions:
