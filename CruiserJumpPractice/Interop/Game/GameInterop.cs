@@ -3,9 +3,9 @@
 using BepInEx.Logging;
 using CruiserJumpPractice.Core.Ports;
 using CruiserJumpPractice.Core.Snapshots;
-using CruiserJumpPractice.Interop.Adapters;
+using CruiserJumpPractice.Interop.Game.Adapters;
 
-namespace CruiserJumpPractice.Interop;
+namespace CruiserJumpPractice.Interop.Game;
 
 internal sealed class GameInterop : IGameInterop
 {

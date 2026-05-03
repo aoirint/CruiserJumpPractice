@@ -10,7 +10,7 @@ using UnityEngine::UnityEngine;
 
 using CruiserJumpPractice.Core.Snapshots;
 
-namespace CruiserJumpPractice.Interop.Adapters;
+namespace CruiserJumpPractice.Interop.Game.Adapters;
 
 internal sealed class CruiserAdapter
 {

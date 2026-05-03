@@ -2,9 +2,9 @@
 
 using BepInEx.Logging;
 
-using CruiserJumpPractice.Interop;
+using CruiserJumpPractice.Interop.Game;
 
-namespace CruiserJumpPractice.Interop.Adapters;
+namespace CruiserJumpPractice.Interop.Game.Adapters;
 
 internal sealed class NetworkAdapter
 {

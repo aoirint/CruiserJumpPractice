@@ -7,6 +7,7 @@ using CruiserJumpPractice.Core.State;
 using CruiserJumpPractice.Core.UseCases.Client;
 using CruiserJumpPractice.Core.UseCases.Server;
 using CruiserJumpPractice.Interop;
+using CruiserJumpPractice.Interop.Game;
 using CruiserJumpPractice.Interop.InputUtils;
 
 namespace CruiserJumpPractice.Composition;

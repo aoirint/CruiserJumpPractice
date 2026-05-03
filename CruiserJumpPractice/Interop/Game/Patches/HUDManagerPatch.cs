@@ -6,7 +6,7 @@ using BepInEx.Logging;
 using HarmonyLib;
 using LethalCompany;
 
-namespace CruiserJumpPractice.Interop.Patches;
+namespace CruiserJumpPractice.Interop.Game.Patches;
 
 [HarmonyPatch(typeof(HUDManager))]
 internal class HUDManagerPatch

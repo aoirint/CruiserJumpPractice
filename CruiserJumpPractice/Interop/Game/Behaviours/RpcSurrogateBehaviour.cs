@@ -7,7 +7,7 @@ using LethalCompany::Unity.Netcode;
 
 using CruiserJumpPractice.Core.UseCases;
 
-namespace CruiserJumpPractice.Interop.Behaviours;
+namespace CruiserJumpPractice.Interop.Game.Behaviours;
 
 internal class RpcSurrogateBehaviour : NetworkBehaviour
 {
