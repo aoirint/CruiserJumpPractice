@@ -64,12 +64,16 @@ When a template exists:
 
 - Do not present autonomous AI review, inspection, or scenario analysis as a manual check.
 - Manual checks should describe checks performed by a human.
-- If a human asked AI to inspect something, make the human request the top-level item. Nest the AI result under it and
-  clearly label the result as AI-assisted.
+- If a human asked AI to inspect something, report it under a `### AI-assisted inspections` subsection inside
+  `## Testing`, after `### Automated checks` when both sections are present.
+- In `### AI-assisted inspections`, make the human request the top-level item. Nest the AI result under it and clearly
+  label the result as AI-assisted.
 - Keep automated commands, CI results, human manual checks, screenshots, videos, and AI-assisted inspection results
   distinct from each other.
 
-When no repository template exists, use a concise fallback structure such as:
+When no repository template exists, use the same visible structure as the repository pull request template.
+Keep the top-level headings, testing subsection order, and CLA checklist from this fallback scaffold. When a scaffold
+subsection has no applicable content, write `None` or `Not applicable` instead of removing the heading:
 
 ```markdown
 > [!WARNING]
@@ -78,16 +82,43 @@ When no repository template exists, use a concise fallback structure such as:
 ## Summary
 - ...
 
-## Verification
+## Related Issues
+- None.
+
+## Notes for reviewers
 - ...
+
+### AI disclosure
+- ...
+
+## Testing
+
+### Automated checks
+- ...
+
+### AI-assisted inspections
+- ...
+
+### Manual checks
+- ...
+
+### Screenshots / videos
+- ...
+
+## Checklist
+
+As the pull request author, I have checked all required items:
+
+- [ ] I have read `CONTRIBUTING.md` and agree to the Contribution License Agreement.
 ```
 
-For fallback bodies, recommend sections only when they carry useful information:
+Use fallback sections this way:
 
 - `Summary`: user-facing or maintainer-facing changes, grouped by behavior or area.
-- `Verification`: commands run and their results, such as project builds,
-  tests, linters, formatters, or structural validators.
-- `Notes`: limitations, skipped checks, migration notes, or reviewer attention points.
+- `Related Issues`: GitHub issues, pull requests, external references, or `None`.
+- `Notes for reviewers`: limitations, skipped checks, migration notes, reviewer attention points, or review focus.
+- `AI disclosure`: significant AI assistance details, or `None` when no significant AI assistance was used.
+- `Testing`: automated commands, CI results, AI-assisted inspections, manual checks, screenshots, or videos.
 - `Breaking Changes`: required when the title or commits include `!` or `BREAKING CHANGE`.
 
 ## Style
@@ -118,6 +149,9 @@ Use `Update Note` or `Discussion Note` sections only when the user or maintainer
 
 - Use `Update Note` for a concrete change that was just made to the pull request.
 - Use `Discussion Note` for a decision, tradeoff, or rationale that should remain visible in the PR thread.
+- Immediately after the required LLM alert and before the note heading, state which human prompt or maintainer request
+  the note answers. Use a short `Prompt addressed: ...` line so the note can be reused as source material for
+  `### AI-assisted inspections` in the pull request body.
 - Keep each note concise and limited to information that is safe and useful for future reviewers.
 - Base notes on confirmed PR context. If a note includes an inference or assumption, label it as such.
 - Do not include secrets, private discussion, local-only paths, hidden chain-of-thought, or unrelated implementation

@@ -90,6 +90,7 @@ Paste the relevant output here.
 </details>
 
 ### Automated checks
+### AI-assisted inspections
 ### Manual checks
 ### Screenshots / videos
 -->
