@@ -1,9 +1,18 @@
+<!--
+If significant AI assistance affected this pull request, put this alert at the very top of the PR body:
+
+> [!WARNING]
+> This pull request was created with assistance from LLMs.
+
+Then describe the AI assistance under "AI disclosure" below.
+-->
+
 ## Summary
 
 <!--
-Briefly describe the user-facing, contributor-facing, or maintainer-facing impact of this change.
-Mention why the change is useful, even when the diff looks self-explanatory.
-If this summary cannot stay brief, consider splitting unrelated work into separate pull requests.
+Briefly describe what changed, who it affects, and why it is useful.
+If this pull request mixes unrelated behavior, documentation, refactors, or cleanup,
+split it or explain why the work should stay together.
 
 Optional H3 examples:
 ### User impact
@@ -28,16 +37,18 @@ Markdown list examples:
 ## Notes for reviewers
 
 <!--
-Share context that helps reviewers understand or prioritize this pull request.
-Use "None" if there are no additional notes for reviewers.
+Share non-testing context that helps reviewers understand or prioritize this pull request.
+For example, mention review focus, trade-offs, compatibility risks, generated outputs, packaging concerns,
+or areas that need extra attention for reasons other than AI assistance.
 -->
 
 ### AI disclosure
 
 <!--
-If AI assistance significantly affected this pull request, describe it here in practical terms:
-what assistance was used, what you reviewed or adapted yourself, and any areas you want checked closely.
-Use "None" for items that do not apply.
+If AI assistance drafted, rewrote, reviewed, or materially shaped this pull request, disclose it here.
+Mention what the AI helped with, how you reviewed or adapted the result, and any AI-assisted areas you did
+not review closely.
+Use "None" if no significant AI assistance was used.
 
 Optional H3 examples:
 ### Review focus
@@ -48,6 +59,8 @@ Optional H3 examples:
 
 <!--
 List the checks you ran and their results.
+Include commands, manual in-game checks, package/Thunderstore review, screenshots, or videos when relevant.
+For docs-only changes, mention proofreading, link checks, formatting checks, or "Not run - docs only."
 If you did not run a relevant check, explain why.
 You are responsible for masking personal information, local absolute paths, access tokens, and other sensitive details
 before posting logs, screenshots, or videos.
@@ -66,6 +79,7 @@ Paste the relevant output here.
 
 ### Automated checks
 ### Manual checks
+### Package / Thunderstore checks
 ### Screenshots / videos
 -->
 
