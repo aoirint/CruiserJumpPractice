@@ -71,6 +71,9 @@ On Linux, use `sudo docker` and pass the host user's UID and GID:
 sudo docker run --rm --network none --user "$(id -u):$(id -g)" -v ".:/workdir" davidanson/markdownlint-cli2:v0.22.1@sha256:0ed9a5f4c77ef447da2a2ac6e67caf74b214a7f80288819565e8b7d2ac148fe5
 ```
 
+When updating Markdown lint tooling, update both the local Docker image and the
+CI action together after the repository cooldown period has elapsed.
+
 ## Package management
 
 To update the lock file after modifying your package references, run:
@@ -86,6 +89,9 @@ The repository uses GitHub Actions for CI.
 ### Action pinning
 
 The version of the actions are pinned with [pinact](https://github.com/suzuki-shunsuke/pinact).
+Actions and other executable CI tooling should be updated after the repository
+cooldown period has elapsed. Keep SHA pins and version comments synchronized
+when updating pinned actions.
 
 ```powershell
 # Pin
