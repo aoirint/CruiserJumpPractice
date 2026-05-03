@@ -49,7 +49,19 @@ dotnet restore --use-lock-file
 
 The repository uses GitHub Actions for CI.
 
+### Action pinning
+
 The version of the actions are pinned with [pinact](https://github.com/suzuki-shunsuke/pinact).
+
+```powershell
+# Pin
+pinact run --min-age 7
+
+# Update
+pinact run --update --min-age 7
+```
+
+### Thunderstore publishing secret
 
 Stable releases are published to Thunderstore from CI using the local
 `.github/actions/publish-thunderstore` composite action and the
@@ -59,14 +71,6 @@ The token must belong to a Thunderstore service account that can publish to the
 `aoirint` team. The current workflow publishes to the `lethal-company`
 community with the `Mods`, `Tweaks & Quality Of Life`, and `AI Generated`
 categories.
-
-```powershell
-# Pin
-pinact run --min-age 7
-
-# Update
-pinact run --update --min-age 7
-```
 
 ## Build
 
