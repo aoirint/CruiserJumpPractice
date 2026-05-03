@@ -23,6 +23,10 @@ description: Create and update this repository's canonical developer changelog a
   publishing prerelease-only noise to Thunderstore.
 - Make derivation and release verification reviewable before publishing.
 
+Reference:
+
+- Keep a Changelog 1.1.0: http://keepachangelog.com/en/1.1.0/
+
 ## Workflow
 
 1. Update `CHANGELOG.md` first with notable developer-facing release history.
@@ -30,6 +34,8 @@ description: Create and update this repository's canonical developer changelog a
    `Deprecated`, `Removed`, `Fixed`, and `Security`.
 3. Keep `Unreleased` at the top and move entries into a versioned section with
    a release date when preparing a release.
+   - Do not finalize a versioned section until the maintainer has selected the
+     stable version and UTC release date.
 4. Decide whether the release is stable:
    - Stable releases use a version without a prerelease suffix, such as
      `1.2.3`.
@@ -40,15 +46,32 @@ description: Create and update this repository's canonical developer changelog a
    stable users.
 6. Omit prerelease-only details from `assets/CHANGELOG.md` when they were
    internal, superseded before stable release, or useful only to maintainers.
-7. Derive `assets/CHANGELOG.md` from stable entries in `CHANGELOG.md` and
+7. Keep `assets/CHANGELOG.md` as the cumulative Thunderstore-facing stable
+   release history, with the latest stable release at the top.
+   - Before packaging, the top section must be a stable version heading, not
+     `Unreleased`.
+8. Derive `assets/CHANGELOG.md` from exact stable entries in `CHANGELOG.md` and
    rewrite the text around user-visible behavior, installation, compatibility,
    and known limitations.
-8. Preserve user-critical notes in `assets/CHANGELOG.md`, including breaking
+   - If the exact canonical changelog section is unavailable, write draft
+     Thunderstore notes and list the missing inputs instead of presenting the
+     output as final.
+9. Preserve user-critical notes in `assets/CHANGELOG.md`, including breaking
    changes, compatibility changes, installation or update notes, removals,
    deprecations, security fixes, yanked releases, and known limitations.
-9. Before release packaging, verify:
+10. Keep test environment details in `CHANGELOG.md`. Include them in
+    `assets/CHANGELOG.md` only when they are needed as user-facing compatibility
+    or support context.
+    - Use maintainer-confirmed compatibility metadata from the canonical
+      changelog, prior release notes, tested game/dependency versions, or
+      explicit maintainer input. Do not invent compatibility claims.
+11. Before release packaging, verify:
    - `CruiserJumpPractice/CruiserJumpPractice.csproj` contains the intended
      release version.
+   - The intended stable tag, using this repository's `v<version>` convention
+     from the `generate-version` action, does not already exist locally or
+     remotely. Existing versions are treated as edge builds. If remote tag
+     verification cannot be performed, report it as a release-readiness blocker.
    - `assets/manifest.json` will receive the same version through the
      `generate-version` action.
    - `assets/CHANGELOG.md` contains only Thunderstore-appropriate stable
@@ -63,3 +86,15 @@ description: Create and update this repository's canonical developer changelog a
   the user explicitly asks for those side effects.
 - Keep private workspace paths, temporary worktree names, command transcripts,
   and authentication details out of public changelog or release-note text.
+
+## Review-Only Output
+
+When the user asks for a release-readiness review instead of edits, return:
+
+1. Current state of `CHANGELOG.md`, `assets/CHANGELOG.md`, project version,
+   local and remote tag readiness, manifest version flow, and package workflow
+   inclusion.
+2. Required updates before packaging.
+3. Blockers or missing inputs, especially stable version, UTC release date,
+   exact canonical changelog text, and compatibility metadata.
+4. Confirmation that no publishing side effects were performed.
