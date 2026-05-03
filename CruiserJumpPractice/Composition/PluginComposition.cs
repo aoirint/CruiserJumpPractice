@@ -59,9 +59,10 @@ internal sealed class PluginComposition
         StartupHandler = startupHandler;
     }
 
-    public static PluginComposition Create(ManualLogSource logger, InputUtilsActions inputActions)
+    public static PluginComposition Create(ManualLogSource logger)
     {
         var coreLogger = new BepInExCoreLogger(logger);
+        var inputActions = new InputUtilsActions();
         var practiceInput = new InputUtilsPracticeInput(inputActions);
         IGameInterop gameInterop = new GameInterop(logger);
 
