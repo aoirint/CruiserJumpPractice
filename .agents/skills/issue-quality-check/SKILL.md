@@ -57,11 +57,6 @@ Recommend sections only when they carry useful information:
 - `Verification`: commands, manual checks, or observations already performed.
 - `Notes`: limitations, related work, dependencies, or reviewer attention points.
 
-For follow-up issues, include durable origin context when useful, such as the pull request,
-review thread, issue, discussion, or investigation that caused the follow-up. When multiple related
-follow-up issues come from the same source, cross-link them in the issue bodies so future readers
-can trace the relationship without relying on transient comments elsewhere.
-
 ## Style
 
 - Write issue titles, issue bodies, and issue comments in English.
