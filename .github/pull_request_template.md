@@ -28,7 +28,6 @@ Use "None" for items that do not apply.
 
 <!--
 List the checks you ran and their results, such as:
-- `dotnet format`
 - `DOTNET_CLI_UI_LANGUAGE=en dotnet build`
 - manual in-game checks
 - screenshots
