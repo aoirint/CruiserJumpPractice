@@ -141,5 +141,6 @@ Contributor responsibilities:
 
 ## Reporting security issues
 
-If you believe you found a security issue, avoid posting exploit details in a public issue. Contact the maintainer
-privately when possible, or open a minimal public issue that asks how to report a sensitive problem.
+If you believe you found a security issue, do not share exploit details publicly or with untrusted recipients. This
+includes public issues, social media, blog posts, livestreams, video uploads, and similar public channels. Contact the
+maintainer privately when possible, or open a minimal public issue that asks how to report a sensitive problem.
