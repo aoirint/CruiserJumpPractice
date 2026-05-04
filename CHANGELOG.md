@@ -23,7 +23,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Refactored internal architecture to improve maintainability.
 - Dropped backward compatibility with older CruiserJumpPractice versions:
     - Affects CruiserJumpPractice v0.1.4 and earlier.
-    - Caused by the internal `NetworkBehaviour` name change.
+    - Caused by this mod's internal `NetworkBehaviour` name change.
 - Marked automated Thunderstore uploads with an additional Thunderstore
   category:
     - `AI Generated`
