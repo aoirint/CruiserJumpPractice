@@ -37,6 +37,8 @@ description: >-
 7. Check CLI safety before creating or editing issues or replies through a shell command.
 8. After any `gh` create or edit command, verify the stored Markdown body or comment when possible,
    fix quoting problems, and remove temporary body files.
+9. In CLI examples, use confirmed issue numbers, comment IDs, or placeholders such as
+   `<issue-number>`. Do not infer an issue number from a pull request number or unrelated context.
 
 ## Title
 
@@ -122,6 +124,7 @@ can interpret those characters and silently corrupt the body.
 
 - Prefer writing the body to a temporary Markdown file and passing it with
   `gh issue create --body-file <file>` or `gh issue edit --body-file <file>`.
+- Use placeholders such as `<issue-number>` when the target issue number is unknown.
 - After creating or editing an issue through `gh`, verify the stored body with
   `gh issue view --json body` and fix any quoting issues before finishing.
 - Remove any temporary body file from the worktree after verification.
@@ -197,6 +200,7 @@ When creating or editing issue replies with a shell command:
 
 - Prefer writing the reply to a temporary Markdown file and passing it with
   `gh issue comment --body-file <file>`.
+- Use placeholders such as `<issue-number>` when the target issue number is unknown.
 - After creating or editing a reply through `gh`, verify the stored comment body
   when possible and fix any quoting issues before finishing.
 - Remove any temporary body file from the worktree after verification.
