@@ -89,6 +89,10 @@ description: >-
   downloaded CLI tools, GitHub Actions, containers, vendored artifacts,
   generated code from external tools, copied files, and dependency lockfile
   updates as supply-chain-sensitive.
+- Include direct and transitive dependencies when they are resolved by a
+  lockfile, package manager, container image, generated artifact, or vendored
+  bundle. Do not limit the review to direct dependency declarations when the
+  resolved graph is available.
 - Require a minimum 7-day cooldown before adopting newly released third-party
   packages, downloaded binaries, CI actions, containers, or other external
   executable artifacts unless the user or maintainer explicitly approves an
