@@ -1,7 +1,10 @@
 ---
 # SPDX-License-Identifier: Unlicense
 name: document-quality-check
-description: Quality-check documentation, comments, release notes, issue text, pull request text, and Agent Skill prose for readability, structure, audience fit, and preserved nuance.
+description: >-
+  Quality-check documentation, comments, release notes, issue text, pull request
+  text, and Agent Skill prose for readability, structure, audience fit, and
+  preserved nuance.
 ---
 
 # Document Quality Check

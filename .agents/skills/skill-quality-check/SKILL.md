@@ -1,7 +1,11 @@
 ---
 # SPDX-License-Identifier: Unlicense
 name: skill-quality-check
-description: Quality-check Agent Skills for trigger clarity, scope, structure, progressive disclosure, domain separation, validation, and scenario-readiness. Use when creating, updating, reviewing, or splitting Agent Skills, SKILL.md files, skill references, bundled scripts, or skill metadata.
+description: >-
+  Quality-check Agent Skills for trigger clarity, scope, structure, progressive
+  disclosure, domain separation, validation, and scenario-readiness. Use when
+  creating, updating, reviewing, or splitting Agent Skills, SKILL.md files, skill
+  references, bundled scripts, or skill metadata.
 ---
 
 # Skill Quality Check
@@ -88,8 +92,9 @@ description: Quality-check Agent Skills for trigger clarity, scope, structure, p
 
 When validating with scenarios, keep the report categories separate:
 
-- **Target skill findings**: problems in the skill being reviewed, such as description/body mismatch,
-  repository-specific leakage, stale metadata, missing validation, or unsupported bundled files.
+- **Target skill findings**: problems in the skill being reviewed, such as
+  description/body mismatch, repository-specific leakage, stale metadata,
+  missing validation, or unsupported bundled files.
 - **Input gaps**: unavailable source files, exact command text, unknown provenance, or missing
   metadata. Record these as assumptions or blockers.
 - **Skill-quality-check ambiguity**: places where this skill did not say what to inspect or how to

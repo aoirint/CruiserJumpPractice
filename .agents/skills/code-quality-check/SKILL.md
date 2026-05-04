@@ -1,7 +1,10 @@
 ---
 # SPDX-License-Identifier: Unlicense
 name: code-quality-check
-description: Language-agnostic code quality review for implementation, SPDX/license notices, and supply-chain-sensitive changes. Use when editing source code, generated code, tests, scripts, configuration-as-code, examples, dependencies, downloaded tools, or CI actions to improve readability, preserve maintainability, decide when design intent should be captured in comments, and apply shared verification discipline.
+description: >-
+  Quality-check source code, generated code, tests, scripts,
+  configuration-as-code, examples, dependencies, downloaded tools, CI actions,
+  SPDX/license notices, and supply-chain-sensitive changes.
 ---
 
 # Code Quality Check

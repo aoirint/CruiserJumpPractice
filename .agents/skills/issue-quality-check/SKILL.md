@@ -1,35 +1,44 @@
 ---
 # SPDX-License-Identifier: Unlicense
 name: issue-quality-check
-description: Quality-check repository issues and issue replies. Use when creating or updating GitHub issues or comments on issues.
+description: >-
+  Quality-check repository issues and issue replies. Use when creating,
+  updating, reviewing, or validating GitHub issues or comments on issues.
 ---
 
 # Issue Quality Check
 
 ## When to Use
 
-- Use this skill when creating, updating, reviewing, or validating GitHub issue titles or bodies for this repository.
-- Use this skill when creating, updating, reviewing, or validating replies or comments on GitHub issues for this repository.
+- Use this skill when creating, updating, reviewing, or validating GitHub issue
+  titles or bodies for this repository.
+- Use this skill when creating, updating, reviewing, or validating replies or
+  comments on GitHub issues for this repository.
 
 ## Title
 
 Check that the title is concise, specific, and written as a problem or task:
 
-- Prefer a clear noun phrase or imperative task, such as `Add practice reset hotkey documentation` or `Fix cruiser state reload after scene transition`.
+- Prefer a clear noun phrase or imperative task, such as
+  `Add practice reset hotkey documentation` or
+  `Fix cruiser state reload after scene transition`.
 - Include the affected area when it helps triage, such as `MagnetService:` or `docs:`.
 - Avoid vague titles such as `Bug`, `Question`, `Help`, or `Does not work`.
-- Do not force Conventional Commits format for issues unless the repository explicitly asks for it in that issue flow.
+- Do not force Conventional Commits format for issues unless the repository
+  explicitly asks for it in that issue flow.
 
 ## Required LLM Alert
 
-When the issue was prepared with LLM assistance, check that this GitHub alert appears at the very top of the issue body:
+When the issue was prepared with LLM assistance, check that this GitHub alert
+appears at the very top of the issue body:
 
 ```markdown
 > [!WARNING]
 > This issue was created with assistance from LLMs.
 ```
 
-The alert should appear before every other heading, summary, checklist, template field, or metadata block.
+The alert should appear before every other heading, summary, checklist, template
+field, or metadata block.
 
 ## Body Structure
 
@@ -80,22 +89,29 @@ can trace the relationship without relying on transient comments elsewhere.
 
 ## CLI Safety
 
-When creating or editing issue bodies with a shell command, avoid passing Markdown directly through command arguments if it contains backticks, quotes, dollar signs, backslashes, or multiple lines. Shells such as PowerShell and bash can interpret those characters and silently corrupt the body.
+When creating or editing issue bodies with a shell command, avoid passing
+Markdown directly through command arguments if it contains backticks, quotes,
+dollar signs, backslashes, or multiple lines. Shells such as PowerShell and bash
+can interpret those characters and silently corrupt the body.
 
-- Prefer writing the body to a temporary Markdown file and passing it with `gh issue create --body-file <file>` or `gh issue edit --body-file <file>`.
-- After creating or editing an issue through `gh`, verify the stored body with `gh issue view --json body` and fix any quoting issues before finishing.
+- Prefer writing the body to a temporary Markdown file and passing it with
+  `gh issue create --body-file <file>` or `gh issue edit --body-file <file>`.
+- After creating or editing an issue through `gh`, verify the stored body with
+  `gh issue view --json body` and fix any quoting issues before finishing.
 - Remove any temporary body file from the worktree after verification.
 
 ## Issue Replies
 
-When the issue reply was prepared with LLM assistance, check that this GitHub alert appears at the very top of the comment body:
+When the issue reply was prepared with LLM assistance, check that this GitHub
+alert appears at the very top of the comment body:
 
 ```markdown
 > [!WARNING]
 > This comment was created with assistance from LLMs.
 ```
 
-The alert should appear before every other paragraph, heading, checklist, quote, or metadata block.
+The alert should appear before every other paragraph, heading, checklist, quote,
+or metadata block.
 
 Check that the reply is concise and uses only the structure needed for the situation:
 
@@ -129,24 +145,32 @@ For issue replies:
 - Avoid large diffs, large logs, and unrelated implementation plans.
 - Do not promise timelines unless they are already agreed.
 
-Use `Update Note` or `Discussion Note` sections only when the active task asks for process notes, decision logs, or
-granular issue-thread updates. Do not add them by default: frequent process notes can clutter the thread and may expose
+Use `Update Note` or `Discussion Note` sections only when the active task asks
+for process notes, decision logs, or granular issue-thread updates. Do not add
+them by default: frequent process notes can clutter the thread and may expose
 unnecessary implementation context. When enabled:
 
-- Use `Update Note` for a concrete issue, documentation, or implementation update that was just made.
-- Use `Discussion Note` for a decision, tradeoff, or rationale that should remain visible in the issue thread.
-- Immediately after the required LLM alert and before the note heading, add a neutral `Request addressed: ...` line.
-  Use it only as a concise marker for later AI-disclosure or AI-assisted inspection summaries; do not use it to classify
-  requester identity, role, or authority.
-- Keep each note concise and limited to information that is safe and useful for future readers.
-- Base notes on confirmed issue context. If a note includes an inference or assumption, label it as such.
-- Do not include secrets, private discussion, local-only paths, hidden chain-of-thought, or unrelated implementation
-  details.
-- Prefer a normal short reply when the comment only needs to answer a question, report investigation results, or
-  acknowledge completion.
+- Use `Update Note` for a concrete issue, documentation, or implementation
+  update that was just made.
+- Use `Discussion Note` for a decision, tradeoff, or rationale that should
+  remain visible in the issue thread.
+- Immediately after the required LLM alert and before the note heading, add a
+  neutral `Request addressed: ...` line. Use it only as a concise marker for
+  later AI-disclosure or AI-assisted inspection summaries; do not use it to
+  classify requester identity, role, or authority.
+- Keep each note concise and limited to information that is safe and useful for
+  future readers.
+- Base notes on confirmed issue context. If a note includes an inference or
+  assumption, label it as such.
+- Do not include secrets, private discussion, local-only paths, hidden
+  chain-of-thought, or unrelated implementation details.
+- Prefer a normal short reply when the comment only needs to answer a question,
+  report investigation results, or acknowledge completion.
 
 When creating or editing issue replies with a shell command:
 
-- Prefer writing the reply to a temporary Markdown file and passing it with `gh issue comment --body-file <file>`.
-- After creating or editing a reply through `gh`, verify the stored comment body when possible and fix any quoting issues before finishing.
+- Prefer writing the reply to a temporary Markdown file and passing it with
+  `gh issue comment --body-file <file>`.
+- After creating or editing a reply through `gh`, verify the stored comment body
+  when possible and fix any quoting issues before finishing.
 - Remove any temporary body file from the worktree after verification.
