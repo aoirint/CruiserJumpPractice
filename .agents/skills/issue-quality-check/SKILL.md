@@ -15,6 +15,29 @@ description: >-
 - Use this skill when creating, updating, reviewing, or validating replies or
   comments on GitHub issues for this repository.
 
+## Goals
+
+- Make issue titles, bodies, and replies clear enough for maintainers to triage and act on.
+- Preserve required LLM disclosure alerts whenever LLM assistance was used.
+- Keep issue text in English except for exact quoted source material or identifiers.
+- Prevent shell quoting from corrupting Markdown when creating or editing issues through `gh`.
+- Record verification limits, uncertainty, and requested follow-up information explicitly.
+
+## Workflow
+
+1. Classify the artifact as an issue title, issue body, issue reply, or combined issue update.
+2. Check required LLM disclosure first, using the issue-body alert for issues and the comment alert
+   for replies when LLM assistance was used.
+3. Check the title when present for concise, specific triage wording.
+4. Check the body or reply structure, keeping only sections that add useful information.
+5. Check English style, concise wording, exact quoted material, and issue-specific nuance with
+   `document-quality-check` when explanatory prose needs review.
+6. Check risk-sensitive content with `security-check` when the issue mentions security,
+   supply-chain-sensitive tools, dependencies, CI, containers, secrets, permissions, or exceptions.
+7. Check CLI safety before creating or editing issues or replies through a shell command.
+8. After any `gh` create or edit command, verify the stored Markdown body or comment when possible,
+   fix quoting problems, and remove temporary body files.
+
 ## Title
 
 Check that the title is concise, specific, and written as a problem or task:
