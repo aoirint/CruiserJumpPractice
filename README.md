@@ -76,7 +76,7 @@ CI action together after the repository cooldown period has elapsed.
 
 ## Package management
 
-### NuGet lock file updates
+### Dependency updates
 
 To update the lock file after modifying your package references, run:
 
