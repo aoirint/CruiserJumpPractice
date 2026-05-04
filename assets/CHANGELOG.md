@@ -37,7 +37,7 @@ No gameplay changes are introduced.
 
 ### Changed
 
-- Enables keybind actions while the player is dead, same as Imperium.
+- Enables keybind actions while the player is dead, matching Imperium.
 
 ### Notes
 
@@ -60,7 +60,7 @@ No gameplay changes are introduced.
 ### Changed
 
 - Disables keybind actions while the player is in a menu, using the terminal,
-  typing in chat, or is dead.
+  typing in chat, or dead.
 
 ### Fixed
 
