@@ -137,6 +137,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Notes
 
 - Compatibility:
+    - Compatibility notes were first added in v0.2.0-alpha.1:
+        - Earlier releases did not include compatibility information in this
+          changelog.
+        - Compatibility information for older releases was backfilled as
+          reference material at the same time.
     - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID:
       `1749099131234587692`).
         - Later withdrawn as explicit support wording in v0.2.0-alpha.2.
@@ -162,6 +167,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Compatibility:
     - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID:
       `1749099131234587692`).
+        - Backfilled as reference compatibility information in
+          v0.2.0-alpha.1.
 - Test environment:
     - Lethal Company v73 (2025-10-04 UTC, Manifest ID:
       `1749099131234587692`)
@@ -194,6 +201,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Compatibility:
     - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID:
       `1749099131234587692`).
+        - Backfilled as reference compatibility information in
+          v0.2.0-alpha.1.
 
 ## v0.1.1 - 2025-11-29 UTC
 
@@ -206,6 +215,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Compatibility:
     - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID:
       `1749099131234587692`).
+        - Backfilled as reference compatibility information in
+          v0.2.0-alpha.1.
 
 ## v0.1.0 - 2025-11-29 UTC
 
@@ -218,3 +229,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Compatibility:
     - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID:
       `1749099131234587692`).
+        - Backfilled as reference compatibility information in
+          v0.2.0-alpha.1.
