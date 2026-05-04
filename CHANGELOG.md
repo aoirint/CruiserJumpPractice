@@ -122,7 +122,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
     - Added domain models and explicit use case result types.
     - Split client/server services and frame/startup handlers.
     - Later superseded by the stable-release roll-up and the follow-up
-      alpha.2 refactors.
+      v0.2.0-alpha.2 refactors.
 - Replaced direct base game utility access with an `IGameInterop` abstraction
   and adapter layer so future game-version work can be isolated behind interop
   boundaries.
@@ -130,9 +130,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   consistent save, load, and magnet-toggle result handling.
 - Split cruiser state and magnet behavior into explicit save/load/toggle use
   cases while preserving the existing user-facing gameplay flow.
-- Changed the internal `NetworkBehaviour` and interop layout, making this
-  alpha release not backward-compatible with CruiserJumpPractice v0.1.4 and
-  earlier.
+- Changed the internal `NetworkBehaviour` and interop layout, making the
+  v0.2.0-alpha.1 release not backward-compatible with CruiserJumpPractice
+  v0.1.4 and earlier.
 
 ### Notes
 
