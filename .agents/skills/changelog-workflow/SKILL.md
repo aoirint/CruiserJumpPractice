@@ -98,6 +98,11 @@ Reference:
    - Split long bullets into concise parent items with indented subitems when a
      change contains several facts, reasons, affected versions, or follow-up
      notes.
+   - When splitting or rewording changelog prose, follow the
+     `code-quality-check` wording guidance: improve readability while
+     preserving certainty, scope, timing, compatibility confidence,
+     dependency relationships, and whether a statement is original,
+     backfilled, inferred, superseded, or withdrawn.
 8. If the user asks for user-facing release notes, verify or prepare only the
    canonical source material here, then use the appropriate release-note
    workflow for the user-facing rewrite and release-readiness checks.

@@ -68,6 +68,9 @@ can trace the relationship without relying on transient comments elsewhere.
 - Preserve non-English text only when quoting source text, branch names, commit messages, file
   contents, logs, or existing discussion snippets that must remain exact.
 - Keep issue bodies short and scannable.
+- Follow the `code-quality-check` wording guidance for explanatory prose: split overloaded
+  sentences when needed, while preserving certainty, scope, timing, relationships, and other
+  important nuance.
 - Prefer bullets for facts, steps, and criteria.
 - Mention paths, commands, classes, and config keys in backticks.
 - Include exact expected and actual behavior for bugs.

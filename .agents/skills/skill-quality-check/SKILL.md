@@ -47,6 +47,9 @@ description: Quality-check Agent Skills for trigger clarity, scope, structure, p
    - Keep required steps explicit, ordered, and written as imperatives.
    - Match specificity to risk: flexible guidance for judgment-heavy work, exact commands or scripts
      for fragile operations.
+   - Follow the `code-quality-check` wording guidance for explanatory prose:
+     split overloaded sentences when needed, while preserving trigger
+     boundaries, scope, ordering, risk level, and domain-separation nuance.
 6. Check progressive disclosure:
    - Keep `SKILL.md` short enough to scan quickly.
    - Link every optional reference directly from `SKILL.md`; avoid nested reference chains.

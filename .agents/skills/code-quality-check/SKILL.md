@@ -92,6 +92,21 @@ When adding a comment:
   rewrite or reject, use a same-line comment or another nearby location that preserves the group.
 - Update nearby tests or verification notes if the comment documents behavior that must stay true.
 
+## Documentation and Comment Wording
+
+When editing documentation, comments, release notes, PR text, or other explanatory prose, improve
+readability without flattening meaning.
+
+- Split overloaded sentences when they carry multiple ideas, conditions, time references, confidence
+  levels, or relationships.
+- Preserve the nuance that made the original wording important. Keep distinctions such as certainty,
+  scope, timing, exception status, dependency relationships, and whether a statement is original,
+  backfilled, inferred, or superseded.
+- Use as many short sentences or nested bullets as needed to make the relationship readable. Do not
+  force a fixed sentence count when the content needs a different shape.
+- After splitting text, re-read the result as a whole and confirm it still answers the same question
+  as the original wording.
+
 ### CI and Configuration Comments
 
 For configuration-as-code, CI workflows, build files, and tool configuration, intent comments are
