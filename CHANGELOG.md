@@ -46,6 +46,84 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
     - OdinSerializer v2024.2.2700 (2025-05-18 UTC)
     - BepInEx_MonoMod_Debug_Patcher v1.1.1 (2025-04-03 UTC)
 
+## v0.2.0-alpha.2 - 2026-04-26 UTC
+
+### Added
+
+- Added repository-local Agent Skills and `AGENTS.md` guidance for commit
+  message checks, pull request quality checks, and agent workflow conventions.
+- Added AI disclosure documentation to the repository README and Thunderstore
+  package README to satisfy Thunderstore policy expectations.
+
+### Changed
+
+- Updated compile-time dependencies from Lethal Company v73 to v81.5,
+  LethalCompany_InputUtils v0.7.13, BepInEx.PluginInfoProps v2.1.0, and
+  UnityEngine.Modules 2022.3.62.
+- Replaced `RestoreAdditionalProjectSources` with an explicit `nuget.config`
+  and package source mapping to make dependency restores more deterministic.
+- Renamed interop adapters from `V73` to `Current` and removed game-version
+  suffixes from reference aliases after confirming NuGet cannot support the
+  intended static multi-version validation model without manual DLL management.
+- Simplified redundant network role guards in RPC surrogate and frame-handling
+  paths.
+- Updated Thunderstore README compatibility language to focus on the latest
+  stable Lethal Company version, with older versions treated as best-effort.
+- Documented safer GitHub CLI pull request body handling so Markdown is passed
+  through body files and verified after creation.
+
+### Fixed
+
+- Fixed package source mapping for indirect dependencies after clean restore
+  checks exposed missing mappings.
+
+### Removed
+
+- Removed unmaintained `Debug.ps1` and `InitProfiles.ps1` scripts together
+  with stale setup, debug, and Visual Studio launch-profile references.
+
+### Notes
+
+- Compatibility:
+    - Compatible with Lethal Company v81.5 (2026-04-17 UTC, Manifest ID:
+      `6423525044216269478`).
+    - Lethal Company v73 and v56 compatibility became best-effort rather than
+      something validated statically through parallel NuGet references.
+
+## v0.2.0-alpha.1 - 2026-04-25 UTC
+
+### Changed
+
+- Refactored the runtime from a manager-centered structure into a layered
+  application architecture with a composition root, domain models, explicit use
+  case result types, client/server services, and frame/startup runtime
+  handlers.
+- Replaced direct base-game utility access with an `IGameInterop` abstraction
+  and adapter layer so future game-version work can be isolated behind interop
+  boundaries.
+- Centralized in-game notifications through a notification use case for more
+  consistent save, load, and magnet-toggle result handling.
+- Split cruiser state and magnet behavior into explicit save/load/toggle use
+  cases while preserving the existing user-facing gameplay flow.
+- Changed the internal network behaviour and interop layout, making this alpha
+  line not backward-compatible with CruiserJumpPractice v0.1.4 and earlier.
+
+### Notes
+
+- Compatibility:
+    - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID:
+      `1749099131234587692`).
+    - Lethal Company v56 mostly works, with a known minor issue tracked in
+      <https://github.com/aoirint/CruiserJumpPractice/issues/5>.
+- Test environment:
+    - Lethal Company v73 (2025-10-04 UTC, Manifest ID:
+      `1749099131234587692`)
+    - BepInExPack v5.4.2304 (2025-11-05 UTC)
+    - Imperium v1.1.1 (2025-10-27 UTC)
+    - LethalCompany_InputUtils v0.7.12 (2025-10-24 UTC)
+    - LethalNetworkAPI v3.3.2 (2024-12-29 UTC)
+    - OdinSerializer v2024.2.2700 (2025-05-18 UTC)
+
 ## v0.1.4 - 2025-11-30 UTC
 
 ### Changed
