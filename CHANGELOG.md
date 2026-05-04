@@ -24,6 +24,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Dropped backward compatibility with older CruiserJumpPractice versions:
     - Affects CruiserJumpPractice v0.1.4 and earlier.
     - Caused by a mod-internal `NetworkBehaviour` name change.
+- Documented the tested Lethal Company version in the Thunderstore package
+  description metadata and release checklist.
 - Marked automated Thunderstore uploads with an additional Thunderstore
   category:
     - `AI Generated`
