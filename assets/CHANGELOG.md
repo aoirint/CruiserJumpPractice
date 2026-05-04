@@ -26,8 +26,10 @@ No gameplay changes are introduced.
         - See the [Imperium issue comment][imperium-cruiser-workaround] for a
           workaround.
     - Lethal Company v73: It still appears to work.
-    - Lethal Company v56: It mostly works, with a minor known issue tracked in
-      <https://github.com/aoirint/CruiserJumpPractice/issues/5>.
+    - Lethal Company v56 has lower-confidence compatibility:
+        - Core features appear to work in limited checks.
+        - A known minor issue was found early and is tracked in
+          <https://github.com/aoirint/CruiserJumpPractice/issues/5>.
 
 ## v0.1.4 - 2025-11-30 UTC
 

@@ -34,8 +34,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
     - Compatible with Lethal Company v81.5 (2026-04-17 UTC, Manifest ID:
       `6423525044216269478`).
     - Lethal Company v73 still appears to work.
-    - Lethal Company v56 mostly works, with a known minor issue tracked in
-      <https://github.com/aoirint/CruiserJumpPractice/issues/5>.
+    - Lethal Company v56 has lower-confidence compatibility:
+        - Core features appear to work in limited checks.
+        - A known minor issue was found early and is tracked in
+          <https://github.com/aoirint/CruiserJumpPractice/issues/5>.
     - Imperium v1.3.0 appears to have some cruiser-related issues:
         - See
           <https://github.com/giosuel/imperium/issues/153#issuecomment-4317402735>
@@ -145,8 +147,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
     - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID:
       `1749099131234587692`).
         - Later withdrawn as explicit support wording in v0.2.0-alpha.2.
-    - Lethal Company v56 mostly works, with a known minor issue tracked in
-      <https://github.com/aoirint/CruiserJumpPractice/issues/5>.
+    - Lethal Company v56 has lower-confidence compatibility:
+        - Core features appeared to work in limited checks.
+        - A known minor issue was found early and is tracked in
+          <https://github.com/aoirint/CruiserJumpPractice/issues/5>.
 - Test environment:
     - Lethal Company v73 (2025-10-04 UTC, Manifest ID:
       `1749099131234587692`)
