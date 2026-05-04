@@ -167,7 +167,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Compatibility:
     - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID:
       `1749099131234587692`).
-        - Backfilled as reference compatibility information when preparing
+        - Backfilled as reference compatibility information while preparing
           the v0.2.0-alpha.1 release.
 - Test environment:
     - Lethal Company v73 (2025-10-04 UTC, Manifest ID:
@@ -183,7 +183,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Notes
 
 - Yanked release due to a build issue.
-- No compatibility information was backfilled when preparing the
+- No compatibility information was backfilled while preparing the
   v0.2.0-alpha.1 release because this release was yanked.
 
 ## v0.1.2 - 2025-11-29 UTC
@@ -203,7 +203,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Compatibility:
     - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID:
       `1749099131234587692`).
-        - Backfilled as reference compatibility information when preparing
+        - Backfilled as reference compatibility information while preparing
           the v0.2.0-alpha.1 release.
 
 ## v0.1.1 - 2025-11-29 UTC
@@ -217,7 +217,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Compatibility:
     - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID:
       `1749099131234587692`).
-        - Backfilled as reference compatibility information when preparing
+        - Backfilled as reference compatibility information while preparing
           the v0.2.0-alpha.1 release.
 
 ## v0.1.0 - 2025-11-29 UTC
@@ -231,5 +231,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Compatibility:
     - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID:
       `1749099131234587692`).
-        - Backfilled as reference compatibility information when preparing
+        - Backfilled as reference compatibility information while preparing
           the v0.2.0-alpha.1 release.

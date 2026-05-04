@@ -25,9 +25,9 @@ No gameplay changes are introduced.
     - Imperium v1.3.0 appears to have some cruiser-related issues:
         - See the [Imperium issue comment][imperium-cruiser-workaround] for a
           workaround.
-    - Lethal Company v73: It still seems to work.
-    - Lethal Company v56: Major features work as expected, but there is a minor
-      known issue: <https://github.com/aoirint/CruiserJumpPractice/issues/5>.
+    - Lethal Company v73: It still appears to work.
+    - Lethal Company v56: It mostly works, with a minor known issue tracked in
+      <https://github.com/aoirint/CruiserJumpPractice/issues/5>.
 
 ## v0.1.4 - 2025-11-30 UTC
 
@@ -40,16 +40,16 @@ No gameplay changes are introduced.
 - Compatibility:
     - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID:
       `1749099131234587692`).
-        - Backfilled as reference compatibility information for the v0.2.0
-          release timing.
+        - Backfilled as reference compatibility information while preparing
+          the v0.2.0 release.
 
 ## v0.1.3 - 2025-11-30 UTC [YANKED]
 
 ### Notes
 
 - Yanked release due to a build issue.
-- No compatibility information was backfilled for the v0.2.0 release timing
-  because this release was yanked.
+- No compatibility information was backfilled while preparing the v0.2.0
+  release because this release was yanked.
 
 ## v0.1.2 - 2025-11-29 UTC
 
@@ -68,8 +68,8 @@ No gameplay changes are introduced.
 - Compatibility:
     - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID:
       `1749099131234587692`).
-        - Backfilled as reference compatibility information for the v0.2.0
-          release timing.
+        - Backfilled as reference compatibility information while preparing
+          the v0.2.0 release.
 
 ## v0.1.1 - 2025-11-29 UTC
 
@@ -82,8 +82,8 @@ No gameplay changes are introduced.
 - Compatibility:
     - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID:
       `1749099131234587692`).
-        - Backfilled as reference compatibility information for the v0.2.0
-          release timing.
+        - Backfilled as reference compatibility information while preparing
+          the v0.2.0 release.
 
 ## v0.1.0 - 2025-11-29 UTC
 
@@ -96,8 +96,8 @@ No gameplay changes are introduced.
 - Compatibility:
     - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID:
       `1749099131234587692`).
-        - Backfilled as reference compatibility information for the v0.2.0
-          release timing.
+        - Backfilled as reference compatibility information while preparing
+          the v0.2.0 release.
 
 [imperium-cruiser-workaround]: https://github.com/giosuel/imperium/issues/153#issuecomment-4317402735
 [github-changelog]: https://github.com/aoirint/CruiserJumpPractice/blob/main/CHANGELOG.md
