@@ -53,7 +53,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Added repository-local Agent Skills and `AGENTS.md` guidance for commit
   message checks, pull request quality checks, and agent workflow conventions.
 - Added AI disclosure documentation to the repository README and Thunderstore
-  package README to satisfy Thunderstore policy expectations.
+  package README for Thunderstore policy compliance.
 
 ### Changed
 
@@ -62,13 +62,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   UnityEngine.Modules 2022.3.62.
 - Replaced `RestoreAdditionalProjectSources` with an explicit `nuget.config`
   and package source mapping to make dependency restores more deterministic.
-- Renamed interop adapters from `V73` to `Current` and removed game-version
-  suffixes from reference aliases after confirming NuGet cannot support the
-  intended static multi-version validation model without manual DLL management.
+- Renamed interop adapters from `V73` to `Current`, then removed game-version
+  suffixes from reference aliases after confirming static multi-version
+  validation is not practical with NuGet-managed package references.
 - Simplified redundant network role guards in RPC surrogate and frame-handling
   paths.
 - Updated Thunderstore README compatibility language to focus on the latest
-  stable Lethal Company version, with older versions treated as best-effort.
+  stable Lethal Company version.
 - Documented safer GitHub CLI pull request body handling so Markdown is passed
   through body files and verified after creation.
 
@@ -87,26 +87,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Compatibility:
     - Compatible with Lethal Company v81.5 (2026-04-17 UTC, Manifest ID:
       `6423525044216269478`).
-    - Lethal Company v73 and v56 compatibility became best-effort rather than
-      something validated statically through parallel NuGet references.
+    - Lethal Company v73 and v56 compatibility became best-effort after the
+      project stopped pursuing static multi-version validation through NuGet
+      references.
 
 ## v0.2.0-alpha.1 - 2026-04-25 UTC
 
 ### Changed
 
-- Refactored the runtime from a manager-centered structure into a layered
+- Refactored the runtime from a manager-centered structure into layered
   application architecture with a composition root, domain models, explicit use
-  case result types, client/server services, and frame/startup runtime
-  handlers.
-- Replaced direct base-game utility access with an `IGameInterop` abstraction
+  case result types, client/server services, and frame/startup handlers.
+- Replaced direct base game utility access with an `IGameInterop` abstraction
   and adapter layer so future game-version work can be isolated behind interop
   boundaries.
 - Centralized in-game notifications through a notification use case for more
   consistent save, load, and magnet-toggle result handling.
 - Split cruiser state and magnet behavior into explicit save/load/toggle use
   cases while preserving the existing user-facing gameplay flow.
-- Changed the internal network behaviour and interop layout, making this alpha
-  line not backward-compatible with CruiserJumpPractice v0.1.4 and earlier.
+- Changed the internal `NetworkBehaviour` and interop layout, making this
+  alpha release not backward-compatible with CruiserJumpPractice v0.1.4 and
+  earlier.
 
 ### Notes
 
