@@ -35,9 +35,9 @@ is practically required.
 
 Important: this mod **does not** provide any way to:
 
-- Instantly spawn a cruiser.
-- Teleport a player.
-- **Restore a destroyed cruiser**.
+- ❌ Instantly spawn a cruiser.
+- ❌ Teleport a player.
+- ❌ **Restore a destroyed cruiser**.
 
 ## Keybinds
 
