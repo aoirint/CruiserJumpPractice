@@ -15,7 +15,7 @@ No gameplay changes are introduced.
 
 - Dropped backward compatibility with older CruiserJumpPractice versions:
     - Affects CruiserJumpPractice v0.1.4 and earlier.
-    - Caused by a mod-internal CruiserJumpPractice change.
+    - Caused by a mod-internal change.
 
 ### Notes
 
