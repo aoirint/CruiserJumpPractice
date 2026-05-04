@@ -116,6 +116,11 @@ Use fallback sections this way:
 
 - `Summary`: user-facing or maintainer-facing changes, grouped by behavior or area.
 - `Related Issues`: GitHub issues, pull requests, external references, or `None`.
+  When linking related work, state how it is related. If the explanation is too
+  long for the reference line, put the reference on the parent bullet and the
+  explanation on an indented child bullet. Keep the child explanation readable:
+  split packed relationship-and-purpose wording into as many short sentences as
+  needed when one sentence carries too many ideas.
 - `Notes for reviewers`: limitations, skipped checks, migration notes, reviewer attention points, or review focus.
 - `AI disclosure`: significant AI assistance details, or `None` when no significant AI assistance was used.
 - `Testing`: automated commands, CI results, AI-assisted inspections, manual checks, screenshots, or videos.
@@ -127,6 +132,8 @@ Use fallback sections this way:
 - Preserve non-English text only when quoting source text, branch names, commit messages, file
   contents, logs, or existing discussion snippets that must remain exact.
 - Keep PR bodies short and reviewable.
+- Use `document-quality-check` for explanatory prose that needs readability, structure, or nuance
+  review.
 - Prefer bullets over long paragraphs.
 - Mention paths or commands in backticks.
 - Do not paste large diffs.
@@ -145,14 +152,24 @@ It must appear at the very top of the comment or review body:
 
 The alert should appear before every other paragraph, heading, checklist, quote, finding, or metadata block.
 
-Use `Update Note` or `Discussion Note` sections only when the active task asks for process notes, decision logs, or granular PR-thread updates. Do not add them by default. Frequent process notes can clutter the PR conversation and may expose unnecessary implementation context. When enabled:
+Use `Update Note`, `Discussion Note`, or `Review Note` sections only when the
+active task asks for process notes, decision logs, review summaries, or granular
+PR-thread updates. Do not add them by default. Frequent process notes can
+clutter the PR conversation and may expose unnecessary implementation context.
+When enabled:
 
 - Use `Update Note` for a concrete change that was just made to the pull request.
 - Use `Discussion Note` for a decision, tradeoff, or rationale that should remain visible in the PR thread.
+- Use `Review Note` when reporting a review pass, consistency check, readiness
+  check, or retrospective verification that did not itself make a concrete
+  change.
 - If the active task asks for "history so far", "notes so far", or similar retrospective PR-thread notes,
   do not dump raw commit history. Create separate concise notes grouped by meaningful decision or
   change theme, using `Update Note` for concrete PR changes and `Discussion Note` for decisions,
   tradeoffs, or rationale.
+- If the requester asks for notes to be separate, or a correction includes two
+  independently reviewable changes, post separate PR comments for each theme
+  instead of combining them into one broad note.
 - Immediately after the required LLM alert and before the note heading, add a neutral `Request addressed: ...` line.
   Use it only as a concise marker for later PR-body `### AI-assisted inspections` summaries; do not use it to classify
   requester identity, role, or authority.

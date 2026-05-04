@@ -68,6 +68,9 @@ can trace the relationship without relying on transient comments elsewhere.
 - Preserve non-English text only when quoting source text, branch names, commit messages, file
   contents, logs, or existing discussion snippets that must remain exact.
 - Keep issue bodies short and scannable.
+- Use `document-quality-check` for explanatory prose.
+  - Preserve issue-specific nuance such as certainty, scope, timing, relationships, and whether a
+    statement is confirmed, inferred, untested, or unknown.
 - Prefer bullets for facts, steps, and criteria.
 - Mention paths, commands, classes, and config keys in backticks.
 - Include exact expected and actual behavior for bugs.

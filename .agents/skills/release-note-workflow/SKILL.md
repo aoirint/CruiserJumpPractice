@@ -72,8 +72,16 @@ description: Create, update, or review user-facing release notes. Use when deriv
 5. Omit prerelease-only details from the user-facing release notes when
    they were internal, superseded before stable release, or useful only to
    maintainers.
+   - When mentioning work that happened during a prerelease cycle in stable
+     user-facing notes, prefer the stable release timing or stable version
+     wording unless the prerelease identifier is user-visible and necessary.
+     Keep exact prerelease identifiers in the canonical developer changelog.
 6. Rewrite the stable entries around user-visible behavior, installation,
    compatibility, update impact, security, and known limitations.
+   - Use `document-quality-check` for explanatory prose. Preserve
+     release-note-specific nuance such as compatibility confidence, dependency
+     relationships, and whether context is original, backfilled, inferred,
+     superseded, or withdrawn.
 7. For each user-visible change, include one concise reason or background
    sentence from the canonical changelog or maintainer input.
    - Apply this requirement to the target release being prepared or reviewed.
@@ -98,6 +106,14 @@ description: Create, update, or review user-facing release notes. Use when deriv
    including breaking changes, compatibility changes, installation or update
    notes, removals, deprecations, security fixes, yanked releases, and known
    limitations.
+   - If user-facing notes backfill historical compatibility or limitation
+     context for older releases, state that the information was added while
+     preparing the relevant stable release. Avoid wording that makes the
+     backfilled information sound like an original claim from the older
+     release.
+   - If a yanked release intentionally does not receive backfilled
+     compatibility or limitation information, say so when neighboring releases
+     do receive backfilled notes.
 9. Keep test environment details in the canonical developer changelog. Include
    them in user-facing release notes only when they are needed as
    user-facing compatibility or support context.
@@ -108,6 +124,12 @@ description: Create, update, or review user-facing release notes. Use when deriv
      labeled bullets such as `Compatibility:` or `Known limitations:`, instead
      of creating standalone headings for metadata that is not a Keep a
      Changelog change category.
+   - Preserve useful confidence differences in compatibility notes. Distinguish
+     confirmed compatibility from best-effort "appears to work" notes,
+     lower-confidence limited checks, and known issues.
+   - Group companion tools, paired plugins, or required dependencies under the
+     product/version they were tested with when that relationship matters for
+     users.
    - Put `Notes` after all change-category sections within each release entry
      unless the publication channel explicitly requires another order.
 10. Before publication, verify:
@@ -182,6 +204,10 @@ Classify review items as:
   sourced from the canonical changelog or maintainer input.
   This applies to the target release; untouched historical entries in a
   cumulative file are not blockers solely because they predate this rule.
+- User-facing release-note files may include a short intro that identifies them
+  as user-facing notes and points readers to the canonical developer changelog
+  for internal implementation details, when both files are published or
+  discoverable.
 - Draft notes are clearly labeled as draft review text and list missing inputs
   before any proposed user-facing wording.
 - Blockers name the missing or failed readiness item directly, such as stable

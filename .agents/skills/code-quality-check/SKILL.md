@@ -37,8 +37,8 @@ validation expectations.
 4. Add or update comments only when the design intent is not obvious from the code and cannot be
    made obvious with a small refactor.
 5. Remove stale, redundant, or misleading comments.
-6. Classify changed text as developer-facing, user-facing, or external-contract text before
-   recommending wording changes.
+6. Use `document-quality-check` for documentation, comments, release notes, PR text, issue text,
+   and other explanatory prose that needs readability or wording changes.
 7. Re-run the project's language-specific quality checks after edits.
 8. Summarize which checks ran, which passed, and why any relevant check was skipped.
 
