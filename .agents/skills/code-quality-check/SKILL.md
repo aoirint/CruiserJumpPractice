@@ -99,6 +99,9 @@ readability without flattening meaning.
 
 - Split overloaded sentences when they carry multiple ideas, conditions, time references, confidence
   levels, or relationships.
+- Prefer lists when presenting enumerations.
+  - Use prose only when the enumeration is short enough to read naturally or when the local document
+    style clearly favors inline wording.
 - Split or restructure paragraphs and list items when they become too dense to scan.
   - Use separate paragraphs, parent bullets with indented child bullets, or another local document
     pattern that makes each idea easy to review.
