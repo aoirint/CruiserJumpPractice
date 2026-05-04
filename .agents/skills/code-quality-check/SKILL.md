@@ -26,7 +26,7 @@ validation expectations.
 - Avoid comment noise that repeats obvious code behavior.
 - Run the smallest meaningful executable checks first, then widen only when needed.
 - Keep verification notes concise and reusable for commit summaries, PR bodies, or handoff notes.
-- Use `repository-security-check` when changes introduce or update security-sensitive behavior,
+- Use `security-check` when changes introduce or update security-sensitive behavior,
   external dependencies, downloaded tools, CI actions, containers, vendored artifacts, or other
   supply-chain-sensitive paths.
 - Keep license notices machine-readable, accurate to the file's provenance, and consistent with
@@ -178,7 +178,7 @@ the final summary or PR notes for maintainer review.
 
 ## Supply-Chain Baseline
 
-Use `repository-security-check` as the canonical security and supply-chain reference when a change
+Use `security-check` as the canonical security and supply-chain reference when a change
 introduces or updates external executable artifacts, dependency provenance, package-runner
 invocations, downloaded CLI tools, CI actions, containers, vendored files, generated code from
 external tools, copied files, or lockfile entries.
@@ -207,6 +207,6 @@ At minimum:
   risks, or verification blockers rather than as findings invented from unavailable evidence.
 - Agent Skill changes were checked with `skill-quality-check` when applicable.
 - Security-sensitive behavior and supply-chain-sensitive artifacts were checked with
-  `repository-security-check` when applicable.
+  `security-check` when applicable.
 - If no concrete code was available, the output clearly says that this was a review plan and lists
   the assumptions instead of presenting file-specific findings.

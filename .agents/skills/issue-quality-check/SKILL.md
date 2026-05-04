@@ -80,7 +80,7 @@ can trace the relationship without relying on transient comments elsewhere.
 - Use `document-quality-check` for explanatory prose.
   - Preserve issue-specific nuance such as certainty, scope, timing, relationships, and whether a
     statement is confirmed, inferred, untested, or unknown.
-- Use `repository-security-check` when an issue or issue reply describes security-sensitive
+- Use `security-check` when an issue or issue reply describes security-sensitive
   behavior, supply-chain-sensitive tools, package runners, dependencies, CI actions, containers,
   secrets, permissions, or security exceptions.
 - Prefer bullets for facts, steps, and criteria.

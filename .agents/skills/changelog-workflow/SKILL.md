@@ -57,7 +57,7 @@ Reference:
 6. Record developer-facing details that help future maintainers, including:
    - Internal migrations or architecture changes.
    - CI, build, packaging, or dependency context.
-   - Security-sensitive or supply-chain-sensitive context from `repository-security-check`, such as
+   - Security-sensitive or supply-chain-sensitive context from `security-check`, such as
      maintainer-approved exceptions, residual risk, or blockers that matter for future releases.
    - Prerelease entries and why they matter.
    - User-impact rationale or history for each user-visible change, such as

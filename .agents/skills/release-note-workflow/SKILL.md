@@ -109,7 +109,7 @@ description: >-
    including breaking changes, compatibility changes, installation or update
    notes, removals, deprecations, security fixes, yanked releases, and known
    limitations.
-   - Use `repository-security-check` when security-sensitive or supply-chain-sensitive release
+   - Use `security-check` when security-sensitive or supply-chain-sensitive release
      content needs review. Include maintainer-confirmed security impact, residual risk, or
      exception wording only when the canonical changelog or maintainer input supports it.
    - If user-facing notes backfill historical compatibility or limitation

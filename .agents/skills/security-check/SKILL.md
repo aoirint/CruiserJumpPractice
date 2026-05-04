@@ -1,6 +1,6 @@
 ---
 # SPDX-License-Identifier: Unlicense
-name: repository-security-check
+name: security-check
 description: >-
   Check repository work for practical security risks, including secrets,
   permissions, unsafe defaults, ad hoc executable tools, dependencies,
@@ -8,7 +8,7 @@ description: >-
   supply-chain-sensitive changes.
 ---
 
-# Repository Security Check
+# Security Check
 
 ## When to Use
 
