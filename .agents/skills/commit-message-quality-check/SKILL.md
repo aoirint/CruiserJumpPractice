@@ -1,4 +1,5 @@
 ---
+# SPDX-License-Identifier: Unlicense
 name: commit-message-quality-check
 description: >-
   Quality-check repository commit messages. Use when creating or updating commit
@@ -7,20 +8,39 @@ description: >-
 
 # Commit Message Quality Check
 
+## When to Use
+
+- Use this skill when creating, updating, reviewing, or validating a commit
+  message for this repository.
+
 ## Goals
 
 - Check commit messages against Conventional Commits 1.0.0.
 - Check repository attribution policy, including AI agent co-author trailers.
+- Recommend message changes that fit the actual staged or committed change.
+- Keep commit guidance focused on message quality, not on reviewing the
+  underlying code or documentation diff.
 
 Reference:
 - Conventional Commits 1.0.0: https://www.conventionalcommits.org/en/v1.0.0/
 - GitHub co-authored commits:
   https://docs.github.com/articles/creating-a-commit-with-multiple-authors
 
-## When to Use
+## Workflow
 
-- Use this skill when creating, updating, reviewing, or validating a commit
-  message for this repository.
+1. Read the proposed commit message and, when available, the staged diff or
+   commit diff it describes.
+2. Verify the first-line format, blank-line structure, body placement, and
+   footer placement.
+3. Check that the type, optional scope, breaking-change marker, and short
+   description match the dominant intent of the change.
+4. Check that any body explains useful context, motivation, or impact instead
+   of repeating the summary.
+5. Check required footer or trailer metadata, including `BREAKING CHANGE` and
+   AI agent `Co-authored-by:` trailers when applicable.
+6. Recommend the smallest correction that makes the message valid and accurate.
+7. If the diff contains multiple unrelated logical changes, recommend splitting
+   the commit when practical.
 
 ## Format
 
