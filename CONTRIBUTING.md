@@ -17,7 +17,8 @@ The project maintainer is listed in [CODEOWNERS](./.github/CODEOWNERS).
 
 ## Development setup
 
-Follow the setup, formatting, build, package management, debugging, and release notes in [README.md](./README.md).
+Follow the setup, formatting, build, package management, debugging, and release
+notes in [README.md](./README.md).
 At minimum, install the documented .NET SDK and restore packages before building:
 
 ```powershell
@@ -27,7 +28,8 @@ dotnet restore --locked-mode
 ## Making changes
 
 - Prefer the existing project structure and naming conventions.
-- Keep user-facing behavior explicit in code, documentation, or changelog entries when the behavior changes.
+- Keep user-facing behavior explicit in code, documentation, or changelog
+  entries when the behavior changes.
 - Update `CHANGELOG.md` for developer-facing changes that should appear in release history.
 - Update files under `assets/` when the Thunderstore package metadata, icon, README, or release notes change.
 - Do not commit build output, downloaded game files, local mod manager profiles, or local machine configuration.
@@ -71,8 +73,8 @@ For package or release changes, also verify the release documentation in
   pull request. The original contributor may not be available to respond, but
   the maintainer can confirm whether the change is still wanted and coordinate
   attribution or next steps.
-- To keep work moving, maintainers may accept another contribution for the same issue without first rejecting an
-  inactive pull request.
+- To keep work moving, maintainers may accept another contribution for the same
+  issue without first rejecting an inactive pull request.
 - If a pull request stalls, maintainers or another contributor may continue the
   work in a separate pull request. This may include reusing or adapting the
   stalled pull request's commits, patch, tests, documentation, or ideas under
@@ -86,7 +88,8 @@ For package or release changes, also verify the release documentation in
 
 ## Contribution License Agreement
 
-By submitting a contribution to this project, you agree to this Contribution License Agreement.
+By submitting a contribution to this project, you agree to this Contribution
+License Agreement.
 If this agreement changes, new pull requests must use the current agreement.
 
 For this agreement, "you" means the person or organization submitting the
@@ -98,8 +101,10 @@ them for inclusion in the project.
 
 By submitting a contribution, you represent and agree that:
 
-- You have the legal right to submit the contribution and to grant the rights described in this agreement.
-- Your contribution may be distributed under the same license as this project, without additional terms or conditions.
+- You have the legal right to submit the contribution and to grant the rights
+  described in this agreement.
+- Your contribution may be distributed under the same license as this project,
+  without additional terms or conditions.
 - You grant the maintainer and downstream recipients a perpetual, worldwide,
   non-exclusive, no-charge, royalty-free, irrevocable copyright license to use,
   copy, modify, merge, publish, distribute, sublicense, and otherwise use your
@@ -110,8 +115,10 @@ By submitting a contribution, you represent and agree that:
   contribution as part of this project. This patent license applies only to
   patent claims that you can license and that are necessarily infringed by your
   contribution alone or by combining your contribution with the project.
-- You keep any copyright you hold in your contribution. This agreement is a license grant, not a copyright assignment.
-- The maintainer is not required to accept, publish, retain, or distribute any contribution.
+- You keep any copyright you hold in your contribution. This agreement is a
+  license grant, not a copyright assignment.
+- The maintainer is not required to accept, publish, retain, or distribute any
+  contribution.
 - Do not submit code, documentation, assets, generated output, or other
   materials if you do not have the right to contribute them under this
   agreement.
@@ -148,7 +155,8 @@ Examples that normally do not need disclosure:
 
 When in doubt:
 
-- If you are unsure whether assistance was "significant", treat it as significant and describe what you did.
+- If you are unsure whether assistance was "significant", treat it as
+  significant and describe what you did.
 
 Contributor responsibilities:
 
@@ -167,10 +175,12 @@ Contributor responsibilities:
 - Agent-generated pull requests are allowed only when a human contributor
   understands the change, adapts it to this codebase, verifies it, discloses the
   assistance, and can personally explain and maintain it.
-- Do not submit low-effort AI-generated or "vibe-coded" pull requests that do not meet those requirements.
+- Do not submit low-effort AI-generated or "vibe-coded" pull requests that do
+  not meet those requirements.
 - Write pull request descriptions and review replies in your own words. Use AI
   for editing help only if you still review and stand behind the final text.
-- Maintainers may close undisclosed, unverified, low-quality, or spam-like AI-assisted contributions.
+- Maintainers may close undisclosed, unverified, low-quality, or spam-like
+  AI-assisted contributions.
 
 ## Reporting security issues
 
