@@ -23,10 +23,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Refactored internal architecture to improve maintainability.
 - Dropped backward compatibility with CruiserJumpPractice v0.1.4 and earlier
   because the internal NetworkBehaviour name changed.
-- Marked automated Thunderstore uploads with Thunderstore categories:
-    - `Mods`
-    - `Tweaks & Quality Of Life`
-    - `AI Generated`
+- Marked automated Thunderstore uploads with the `AI Generated` Thunderstore
+  category.
 
 ### Notes
 
