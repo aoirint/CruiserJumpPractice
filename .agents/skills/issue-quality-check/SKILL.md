@@ -24,7 +24,8 @@ Check that the title is concise, specific, and written as a problem or task:
   `Fix cruiser state reload after scene transition`.
 - Include the affected area when it helps triage, such as `MagnetService:` or `docs:`.
 - Avoid vague titles such as `Bug`, `Question`, `Help`, or `Does not work`.
-- Do not force Conventional Commits format for issues unless the repository explicitly asks for it in that issue flow.
+- Do not force Conventional Commits format for issues unless the repository
+  explicitly asks for it in that issue flow.
 
 ## Required LLM Alert
 
@@ -159,7 +160,8 @@ unnecessary implementation context. When enabled:
   classify requester identity, role, or authority.
 - Keep each note concise and limited to information that is safe and useful for
   future readers.
-- Base notes on confirmed issue context. If a note includes an inference or assumption, label it as such.
+- Base notes on confirmed issue context. If a note includes an inference or
+  assumption, label it as such.
 - Do not include secrets, private discussion, local-only paths, hidden
   chain-of-thought, or unrelated implementation details.
 - Prefer a normal short reply when the comment only needs to answer a question,
@@ -167,7 +169,8 @@ unnecessary implementation context. When enabled:
 
 When creating or editing issue replies with a shell command:
 
-- Prefer writing the reply to a temporary Markdown file and passing it with `gh issue comment --body-file <file>`.
+- Prefer writing the reply to a temporary Markdown file and passing it with
+  `gh issue comment --body-file <file>`.
 - After creating or editing a reply through `gh`, verify the stored comment body
   when possible and fix any quoting issues before finishing.
 - Remove any temporary body file from the worktree after verification.

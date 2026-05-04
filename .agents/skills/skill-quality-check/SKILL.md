@@ -92,8 +92,9 @@ description: >-
 
 When validating with scenarios, keep the report categories separate:
 
-- **Target skill findings**: problems in the skill being reviewed, such as description/body mismatch,
-  repository-specific leakage, stale metadata, missing validation, or unsupported bundled files.
+- **Target skill findings**: problems in the skill being reviewed, such as
+  description/body mismatch, repository-specific leakage, stale metadata,
+  missing validation, or unsupported bundled files.
 - **Input gaps**: unavailable source files, exact command text, unknown provenance, or missing
   metadata. Record these as assumptions or blockers.
 - **Skill-quality-check ambiguity**: places where this skill did not say what to inspect or how to

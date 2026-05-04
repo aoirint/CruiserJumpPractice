@@ -53,7 +53,8 @@ When a template exists:
 - Read the template file before drafting the body. Do not rely on memory,
   previous PR bodies, or heading summaries.
 - Follow the template's visible headings, required checkboxes, and required-if-applicable sections.
-- Use HTML comments in the template as author guidance. Do not copy those comments into the rendered PR body.
+- Use HTML comments in the template as author guidance. Do not copy those
+  comments into the rendered PR body.
 - Keep required alerts, checklist confirmations, and section names compatible with the template.
 - Fill sections with `None` or `Not applicable` only when the template or
   surrounding policy asks for an explicit value.
@@ -72,19 +73,23 @@ When a template exists:
 
 ## Verification Evidence
 
-- Do not present autonomous AI review, inspection, or scenario analysis as a manual check.
+- Do not present autonomous AI review, inspection, or scenario analysis as a
+  manual check.
 - Manual checks should describe checks performed without AI automation.
-- If an AI-assisted inspection was requested, report it under a `### AI-assisted inspections` subsection inside
-  `## Testing`, after `### Automated checks` when both sections are present.
-- In `### AI-assisted inspections`, use a short `Request: ...` line to summarize the requested inspection. Nest the
-  `AI-assisted result: ...` under that request summary.
-- Keep automated commands, CI results, non-AI manual checks, screenshots, videos, and AI-assisted inspection results
-  distinct from each other.
+- If an AI-assisted inspection was requested, report it under a
+  `### AI-assisted inspections` subsection inside `## Testing`, after
+  `### Automated checks` when both sections are present.
+- In `### AI-assisted inspections`, use a short `Request: ...` line to
+  summarize the requested inspection. Nest the `AI-assisted result: ...` under
+  that request summary.
+- Keep automated commands, CI results, non-AI manual checks, screenshots,
+  videos, and AI-assisted inspection results distinct from each other.
 
 When no repository template exists, use the same visible structure as the
 repository pull request template.
-Keep the top-level headings, testing subsection order, and CLA checklist from this fallback scaffold. When a scaffold
-subsection has no applicable content, write `None` or `Not applicable` instead of removing the heading:
+Keep the top-level headings, testing subsection order, and CLA checklist from
+this fallback scaffold. When a scaffold subsection has no applicable content,
+write `None` or `Not applicable` instead of removing the heading:
 
 ```markdown
 > [!WARNING]
@@ -136,7 +141,8 @@ Use fallback sections this way:
   attention points, or review focus.
 - `AI disclosure`: significant AI assistance details, or `None` when no
   significant AI assistance was used.
-- `Testing`: automated commands, CI results, AI-assisted inspections, manual checks, screenshots, or videos.
+- `Testing`: automated commands, CI results, AI-assisted inspections, manual
+  checks, screenshots, or videos.
 - `Breaking Changes`: required when the title or commits include `!` or `BREAKING CHANGE`.
 
 ## Style
@@ -195,7 +201,8 @@ When enabled:
   classify requester identity, role, or authority.
 - Keep each note concise and limited to information that is safe and useful for
   future reviewers.
-- Base notes on confirmed PR context. If a note includes an inference or assumption, label it as such.
+- Base notes on confirmed PR context. If a note includes an inference or
+  assumption, label it as such.
 - Do not include secrets, private discussion, local-only paths, hidden
   chain-of-thought, or unrelated implementation details.
 - Prefer a normal short reply when the comment only needs to answer a question,
