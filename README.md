@@ -2,8 +2,8 @@
 
 # CruiserJumpPractice
 
-A Lethal Company mod that saves/loads cruiser position, rotation, and condition, and lets you toggle the magnet
-remotely.
+A Lethal Company mod that saves and loads cruiser position, rotation, and condition.
+It also lets you toggle the magnet remotely.
 
 - [User guide](./assets/README.md)
 
@@ -52,6 +52,38 @@ dotnet format --no-restore --verify-no-changes
 style, and fixable analyzer diagnostics. Roslyn analyzers also run during build,
 including diagnostics that cannot be automatically fixed.
 
+### Markdown lint
+
+Markdown is checked with `markdownlint-cli2`. The project uses the pinned Docker
+image below so contributors do not need a local Node.js project.
+The image's default working directory is `/workdir`, so mount the repository
+there. Run it without network access and as a non-root user.
+
+On Windows with PowerShell, use UID/GID `1000:1000`:
+
+```powershell
+docker run --rm --network none --user 1000:1000 -v ".:/workdir" davidanson/markdownlint-cli2:v0.22.1@sha256:0ed9a5f4c77ef447da2a2ac6e67caf74b214a7f80288819565e8b7d2ac148fe5
+```
+
+On Linux, use `sudo docker` and pass the host user's UID and GID:
+
+```bash
+sudo docker run --rm --network none --user "$(id -u):$(id -g)" -v ".:/workdir" davidanson/markdownlint-cli2:v0.22.1@sha256:0ed9a5f4c77ef447da2a2ac6e67caf74b214a7f80288819565e8b7d2ac148fe5
+```
+
+When updating Markdown lint tooling, update both the local Docker image and the
+CI action together after the repository cooldown period has elapsed.
+
+## Package management
+
+### Dependency updates
+
+To update the lock file after modifying your package references, run:
+
+```powershell
+dotnet restore --use-lock-file
+```
+
 ### .NET and C# tooling updates
 
 This project separates the SDK used to build and format the mod from the target
@@ -79,36 +111,6 @@ Maintenance references:
 - [.NET SDK, MSBuild, and Visual Studio versioning](https://learn.microsoft.com/en-us/dotnet/core/porting/versioning-sdk-msbuild-vs)
 - [Configure C# language version](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/configure-language-version)
 - [`dotnet format`](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-format)
-
-### Markdown lint
-
-Markdown is checked with `markdownlint-cli2`. The project uses the pinned Docker
-image below so contributors do not need a local Node.js project.
-The image's default working directory is `/workdir`, so mount the repository
-there. Run it without network access and as a non-root user.
-
-On Windows with PowerShell, use UID/GID `1000:1000`:
-
-```powershell
-docker run --rm --network none --user 1000:1000 -v ".:/workdir" davidanson/markdownlint-cli2:v0.22.1@sha256:0ed9a5f4c77ef447da2a2ac6e67caf74b214a7f80288819565e8b7d2ac148fe5
-```
-
-On Linux, use `sudo docker` and pass the host user's UID and GID:
-
-```bash
-sudo docker run --rm --network none --user "$(id -u):$(id -g)" -v ".:/workdir" davidanson/markdownlint-cli2:v0.22.1@sha256:0ed9a5f4c77ef447da2a2ac6e67caf74b214a7f80288819565e8b7d2ac148fe5
-```
-
-When updating Markdown lint tooling, update both the local Docker image and the
-CI action together after the repository cooldown period has elapsed.
-
-## Package management
-
-To update the lock file after modifying your package references, run:
-
-```powershell
-dotnet restore --use-lock-file
-```
 
 ## GitHub Actions
 
@@ -158,27 +160,27 @@ DOTNET_CLI_UI_LANGUAGE=en dotnet build --configuration Release
 ## Release
 
 1. Update the canonical developer changelog in `CHANGELOG.md`.
-2. For a stable release, derive the Thunderstore-facing release notes in `assets/CHANGELOG.md` from stable entries
-   in `CHANGELOG.md`.
-3. Replace version in `CruiserJumpPractice/CruiserJumpPractice.csproj` as semver format, e.g. `1.2.3`.
-4. Verify that `.github/workflows/build.yml` packages `assets/CHANGELOG.md` and that the `generate-version` action
-   updates `assets/manifest.json` from the project version.
+2. For a stable release, derive the Thunderstore-facing release notes in
+   `assets/CHANGELOG.md` from stable entries in `CHANGELOG.md`.
+3. Replace version in `CruiserJumpPractice/CruiserJumpPractice.csproj` with a
+   SemVer version such as `1.2.3`.
+4. Verify the release packaging flow:
+    - `.github/workflows/build.yml` packages `assets/CHANGELOG.md`.
+    - The `generate-version` action updates `assets/manifest.json` from the
+      project version.
 5. Commit and push the changes.
 6. CI will create a GitHub Release automatically.
-7. For stable releases, CI will upload the release artifact to Thunderstore automatically.
+7. For stable releases, CI will upload the release artifact to Thunderstore
+   automatically.
 
-   The current workflow deploys to the Thunderstore `aoirint` team and publishes to the `lethal-company`
-   community with the `Mods`, `Tweaks & Quality Of Life`, and `AI Generated` categories.
-   The `THUNDERSTORE_TOKEN` secret must belong to a Thunderstore service account that can publish to that team.
+   The current workflow deploys to the Thunderstore `aoirint` team and
+   publishes to the `lethal-company` community with the `Mods`,
+   `Tweaks & Quality Of Life`, and `AI Generated` categories.
+   The `THUNDERSTORE_TOKEN` secret must belong to a Thunderstore service
+   account that can publish to that team.
 
-   **NOTE: prerelease version is not supported by Thunderstore, e.g. `1.2.3-beta.1`.**
-
-### AI Disclosure
-
-Some parts of this project were developed with the assistance of AI tools based on large language models (LLMs),
-including agent-based tools.
-The code is reviewed by the author.
-This disclosure is made in compliance with Thunderstore policies.
+   **NOTE: Thunderstore does not support prerelease versions such as
+   `1.2.3-beta.1`.**
 
 ## Debugging
 
@@ -203,3 +205,10 @@ This disclosure is made in compliance with Thunderstore policies.
 5. Set `Logging.Console.Enabled` to `true`.
 6. Set `Logging.Console.LogLevels` to `All`.
 7. Launch `Lethal Company.exe` again.
+
+## AI Disclosure
+
+Some parts of this project were developed with AI tools based on large language
+models (LLMs), including agent-based tools.
+The project maintainer reviews the code.
+This disclosure is made in compliance with Thunderstore policies.
