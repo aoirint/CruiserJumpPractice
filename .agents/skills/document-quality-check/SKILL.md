@@ -40,6 +40,13 @@ description: Quality-check documentation, comments, release notes, issue text, p
 4. Split or restructure dense text when it becomes hard to scan.
    - Use separate paragraphs, parent bullets with indented child bullets, tables, or another local
      document pattern that makes each idea easy to review.
+   - When a sentence continues the same paragraph or comment block, prefer starting it on a new
+     physical line if the local format allows that without changing the rendered structure.
+   - Treat sentence-per-line wrapping as a reviewability aid, not as a paragraph break. Do not
+     apply it when it would make short prose, Markdown links, lists, tables, or formatter-controlled
+     code comments harder to read.
+   - Do not change wording strength, modality, tense, or voice only to make sentence wrapping work.
+     Keep wording unchanged unless an independent readability issue justifies rewriting it.
 5. Preserve the nuance that made the original wording important:
    - Certainty or confidence level.
    - Scope and applicability.
