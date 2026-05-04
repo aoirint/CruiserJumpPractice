@@ -165,15 +165,23 @@ DOTNET_CLI_UI_LANGUAGE=en dotnet build --configuration Release
 3. Update the Thunderstore package description compatibility marker in
    `assets/manifest.json` when the `assets/README.md` `Compatibility` section
    records a newly tested Lethal Company version.
-   Use the compact marker format `[v<version>]` at the start of the
-   description.
-   In this marker, `version` means the tested Lethal Company version.
+   Use the compact marker format `[v<version>]` or
+   `[v<older-version>/<newer-version>]` at the start of the description.
+   For example, use `[v72/v81.5]` when the marker intentionally covers both
+   Lethal Company versions.
+   In this marker, versions mean tested or maintainer-confirmed Lethal Company
+   versions from `assets/README.md`.
+   List slash-separated versions from older to newer.
+   Keep best-effort or lower-confidence compatibility notes out of the marker;
+   document those in `assets/README.md` or `CHANGELOG.md` instead.
    Restore or update the description by replacing any existing leading marker
    with the new marker, then preserving the base description:
-   `[v<version>] <description without the compatibility marker>`.
-   Do not prepend a new marker to a description that already starts with
-   `[v...]`; the manifest description should have exactly one compatibility
-   marker.
+   `[v<version-or-versions>] <description without the compatibility marker>`.
+   Treat single-version markers such as `[v81.5]` and slash-separated markers
+   such as `[v72/v81.5]` as the same leading compatibility marker.
+   Do not prepend a new marker to a description that already starts with a
+   compatibility marker; the manifest description should have exactly one
+   leading compatibility marker group.
    Keep detailed compatibility and test environment information in
    `assets/README.md` and `CHANGELOG.md`.
    Handle dependency string changes in `assets/manifest.json` as separate
