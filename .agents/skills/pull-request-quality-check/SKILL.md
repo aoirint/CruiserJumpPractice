@@ -11,6 +11,36 @@ description: Quality-check repository pull requests, review comments, replies, a
 - Use this skill when creating, updating, reviewing, or validating pull request
   titles, bodies, review comments, replies, or PR-thread notes.
 
+## Goals
+
+- Keep pull request communication accurate, reviewable, and aligned with the
+  repository's current PR template.
+- Preserve required LLM disclosure for PR bodies, reviews, replies, and
+  PR-thread notes.
+- Keep verification evidence separated by source so automated checks, manual
+  checks, CI, screenshots, and AI-assisted inspections are not confused.
+- Avoid shell quoting corruption when creating or editing Markdown through CLI
+  tools.
+
+## Workflow
+
+1. Identify the artifact being checked: PR title, PR body, review, reply, or
+   PR-thread note.
+2. For PR titles, verify the Conventional Commits-style title shape and use
+   `commit-message-quality-check` for type selection and breaking-change
+   notation.
+3. For PR bodies, read the current repository PR template before drafting or
+   replacing content. If no template exists, use the directly linked fallback
+   scaffold in [references/fallback-pr-body.md](references/fallback-pr-body.md).
+4. Check that the required LLM alert appears at the very top when the PR body,
+   review, reply, or PR-thread note was prepared with LLM assistance.
+5. Check that verification evidence is grouped under the right testing or
+   inspection category, with AI-assisted inspections labeled separately.
+6. Apply the style, PR-thread note, and CLI safety rules below.
+7. Re-read the final title, body, comment, or review as a maintainer would:
+   stale template text, invented checklist items, unclear verification, and
+   missing disclosure are blocking issues.
+
 ## Title
 
 Check that the title uses a Conventional Commits-style format:
@@ -71,6 +101,11 @@ When a template exists:
   unavailable, stop and get the template. Do not invent placeholder headings or
   checklist text.
 
+When no repository template exists, use
+[references/fallback-pr-body.md](references/fallback-pr-body.md). Keep its
+top-level headings, testing subsection order, and CLA checklist unless the
+repository policy explicitly says otherwise.
+
 ## Verification Evidence
 
 - Do not present autonomous AI review, inspection, or scenario analysis as a
@@ -84,66 +119,6 @@ When a template exists:
   that request summary.
 - Keep automated commands, CI results, non-AI manual checks, screenshots,
   videos, and AI-assisted inspection results distinct from each other.
-
-When no repository template exists, use the same visible structure as the
-repository pull request template.
-Keep the top-level headings, testing subsection order, and CLA checklist from
-this fallback scaffold. When a scaffold subsection has no applicable content,
-write `None` or `Not applicable` instead of removing the heading:
-
-```markdown
-> [!WARNING]
-> This pull request was created with assistance from LLMs.
-
-## Summary
-- ...
-
-## Related Issues
-- None.
-
-## Notes for reviewers
-- ...
-
-### AI disclosure
-- ...
-
-## Testing
-
-### Automated checks
-- ...
-
-### AI-assisted inspections
-- ...
-
-### Manual checks
-- ...
-
-### Screenshots / videos
-- ...
-
-## Checklist
-
-As the pull request author, I have checked all required items:
-
-- [ ] I have read `CONTRIBUTING.md` and agree to the Contribution License Agreement.
-```
-
-Use fallback sections this way:
-
-- `Summary`: user-facing or maintainer-facing changes, grouped by behavior or area.
-- `Related Issues`: GitHub issues, pull requests, external references, or `None`.
-  When linking related work, state how it is related. If the explanation is too
-  long for the reference line, put the reference on the parent bullet and the
-  explanation on an indented child bullet. Keep the child explanation readable:
-  split packed relationship-and-purpose wording into as many short sentences as
-  needed when one sentence carries too many ideas.
-- `Notes for reviewers`: limitations, skipped checks, migration notes, reviewer
-  attention points, or review focus.
-- `AI disclosure`: significant AI assistance details, or `None` when no
-  significant AI assistance was used.
-- `Testing`: automated commands, CI results, AI-assisted inspections, manual
-  checks, screenshots, or videos.
-- `Breaking Changes`: required when the title or commits include `!` or `BREAKING CHANGE`.
 
 ## Style
 
