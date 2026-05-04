@@ -164,10 +164,9 @@ DOTNET_CLI_UI_LANGUAGE=en dotnet build --configuration Release
    `assets/CHANGELOG.md` from stable entries in `CHANGELOG.md`.
 3. Update the Thunderstore package description compatibility marker in
    `assets/manifest.json` when the `assets/README.md` `Compatibility` section
-   records a newly tested Lethal Company version or dependency version.
-   Use the compact marker format `[LC v<version> tested]` at the start of the
-   description, and keep the dependency versions aligned with the latest
-   tested environment there.
+   records a newly tested Lethal Company version.
+   Use the compact marker format `[v<version>]` at the start of the
+   description.
    Treat `CHANGELOG.md` as the developer-facing compatibility history.
 4. Replace version in `CruiserJumpPractice/CruiserJumpPractice.csproj` with a
    SemVer version such as `1.2.3`.
