@@ -84,6 +84,21 @@ To update the lock file after modifying your package references, run:
 dotnet restore --use-lock-file
 ```
 
+### Thunderstore manifest dependency updates
+
+When changing `assets/manifest.json` dependency strings:
+
+- Compare them with the current documented test environment in
+  `assets/README.md` and `CHANGELOG.md`.
+- Treat the change as Thunderstore install metadata, not only documentation:
+  fresh installs or profile resolution may pull the listed dependency versions.
+- Do not describe tested-environment alignment as a minimum required version
+  bump unless older dependency versions are confirmed incompatible.
+- Document the reason, install impact, compatibility impact, and rollback risk
+  in the pull request and `CHANGELOG.md`.
+- Keep dependency string updates separate from manifest description or
+  compatibility-marker prose when practical.
+
 ### .NET and C# tooling updates
 
 This project separates the SDK used to build and format the mod from the target
@@ -162,15 +177,21 @@ DOTNET_CLI_UI_LANGUAGE=en dotnet build --configuration Release
 1. Update the canonical developer changelog in `CHANGELOG.md`.
 2. For a stable release, derive the Thunderstore-facing release notes in
    `assets/CHANGELOG.md` from stable entries in `CHANGELOG.md`.
-3. Replace version in `CruiserJumpPractice/CruiserJumpPractice.csproj` with a
+3. Verify Thunderstore package metadata in `assets/manifest.json`:
+    - Confirm dependency strings match the intended release baseline.
+    - Confirm dependency string changes have documented reason, install impact,
+      compatibility impact, rollback risk, and test-environment evidence.
+    - Confirm the manifest description still matches the Thunderstore-facing
+      release intent.
+4. Replace version in `CruiserJumpPractice/CruiserJumpPractice.csproj` with a
    SemVer version such as `1.2.3`.
-4. Verify the release packaging flow:
+5. Verify the release packaging flow:
     - `.github/workflows/build.yml` packages `assets/CHANGELOG.md`.
     - The `generate-version` action updates `assets/manifest.json` from the
       project version.
-5. Commit and push the changes.
-6. CI will create a GitHub Release automatically.
-7. For stable releases, CI will upload the release artifact to Thunderstore
+6. Commit and push the changes.
+7. CI will create a GitHub Release automatically.
+8. For stable releases, CI will upload the release artifact to Thunderstore
    automatically.
 
    The current workflow deploys to the Thunderstore `aoirint` team and
