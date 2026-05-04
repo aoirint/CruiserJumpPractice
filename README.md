@@ -167,6 +167,12 @@ DOTNET_CLI_UI_LANGUAGE=en dotnet build --configuration Release
    records a newly tested Lethal Company version.
    Use the compact marker format `[v<version>]` at the start of the
    description.
+   In this marker, `version` means the tested Lethal Company version.
+   Keep detailed compatibility and test environment information in
+   `assets/README.md` and `CHANGELOG.md`.
+   Handle dependency string changes in `assets/manifest.json` as separate
+   dependency maintenance, with the reason and compatibility impact documented
+   in that change.
    Treat `CHANGELOG.md` as the developer-facing compatibility history.
 4. Replace version in `CruiserJumpPractice/CruiserJumpPractice.csproj` with a
    SemVer version such as `1.2.3`.
