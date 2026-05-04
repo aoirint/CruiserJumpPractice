@@ -63,7 +63,7 @@ Clients cannot use all features even if they install this mod.
 
 Some parts of this project were developed with AI tools based on large language
 models (LLMs), including agent-based tools.
-The code is reviewed by the author.
+The project maintainer reviews the code.
 This disclosure is made in compliance with Thunderstore policies.
 
 [imperium-cruiser-workaround]: https://github.com/giosuel/imperium/issues/153#issuecomment-4317402735
