@@ -21,8 +21,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Changed
 
 - Refactored internal architecture to improve maintainability.
-- Dropped backward compatibility with CruiserJumpPractice v0.1.4 and earlier
-  because the internal NetworkBehaviour name changed.
+- Dropped backward compatibility with older CruiserJumpPractice versions:
+    - Affects CruiserJumpPractice v0.1.4 and earlier.
+    - Caused by the internal `NetworkBehaviour` name change.
 - Marked automated Thunderstore uploads with an additional Thunderstore
   category:
     - `AI Generated`
@@ -35,9 +36,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
     - Lethal Company v73 still appears to work.
     - Lethal Company v56 mostly works, with a known minor issue tracked in
       <https://github.com/aoirint/CruiserJumpPractice/issues/5>.
-    - Imperium v1.3.0 appears to have some cruiser-related issues; see
-      <https://github.com/giosuel/imperium/issues/153#issuecomment-4317402735>
-      for a workaround.
+    - Imperium v1.3.0 appears to have some cruiser-related issues:
+        - See
+          <https://github.com/giosuel/imperium/issues/153#issuecomment-4317402735>
+          for a workaround.
 - Test environment:
     - Lethal Company v81.5 (2026-04-17 UTC, Manifest ID:
       `6423525044216269478`)
@@ -66,26 +68,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
     - LethalCompany_InputUtils v0.7.13.
     - BepInEx.PluginInfoProps v2.1.0.
     - UnityEngine.Modules 2022.3.62.
-- Replaced `RestoreAdditionalProjectSources` with an explicit `nuget.config`
-  and package source mapping to make dependency restores more deterministic.
+- Replaced implicit restore package sources with explicit package source
+  mapping:
+    - Removed `RestoreAdditionalProjectSources`.
+    - Added `nuget.config`.
+    - Made dependency restores more deterministic.
 - Clarified current-version interop naming:
     - Renamed interop adapters from `V73` to `Current`.
     - Removed game-version suffixes from reference aliases after confirming
       static multi-version validation is not practical with NuGet-managed
       package references.
-- Simplified redundant network role guards in RPC surrogate and frame-handling
-  paths.
-- Updated Thunderstore README compatibility language to focus on the latest
-  stable Lethal Company version.
-- Revised earlier alpha changelog wording that was later withdrawn or
-  superseded:
-    - Lethal Company v73 and v56 are documented as best-effort compatibility
-      notes instead of explicit Lethal Company v73 support.
-    - The broad internal architecture refactor note is superseded by the
-      current stable-release roll-up and the follow-up alpha.2 refactors
-      listed above.
-- Documented safer GitHub CLI pull request body handling so Markdown is passed
-  through body files and verified after creation.
+- Simplified redundant network role guards:
+    - RPC surrogate paths.
+    - Frame-handling paths.
+- Updated Thunderstore README compatibility language:
+    - Focused the README on the latest stable Lethal Company version.
+    - Withdrew the earlier alpha changelog wording that explicitly declared
+      Lethal Company v73 support.
+    - Kept Lethal Company v73 and v56 as best-effort compatibility notes in
+      changelog context.
+- Documented safer GitHub CLI pull request body handling:
+    - Pass Markdown through body files.
+    - Verify stored pull request bodies after creation.
 
 ### Fixed
 
@@ -94,8 +98,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Removed
 
-- Removed unmaintained `Debug.ps1` and `InitProfiles.ps1` scripts together
-  with stale setup, debug, and Visual Studio launch-profile references.
+- Removed unmaintained PowerShell scripts and stale references:
+    - `Debug.ps1`
+    - `InitProfiles.ps1`
+    - Setup, debug, and Visual Studio launch-profile references.
 
 ### Notes
 
@@ -115,6 +121,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
     - Added a composition root.
     - Added domain models and explicit use case result types.
     - Split client/server services and frame/startup handlers.
+    - Later superseded by the stable-release roll-up and the follow-up
+      alpha.2 refactors.
 - Replaced direct base game utility access with an `IGameInterop` abstraction
   and adapter layer so future game-version work can be isolated behind interop
   boundaries.
@@ -131,6 +139,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Compatibility:
     - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID:
       `1749099131234587692`).
+        - Later withdrawn as explicit support wording in v0.2.0-alpha.2.
     - Lethal Company v56 mostly works, with a known minor issue tracked in
       <https://github.com/aoirint/CruiserJumpPractice/issues/5>.
 - Test environment:
