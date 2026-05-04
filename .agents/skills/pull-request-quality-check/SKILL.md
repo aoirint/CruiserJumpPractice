@@ -145,14 +145,24 @@ It must appear at the very top of the comment or review body:
 
 The alert should appear before every other paragraph, heading, checklist, quote, finding, or metadata block.
 
-Use `Update Note` or `Discussion Note` sections only when the active task asks for process notes, decision logs, or granular PR-thread updates. Do not add them by default. Frequent process notes can clutter the PR conversation and may expose unnecessary implementation context. When enabled:
+Use `Update Note`, `Discussion Note`, or `Review Note` sections only when the
+active task asks for process notes, decision logs, review summaries, or granular
+PR-thread updates. Do not add them by default. Frequent process notes can
+clutter the PR conversation and may expose unnecessary implementation context.
+When enabled:
 
 - Use `Update Note` for a concrete change that was just made to the pull request.
 - Use `Discussion Note` for a decision, tradeoff, or rationale that should remain visible in the PR thread.
+- Use `Review Note` when reporting a review pass, consistency check, readiness
+  check, or retrospective verification that did not itself make a concrete
+  change.
 - If the active task asks for "history so far", "notes so far", or similar retrospective PR-thread notes,
   do not dump raw commit history. Create separate concise notes grouped by meaningful decision or
   change theme, using `Update Note` for concrete PR changes and `Discussion Note` for decisions,
   tradeoffs, or rationale.
+- If the requester asks for notes to be separate, or a correction includes two
+  independently reviewable changes, post separate PR comments for each theme
+  instead of combining them into one broad note.
 - Immediately after the required LLM alert and before the note heading, add a neutral `Request addressed: ...` line.
   Use it only as a concise marker for later PR-body `### AI-assisted inspections` summaries; do not use it to classify
   requester identity, role, or authority.

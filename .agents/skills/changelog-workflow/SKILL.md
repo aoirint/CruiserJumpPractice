@@ -69,10 +69,35 @@ Reference:
      they are maintainer-confirmed or clearly sourced. Otherwise list them as
      missing inputs or draft source material needing confirmation, not as final
      compatibility facts.
+   - When compatibility notes cover several platform, runtime, dependency, or
+     companion-product versions, preserve confidence differences instead of
+     flattening them into one generic compatibility statement. For example,
+     distinguish confirmed compatibility, "appears to work" best-effort
+     compatibility, lower-confidence limited checks, and known issues.
+   - Keep related compatibility claims grouped by relationship. Put companion
+     tools, required plugins, or paired dependencies under the product/version
+     they were tested with when that relationship matters, instead of listing
+     them as another peer product version.
+   - When historical entries are backfilled with metadata such as
+     compatibility information, state that the metadata was backfilled, when it
+     was backfilled, and whether it is reference information rather than an
+     original release claim.
+   - For yanked releases, explicitly say when historical metadata was not
+     backfilled because the release was yanked, if nearby releases did receive
+     backfilled metadata.
 7. When prerelease entries are later superseded, keep enough canonical history
    to explain what changed and what reached the stable release. If the stable
    release is still only planned, leave the stable roll-up material under
    `Unreleased` instead of creating an unfinished stable heading.
+   - Attach withdrawn or superseded notes to the specific entry they affect,
+     rather than only adding a broad later correction. Name the later version
+     or release timing that withdrew or superseded the earlier wording.
+   - Avoid shorthand prerelease references such as `alpha.1` or `beta.2` when
+     the base version matters. Use the full prerelease version, such as
+     `v1.2.0-alpha.1`, in durable changelog text.
+   - Split long bullets into concise parent items with indented subitems when a
+     change contains several facts, reasons, affected versions, or follow-up
+     notes.
 8. If the user asks for user-facing release notes, verify or prepare only the
    canonical source material here, then use the appropriate release-note
    workflow for the user-facing rewrite and release-readiness checks.
