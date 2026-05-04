@@ -183,7 +183,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Notes
 
 - Yanked release due to a build issue.
-- No compatibility information was backfilled because this release was yanked.
+- No compatibility information was backfilled when preparing the
+  v0.2.0-alpha.1 release because this release was yanked.
 
 ## v0.1.2 - 2025-11-29 UTC
 
