@@ -92,10 +92,12 @@ When changing `assets/manifest.json` dependency strings:
   `assets/README.md` and `CHANGELOG.md`.
 - Treat the change as Thunderstore install metadata, not only documentation:
   fresh installs or profile resolution may pull the listed dependency versions.
-- Do not describe tested-environment alignment as a minimum required version
-  bump unless older dependency versions are confirmed incompatible.
+- Treat dependency version increases as possible practical minimum runtime
+  baseline changes for Thunderstore installs.
 - Document the reason, install impact, compatibility impact, and rollback risk
   in the pull request and `CHANGELOG.md`.
+- Remove or revise changelog compatibility notes that no longer match the
+  dependency baseline.
 - Keep dependency string updates separate from manifest description or
   compatibility-marker prose when practical.
 

@@ -30,7 +30,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   category:
     - `AI Generated`
 - Aligned Thunderstore manifest dependency strings with the documented v81.5
-  test environment for BepInExPack and LethalCompany_InputUtils.
+  test environment for BepInExPack and LethalCompany_InputUtils:
+    - Treats the manifest dependency versions as part of the practical minimum
+      runtime baseline for Thunderstore installs.
+- Removed v0.2.0-alpha-and-later changelog compatibility notes for Lethal
+  Company v73 and v56 because they no longer match the updated Thunderstore
+  dependency baseline.
 
 ### Notes
 
@@ -43,11 +48,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
             - See
               <https://github.com/giosuel/imperium/issues/153#issuecomment-4317402735>
               for a workaround.
-    - Lethal Company v73 still appears to work.
-    - Lethal Company v56 has lower-confidence compatibility:
-        - Core features appear to work in limited checks.
-        - A known minor issue was found early and is tracked in
-          <https://github.com/aoirint/CruiserJumpPractice/issues/5>.
 - Test environment:
     - Lethal Company v81.5 (2026-04-17 UTC, Manifest ID:
       `6423525044216269478`)
@@ -93,8 +93,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
     - Focused the README on the latest stable Lethal Company version.
     - Withdrew the earlier alpha changelog wording that explicitly declared
       Lethal Company v73 support.
-    - Kept Lethal Company v73 and v56 as best-effort compatibility notes in
-      changelog context.
 - Documented safer GitHub CLI pull request body handling:
     - Pass Markdown through body files.
     - Verify stored pull request bodies after creation.
@@ -118,12 +116,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
       `6423525044216269478`).
         - Normally used together with Imperium; the v81.5 test environment
           used Imperium v1.3.0.
-    - Older base-game compatibility became best-effort after the project
-      stopped pursuing static multi-version validation through NuGet
-      references:
-        - Lethal Company v73 still appeared to work.
-        - Lethal Company v56 had lower-confidence compatibility, with a known
-          minor issue found early.
 
 ## v0.2.0-alpha.1 - 2026-04-25 UTC
 
@@ -155,13 +147,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
           changelog.
         - Compatibility information for older releases was backfilled as
           reference material at the same time.
-    - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID:
-      `1749099131234587692`).
-        - Later withdrawn as explicit support wording in v0.2.0-alpha.2.
-    - Lethal Company v56 has lower-confidence compatibility:
-        - Core features appeared to work in limited checks.
-        - A known minor issue was found early and is tracked in
-          <https://github.com/aoirint/CruiserJumpPractice/issues/5>.
 - Test environment:
     - Lethal Company v73 (2025-10-04 UTC, Manifest ID:
       `1749099131234587692`)

@@ -27,11 +27,6 @@ No gameplay changes are introduced.
         - Imperium v1.3.0 appears to have some cruiser-related issues:
             - See the [Imperium issue comment][imperium-cruiser-workaround]
               for a workaround.
-    - Lethal Company v73 still appears to work.
-    - Lethal Company v56 has lower-confidence compatibility:
-        - Core features appear to work in limited checks.
-        - A known minor issue was found early and is tracked in
-          <https://github.com/aoirint/CruiserJumpPractice/issues/5>.
 
 ## v0.1.4 - 2025-11-30 UTC
 
