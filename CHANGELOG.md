@@ -147,7 +147,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## v0.1.3 - 2025-11-30 UTC [YANKED]
 
-### Removed
+### Notes
 
 - Yanked release due to a build issue.
 

@@ -8,7 +8,8 @@ No gameplay changes are introduced.
 
 ### Changed
 
-- This release is not backward-compatible with CruiserJumpPractice v0.1.4 and earlier.
+- Dropped backward compatibility with CruiserJumpPractice v0.1.4 and earlier
+  due to an internal change.
 
 ### Notes
 
@@ -35,7 +36,9 @@ No gameplay changes are introduced.
 
 ## v0.1.3 - 2025-11-30 UTC [YANKED]
 
-Yanked release due to a build issue.
+### Notes
+
+- Yanked release due to a build issue.
 
 ## v0.1.2 - 2025-11-29 UTC
 
