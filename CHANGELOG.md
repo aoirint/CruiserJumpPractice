@@ -27,6 +27,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Marked automated Thunderstore uploads with an additional Thunderstore
   category:
     - `AI Generated`
+- Aligned Thunderstore manifest dependency strings with the documented v81.5
+  test environment for BepInExPack and LethalCompany_InputUtils.
 
 ### Notes
 
