@@ -8,7 +8,8 @@ No gameplay changes are introduced.
 
 ### Changed
 
-- This release is not backward-compatible with CruiserJumpPractice v0.1.4 and earlier.
+- This release is not backward-compatible with CruiserJumpPractice v0.1.4 and
+  earlier.
 
 ### Notes
 
@@ -17,7 +18,7 @@ No gameplay changes are introduced.
       `6423525044216269478`).
     - Imperium v1.3.0 appears to have some cruiser-related issues. See
       [this issue comment][imperium-cruiser-workaround] for a workaround.
-    - Lethal Company v73: It still seems to work.
+    - Lethal Company v73 still appears to work.
     - Lethal Company v56: Major features work as expected, but there is a minor
       known issue: <https://github.com/aoirint/CruiserJumpPractice/issues/5>.
 
@@ -25,7 +26,7 @@ No gameplay changes are introduced.
 
 ### Changed
 
-- Enables keybind actions while the player is dead, same as Imperium.
+- Enables keybind actions while the player is dead, matching Imperium.
 
 ### Notes
 
@@ -42,7 +43,7 @@ Yanked release due to a build issue.
 ### Changed
 
 - Disables keybind actions while the player is in a menu, using the terminal,
-  typing in chat, or is dead.
+  typing in chat, or dead.
 
 ### Fixed
 
