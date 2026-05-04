@@ -33,7 +33,7 @@ synced cruiser state even without this mod installed.
 [giosuel/Imperium](https://thunderstore.io/c/lethal-company/p/giosuel/Imperium/)
 is practically required.
 
-This mod does not provide a way to:
+Important: this mod **does not** provide any way to:
 
 - Instantly spawn a cruiser.
 - Teleport a player.
