@@ -90,6 +90,10 @@ description: >-
   packages, downloaded binaries, CI actions, containers, or other external
   executable artifacts unless the user or maintainer explicitly approves an
   exception.
+- Treat cooldown as a minimum gate, not as proof that an external artifact is
+  trustworthy after the waiting period. Continue to evaluate provenance,
+  pinning, runtime behavior, permissions, vulnerability signals, and stricter
+  current security requirements before running or adopting it.
 - Prefer pinned, reviewable versions over floating references such as `latest`,
   default branches, unpinned images, or implicit package-runner resolution.
 - Verify release age and provenance from source-backed evidence such as package
