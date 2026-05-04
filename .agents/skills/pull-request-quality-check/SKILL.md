@@ -118,7 +118,9 @@ Use fallback sections this way:
 - `Related Issues`: GitHub issues, pull requests, external references, or `None`.
   When linking related work, state how it is related. If the explanation is too
   long for the reference line, put the reference on the parent bullet and the
-  explanation on an indented child bullet.
+  explanation on an indented child bullet. Keep the child explanation readable:
+  split packed relationship-and-purpose wording into as many short sentences as
+  needed when one sentence carries too many ideas.
 - `Notes for reviewers`: limitations, skipped checks, migration notes, reviewer attention points, or review focus.
 - `AI disclosure`: significant AI assistance details, or `None` when no significant AI assistance was used.
 - `Testing`: automated commands, CI results, AI-assisted inspections, manual checks, screenshots, or videos.
