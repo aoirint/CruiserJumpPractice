@@ -52,6 +52,38 @@ dotnet format --no-restore --verify-no-changes
 style, and fixable analyzer diagnostics. Roslyn analyzers also run during build,
 including diagnostics that cannot be automatically fixed.
 
+### Markdown lint
+
+Markdown is checked with `markdownlint-cli2`. The project uses the pinned Docker
+image below so contributors do not need a local Node.js project.
+The image's default working directory is `/workdir`, so mount the repository
+there. Run it without network access and as a non-root user.
+
+On Windows with PowerShell, use UID/GID `1000:1000`:
+
+```powershell
+docker run --rm --network none --user 1000:1000 -v ".:/workdir" davidanson/markdownlint-cli2:v0.22.1@sha256:0ed9a5f4c77ef447da2a2ac6e67caf74b214a7f80288819565e8b7d2ac148fe5
+```
+
+On Linux, use `sudo docker` and pass the host user's UID and GID:
+
+```bash
+sudo docker run --rm --network none --user "$(id -u):$(id -g)" -v ".:/workdir" davidanson/markdownlint-cli2:v0.22.1@sha256:0ed9a5f4c77ef447da2a2ac6e67caf74b214a7f80288819565e8b7d2ac148fe5
+```
+
+When updating Markdown lint tooling, update both the local Docker image and the
+CI action together after the repository cooldown period has elapsed.
+
+## Package management
+
+### NuGet lock file updates
+
+To update the lock file after modifying your package references, run:
+
+```powershell
+dotnet restore --use-lock-file
+```
+
 ### .NET and C# tooling updates
 
 This project separates the SDK used to build and format the mod from the target
@@ -79,36 +111,6 @@ Maintenance references:
 - [.NET SDK, MSBuild, and Visual Studio versioning](https://learn.microsoft.com/en-us/dotnet/core/porting/versioning-sdk-msbuild-vs)
 - [Configure C# language version](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/configure-language-version)
 - [`dotnet format`](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-format)
-
-### Markdown lint
-
-Markdown is checked with `markdownlint-cli2`. The project uses the pinned Docker
-image below so contributors do not need a local Node.js project.
-The image's default working directory is `/workdir`, so mount the repository
-there. Run it without network access and as a non-root user.
-
-On Windows with PowerShell, use UID/GID `1000:1000`:
-
-```powershell
-docker run --rm --network none --user 1000:1000 -v ".:/workdir" davidanson/markdownlint-cli2:v0.22.1@sha256:0ed9a5f4c77ef447da2a2ac6e67caf74b214a7f80288819565e8b7d2ac148fe5
-```
-
-On Linux, use `sudo docker` and pass the host user's UID and GID:
-
-```bash
-sudo docker run --rm --network none --user "$(id -u):$(id -g)" -v ".:/workdir" davidanson/markdownlint-cli2:v0.22.1@sha256:0ed9a5f4c77ef447da2a2ac6e67caf74b214a7f80288819565e8b7d2ac148fe5
-```
-
-When updating Markdown lint tooling, update both the local Docker image and the
-CI action together after the repository cooldown period has elapsed.
-
-## Package management
-
-To update the lock file after modifying your package references, run:
-
-```powershell
-dotnet restore --use-lock-file
-```
 
 ## GitHub Actions
 
