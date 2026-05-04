@@ -66,20 +66,31 @@ description: >-
      unless the controls are explicit and reviewed.
    - Disable network access or sandbox execution where the workflow and tooling
      reasonably allow it.
-4. For supply-chain-sensitive work, apply the supply-chain baseline below.
-5. If the safe path cannot be verified, do not normalize the risky action:
+4. Handle suspected security vulnerabilities carefully:
+   - Do not post exploit details, reproduction steps, secret values, vulnerable
+     endpoints, private data, or other sensitive security details in public
+     issues, pull requests, social media, livestreams, videos, or similar
+     public channels.
+   - Report suspected security issues to the maintainer through a private and
+     secure channel when possible, or to a trusted security organization.
+   - In public repository work, use only a minimal non-sensitive note when a
+     security issue exists, is blocked, or has been reported privately.
+5. For supply-chain-sensitive work, apply the supply-chain baseline below.
+6. If the safe path cannot be verified, do not normalize the risky action:
    - Report a blocker when release age, provenance, runtime behavior, or
      cooldown compliance cannot be verified.
    - Record residual risk when a partially controlled path remains.
    - Require a documented maintainer exception before proceeding with a weaker
      path.
-6. Before recommending an exact safer command, inspect repository scripts,
+7. Before recommending an exact safer command, inspect repository scripts,
    lockfiles, and tool configuration so the recommendation is grounded in the
    project instead of inventing a new ad hoc path.
-7. Record what was checked:
+8. Record what was checked:
    - Sources consulted and why they were sufficient or insufficient.
    - Exact versions, refs, tags, digests, hashes, or lockfile entries reviewed.
    - Commands that were run or intentionally skipped.
+   - Whether sensitive security details were withheld from public channels and
+     reported privately when applicable.
    - Follow-up issues for ecosystem-specific controls that exceed this
      general security skill.
 
@@ -150,5 +161,8 @@ description: >-
   runtime-behavior checks, or blockers/residual risk were recorded.
 - Secrets, permissions, unsafe defaults, and untrusted input paths were checked
   when relevant.
+- Suspected vulnerabilities were kept out of public channels when sensitive
+  details were involved, with private maintainer or trusted-organization
+  reporting used when appropriate.
 - Any maintainer exception is documented in the final summary, issue comment,
   PR body, or review note.
