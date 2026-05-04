@@ -14,16 +14,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
-- Automated stable-release publishing to Thunderstore from GitHub Actions using
-  the Thunderstore API, reducing the need for manual artifact handling.
+- Automated stable-release publishing to Thunderstore from GitHub Actions:
+    - Uses the Thunderstore API.
+    - Reduces the need for manual artifact handling.
 
 ### Changed
 
 - Refactored internal architecture to improve maintainability.
 - Dropped backward compatibility with CruiserJumpPractice v0.1.4 and earlier
   because the internal NetworkBehaviour name changed.
-- Marked automated Thunderstore uploads with the `Mods`,
-  `Tweaks & Quality Of Life`, and `AI Generated` Thunderstore categories.
+- Marked automated Thunderstore uploads with Thunderstore categories:
+    - `Mods`
+    - `Tweaks & Quality Of Life`
+    - `AI Generated`
 
 ### Notes
 
@@ -50,21 +53,27 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ### Added
 
-- Added repository-local Agent Skills and `AGENTS.md` guidance for commit
-  message checks, pull request quality checks, and agent workflow conventions.
+- Added repository-local Agent Skills and `AGENTS.md` guidance:
+    - Commit message checks.
+    - Pull request quality checks.
+    - Agent workflow conventions.
 - Added AI disclosure documentation to the repository README and Thunderstore
   package README for Thunderstore policy compliance.
 
 ### Changed
 
-- Updated compile-time dependencies from Lethal Company v73 to v81.5,
-  LethalCompany_InputUtils v0.7.13, BepInEx.PluginInfoProps v2.1.0, and
-  UnityEngine.Modules 2022.3.62.
+- Updated compile-time dependencies:
+    - Lethal Company v73 to v81.5.
+    - LethalCompany_InputUtils v0.7.13.
+    - BepInEx.PluginInfoProps v2.1.0.
+    - UnityEngine.Modules 2022.3.62.
 - Replaced `RestoreAdditionalProjectSources` with an explicit `nuget.config`
   and package source mapping to make dependency restores more deterministic.
-- Renamed interop adapters from `V73` to `Current`, then removed game-version
-  suffixes from reference aliases after confirming static multi-version
-  validation is not practical with NuGet-managed package references.
+- Clarified current-version interop naming:
+    - Renamed interop adapters from `V73` to `Current`.
+    - Removed game-version suffixes from reference aliases after confirming
+      static multi-version validation is not practical with NuGet-managed
+      package references.
 - Simplified redundant network role guards in RPC surrogate and frame-handling
   paths.
 - Updated Thunderstore README compatibility language to focus on the latest
@@ -96,8 +105,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Changed
 
 - Refactored the runtime from a manager-centered structure into layered
-  application architecture with a composition root, domain models, explicit use
-  case result types, client/server services, and frame/startup handlers.
+  application architecture:
+    - Added a composition root.
+    - Added domain models and explicit use case result types.
+    - Split client/server services and frame/startup handlers.
 - Replaced direct base game utility access with an `IGameInterop` abstraction
   and adapter layer so future game-version work can be isolated behind interop
   boundaries.
