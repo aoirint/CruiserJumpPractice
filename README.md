@@ -170,8 +170,7 @@ DOTNET_CLI_UI_LANGUAGE=en dotnet build --configuration Release
    In this marker, `version` means the tested Lethal Company version.
    Restore or update the description by prepending the marker to the preserved
    base description:
-   `[v<version>] Saves and loads cruiser position, rotation, and condition, and
-   lets you toggle the magnet remotely.`
+   `[v<version>] <description without the compatibility marker>`.
    Keep detailed compatibility and test environment information in
    `assets/README.md` and `CHANGELOG.md`.
    Handle dependency string changes in `assets/manifest.json` as separate
