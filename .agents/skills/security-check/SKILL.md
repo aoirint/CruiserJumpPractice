@@ -71,8 +71,12 @@ description: >-
      endpoints, private data, or other sensitive security details in public
      issues, pull requests, social media, livestreams, videos, or similar
      public channels.
+   - Look for the repository's private reporting path, such as `SECURITY.md`,
+     GitHub private vulnerability reporting, a draft security advisory, or a
+     maintainer-provided contact method.
    - Report suspected security issues to the maintainer through a private and
-     secure channel when possible, or to a trusted security organization.
+     secure channel when possible, or to a trusted security organization when a
+     maintainer channel is unavailable.
    - In public repository work, use only a minimal non-sensitive note when a
      security issue exists, is blocked, or has been reported privately.
 5. For supply-chain-sensitive work, apply the supply-chain baseline below.
