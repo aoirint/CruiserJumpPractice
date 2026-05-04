@@ -1,7 +1,9 @@
 ---
 # SPDX-License-Identifier: Unlicense
 name: issue-quality-check
-description: Quality-check repository issues and issue replies for clarity, structure, style, and LLM disclosure.
+description: >-
+  Quality-check repository issues and issue replies. Use when creating,
+  updating, reviewing, or validating GitHub issues or comments on issues.
 ---
 
 # Issue Quality Check

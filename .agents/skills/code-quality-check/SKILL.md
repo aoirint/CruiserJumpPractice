@@ -1,7 +1,10 @@
 ---
 # SPDX-License-Identifier: Unlicense
 name: code-quality-check
-description: Quality-check implementation, license notices, and supply-chain changes for readability, comments, and verification.
+description: >-
+  Quality-check source code, generated code, tests, scripts,
+  configuration-as-code, examples, dependencies, downloaded tools, CI actions,
+  SPDX/license notices, and supply-chain-sensitive changes.
 ---
 
 # Code Quality Check
