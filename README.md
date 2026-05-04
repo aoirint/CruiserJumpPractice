@@ -167,7 +167,7 @@ DOTNET_CLI_UI_LANGUAGE=en dotnet build --configuration Release
    records a newly tested Lethal Company version.
    Use the compact marker format `[v<version>]` or
    `[v<older-version>/<newer-version>]` at the start of the description.
-   For example, use `[v72/v81.5]` when the marker intentionally covers both
+   For example, use `[v73/v81.5]` when the marker intentionally covers both
    Lethal Company versions.
    In this marker, versions mean tested or maintainer-confirmed Lethal Company
    versions from `assets/README.md`.
@@ -178,7 +178,7 @@ DOTNET_CLI_UI_LANGUAGE=en dotnet build --configuration Release
    with the new marker, then preserving the base description:
    `[v<version-or-versions>] <description without the compatibility marker>`.
    Treat single-version markers such as `[v81.5]` and slash-separated markers
-   such as `[v72/v81.5]` as the same leading compatibility marker.
+   such as `[v73/v81.5]` as the same leading compatibility marker.
    Do not prepend a new marker to a description that already starts with a
    compatibility marker; the manifest description should have exactly one
    leading compatibility marker group.
