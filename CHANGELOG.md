@@ -77,6 +77,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   paths.
 - Updated Thunderstore README compatibility language to focus on the latest
   stable Lethal Company version.
+- Revised earlier alpha changelog wording that was later withdrawn or
+  superseded:
+    - Lethal Company v73 and v56 are documented as best-effort compatibility
+      notes instead of explicit Lethal Company v73 support.
+    - The broad internal architecture refactor note is superseded by the
+      current stable-release roll-up and the follow-up alpha.2 refactors
+      listed above.
 - Documented safer GitHub CLI pull request body handling so Markdown is passed
   through body files and verified after creation.
 
