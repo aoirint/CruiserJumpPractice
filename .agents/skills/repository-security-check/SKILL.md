@@ -33,6 +33,9 @@ description: >-
   convenient but unverified execution.
 - Keep ecosystem-specific implementation details in dedicated follow-up work
   when the repository cannot reasonably verify or maintain them here.
+- Do not treat out-of-scope ecosystem trust infrastructure as permission to
+  skip practical trust checks that current tools, platforms, organizations, or
+  general security practice expect agents to perform.
 - Record blockers, residual risk, and maintainer-approved exceptions clearly.
 
 ## Workflow
