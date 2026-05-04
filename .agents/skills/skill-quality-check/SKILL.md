@@ -62,7 +62,12 @@ description: Quality-check Agent Skills for trigger clarity, scope, structure, p
    - For copied, adapted, generated, vendored, or reusable example files, preserve upstream
      copyright/license notices and apply the SPDX guidance from `code-quality-check`.
 8. Check metadata alignment:
+   - Check every changed skill folder for `agents/openai.yaml`. For new skills, create it unless
+     the repository has an explicit reason to omit app metadata for that skill.
+   - Treat a missing `agents/openai.yaml` as a blocking gap, not as an optional follow-up.
    - Keep `agents/openai.yaml` aligned with `SKILL.md` trigger wording, scope, and expected output.
+   - Include an SPDX notice, `interface.display_name`, `interface.short_description`, and
+     `interface.default_prompt` when creating app metadata.
    - Update or remove metadata that no longer directly supports the skill.
 9. Validate and iterate:
    - Run the available skill validator, if the project has one.
@@ -77,6 +82,8 @@ description: Quality-check Agent Skills for trigger clarity, scope, structure, p
      consecutive rounds with no new unclear points and no meaningful accuracy or effort improvement.
 10. Record verification:
    - Note external sources consulted, why they were needed, and how their guidance was applied.
+   - Note that each changed skill folder has `agents/openai.yaml`, or explain the repository policy
+     that intentionally omits it.
    - Note whether docs, changelog, PR notes, or follow-up domain skills are needed.
 
 When validating with scenarios, keep the report categories separate:
