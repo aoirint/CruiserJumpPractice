@@ -18,7 +18,8 @@ reset the cruiser every attempt.
         - OdinSerializer v2024.2.2700 (2025-05-18 UTC)
         - BepInEx_MonoMod_Debug_Patcher v1.1.1 (2025-04-03 UTC)
     - NOTE: Imperium v1.3.0 appears to have some cruiser-related issues. See
-      [this issue comment][imperium-cruiser-workaround] for a workaround.
+      the [Imperium issue comment][imperium-cruiser-workaround] for a
+      workaround.
 
 ## What it does
 

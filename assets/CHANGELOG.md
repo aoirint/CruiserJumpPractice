@@ -1,5 +1,10 @@
 <!-- SPDX-License-Identifier: Unlicense -->
 
+This changelog is the user-facing release notes for Thunderstore.
+
+For internal implementation details and developer-facing release history, see
+the [GitHub changelog][github-changelog].
+
 ## Unreleased
 
 This is a maintenance release reflecting internal improvements.
@@ -8,18 +13,25 @@ No gameplay changes are introduced.
 
 ### Changed
 
-- This release is not backward-compatible with CruiserJumpPractice v0.1.4 and earlier.
+- Dropped backward compatibility with older CruiserJumpPractice versions:
+    - Affects CruiserJumpPractice v0.1.4 and earlier.
+    - Caused by a mod-internal change.
 
 ### Notes
 
 - Compatibility:
     - Compatible with Lethal Company v81.5 (2026-04-17 UTC, Manifest ID:
       `6423525044216269478`).
-    - Imperium v1.3.0 appears to have some cruiser-related issues. See
-      [this issue comment][imperium-cruiser-workaround] for a workaround.
-    - Lethal Company v73: It still seems to work.
-    - Lethal Company v56: Major features work as expected, but there is a minor
-      known issue: <https://github.com/aoirint/CruiserJumpPractice/issues/5>.
+        - Normally used together with Imperium; the v81.5 test environment
+          used Imperium v1.3.0.
+        - Imperium v1.3.0 appears to have some cruiser-related issues:
+            - See the [Imperium issue comment][imperium-cruiser-workaround]
+              for a workaround.
+    - Lethal Company v73 still appears to work.
+    - Lethal Company v56 has lower-confidence compatibility:
+        - Core features appear to work in limited checks.
+        - A known minor issue was found early and is tracked in
+          <https://github.com/aoirint/CruiserJumpPractice/issues/5>.
 
 ## v0.1.4 - 2025-11-30 UTC
 
@@ -32,10 +44,16 @@ No gameplay changes are introduced.
 - Compatibility:
     - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID:
       `1749099131234587692`).
+        - Backfilled as reference compatibility information while preparing
+          the v0.2.0 release.
 
 ## v0.1.3 - 2025-11-30 UTC [YANKED]
 
-Yanked release due to a build issue.
+### Notes
+
+- Yanked release due to a build issue.
+- No compatibility information was backfilled while preparing the v0.2.0
+  release because this release was yanked.
 
 ## v0.1.2 - 2025-11-29 UTC
 
@@ -54,6 +72,8 @@ Yanked release due to a build issue.
 - Compatibility:
     - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID:
       `1749099131234587692`).
+        - Backfilled as reference compatibility information while preparing
+          the v0.2.0 release.
 
 ## v0.1.1 - 2025-11-29 UTC
 
@@ -66,6 +86,8 @@ Yanked release due to a build issue.
 - Compatibility:
     - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID:
       `1749099131234587692`).
+        - Backfilled as reference compatibility information while preparing
+          the v0.2.0 release.
 
 ## v0.1.0 - 2025-11-29 UTC
 
@@ -78,5 +100,8 @@ Yanked release due to a build issue.
 - Compatibility:
     - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID:
       `1749099131234587692`).
+        - Backfilled as reference compatibility information while preparing
+          the v0.2.0 release.
 
 [imperium-cruiser-workaround]: https://github.com/giosuel/imperium/issues/153#issuecomment-4317402735
+[github-changelog]: https://github.com/aoirint/CruiserJumpPractice/blob/main/CHANGELOG.md
