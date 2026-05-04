@@ -22,14 +22,16 @@ No gameplay changes are introduced.
 - Compatibility:
     - Compatible with Lethal Company v81.5 (2026-04-17 UTC, Manifest ID:
       `6423525044216269478`).
+        - Normally used together with Imperium; the v81.5 test environment
+          used Imperium v1.3.0.
+        - Imperium v1.3.0 appears to have some cruiser-related issues:
+            - See the [Imperium issue comment][imperium-cruiser-workaround]
+              for a workaround.
     - Lethal Company v73 still appears to work.
     - Lethal Company v56 has lower-confidence compatibility:
         - Core features appear to work in limited checks.
         - A known minor issue was found early and is tracked in
           <https://github.com/aoirint/CruiserJumpPractice/issues/5>.
-    - Imperium v1.3.0 appears to have some cruiser-related issues:
-        - See the [Imperium issue comment][imperium-cruiser-workaround] for a
-          workaround.
 
 ## v0.1.4 - 2025-11-30 UTC
 

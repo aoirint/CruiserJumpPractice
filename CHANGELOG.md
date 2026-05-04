@@ -33,15 +33,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Compatibility:
     - Compatible with Lethal Company v81.5 (2026-04-17 UTC, Manifest ID:
       `6423525044216269478`).
+        - Normally used together with Imperium; the v81.5 test environment
+          used Imperium v1.3.0.
+        - Imperium v1.3.0 appears to have some cruiser-related issues:
+            - See
+              <https://github.com/giosuel/imperium/issues/153#issuecomment-4317402735>
+              for a workaround.
     - Lethal Company v73 still appears to work.
     - Lethal Company v56 has lower-confidence compatibility:
         - Core features appear to work in limited checks.
         - A known minor issue was found early and is tracked in
           <https://github.com/aoirint/CruiserJumpPractice/issues/5>.
-    - Imperium v1.3.0 appears to have some cruiser-related issues:
-        - See
-          <https://github.com/giosuel/imperium/issues/153#issuecomment-4317402735>
-          for a workaround.
 - Test environment:
     - Lethal Company v81.5 (2026-04-17 UTC, Manifest ID:
       `6423525044216269478`)
@@ -110,6 +112,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Compatibility:
     - Compatible with Lethal Company v81.5 (2026-04-17 UTC, Manifest ID:
       `6423525044216269478`).
+        - Normally used together with Imperium; the v81.5 test environment
+          used Imperium v1.3.0.
     - Older base-game compatibility became best-effort after the project
       stopped pursuing static multi-version validation through NuGet
       references:
