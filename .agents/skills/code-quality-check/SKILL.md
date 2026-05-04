@@ -26,8 +26,9 @@ validation expectations.
 - Avoid comment noise that repeats obvious code behavior.
 - Run the smallest meaningful executable checks first, then widen only when needed.
 - Keep verification notes concise and reusable for commit summaries, PR bodies, or handoff notes.
-- Reduce supply-chain risk when changes introduce or update external dependencies, downloaded tools,
-  or CI actions.
+- Use `security-check` when changes introduce or update security-sensitive behavior,
+  external dependencies, downloaded tools, CI actions, containers, vendored artifacts, or other
+  supply-chain-sensitive paths.
 - Keep license notices machine-readable, accurate to the file's provenance, and consistent with
   SPDX best practices.
 
@@ -177,18 +178,18 @@ the final summary or PR notes for maintainer review.
 
 ## Supply-Chain Baseline
 
-- Treat newly introduced or updated third-party packages, downloaded CI binaries, and GitHub Actions
-  as supply-chain-sensitive changes.
-- Require a minimum 7-day cooldown before adopting newly released third-party packages, downloaded
-  CI binaries, GitHub Actions, or other external executable artifacts, unless the user explicitly
-  approves an exception.
-- Follow the repository's cooldown, pinning, and lockfile policies before adopting new versions.
-- Prefer pinned, reviewable versions over floating references.
-- If a package manager, registry, hosting site, or security tool cannot report release age or
-  provenance directly, look for another reliable source such as tags, release pages, changelogs,
-  signed artifacts, lockfile metadata, or upstream commit history. If release age or provenance
-  still cannot be verified, treat the dependency as not satisfying the cooldown principle.
-- Record any user-approved exception to the repository policy in the final summary and PR notes.
+Use `security-check` as the canonical security and supply-chain reference when a change
+introduces or updates external executable artifacts, dependency provenance, package-runner
+invocations, downloaded CLI tools, CI actions, containers, vendored files, generated code from
+external tools, copied files, or lockfile entries.
+
+At minimum:
+
+- Treat those paths as supply-chain-sensitive.
+- Require the repository's cooldown, pinning, provenance, and runtime-behavior checks before
+  adoption.
+- Report a blocker or documented maintainer exception when release age, provenance, runtime
+  behavior, or cooldown compliance cannot be verified.
 - For copied, generated, vendored, or downloaded files, verify that the SPDX notice matches the
   upstream license and record the source, version or commit, and validation method when relevant.
 
@@ -205,8 +206,7 @@ the final summary or PR notes for maintainer review.
 - Missing files, commands, metadata, or provenance were reported as assumptions, target-change
   risks, or verification blockers rather than as findings invented from unavailable evidence.
 - Agent Skill changes were checked with `skill-quality-check` when applicable.
-- New or updated dependencies, downloaded tools, and CI actions were checked against the
-  repository's supply-chain policy, including the minimum 7-day cooldown or a recorded
-  user-approved exception.
+- Security-sensitive behavior and supply-chain-sensitive artifacts were checked with
+  `security-check` when applicable.
 - If no concrete code was available, the output clearly says that this was a review plan and lists
   the assumptions instead of presenting file-specific findings.

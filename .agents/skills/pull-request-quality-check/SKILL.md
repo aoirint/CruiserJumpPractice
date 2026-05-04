@@ -153,6 +153,9 @@ Use fallback sections this way:
 - Keep PR bodies short and reviewable.
 - Use `document-quality-check` for explanatory prose that needs readability, structure, or nuance
   review.
+- Use `security-check` when a pull request body, reply, or review note describes
+  security-sensitive behavior, supply-chain-sensitive tools, package runners, dependencies,
+  downloaded artifacts, CI actions, containers, secrets, permissions, or security exceptions.
 - Prefer bullets over long paragraphs.
 - Mention paths or commands in backticks.
 - Do not paste large diffs.
