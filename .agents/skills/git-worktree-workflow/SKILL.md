@@ -8,8 +8,10 @@ description: Use Git worktrees for repository implementation tasks unless explic
 
 ## When to Use
 
-- Use this skill for repository implementation work unless the user explicitly instructs you not to use Git worktrees.
-- Implementation work includes code, tests, build files, documentation, repository guidance, and pull-request preparation.
+- Use this skill for repository implementation work unless the user explicitly
+  instructs you not to use Git worktrees.
+- Implementation work includes code, tests, build files, documentation,
+  repository guidance, and pull-request preparation.
 
 ## Workflow
 
@@ -38,21 +40,24 @@ Use a short, descriptive branch and directory name, such as:
 .agents/worktrees/fix-state-load
 ```
 
-Start from the latest base branch unless the user names a different base. The usual base is `main`:
+Start from the latest base branch unless the user names a different base.
+The usual base is `main`:
 
 ```powershell
 git fetch origin main
 git worktree add -b <branch-name> .agents/worktrees/<branch-name> origin/main
 ```
 
-If network access or Git metadata writes require approval, request it and continue after approval.
+If network access or Git metadata writes require approval, request it and
+continue after approval.
 
 ## Safety Rules
 
 - Treat uncommitted or untracked files in the original worktree as user work.
 - After creating the task worktree, make implementation changes there.
 - Do not remove another worktree unless the user explicitly asks.
-- If the branch or worktree path already exists, inspect it before reuse or choose a new descriptive name.
+- If the branch or worktree path already exists, inspect it before reuse or
+  choose a new descriptive name.
 - Once a branch has been pushed or attached to a pull request, do not amend, rebase, squash,
   force-push, or otherwise rewrite its history unless the user explicitly asks for history
   rewriting.
@@ -66,7 +71,13 @@ files changed.
 
 If verification is skipped, state why in the pull request body.
 
-The final quality check also includes reviewing the complete diff and recent commits for accidental scope creep, missing verification, and commit-message quality.
+The final quality check also includes reviewing:
+
+- The complete diff.
+- Recent commits.
+- Accidental scope creep.
+- Missing verification.
+- Commit-message quality.
 
 ## Pull Request Notes
 

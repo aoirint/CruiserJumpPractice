@@ -26,7 +26,10 @@ Verify that the first line uses:
 <type>[optional scope][optional !]: <description>
 ```
 
-Verify that an optional body starts after one blank line, and optional footer lines start after one blank line from the body:
+Verify the blank-line structure:
+
+- An optional body starts after one blank line.
+- Optional footer lines start after one blank line from the body.
 
 ```text
 <type>[optional scope][optional !]: <description>
@@ -41,9 +44,12 @@ Verify that an optional body starts after one blank line, and optional footer li
 - `type`: required noun that communicates the kind of change.
 - `scope`: optional noun in parentheses that names the affected area, such as `interop`, `build`, `docs`, or `input`.
 - `!`: optional marker immediately before `:` for a breaking change.
-- `description`: required short summary after `: `. Use imperative mood, lowercase after the type unless a proper noun is needed, and no trailing period.
+- `description`: required short summary after `: `. Use imperative mood,
+  lowercase after the type unless a proper noun is needed, and no trailing
+  period.
 - `body`: optional free-form explanation of what changed and why. Start it one blank line after the description.
-- `footer`: optional trailer-style metadata. Use tokens such as `Refs`, `Reviewed-by`, `Co-authored-by`, or `BREAKING CHANGE`.
+- `footer`: optional trailer-style metadata. Use tokens such as `Refs`,
+  `Reviewed-by`, `Co-authored-by`, or `BREAKING CHANGE`.
 
 ## Breaking Changes
 
@@ -61,7 +67,8 @@ feat(api): remove legacy save endpoint
 BREAKING CHANGE: legacy save endpoint is no longer available.
 ```
 
-`BREAKING CHANGE` must be uppercase when used as a footer. `BREAKING-CHANGE` is equivalent when used as a footer token.
+`BREAKING CHANGE` must be uppercase when used as a footer.
+`BREAKING-CHANGE` is equivalent when used as a footer token.
 
 ## AI Agent Co-Author Trailers
 
@@ -108,10 +115,13 @@ Check that the type matches the dominant intent:
 - `build`: change build scripts, project files, packaging, dependencies, or generated build configuration.
 - `ci`: change continuous integration workflows or automation.
 - `style`: formatting-only change with no behavior impact.
-- `chore`: maintenance that does not fit the other types and does not affect source, tests, build, docs, or CI in a more specific way.
+- `chore`: maintenance that does not fit the other types and does not affect
+  source, tests, build, docs, or CI in a more specific way.
 - `revert`: revert previous commits; include references in the body or footers when useful.
 
-Prefer the most specific type. If one logical change needs multiple types, recommend splitting it into multiple commits when practical.
+Prefer the most specific type.
+If one logical change needs multiple types, recommend splitting it into multiple
+commits when practical.
 
 ## Examples
 

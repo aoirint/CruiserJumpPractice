@@ -1,7 +1,7 @@
 ---
 # SPDX-License-Identifier: Unlicense
 name: release-note-workflow
-description: Create, update, or review user-facing release notes. Use when deriving stable release notes from a canonical changelog or checking release-note readiness before publication.
+description: Create, update, or review user-facing release notes derived from canonical changelog entries.
 ---
 
 # Release Note Workflow

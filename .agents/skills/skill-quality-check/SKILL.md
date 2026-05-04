@@ -1,7 +1,7 @@
 ---
 # SPDX-License-Identifier: Unlicense
 name: skill-quality-check
-description: Quality-check Agent Skills for trigger clarity, scope, structure, progressive disclosure, domain separation, validation, and scenario-readiness. Use when creating, updating, reviewing, or splitting Agent Skills, SKILL.md files, skill references, bundled scripts, or skill metadata.
+description: Quality-check Agent Skills for trigger clarity, scope, structure, progressive disclosure, and scenario readiness.
 ---
 
 # Skill Quality Check
