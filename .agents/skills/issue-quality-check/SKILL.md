@@ -15,6 +15,31 @@ description: >-
 - Use this skill when creating, updating, reviewing, or validating replies or
   comments on GitHub issues for this repository.
 
+## Goals
+
+- Make issue titles, bodies, and replies clear enough for maintainers to triage and act on.
+- Preserve required LLM disclosure alerts whenever LLM assistance was used.
+- Keep issue text in English except for exact quoted source material or identifiers.
+- Prevent shell quoting from corrupting Markdown when creating or editing issues through `gh`.
+- Record verification limits, uncertainty, and requested follow-up information explicitly.
+
+## Workflow
+
+1. Classify the artifact as an issue title, issue body, issue reply, or combined issue update.
+2. Check required LLM disclosure first, using the issue-body alert for issues and the comment alert
+   for replies when LLM assistance was used.
+3. Check the title when present for concise, specific triage wording.
+4. Check the body or reply structure, keeping only sections that add useful information.
+5. Check English style, concise wording, exact quoted material, and issue-specific nuance with
+   `document-quality-check` when explanatory prose needs review.
+6. Check risk-sensitive content with `security-check` when the issue mentions security,
+   supply-chain-sensitive tools, dependencies, CI, containers, secrets, permissions, or exceptions.
+7. Check CLI safety before creating or editing issues or replies through a shell command.
+8. After any `gh` create or edit command, verify the stored Markdown body or comment when possible,
+   fix quoting problems, and remove temporary body files.
+9. In CLI examples, use confirmed issue numbers, comment IDs, or placeholders such as
+   `<issue-number>`. Do not infer an issue number from a pull request number or unrelated context.
+
 ## Title
 
 Check that the title is concise, specific, and written as a problem or task:
@@ -99,6 +124,7 @@ can interpret those characters and silently corrupt the body.
 
 - Prefer writing the body to a temporary Markdown file and passing it with
   `gh issue create --body-file <file>` or `gh issue edit --body-file <file>`.
+- Use placeholders such as `<issue-number>` when the target issue number is unknown.
 - After creating or editing an issue through `gh`, verify the stored body with
   `gh issue view --json body` and fix any quoting issues before finishing.
 - Remove any temporary body file from the worktree after verification.
@@ -174,6 +200,7 @@ When creating or editing issue replies with a shell command:
 
 - Prefer writing the reply to a temporary Markdown file and passing it with
   `gh issue comment --body-file <file>`.
+- Use placeholders such as `<issue-number>` when the target issue number is unknown.
 - After creating or editing a reply through `gh`, verify the stored comment body
   when possible and fix any quoting issues before finishing.
 - Remove any temporary body file from the worktree after verification.
