@@ -99,6 +99,9 @@ readability without flattening meaning.
 
 - Split overloaded sentences when they carry multiple ideas, conditions, time references, confidence
   levels, or relationships.
+- Split or restructure paragraphs and list items when they become too dense to scan.
+  - Use separate paragraphs, parent bullets with indented child bullets, or another local document
+    pattern that makes each idea easy to review.
 - Preserve the nuance that made the original wording important. Keep distinctions such as certainty,
   scope, timing, exception status, dependency relationships, and whether a statement is original,
   backfilled, inferred, or superseded.
