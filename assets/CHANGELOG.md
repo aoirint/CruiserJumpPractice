@@ -35,8 +35,8 @@ No gameplay changes are introduced.
 - Compatibility:
     - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID:
       `1749099131234587692`).
-        - Backfilled as reference compatibility information in
-          v0.2.0-alpha.1.
+        - Backfilled as reference compatibility information for the v0.2.0
+          release timing.
 
 ## v0.1.3 - 2025-11-30 UTC [YANKED]
 
@@ -62,8 +62,8 @@ No gameplay changes are introduced.
 - Compatibility:
     - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID:
       `1749099131234587692`).
-        - Backfilled as reference compatibility information in
-          v0.2.0-alpha.1.
+        - Backfilled as reference compatibility information for the v0.2.0
+          release timing.
 
 ## v0.1.1 - 2025-11-29 UTC
 
@@ -76,8 +76,8 @@ No gameplay changes are introduced.
 - Compatibility:
     - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID:
       `1749099131234587692`).
-        - Backfilled as reference compatibility information in
-          v0.2.0-alpha.1.
+        - Backfilled as reference compatibility information for the v0.2.0
+          release timing.
 
 ## v0.1.0 - 2025-11-29 UTC
 
@@ -90,7 +90,7 @@ No gameplay changes are introduced.
 - Compatibility:
     - Compatible with Lethal Company v73 (2025-10-04 UTC, Manifest ID:
       `1749099131234587692`).
-        - Backfilled as reference compatibility information in
-          v0.2.0-alpha.1.
+        - Backfilled as reference compatibility information for the v0.2.0
+          release timing.
 
 [imperium-cruiser-workaround]: https://github.com/giosuel/imperium/issues/153#issuecomment-4317402735
