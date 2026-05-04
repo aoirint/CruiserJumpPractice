@@ -29,6 +29,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Marked automated Thunderstore uploads with an additional Thunderstore
   category:
     - `AI Generated`
+- Aligned Thunderstore manifest dependency strings with the documented v81.5
+  test environment for BepInExPack and LethalCompany_InputUtils:
+    - Treats the manifest dependency versions as part of the practical minimum
+      runtime baseline for Thunderstore installs.
+- Stopped carrying Lethal Company v73 and v56 compatibility notes forward into
+  the unreleased v0.2.0 release notes because they no longer match the updated
+  Thunderstore dependency baseline.
 
 ### Notes
 
@@ -41,11 +48,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
             - See
               <https://github.com/giosuel/imperium/issues/153#issuecomment-4317402735>
               for a workaround.
-    - Lethal Company v73 still appears to work.
-    - Lethal Company v56 has lower-confidence compatibility:
-        - Core features appear to work in limited checks.
-        - A known minor issue was found early and is tracked in
-          <https://github.com/aoirint/CruiserJumpPractice/issues/5>.
 - Test environment:
     - Lethal Company v81.5 (2026-04-17 UTC, Manifest ID:
       `6423525044216269478`)
