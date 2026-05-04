@@ -2,8 +2,8 @@
 
 # CruiserJumpPractice
 
-A Lethal Company mod that saves/loads cruiser position, rotation, and condition, and lets you toggle the magnet
-remotely.
+A Lethal Company mod that saves and loads cruiser position, rotation, and condition.
+It also lets you toggle the magnet remotely.
 
 - [User guide](./assets/README.md)
 
@@ -158,26 +158,33 @@ DOTNET_CLI_UI_LANGUAGE=en dotnet build --configuration Release
 ## Release
 
 1. Update the canonical developer changelog in `CHANGELOG.md`.
-2. For a stable release, derive the Thunderstore-facing release notes in `assets/CHANGELOG.md` from stable entries
-   in `CHANGELOG.md`.
-3. Replace version in `CruiserJumpPractice/CruiserJumpPractice.csproj` as semver format, e.g. `1.2.3`.
-4. Verify that `.github/workflows/build.yml` packages `assets/CHANGELOG.md` and that the `generate-version` action
-   updates `assets/manifest.json` from the project version.
+2. For a stable release, derive the Thunderstore-facing release notes in
+   `assets/CHANGELOG.md` from stable entries in `CHANGELOG.md`.
+3. Replace version in `CruiserJumpPractice/CruiserJumpPractice.csproj` with a
+   SemVer version such as `1.2.3`.
+4. Verify the release packaging flow:
+    - `.github/workflows/build.yml` packages `assets/CHANGELOG.md`.
+    - The `generate-version` action updates `assets/manifest.json` from the
+      project version.
 5. Commit and push the changes.
 6. CI will create a GitHub Release automatically.
-7. For stable releases, CI will upload the release artifact to Thunderstore automatically.
+7. For stable releases, CI will upload the release artifact to Thunderstore
+   automatically.
 
-   The current workflow deploys to the Thunderstore `aoirint` team and publishes to the `lethal-company`
-   community with the `Mods`, `Tweaks & Quality Of Life`, and `AI Generated` categories.
-   The `THUNDERSTORE_TOKEN` secret must belong to a Thunderstore service account that can publish to that team.
+   The current workflow deploys to the Thunderstore `aoirint` team and
+   publishes to the `lethal-company` community with the `Mods`,
+   `Tweaks & Quality Of Life`, and `AI Generated` categories.
+   The `THUNDERSTORE_TOKEN` secret must belong to a Thunderstore service
+   account that can publish to that team.
 
-   **NOTE: prerelease version is not supported by Thunderstore, e.g. `1.2.3-beta.1`.**
+   **NOTE: Thunderstore does not support prerelease versions such as
+   `1.2.3-beta.1`.**
 
 ### AI Disclosure
 
-Some parts of this project were developed with the assistance of AI tools based on large language models (LLMs),
-including agent-based tools.
-The code is reviewed by the author.
+Some parts of this project were developed with AI tools based on large language
+models (LLMs), including agent-based tools.
+The author reviews the code.
 This disclosure is made in compliance with Thunderstore policies.
 
 ## Debugging
