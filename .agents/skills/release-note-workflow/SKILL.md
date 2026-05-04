@@ -78,11 +78,10 @@ description: Create, update, or review user-facing release notes. Use when deriv
      Keep exact prerelease identifiers in the canonical developer changelog.
 6. Rewrite the stable entries around user-visible behavior, installation,
    compatibility, update impact, security, and known limitations.
-   - Follow the `code-quality-check` wording guidance for explanatory prose:
-     split overloaded sentences when needed, while preserving certainty,
-     scope, timing, compatibility confidence, dependency relationships, and
-     whether context is original, backfilled, inferred, superseded, or
-     withdrawn.
+   - Use `document-quality-check` for explanatory prose. Preserve
+     release-note-specific nuance such as compatibility confidence, dependency
+     relationships, and whether context is original, backfilled, inferred,
+     superseded, or withdrawn.
 7. For each user-visible change, include one concise reason or background
    sentence from the canonical changelog or maintainer input.
    - Apply this requirement to the target release being prepared or reviewed.

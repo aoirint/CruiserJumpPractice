@@ -37,8 +37,8 @@ validation expectations.
 4. Add or update comments only when the design intent is not obvious from the code and cannot be
    made obvious with a small refactor.
 5. Remove stale, redundant, or misleading comments.
-6. Classify changed text as developer-facing, user-facing, or external-contract text before
-   recommending wording changes.
+6. Use `document-quality-check` for documentation, comments, release notes, PR text, issue text,
+   and other explanatory prose that needs readability or wording changes.
 7. Re-run the project's language-specific quality checks after edits.
 8. Summarize which checks ran, which passed, and why any relevant check was skipped.
 
@@ -91,27 +91,6 @@ When adding a comment:
   standalone comment would split an import block, list, mapping, or generated section in a way tools
   rewrite or reject, use a same-line comment or another nearby location that preserves the group.
 - Update nearby tests or verification notes if the comment documents behavior that must stay true.
-
-## Documentation and Comment Wording
-
-When editing documentation, comments, release notes, PR text, or other explanatory prose, improve
-readability without flattening meaning.
-
-- Split overloaded sentences when they carry multiple ideas, conditions, time references, confidence
-  levels, or relationships.
-- Prefer lists when presenting enumerations.
-  - Use prose only when the enumeration is short enough to read naturally or when the local document
-    style clearly favors inline wording.
-- Split or restructure paragraphs and list items when they become too dense to scan.
-  - Use separate paragraphs, parent bullets with indented child bullets, or another local document
-    pattern that makes each idea easy to review.
-- Preserve the nuance that made the original wording important. Keep distinctions such as certainty,
-  scope, timing, exception status, dependency relationships, and whether a statement is original,
-  backfilled, inferred, or superseded.
-- Use as many short sentences or nested bullets as needed to make the relationship readable. Do not
-  force a fixed sentence count when the content needs a different shape.
-- After splitting text, re-read the result as a whole and confirm it still answers the same question
-  as the original wording.
 
 ### CI and Configuration Comments
 

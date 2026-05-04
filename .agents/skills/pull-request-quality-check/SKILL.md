@@ -132,6 +132,8 @@ Use fallback sections this way:
 - Preserve non-English text only when quoting source text, branch names, commit messages, file
   contents, logs, or existing discussion snippets that must remain exact.
 - Keep PR bodies short and reviewable.
+- Use `document-quality-check` for explanatory prose that needs readability, structure, or nuance
+  review.
 - Prefer bullets over long paragraphs.
 - Mention paths or commands in backticks.
 - Do not paste large diffs.
