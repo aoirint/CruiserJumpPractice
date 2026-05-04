@@ -168,6 +168,9 @@ DOTNET_CLI_UI_LANGUAGE=en dotnet build --configuration Release
    Use the compact marker format `[LC v<version> tested]` at the start of the
    description, and keep the dependency versions aligned with the latest
    tested environment there.
+   Keep the `assets/manifest.json` dependency strings aligned with dependency
+   versions named in the package description unless the package intentionally
+   supports an older dependency baseline.
    Treat `CHANGELOG.md` as the developer-facing compatibility history.
 4. Replace version in `CruiserJumpPractice/CruiserJumpPractice.csproj` with a
    SemVer version such as `1.2.3`.
