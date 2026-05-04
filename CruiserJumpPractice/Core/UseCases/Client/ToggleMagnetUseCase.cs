@@ -5,9 +5,8 @@ using CruiserJumpPractice.Core.Ports;
 
 namespace CruiserJumpPractice.Core.UseCases.Client;
 
-// Magnet toggling reuses the game's own synchronized lever behavior. The custom
-// RPC surrogate is reserved for cruiser snapshot save/load, so this use case
-// only guards host authority and feedback.
+// Magnet toggling reuses the game's own synchronized lever behavior. The custom RPC surrogate is
+// reserved for cruiser snapshot save/load, so this use case only guards host authority and feedback.
 internal sealed class ToggleMagnetUseCase
 {
     private readonly IGameInterop gameInterop;

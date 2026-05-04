@@ -18,9 +18,9 @@ public class CruiserJumpPractice : BaseUnityPlugin
 
     private static PluginController? controller;
 
-    // Harmony and Netcode construct their callback objects outside our
-    // construction path. This static entry exposes one plugin-level controller
-    // instead of scattering use cases across patch and NetworkBehaviour classes.
+    // Harmony and Netcode construct their callback objects outside our construction path. This
+    // static entry exposes one plugin-level controller instead of scattering use cases across
+    // patch and NetworkBehaviour classes.
     internal static PluginController Controller => controller!;
 
     private void Awake()

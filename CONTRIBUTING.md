@@ -12,8 +12,8 @@ The project maintainer is listed in [CODEOWNERS](./.github/CODEOWNERS).
 - Check the existing issues and pull requests to avoid duplicate work.
 - Open an issue first for larger behavior changes, compatibility changes, or
   anything that may affect release packaging.
-- Keep changes focused. Separate unrelated fixes, refactors, and documentation
-  updates into separate pull requests when practical.
+- Keep changes focused. Separate unrelated fixes, refactors, and documentation updates into separate pull requests
+  when practical.
 
 ## Development setup
 
@@ -54,8 +54,7 @@ For package or release changes, also verify the release documentation in
 - Use a clear title that summarizes the change.
 - Describe what changed and how you verified it.
 - Link related issues when applicable.
-- Keep the pull request small enough for maintainers to review without guessing
-  at unrelated intent.
+- Keep the pull request small enough for maintainers to review without guessing at unrelated intent.
 - Pull requests must include the pull request template checkbox confirmation for
   the Contribution License Agreement before they can be merged. Pull requests
   without that confirmation may be closed without further notice.
@@ -66,23 +65,19 @@ For package or release changes, also verify the release documentation in
   blocked, or no longer plan to continue the pull request, leave a short comment
   so maintainers know what to expect. Even if a long time has passed, it is
   always fine to reply with an update.
-- If you want to continue work from a stalled pull request, leave a short
-  comment for the maintainer and the original contributor before opening a new
-  pull request. The original contributor may not be available to respond, but
-  the maintainer can confirm whether the change is still wanted and coordinate
-  attribution or next steps.
+- If you want to continue work from a stalled pull request, leave a short comment for the maintainer and the original
+  contributor before opening a new pull request. The original contributor may not be available to respond, but the
+  maintainer can confirm whether the change is still wanted and coordinate attribution or next steps.
 - To keep work moving, maintainers may accept another contribution for the same issue without first rejecting an
   inactive pull request.
-- If a pull request stalls, maintainers or another contributor may continue the
-  work in a separate pull request. This may include reusing or adapting the
-  stalled pull request's commits, patch, tests, documentation, or ideas under
-  the Contribution License Agreement.
-- If your pull request reuses substantial work from another pull request, credit
-  the original pull request and contributor in your pull request description.
-- To keep maintainer work manageable and the review queue current, pull requests
-  that remain inactive for a reasonable period may be closed. This is not a
-  judgment on the contributor, and it does not prevent you from opening a new
-  pull request later if the change is still useful.
+- If a pull request stalls, maintainers or another contributor may continue the work in a separate pull request,
+  including by reusing or adapting the stalled pull request's commits, patch, tests, documentation, or ideas under the
+  Contribution License Agreement.
+- If your pull request reuses substantial work from another pull request, credit the original pull request and
+  contributor in your pull request description.
+- To keep maintainer work manageable and the review queue current, pull requests that remain inactive for a reasonable
+  period may be closed. This is not a judgment on the contributor, and it does not prevent you from opening a new pull
+  request later if the change is still useful.
 
 ## Contribution License Agreement
 
@@ -118,8 +113,7 @@ By submitting a contribution, you represent and agree that:
 
 ## AI-assisted contributions
 
-AI tools may be used as aids, but the human contributor remains responsible for
-the contribution.
+AI tools may be used as aids, but the human contributor remains responsible for the contribution.
 When AI assistance significantly affects a pull request, disclosure is required
 in the pull request description. The purpose of disclosure is to give reviewers
 enough context to understand where to focus, including areas you may not have
@@ -132,11 +126,8 @@ Examples that should be disclosed:
 - In the pull request description, specifically disclose AI assistance that
   significantly affected the pull request, but keep the disclosure practical.
   You do not need to provide a file-by-file table of AI involvement.
-- When possible, mention:
-    - The rough prompt you gave an agent.
-    - The changes you asked it to make.
-    - Changes made after automated review.
-    - What you focused on when reviewing or adapting the result.
+- When possible, mention the rough prompt you gave an agent, the changes you asked it to make, changes made after
+  automated review, and what you focused on when reviewing or adapting the result.
 - If there are areas you did not review closely or are less confident about,
   mention them so reviewers can check those areas more carefully.
 
@@ -152,8 +143,8 @@ When in doubt:
 
 Contributor responsibilities:
 
-- Review every AI-assisted change yourself. Do not assume generated code,
-  documentation, tests, or explanations are correct.
+- Review every AI-assisted change yourself. Do not assume generated code, documentation, tests, or explanations are
+  correct.
 - Provide verification evidence that matches the change, such as automated test
   output, build output, screenshots, or a clear description of any hands-on
   checks that could not reasonably be automated.
@@ -161,30 +152,19 @@ Contributor responsibilities:
   checks should be performed without AI automation. If an AI-assisted
   inspection is included, describe the request first, nest the AI result under
   it, and clearly label the result as AI-assisted.
-- Keep changes reviewable. Do not submit large, hard-to-review changes that a
-  maintainer cannot reasonably check, whether they were generated by AI tools or
-  written manually.
+- Keep changes reviewable. Do not submit large, hard-to-review changes that cannot reasonably be checked by a
+  maintainer, whether they were generated by AI tools or written manually.
 - Agent-generated pull requests are allowed only when a human contributor
   understands the change, adapts it to this codebase, verifies it, discloses the
   assistance, and can personally explain and maintain it.
 - Do not submit low-effort AI-generated or "vibe-coded" pull requests that do not meet those requirements.
-- Write pull request descriptions and review replies in your own words. Use AI
-  for editing help only if you still review and stand behind the final text.
+- Write pull request descriptions and review replies in your own words. Use AI for editing help only if you still
+  review and stand behind the final text.
 - Maintainers may close undisclosed, unverified, low-quality, or spam-like AI-assisted contributions.
 
 ## Reporting security issues
 
-If you suspect you found a security issue, do not share exploit details publicly
-or with untrusted recipients.
-
-This includes, but is not limited to:
-
-- Public issues.
-- Social media.
-- Blog posts.
-- Livestreams.
-- Video uploads.
-- Similar public channels.
-
-Report the issue to the maintainer through a private and secure channel when
-possible, or to a trusted security organization.
+If you suspect you found a security issue, do not share exploit details publicly or with untrusted recipients. This
+includes, but is not limited to, public issues, social media, blog posts, livestreams, video uploads, and similar public
+channels. Report it to the maintainer through a private and secure channel when possible, or to a trusted security
+organization.

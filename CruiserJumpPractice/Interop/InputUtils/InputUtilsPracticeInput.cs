@@ -5,8 +5,7 @@ using CruiserJumpPractice.Core.Ports;
 
 namespace CruiserJumpPractice.Interop.InputUtils;
 
-// InputUtilsPracticeInput turns the InputUtilsActions declaration table into
-// Core's IPracticeInput.
+// InputUtilsPracticeInput turns the InputUtilsActions declaration table into Core's IPracticeInput.
 // Missing InputAction objects are treated as not triggered, so frame handling sees only simple
 // one-frame practice commands.
 internal sealed class InputUtilsPracticeInput : IPracticeInput
