@@ -1,5 +1,10 @@
 <!-- SPDX-License-Identifier: Unlicense -->
 
+This changelog is the user-facing release notes for Thunderstore.
+
+For internal implementation details and developer-facing release history, see
+the [GitHub changelog][github-changelog].
+
 ## Unreleased
 
 This is a maintenance release reflecting internal improvements.
@@ -94,3 +99,4 @@ No gameplay changes are introduced.
           release timing.
 
 [imperium-cruiser-workaround]: https://github.com/giosuel/imperium/issues/153#issuecomment-4317402735
+[github-changelog]: https://github.com/aoirint/CruiserJumpPractice/blob/main/CHANGELOG.md
