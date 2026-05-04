@@ -180,13 +180,6 @@ DOTNET_CLI_UI_LANGUAGE=en dotnet build --configuration Release
    **NOTE: Thunderstore does not support prerelease versions such as
    `1.2.3-beta.1`.**
 
-### AI Disclosure
-
-Some parts of this project were developed with AI tools based on large language
-models (LLMs), including agent-based tools.
-The author reviews the code.
-This disclosure is made in compliance with Thunderstore policies.
-
 ## Debugging
 
 ### r2modman
@@ -210,3 +203,10 @@ This disclosure is made in compliance with Thunderstore policies.
 5. Set `Logging.Console.Enabled` to `true`.
 6. Set `Logging.Console.LogLevels` to `All`.
 7. Launch `Lethal Company.exe` again.
+
+## AI Disclosure
+
+Some parts of this project were developed with AI tools based on large language
+models (LLMs), including agent-based tools.
+The author reviews the code.
+This disclosure is made in compliance with Thunderstore policies.
