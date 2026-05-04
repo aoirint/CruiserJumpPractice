@@ -23,9 +23,9 @@ reset the cruiser every attempt.
 
 ## What it does
 
-- Keybind to save the current cruiser state (position, rotation, HP, turbo boosts).
-- Keybind to load the saved cruiser state.
-- Keybind to toggle the magnet on/off remotely.
+- ✅ Keybind to save the current cruiser state (position, rotation, HP, turbo boosts).
+- ✅ Keybind to load the saved cruiser state.
+- ✅ Keybind to toggle the magnet on/off remotely.
 
 Only the host can use all features of this mod. Clients will still receive the
 synced cruiser state even without this mod installed.
