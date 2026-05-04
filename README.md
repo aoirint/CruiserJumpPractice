@@ -168,9 +168,10 @@ DOTNET_CLI_UI_LANGUAGE=en dotnet build --configuration Release
    Use the compact marker format `[v<version>]` at the start of the
    description.
    In this marker, `version` means the tested Lethal Company version.
-   Example:
-   `[v81.5] Saves and loads cruiser position, rotation, and condition, and lets
-   you toggle the magnet remotely.`
+   Restore or update the description by prepending the marker to the preserved
+   base description:
+   `[v<version>] Saves and loads cruiser position, rotation, and condition, and
+   lets you toggle the magnet remotely.`
    Keep detailed compatibility and test environment information in
    `assets/README.md` and `CHANGELOG.md`.
    Handle dependency string changes in `assets/manifest.json` as separate
