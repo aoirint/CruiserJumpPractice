@@ -43,6 +43,7 @@ No gameplay changes are introduced.
 ### Notes
 
 - Yanked release due to a build issue.
+- No compatibility information was backfilled because this release was yanked.
 
 ## v0.1.2 - 2025-11-29 UTC
 
