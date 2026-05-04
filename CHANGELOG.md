@@ -110,9 +110,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Compatibility:
     - Compatible with Lethal Company v81.5 (2026-04-17 UTC, Manifest ID:
       `6423525044216269478`).
-    - Lethal Company v73 and v56 compatibility became best-effort after the
-      project stopped pursuing static multi-version validation through NuGet
-      references.
+    - Older base-game compatibility became best-effort after the project
+      stopped pursuing static multi-version validation through NuGet
+      references:
+        - Lethal Company v73 still appeared to work.
+        - Lethal Company v56 had lower-confidence compatibility, with a known
+          minor issue found early.
 
 ## v0.2.0-alpha.1 - 2026-04-25 UTC
 
