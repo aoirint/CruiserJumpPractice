@@ -162,15 +162,22 @@ DOTNET_CLI_UI_LANGUAGE=en dotnet build --configuration Release
 1. Update the canonical developer changelog in `CHANGELOG.md`.
 2. For a stable release, derive the Thunderstore-facing release notes in
    `assets/CHANGELOG.md` from stable entries in `CHANGELOG.md`.
-3. Replace version in `CruiserJumpPractice/CruiserJumpPractice.csproj` with a
+3. Update the Thunderstore package description compatibility marker in
+   `assets/manifest.json` when the `assets/README.md` `Compatibility` section
+   records a newly tested Lethal Company version or dependency version.
+   Use the compact marker format `[LC v<version> tested]` at the start of the
+   description, and keep the dependency versions aligned with the latest
+   tested environment there.
+   Treat `CHANGELOG.md` as the developer-facing compatibility history.
+4. Replace version in `CruiserJumpPractice/CruiserJumpPractice.csproj` with a
    SemVer version such as `1.2.3`.
-4. Verify the release packaging flow:
+5. Verify the release packaging flow:
     - `.github/workflows/build.yml` packages `assets/CHANGELOG.md`.
     - The `generate-version` action updates `assets/manifest.json` from the
       project version.
-5. Commit and push the changes.
-6. CI will create a GitHub Release automatically.
-7. For stable releases, CI will upload the release artifact to Thunderstore
+6. Commit and push the changes.
+7. CI will create a GitHub Release automatically.
+8. For stable releases, CI will upload the release artifact to Thunderstore
    automatically.
 
    The current workflow deploys to the Thunderstore `aoirint` team and
