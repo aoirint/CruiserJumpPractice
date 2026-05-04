@@ -25,6 +25,9 @@ description: >-
   `references/`, deterministic helpers in `scripts/`, reusable output materials in `assets/`.
 - Separate project-specific or domain-specific knowledge into dedicated domain skills or reference
   files instead of mixing it into general workflow skills.
+- Use `repository-security-check` when a skill describes security-sensitive behavior, external
+  executable artifacts, dependencies, CI actions, containers, vendored files, secrets, permissions,
+  unsafe defaults, or supply-chain policy.
 - Preserve a consistent top-level structure: `When to Use`, `Goals`, and `Workflow` unless a local
   skill has a stronger established pattern.
 - Require scenario-based validation for new or materially revised skills.
@@ -46,6 +49,8 @@ description: >-
    - No unrelated project policy, domain knowledge, or historical notes in a general-purpose skill.
    - Split domain knowledge into a dedicated skill or a directly linked reference file when it would
      otherwise make the skill broad or stale.
+   - Reference `repository-security-check` instead of duplicating partial security or supply-chain
+     policy unless the target skill owns a narrower implementation detail.
 5. Check structure:
    - Prefer `When to Use`, `Goals`, and `Workflow` for Agent Skills.
    - Keep required steps explicit, ordered, and written as imperatives.
@@ -88,6 +93,7 @@ description: >-
    - Note external sources consulted, why they were needed, and how their guidance was applied.
    - Note that each changed skill folder has `agents/openai.yaml`, or explain the repository policy
      that intentionally omits it.
+   - Note whether `repository-security-check` was used for security-sensitive skill content.
    - Note whether docs, changelog, PR notes, or follow-up domain skills are needed.
 
 When validating with scenarios, keep the report categories separate:
