@@ -14,11 +14,18 @@ Then describe the AI assistance under "AI disclosure" below.
 Briefly describe what changed, who it affects, and why it is useful.
 If this pull request mixes unrelated behavior, documentation, refactors, or
 cleanup, split it or explain why the work should stay together.
+If the title or commits include `!` or `BREAKING CHANGE`, include a
+`### Breaking Changes` subsection.
+Treat a change as breaking when it removes, renames, or incompatibly changes
+public behavior, documented workflows, configuration, package or release
+behavior, compatibility guarantees, or other project-facing contracts that
+users, maintainers, automation, or downstream packaging reasonably rely on.
 
 Optional H3 examples:
 ### User impact
 ### Contributor impact
 ### Maintainer impact
+### Breaking Changes
 -->
 
 ## Related Issues
@@ -72,11 +79,10 @@ If you did not run a relevant check, explain why.
 You are responsible for masking personal information, local absolute paths,
 access tokens, and other sensitive details before posting logs, screenshots,
 or videos.
-Manual checks should describe checks performed without AI automation. Do not
-list checks that AI performed autonomously as manual checks. If an AI-assisted
-inspection is included, list a short `Request: ...` summary first, nest the
-`AI-assisted result: ...` under it, and clearly label the result as
-AI-assisted.
+Do not present AI-performed review, inspection, editing, verification, or other
+work as "manual". For example, if you include AI-assisted inspection, list a
+short `Request: ...` summary first, nest the `AI-assisted result: ...` under it,
+and clearly label the result as AI-assisted.
 
 Optional testing structure:
 ### Build log

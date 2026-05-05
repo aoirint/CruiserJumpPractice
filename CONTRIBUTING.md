@@ -9,11 +9,65 @@ The project maintainer is listed in [CODEOWNERS](./.github/CODEOWNERS).
 
 ## Before you start
 
-- Check the existing issues and pull requests to avoid duplicate work.
+- Check the existing [issues](https://github.com/aoirint/CruiserJumpPractice/issues)
+  and [pull requests](https://github.com/aoirint/CruiserJumpPractice/pulls)
+  to avoid duplicate work.
 - Open an issue first for larger behavior changes, compatibility changes, or
   anything that may affect release packaging.
 - Keep changes focused. Separate unrelated fixes, refactors, and documentation
   updates into separate pull requests when practical.
+
+## Reporting issues
+
+- Use [GitHub Issues](https://github.com/aoirint/CruiserJumpPractice/issues)
+  for ordinary bug reports, feature requests, compatibility notes, and
+  documentation improvement requests.
+    - To minimize the personal burden this project places on maintainers,
+      maintainers try to keep the project's responsibilities as small as
+      practical. However, issues or requests that seem relevant can still be
+      useful as related information for other users even if they are closed as
+      not planned. This is likely for requests outside the project's scope,
+      requests for large or complex features, or compatibility requests for base
+      game versions that are no longer current.
+- Before opening a new issue, check the existing
+  [issues](https://github.com/aoirint/CruiserJumpPractice/issues) and
+  [pull requests](https://github.com/aoirint/CruiserJumpPractice/pulls) to avoid
+  duplicates.
+- When you share logs, screenshots, or other supporting material in a public
+  issue, expect maintainers to use that material within a reasonable scope
+  related to the reported issue, including for understanding, reproducing,
+  discussing, fixing, and communicating with end users about it.
+- Only share material that you have the right to share, and do not include
+  secrets, personal information, private data, or content that should not be made
+  public.
+- If AI assistance significantly shapes an issue report or issue comment,
+  disclose that assistance in the issue or comment. This helps maintainers judge
+  what context may need closer checking, such as reproduction steps,
+  compatibility claims, log interpretation, or documentation suggestions. See
+  [AI assistance](#ai-assistance).
+- Do not submit sample code, documentation text, patches, or other material that
+  could be included or adapted into the project unless you provide it under the
+  [Contribution License Agreement](#contribution-license-agreement). Clearly
+  state the same confirmation used for pull requests when you submit that
+  material: `I have read CONTRIBUTING.md and agree to the Contribution License
+  Agreement.`
+- Do not report security issues in public GitHub Issues. See
+  [Reporting security issues](#reporting-security-issues) instead.
+
+## Stalled Issues
+
+- Respond to maintainer questions as much as you reasonably can. If you need
+  more time, are blocked from providing the requested information, or find that
+  the issue is no longer reproducible, leave a short comment so maintainers know
+  what to expect. Even if a long time has passed, it is always fine to reply
+  with an update.
+- To keep maintainer work manageable and the issue list current, issues that
+  cannot move forward because needed information is missing, the issue is no
+  longer reproducible, the reported behavior no longer matches the current
+  project, or the discussion has been inactive for a reasonable period may be
+  closed. This is not a judgment on the reporter or the report, and it does not
+  prevent you from reopening the issue, or asking maintainers to reopen it, if
+  the issue is still relevant and it is reasonable to do so.
 
 ## Development setup
 
@@ -30,8 +84,10 @@ dotnet restore --locked-mode
 - Prefer the existing project structure and naming conventions.
 - Keep user-facing behavior explicit in code, documentation, or changelog
   entries when the behavior changes.
-- Update `CHANGELOG.md` for developer-facing changes that should appear in release history.
-- Update files under `assets/` when the Thunderstore package metadata, icon, README, or release notes change.
+- Update [CHANGELOG.md](./CHANGELOG.md) for developer-facing changes that should
+  appear in release history.
+- Update files under [assets/](./assets/) when the Thunderstore package
+  metadata, icon, README, or release notes change.
 - Do not commit build output, downloaded game files, local mod manager profiles, or local machine configuration.
 
 ## Verification
@@ -58,16 +114,39 @@ For package or release changes, also verify the release documentation in
 - Link related issues when applicable.
 - Keep the pull request small enough for maintainers to review without guessing
   at unrelated intent.
-- Pull requests must include the pull request template checkbox confirmation for
-  the Contribution License Agreement before they can be merged. Pull requests
-  without that confirmation may be closed without further notice.
+- If AI assistance significantly shapes the pull request, disclose that
+  assistance in the pull request description. See
+  [AI assistance](#ai-assistance).
+- Pull requests must include the
+  [pull request template](./.github/pull_request_template.md) checkbox
+  confirmation for the
+  [Contribution License Agreement](#contribution-license-agreement) before they
+  can be merged. Pull requests without that confirmation may be closed without
+  further notice.
+
+Use pull request template sections this way:
+
+- `Summary`: user-facing or maintainer-facing changes, grouped by behavior or
+  area.
+- `Related Issues`: GitHub issues, pull requests, external references, or
+  `None`. When linking related work, state how it is related.
+- `Notes for reviewers`: limitations, skipped checks, migration notes, reviewer
+  attention points, or review focus.
+- `AI disclosure`: significant AI assistance details, or `None` when no
+  significant AI assistance was used.
+- `Testing`: automated commands, CI results, AI-assisted inspections, manual
+  checks, screenshots, or videos.
+- `Breaking Changes`: required when the title or commits include `!` or
+  `BREAKING CHANGE`. Treat backward-incompatible changes to public behavior,
+  documented workflows, configuration, package or release behavior,
+  compatibility guarantees, or other project-facing contracts as breaking.
 
 ## Stalled Pull Requests
 
-- Respond to maintainer feedback when possible. If you need more time, are
-  blocked, or no longer plan to continue the pull request, leave a short comment
-  so maintainers know what to expect. Even if a long time has passed, it is
-  always fine to reply with an update.
+- Respond to maintainer feedback as much as you reasonably can. If you need
+  more time, are blocked, or no longer plan to continue the pull request, leave
+  a short comment so maintainers know what to expect. Even if a long time has
+  passed, it is always fine to reply with an update.
 - If you want to continue work from a stalled pull request, leave a short
   comment for the maintainer and the original contributor before opening a new
   pull request. The original contributor may not be available to respond, but
@@ -84,7 +163,8 @@ For package or release changes, also verify the release documentation in
 - To keep maintainer work manageable and the review queue current, pull requests
   that remain inactive for a reasonable period may be closed. This is not a
   judgment on the contributor, and it does not prevent you from opening a new
-  pull request later if the change is still useful.
+  pull request later if the change is still useful and it is reasonable to do
+  so.
 
 ## Contribution License Agreement
 
@@ -98,6 +178,10 @@ generated output, or other material that you intentionally submit for inclusion
 in this project. Ordinary issue reports, pull request discussion, questions, and
 suggestions are not contributions under this agreement unless you clearly submit
 them for inclusion in the project.
+
+For disclosure expectations when AI assistance affects contributions, issue
+reports, comments, or other project-facing material, see
+[AI assistance](#ai-assistance).
 
 By submitting a contribution, you represent and agree that:
 
@@ -123,27 +207,38 @@ By submitting a contribution, you represent and agree that:
   materials if you do not have the right to contribute them under this
   agreement.
 
-## AI-assisted contributions
+## AI assistance
 
-AI tools may be used as aids, but the human contributor remains responsible for
-the contribution.
-When AI assistance significantly affects a pull request, disclosure is required
-in the pull request description. The purpose of disclosure is to give reviewers
-enough context to understand where to focus, including areas you may not have
-reviewed closely. There is no exact percentage or universal rule for when
-assistance is "significant", so use the following common workflows as practical
-examples, not as an exhaustive list.
+AI tools may be used as aids, but the human submitter remains responsible for
+the material they submit.
+
+When AI assistance is significant, disclose it where maintainers and reviewers
+will see the relevant context:
+
+- For a pull request, disclose it in the pull request description.
+- For an issue report, issue comment, or other project-facing material,
+  disclose it where you submit that material.
+
+The purpose of disclosure is to give reviewers and maintainers enough context to
+understand where to focus, including areas you may not have reviewed closely.
+There is no exact percentage or universal rule for when assistance is
+"significant", so use the following common workflows as practical examples, not
+as an exhaustive list.
 
 Examples that should be disclosed:
 
-- In the pull request description, specifically disclose AI assistance that
-  significantly affected the pull request, but keep the disclosure practical.
-  You do not need to provide a file-by-file table of AI involvement.
+- AI-generated or substantially AI-rewritten code, documentation, assets, tests,
+  patches, release notes, issue reports, comments, or maintainer-facing text.
+- Agent-made changes to a pull request, including changes made after automated
+  review.
+- AI assistance that significantly shaped reproduction notes, compatibility
+  notes, log interpretation, documentation improvement requests, or other triage
+  information.
 - When possible, mention:
     - The rough prompt you gave an agent.
     - The changes you asked it to make.
-    - Changes made after automated review.
-    - What you focused on when reviewing or adapting the result.
+    - For pull requests, what you focused on when reviewing or adapting the
+      result.
 - If there are areas you did not review closely or are less confident about,
   mention them so reviewers can check those areas more carefully.
 
@@ -158,20 +253,23 @@ When in doubt:
 - If you are unsure whether assistance was "significant", treat it as
   significant and describe what you did.
 
-Contributor responsibilities:
+Submitter responsibilities:
 
-- Review every AI-assisted change yourself. Do not assume generated code,
-  documentation, tests, or explanations are correct.
-- Provide verification evidence that matches the change, such as automated test
-  output, build output, screenshots, or a clear description of any hands-on
-  checks that could not reasonably be automated.
-- Do not present AI-performed review or inspection as manual checks. Manual
-  checks should be performed without AI automation. If an AI-assisted
-  inspection is included, describe the request first, nest the AI result under
-  it, and clearly label the result as AI-assisted.
-- Keep changes reviewable. Do not submit large, hard-to-review changes that a
-  maintainer cannot reasonably check, whether they were generated by AI tools or
-  written manually.
+- Review AI-assisted material yourself. Do not assume generated code,
+  documentation, tests, explanations, summaries, or issue details are correct.
+  Understand and be ready to explain the material as much as you reasonably can
+  instead of leaving that work to maintainers.
+- For pull requests, provide verification evidence that matches the change, such
+  as automated test output, build output, screenshots, or a clear description of
+  any hands-on checks that could not reasonably be automated.
+- Do not present AI-performed review, inspection, editing, verification, or
+  other work as "manual". For example, if you include AI-assisted inspection,
+  describe the request first, nest the AI result under it, and clearly label the
+  result as AI-assisted.
+- Keep pull requests and other project-facing material reviewable. Do not submit
+  either large, hard-to-review changes or high volumes of issues, comments, or
+  pull requests that a maintainer cannot reasonably check, whether they were
+  generated by AI tools or written manually.
 - Agent-generated pull requests are allowed only when a human contributor
   understands the change, adapts it to this codebase, verifies it, discloses the
   assistance, and can personally explain and maintain it.
@@ -180,7 +278,7 @@ Contributor responsibilities:
 - Write pull request descriptions and review replies in your own words. Use AI
   for editing help only if you still review and stand behind the final text.
 - Maintainers may close undisclosed, unverified, low-quality, or spam-like
-  AI-assisted contributions.
+  AI-assisted pull requests, issues, comments, or other project-facing material.
 
 ## Reporting security issues
 

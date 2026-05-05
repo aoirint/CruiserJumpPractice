@@ -5,6 +5,10 @@ This changelog is the user-facing release notes for Thunderstore.
 For internal implementation details and developer-facing release history, see
 the [GitHub changelog][github-changelog].
 
+If you find a release-note error, encounter a bug, or want to report another
+project issue, see [CONTRIBUTING.md][contributing], then report it in
+[GitHub Issues][github-issues].
+
 ## Unreleased
 
 This release rebuilds CruiserJumpPractice for Lethal Company v81.5 and includes
@@ -102,4 +106,6 @@ No gameplay changes are introduced.
           the v0.2.0 release.
 
 [imperium-cruiser-workaround]: https://github.com/giosuel/imperium/issues/153#issuecomment-4317402735
+[contributing]: https://github.com/aoirint/CruiserJumpPractice/blob/main/CONTRIBUTING.md
 [github-changelog]: https://github.com/aoirint/CruiserJumpPractice/blob/main/CHANGELOG.md
+[github-issues]: https://github.com/aoirint/CruiserJumpPractice/issues

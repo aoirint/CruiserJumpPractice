@@ -16,7 +16,8 @@ description: Quality-check repository pull requests, review comments, replies, a
 - Keep pull request communication accurate, reviewable, and aligned with the
   repository's current PR template.
 - Preserve required LLM disclosure for PR bodies, reviews, replies, and
-  PR-thread notes.
+  PR-thread notes. For artifacts prepared by an AI agent in this workflow, treat
+  the assistance as significant and include the alert.
 - Keep verification evidence separated by source so automated checks, manual
   checks, CI, screenshots, and AI-assisted inspections are not confused.
 - Avoid shell quoting corruption when creating or editing Markdown through CLI
@@ -33,7 +34,8 @@ description: Quality-check repository pull requests, review comments, replies, a
    replacing content. If no template exists, use the directly linked fallback
    scaffold in [references/fallback-pr-body.md](references/fallback-pr-body.md).
 4. Check that the required LLM alert appears at the very top when the PR body,
-   review, reply, or PR-thread note was prepared with LLM assistance.
+   review, reply, or PR-thread note has significant LLM assistance. For
+   AI-agent-prepared artifacts, assume the assistance is significant.
 5. Check that verification evidence is grouped under the right testing or
    inspection category, with AI-assisted inspections labeled separately.
 6. Apply the style, PR-thread note, and CLI safety rules below.
@@ -55,8 +57,9 @@ Reference: https://www.conventionalcommits.org/en/v1.0.0/
 
 ## Required LLM Alert
 
-When the PR was prepared with LLM assistance, check for this GitHub alert.
-It must appear at the very top of the PR body:
+When the PR has significant LLM assistance, check for this GitHub alert.
+For PR bodies prepared by an AI agent, assume the assistance is significant.
+The alert must appear at the very top of the PR body:
 
 ```markdown
 > [!WARNING]
@@ -108,9 +111,8 @@ repository policy explicitly says otherwise.
 
 ## Verification Evidence
 
-- Do not present autonomous AI review, inspection, or scenario analysis as a
-  manual check.
-- Manual checks should describe checks performed without AI automation.
+- Do not present AI-performed review, inspection, editing, verification, or
+  other work as "manual".
 - If an AI-assisted inspection was requested, report it under a
   `### AI-assisted inspections` subsection inside `## Testing`, after
   `### Automated checks` when both sections are present.
@@ -141,8 +143,9 @@ repository policy explicitly says otherwise.
 
 ## Pull Request Replies and Reviews
 
-When a pull request reply or review was prepared with LLM assistance, check for
-this GitHub alert.
+When a pull request reply or review has significant LLM assistance, check for
+this GitHub alert. For replies, reviews, or PR-thread notes prepared by an AI
+agent, assume the assistance is significant.
 It must appear at the very top of the comment or review body:
 
 ```markdown
