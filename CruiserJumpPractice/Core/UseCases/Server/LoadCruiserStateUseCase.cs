@@ -48,7 +48,7 @@ internal sealed class LoadCruiserStateUseCase
                 return LoadCruiserStateResult.MagnetedToShip;
             }
 
-            gameInterop.RestoreCruiser(savedCruiserState);
+            _ = gameInterop.RestoreCruiser(savedCruiserState);
             return LoadCruiserStateResult.Success;
         }
         catch (System.Exception error)
