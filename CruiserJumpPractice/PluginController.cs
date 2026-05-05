@@ -167,6 +167,44 @@ internal sealed class PluginController
         );
     }
 
+    public void RecordBaseGameEngineOilApplied(
+        int expectedHP,
+        int observedHP,
+        ValidationLogBaseGameApplySource source
+    )
+    {
+        validationLogger.Record(
+            ValidationLogRecord.BaseGameEngineOilApplied(GetRole(), expectedHP, observedHP, source)
+        );
+    }
+
+    public void RecordBaseGameTurboApplied(
+        int expectedTurbo,
+        int observedTurbo,
+        ValidationLogBaseGameApplySource source
+    )
+    {
+        validationLogger.Record(
+            ValidationLogRecord.BaseGameTurboApplied(GetRole(), expectedTurbo, observedTurbo, source)
+        );
+    }
+
+    public void RecordBaseGameShipMagnetApplied(
+        bool expectedAfter,
+        bool observedAfter,
+        ValidationLogBaseGameApplySource source
+    )
+    {
+        validationLogger.Record(
+            ValidationLogRecord.BaseGameShipMagnetApplied(
+                GetRole(),
+                expectedAfter,
+                observedAfter,
+                source
+            )
+        );
+    }
+
     private ValidationLogRole GetRole()
     {
         return gameInterop.IsHost() ? ValidationLogRole.Host : ValidationLogRole.Client;

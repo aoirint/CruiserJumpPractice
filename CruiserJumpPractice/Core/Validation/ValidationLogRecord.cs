@@ -37,6 +37,13 @@ internal enum ValidationLogRpcSurrogateResolveResult
     Error
 }
 
+internal enum ValidationLogBaseGameApplySource
+{
+    LocalApply,
+    ClientRpcApply,
+    Unknown
+}
+
 internal sealed class ValidationLogRecord
 {
     private ValidationLogRecord(string eventName, Dictionary<string, object?>? fields = null)
@@ -282,6 +289,63 @@ internal sealed class ValidationLogRecord
         );
     }
 
+    public static ValidationLogRecord BaseGameEngineOilApplied(
+        ValidationLogRole role,
+        int expectedHP,
+        int observedHP,
+        ValidationLogBaseGameApplySource source
+    )
+    {
+        return new(
+            "base_game_engine_oil_applied",
+            new()
+            {
+                ["role"] = ToValidationRoleToken(role),
+                ["expected_hp"] = expectedHP,
+                ["observed_hp"] = observedHP,
+                ["source"] = ToBaseGameApplySourceToken(source)
+            }
+        );
+    }
+
+    public static ValidationLogRecord BaseGameTurboApplied(
+        ValidationLogRole role,
+        int expectedTurbo,
+        int observedTurbo,
+        ValidationLogBaseGameApplySource source
+    )
+    {
+        return new(
+            "base_game_turbo_applied",
+            new()
+            {
+                ["role"] = ToValidationRoleToken(role),
+                ["expected_turbo"] = expectedTurbo,
+                ["observed_turbo"] = observedTurbo,
+                ["source"] = ToBaseGameApplySourceToken(source)
+            }
+        );
+    }
+
+    public static ValidationLogRecord BaseGameShipMagnetApplied(
+        ValidationLogRole role,
+        bool expectedAfter,
+        bool observedAfter,
+        ValidationLogBaseGameApplySource source
+    )
+    {
+        return new(
+            "base_game_ship_magnet_applied",
+            new()
+            {
+                ["role"] = ToValidationRoleToken(role),
+                ["expected_after"] = expectedAfter,
+                ["observed_after"] = observedAfter,
+                ["source"] = ToBaseGameApplySourceToken(source)
+            }
+        );
+    }
+
     public static ValidationLogRecord HudTip(ValidationLogRole role, HudTipMessage message)
     {
         return new(
@@ -424,6 +488,17 @@ internal sealed class ValidationLogRecord
             ValidationLogRpcSurrogateResolveResult.Success => "success",
             ValidationLogRpcSurrogateResolveResult.Error => "error",
             _ => "error"
+        };
+    }
+
+    private static string ToBaseGameApplySourceToken(ValidationLogBaseGameApplySource source)
+    {
+        return source switch
+        {
+            ValidationLogBaseGameApplySource.LocalApply => "local_apply",
+            ValidationLogBaseGameApplySource.ClientRpcApply => "client_rpc_apply",
+            ValidationLogBaseGameApplySource.Unknown => "unknown",
+            _ => "unknown"
         };
     }
 
