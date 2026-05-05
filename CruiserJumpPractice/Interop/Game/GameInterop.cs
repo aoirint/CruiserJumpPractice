@@ -44,6 +44,8 @@ internal sealed class GameInterop : IGameInterop
 
     public void DisplayTip(HudTipMessage message)
     {
+        // Message selection stays in Core; Interop only unwraps the display text
+        // at the final HUD boundary.
         hudInterop.DisplayTip(message.HeaderText, message.BodyText);
     }
 

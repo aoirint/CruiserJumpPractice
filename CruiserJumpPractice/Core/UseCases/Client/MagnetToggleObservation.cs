@@ -34,6 +34,8 @@ internal sealed class MagnetToggleObservation
         var beforeState = beforeIsOn ? MagnetState.On : MagnetState.Off;
         var expectedAfterState = beforeIsOn ? MagnetState.Off : MagnetState.On;
 
+        // The vanilla lever/RPC boundary is asynchronous from here; this use
+        // case intentionally does not claim to observe the synced result.
         return new MagnetToggleObservation(
             beforeState,
             expectedAfterState,
