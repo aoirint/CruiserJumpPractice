@@ -3,8 +3,9 @@
 
 using System;
 using System.Globalization;
-using System.Text;
 using CruiserJumpPractice.Core.Ports;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace CruiserJumpPractice.Interop;
 
@@ -25,21 +26,21 @@ internal sealed class BepInExValidationLogger : IValidationLogger
 
     public void Record(string eventName, params ValidationLogField[] fields)
     {
-        var payload = new StringBuilder();
-        payload.Append('{');
-        AppendInt(payload, "schema", SchemaVersion, isFirst: true);
-        AppendString(payload, "ts", FormatTimestamp(DateTime.UtcNow));
-        AppendString(payload, "run", runId);
-        AppendInt(payload, "seq", ++sequence);
-        AppendString(payload, "event", eventName);
+        var payload = new JObject
+        {
+            ["schema"] = SchemaVersion,
+            ["ts"] = FormatTimestamp(DateTime.UtcNow),
+            ["run"] = runId,
+            ["seq"] = ++sequence,
+            ["event"] = eventName
+        };
 
         foreach (var field in fields)
         {
-            AppendField(payload, field);
+            payload[field.Name] = CreateFieldValue(field);
         }
 
-        payload.Append('}');
-        logger.LogInfo(Prefix + payload);
+        logger.LogInfo(Prefix + payload.ToString(Formatting.None));
     }
 
     private static string CreateRunId(DateTime startupTimeUtc)
@@ -57,160 +58,38 @@ internal sealed class BepInExValidationLogger : IValidationLogger
         );
     }
 
-    private static void AppendField(StringBuilder payload, ValidationLogField field)
+    private static JToken CreateFieldValue(ValidationLogField field)
     {
-        switch (field.Kind)
+        return field.Kind switch
         {
-            case ValidationLogFieldKind.String:
-                AppendString(payload, field.Name, field.StringValue ?? string.Empty);
-                break;
-            case ValidationLogFieldKind.Bool:
-                AppendBool(payload, field.Name, field.BoolValue);
-                break;
-            case ValidationLogFieldKind.Int:
-                AppendInt(payload, field.Name, field.IntValue);
-                break;
-            case ValidationLogFieldKind.Number:
-                AppendNumber(payload, field.Name, field.FloatValue, field.DecimalPlaces);
-                break;
-            case ValidationLogFieldKind.Vector3:
-                AppendVector3(payload, field.Name, field.VectorValue, field.DecimalPlaces);
-                break;
-            default:
-                throw new InvalidOperationException($"Unsupported validation log field kind: {field.Kind}");
-        }
+            ValidationLogFieldKind.String => field.StringValue ?? string.Empty,
+            ValidationLogFieldKind.Bool => field.BoolValue,
+            ValidationLogFieldKind.Int => field.IntValue,
+            ValidationLogFieldKind.Number => CreateNumberValue(field.FloatValue, field.DecimalPlaces),
+            ValidationLogFieldKind.Vector3 => CreateVector3Value(field.VectorValue, field.DecimalPlaces),
+            _ => throw new InvalidOperationException($"Unsupported validation log field kind: {field.Kind}")
+        };
     }
 
-    private static void AppendString(
-        StringBuilder payload,
-        string name,
-        string value,
-        bool isFirst = false
-    )
+    private static JToken CreateNumberValue(float value, int decimalPlaces)
     {
-        AppendName(payload, name, isFirst);
-        payload.Append('"');
-        foreach (var character in value)
-        {
-            AppendEscapedJsonCharacter(payload, character);
-        }
-
-        payload.Append('"');
-    }
-
-    private static void AppendBool(
-        StringBuilder payload,
-        string name,
-        bool value,
-        bool isFirst = false
-    )
-    {
-        AppendName(payload, name, isFirst);
-        payload.Append(value ? "true" : "false");
-    }
-
-    private static void AppendInt(
-        StringBuilder payload,
-        string name,
-        int value,
-        bool isFirst = false
-    )
-    {
-        AppendName(payload, name, isFirst);
-        payload.Append(value.ToString(CultureInfo.InvariantCulture));
-    }
-
-    private static void AppendNumber(
-        StringBuilder payload,
-        string name,
-        float value,
-        int decimalPlaces,
-        bool isFirst = false
-    )
-    {
-        AppendName(payload, name, isFirst);
         if (float.IsNaN(value) || float.IsInfinity(value))
         {
-            // JSON has no NaN or Infinity literals; keep malformed Unity state parseable.
-            payload.Append("null");
-            return;
+            return JValue.CreateNull();
         }
 
-        payload.Append(FormatNumber(value, decimalPlaces));
+        return Math.Round(value, decimalPlaces, MidpointRounding.AwayFromZero);
     }
 
-    private static void AppendVector3(
-        StringBuilder payload,
-        string name,
+    private static JArray CreateVector3Value(
         Core.Snapshots.Vector3Value value,
         int decimalPlaces
     )
     {
-        AppendName(payload, name, isFirst: false);
-        payload.Append('[');
-        payload.Append(FormatNumber(value.X, decimalPlaces));
-        payload.Append(',');
-        payload.Append(FormatNumber(value.Y, decimalPlaces));
-        payload.Append(',');
-        payload.Append(FormatNumber(value.Z, decimalPlaces));
-        payload.Append(']');
-    }
-
-    private static string FormatNumber(float value, int decimalPlaces)
-    {
-        var rounded = Math.Round(value, decimalPlaces, MidpointRounding.AwayFromZero);
-        return rounded.ToString("F" + decimalPlaces.ToString(CultureInfo.InvariantCulture), CultureInfo.InvariantCulture);
-    }
-
-    private static void AppendName(StringBuilder payload, string name, bool isFirst)
-    {
-        if (!isFirst)
-        {
-            payload.Append(',');
-        }
-
-        payload.Append('"');
-        payload.Append(name);
-        payload.Append("\":");
-    }
-
-    private static void AppendEscapedJsonCharacter(StringBuilder payload, char character)
-    {
-        switch (character)
-        {
-            case '"':
-                payload.Append("\\\"");
-                break;
-            case '\\':
-                payload.Append("\\\\");
-                break;
-            case '\b':
-                payload.Append("\\b");
-                break;
-            case '\f':
-                payload.Append("\\f");
-                break;
-            case '\n':
-                payload.Append("\\n");
-                break;
-            case '\r':
-                payload.Append("\\r");
-                break;
-            case '\t':
-                payload.Append("\\t");
-                break;
-            default:
-                if (char.IsControl(character))
-                {
-                    payload.Append("\\u");
-                    payload.Append(((int)character).ToString("x4", CultureInfo.InvariantCulture));
-                }
-                else
-                {
-                    payload.Append(character);
-                }
-
-                break;
-        }
+        return new JArray(
+            CreateNumberValue(value.X, decimalPlaces),
+            CreateNumberValue(value.Y, decimalPlaces),
+            CreateNumberValue(value.Z, decimalPlaces)
+        );
     }
 }
