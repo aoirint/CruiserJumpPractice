@@ -14,9 +14,10 @@ using CruiserJumpPractice.Interop.InputUtils;
 
 namespace CruiserJumpPractice;
 
-// The controller is the plugin-facing facade: callbacks ask it to perform named plugin actions,
-// while the controller keeps the actual Core use cases private. It lives beside the BepInEx
-// entrypoint because it wires BepInEx logging, InputUtils input, and game interop into Core.
+// The controller is the plugin-facing facade. Callbacks ask it to perform named
+// plugin actions, while the controller keeps the actual Core use cases private.
+// It lives beside the BepInEx entrypoint because it wires BepInEx logging,
+// InputUtils input, and game interop into Core.
 internal sealed class PluginController
 {
     private readonly FrameHandler frameHandler;
@@ -45,9 +46,9 @@ internal sealed class PluginController
 
     public static PluginController Create(ManualLogSource logger)
     {
-        // Concrete integrations become Core ports here. Adding a new
-        // external dependency should usually mean adding another adapter here, not another
-        // static property on CruiserJumpPractice.
+        // Concrete integrations become Core ports here. Adding a new external
+        // dependency should usually mean adding another adapter here, not
+        // another static property on CruiserJumpPractice.
         var coreLogger = new BepInExCoreLogger(logger);
         var inputActions = new InputUtilsActions();
         var practiceInput = new InputUtilsPracticeInput(inputActions);
