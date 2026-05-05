@@ -47,13 +47,14 @@ See [Reporting security issues](#reporting-security-issues) instead.
 
 ## Stalled Issues
 
-Respond to maintainer questions as much as you reasonably can.
-To keep maintainer work manageable and the issue list current, maintainers may
-close issues that cannot move forward because needed information is missing, the
-issue is no longer reproducible, the reported behavior no longer matches the
-current project, or the discussion has been inactive for a reasonable period.
-This is not a judgment on the reporter or the report, and it does not prevent
-you from adding new information later if the issue is still relevant.
+- Respond to maintainer questions as much as you reasonably can.
+- To keep maintainer work manageable and the issue list current, maintainers may
+  close issues that cannot move forward because needed information is missing,
+  the issue is no longer reproducible, the reported behavior no longer matches
+  the current project, or the discussion has been inactive for a reasonable
+  period.
+- This is not a judgment on the reporter or the report, and it does not prevent
+  you from adding new information later if the issue is still relevant.
 
 ## Development setup
 
