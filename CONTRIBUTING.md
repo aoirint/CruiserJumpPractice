@@ -24,11 +24,10 @@ The project maintainer is listed in [CODEOWNERS](./.github/CODEOWNERS).
   documentation improvement requests.
     - To minimize the personal burden this project places on maintainers,
       maintainers try to keep the project's responsibilities as small as
-      practical. Reports and requests can still be useful as related
-      information even when maintainers cannot accept them. Requests that fall
-      outside that scope, requests for large or complex features, or
-      compatibility requests for base game versions that are no longer current
-      are likely to be closed as not planned.
+      practical. Reports and requests outside that scope can still be useful as
+      related information, but requests for large or complex features or
+      compatibility with base game versions that are no longer current are
+      likely to be closed as not planned.
 - Before opening a new issue, check the existing
   [issues](https://github.com/aoirint/CruiserJumpPractice/issues) and
   [pull requests](https://github.com/aoirint/CruiserJumpPractice/pulls) to avoid
