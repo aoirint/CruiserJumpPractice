@@ -25,8 +25,8 @@ public class CruiserJumpPractice : BaseUnityPlugin
     {
         var logger = new BepInExPluginLogger(base.Logger);
 
-        // Inject the logger through the plugin logging port so Core can emit diagnostics
-        // without depending on BepInEx logging types.
+        // Inject the logger through the plugin logging port so Core and game interop can emit
+        // diagnostics without depending on BepInEx logging types.
         controller = PluginController.Create(logger);
 
         // Startup order matters: construct the controller before patching so the first game
