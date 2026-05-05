@@ -22,10 +22,12 @@ No gameplay changes are introduced.
 - Improved internal implementation structure and release packaging.
 - Added the Thunderstore `AI Generated` category to the package metadata:
     - The Lethal Company Thunderstore community currently provides this
-      category for authors to disclose when a
-      significant portion of a mod was created using AI tools.
+      category for authors to disclose when a `significant portion` of a mod
+      was created using AI tools.
     - This category discloses project assistance and does not indicate a
       gameplay feature.
+    - Issue #18 records the project decision to use this category because the
+      applicable disclosure threshold is not clearly defined.
 - Dropped backward compatibility with older CruiserJumpPractice versions:
     - Affects CruiserJumpPractice v0.1.4 and earlier.
     - Caused by a mod-internal change.
