@@ -18,6 +18,25 @@ internal enum ValidationLogRole
     Client
 }
 
+internal enum ValidationLogInputAction
+{
+    Save,
+    Load,
+    ToggleMagnet
+}
+
+internal enum ValidationLogRpcSurrogateResolveSource
+{
+    Cache,
+    Lookup
+}
+
+internal enum ValidationLogRpcSurrogateResolveResult
+{
+    Success,
+    Error
+}
+
 internal sealed class ValidationLogRecord
 {
     private ValidationLogRecord(string eventName, Dictionary<string, object?>? fields = null)
@@ -60,13 +79,16 @@ internal sealed class ValidationLogRecord
         );
     }
 
-    public static ValidationLogRecord InputTriggered(string action, ValidationLogRole role)
+    public static ValidationLogRecord InputTriggered(
+        ValidationLogInputAction action,
+        ValidationLogRole role
+    )
     {
         return new(
             "input_triggered",
             new()
             {
-                ["action"] = action,
+                ["action"] = ToValidationActionToken(action),
                 ["role"] = ToValidationRoleToken(role),
                 ["busy"] = false
             }
@@ -74,7 +96,7 @@ internal sealed class ValidationLogRecord
     }
 
     public static ValidationLogRecord InputSuppressed(
-        string action,
+        ValidationLogInputAction action,
         ValidationLogRole role,
         LocalPlayerBusyState busyState
     )
@@ -83,7 +105,7 @@ internal sealed class ValidationLogRecord
             "input_suppressed",
             new()
             {
-                ["action"] = action,
+                ["action"] = ToValidationActionToken(action),
                 ["role"] = ToValidationRoleToken(role),
                 ["reason"] = busyState.GetBusyReasonToken() ?? "unknown",
                 ["menu"] = busyState.IsMenuOpen,
@@ -123,7 +145,7 @@ internal sealed class ValidationLogRecord
             "magnet_toggle",
             new()
             {
-                ["role"] = "host",
+                ["role"] = ToValidationRoleToken(ValidationLogRole.Host),
                 ["before"] = ToValidationStateToken(observation.BeforeState),
                 ["expected_after"] = ToValidationStateToken(observation.ExpectedAfterState),
                 ["observed_after"] = ToValidationStateToken(observation.ObservedAfterState)
@@ -163,8 +185,8 @@ internal sealed class ValidationLogRecord
             "save_result",
             new()
             {
-                ["role"] = "host",
-                ["result"] = "no_cruiser_found",
+                ["role"] = ToValidationRoleToken(ValidationLogRole.Host),
+                ["result"] = ToValidationResultToken(SaveCruiserStateResult.NoCruiserFound),
                 ["cruiser_found"] = false
             }
         );
@@ -181,8 +203,8 @@ internal sealed class ValidationLogRecord
             "save_result",
             new()
             {
-                ["role"] = "host",
-                ["result"] = "success",
+                ["role"] = ToValidationRoleToken(ValidationLogRole.Host),
+                ["result"] = ToValidationResultToken(SaveCruiserStateResult.Success),
                 ["cruiser_found"] = true,
                 ["pos"] = Vector3(cruiserState.CarPosition, decimalPlaces: 1),
                 ["rot"] = Vector3(cruiserState.CarRotation, decimalPlaces: 1),
@@ -197,7 +219,7 @@ internal sealed class ValidationLogRecord
     public static ValidationLogRecord LoadNoCruiserFound(bool savedState)
     {
         return LoadResult(
-            result: "no_cruiser_found",
+            result: ToValidationResultToken(LoadCruiserStateResult.NoCruiserFound),
             cruiserFound: false,
             savedState: savedState,
             magneted: "unknown"
@@ -207,7 +229,7 @@ internal sealed class ValidationLogRecord
     public static ValidationLogRecord LoadNoSavedState()
     {
         return LoadResult(
-            result: "no_saved_state",
+            result: ToValidationResultToken(LoadCruiserStateResult.NoSavedState),
             cruiserFound: true,
             savedState: false,
             magneted: "unknown"
@@ -217,7 +239,7 @@ internal sealed class ValidationLogRecord
     public static ValidationLogRecord LoadMagnetedToShip()
     {
         return LoadResult(
-            result: "magneted_to_ship",
+            result: ToValidationResultToken(LoadCruiserStateResult.MagnetedToShip),
             cruiserFound: true,
             savedState: true,
             magneted: true
@@ -227,7 +249,7 @@ internal sealed class ValidationLogRecord
     public static ValidationLogRecord LoadSuccess()
     {
         return LoadResult(
-            result: "success",
+            result: ToValidationResultToken(LoadCruiserStateResult.Success),
             cruiserFound: true,
             savedState: true,
             magneted: false
@@ -245,7 +267,7 @@ internal sealed class ValidationLogRecord
             "restore_applied",
             new()
             {
-                ["role"] = "host",
+                ["role"] = ToValidationRoleToken(ValidationLogRole.Host),
                 ["saved_pos"] = Vector3(observation.SavedCarPosition, decimalPlaces: 1),
                 ["saved_rot"] = Vector3(observation.SavedCarRotation, decimalPlaces: 1),
                 ["before_pos"] = Vector3(observation.BeforeCarPosition, decimalPlaces: 1),
@@ -272,14 +294,17 @@ internal sealed class ValidationLogRecord
         );
     }
 
-    public static ValidationLogRecord RpcSurrogateResolved(string source, string result)
+    public static ValidationLogRecord RpcSurrogateResolved(
+        ValidationLogRpcSurrogateResolveSource source,
+        ValidationLogRpcSurrogateResolveResult result
+    )
     {
         return new(
             "rpc_surrogate_resolved",
             new()
             {
-                ["source"] = source,
-                ["result"] = result
+                ["source"] = ToRpcSurrogateResolveSourceToken(source),
+                ["result"] = ToRpcSurrogateResolveResultToken(result)
             }
         );
     }
@@ -295,7 +320,7 @@ internal sealed class ValidationLogRecord
             "load_result",
             new()
             {
-                ["role"] = "host",
+                ["role"] = ToValidationRoleToken(ValidationLogRole.Host),
                 ["result"] = result,
                 ["cruiser_found"] = cruiserFound,
                 ["saved_state"] = savedState,
@@ -364,6 +389,41 @@ internal sealed class ValidationLogRecord
             ValidationLogRole.Host => "host",
             ValidationLogRole.Client => "client",
             _ => "client"
+        };
+    }
+
+    private static string ToValidationActionToken(ValidationLogInputAction action)
+    {
+        return action switch
+        {
+            ValidationLogInputAction.Save => "save",
+            ValidationLogInputAction.Load => "load",
+            ValidationLogInputAction.ToggleMagnet => "toggle_magnet",
+            _ => "toggle_magnet"
+        };
+    }
+
+    private static string ToRpcSurrogateResolveSourceToken(
+        ValidationLogRpcSurrogateResolveSource source
+    )
+    {
+        return source switch
+        {
+            ValidationLogRpcSurrogateResolveSource.Cache => "cache",
+            ValidationLogRpcSurrogateResolveSource.Lookup => "lookup",
+            _ => "lookup"
+        };
+    }
+
+    private static string ToRpcSurrogateResolveResultToken(
+        ValidationLogRpcSurrogateResolveResult result
+    )
+    {
+        return result switch
+        {
+            ValidationLogRpcSurrogateResolveResult.Success => "success",
+            ValidationLogRpcSurrogateResolveResult.Error => "error",
+            _ => "error"
         };
     }
 

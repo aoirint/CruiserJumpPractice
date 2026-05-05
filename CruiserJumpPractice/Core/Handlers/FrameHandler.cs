@@ -58,19 +58,19 @@ internal sealed class FrameHandler
 
         if (saveTriggered)
         {
-            RecordTriggeredInput("save");
+            RecordTriggeredInput(ValidationLogInputAction.Save);
             requestSaveCruiserStateUseCase.Execute();
         }
 
         if (loadTriggered)
         {
-            RecordTriggeredInput("load");
+            RecordTriggeredInput(ValidationLogInputAction.Load);
             requestLoadCruiserStateUseCase.Execute();
         }
 
         if (toggleMagnetTriggered)
         {
-            RecordTriggeredInput("toggle_magnet");
+            RecordTriggeredInput(ValidationLogInputAction.ToggleMagnet);
             toggleMagnetUseCase.Execute();
         }
     }
@@ -84,26 +84,29 @@ internal sealed class FrameHandler
     {
         if (saveTriggered)
         {
-            RecordSuppressedInput("save", busyState);
+            RecordSuppressedInput(ValidationLogInputAction.Save, busyState);
         }
 
         if (loadTriggered)
         {
-            RecordSuppressedInput("load", busyState);
+            RecordSuppressedInput(ValidationLogInputAction.Load, busyState);
         }
 
         if (toggleMagnetTriggered)
         {
-            RecordSuppressedInput("toggle_magnet", busyState);
+            RecordSuppressedInput(ValidationLogInputAction.ToggleMagnet, busyState);
         }
     }
 
-    private void RecordTriggeredInput(string action)
+    private void RecordTriggeredInput(ValidationLogInputAction action)
     {
         validationLogger.Record(ValidationLogRecord.InputTriggered(action, GetRole()));
     }
 
-    private void RecordSuppressedInput(string action, LocalPlayerBusyState busyState)
+    private void RecordSuppressedInput(
+        ValidationLogInputAction action,
+        LocalPlayerBusyState busyState
+    )
     {
         validationLogger.Record(
             ValidationLogRecord.InputSuppressed(action, GetRole(), busyState)
