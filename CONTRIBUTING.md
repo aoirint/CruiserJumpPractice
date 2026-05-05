@@ -54,8 +54,8 @@ The project maintainer is listed in [CODEOWNERS](./.github/CODEOWNERS).
   longer reproducible, the reported behavior no longer matches the current
   project, or the discussion has been inactive for a reasonable period may be
   closed. This is not a judgment on the reporter or the report, and it does not
-  prevent you from reopening the issue or asking maintainers to reopen it later
-  if the issue is still relevant.
+  prevent you from reopening the issue, or asking maintainers to reopen it, if
+  the issue is still relevant and it is reasonable to do so.
 
 ## Development setup
 
@@ -131,7 +131,8 @@ For package or release changes, also verify the release documentation in
 - To keep maintainer work manageable and the review queue current, pull requests
   that remain inactive for a reasonable period may be closed. This is not a
   judgment on the contributor, and it does not prevent you from opening a new
-  pull request later if the change is still useful.
+  pull request later if the change is still useful and it is reasonable to do
+  so.
 
 ## Contribution License Agreement
 
