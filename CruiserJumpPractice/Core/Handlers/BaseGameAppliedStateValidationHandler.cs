@@ -82,7 +82,25 @@ internal sealed class BaseGameAppliedStateValidationHandler
         );
     }
 
-    public void HandleShipMagnetApplied(
+    public void HandleShipMagnetLocalApplied(bool expectedAfter, bool observedAfter)
+    {
+        HandleShipMagnetApplied(
+            expectedAfter: expectedAfter,
+            observedAfter: observedAfter,
+            source: ValidationLogBaseGameApplySource.LocalApply
+        );
+    }
+
+    public void HandleShipMagnetClientRpcApplied(bool expectedAfter, bool observedAfter)
+    {
+        HandleShipMagnetApplied(
+            expectedAfter: expectedAfter,
+            observedAfter: observedAfter,
+            source: ValidationLogBaseGameApplySource.ClientRpcApply
+        );
+    }
+
+    private void HandleShipMagnetApplied(
         bool expectedAfter,
         bool observedAfter,
         ValidationLogBaseGameApplySource source

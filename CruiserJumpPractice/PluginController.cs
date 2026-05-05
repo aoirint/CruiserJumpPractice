@@ -212,16 +212,19 @@ internal sealed class PluginController
         );
     }
 
-    public void HandleBaseGameShipMagnetApplied(
-        bool expectedAfter,
-        bool observedAfter,
-        ValidationLogBaseGameApplySource source
-    )
+    public void HandleBaseGameShipMagnetLocalApplied(bool expectedAfter, bool observedAfter)
     {
-        baseGameAppliedStateValidationHandler.HandleShipMagnetApplied(
+        baseGameAppliedStateValidationHandler.HandleShipMagnetLocalApplied(
             expectedAfter: expectedAfter,
-            observedAfter: observedAfter,
-            source: source
+            observedAfter: observedAfter
+        );
+    }
+
+    public void HandleBaseGameShipMagnetClientRpcApplied(bool expectedAfter, bool observedAfter)
+    {
+        baseGameAppliedStateValidationHandler.HandleShipMagnetClientRpcApplied(
+            expectedAfter: expectedAfter,
+            observedAfter: observedAfter
         );
     }
 

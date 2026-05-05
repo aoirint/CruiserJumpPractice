@@ -4,7 +4,6 @@
 extern alias LethalCompany;
 
 using System;
-using CruiserJumpPractice.Core.Validation;
 using HarmonyLib;
 using LethalCompany;
 
@@ -21,10 +20,9 @@ internal static class StartOfRoundPatch
     {
         TryNotifyAppliedStateValidation(
             notify: () =>
-                HandleAppliedState(
-                    instance: __instance,
+                CruiserJumpPractice.Controller.HandleBaseGameShipMagnetLocalApplied(
                     expectedAfter: on,
-                    source: ValidationLogBaseGameApplySource.LocalApply
+                    observedAfter: __instance.magnetOn
                 )
         );
     }
@@ -35,24 +33,10 @@ internal static class StartOfRoundPatch
     {
         TryNotifyAppliedStateValidation(
             notify: () =>
-                HandleAppliedState(
-                    instance: __instance,
+                CruiserJumpPractice.Controller.HandleBaseGameShipMagnetClientRpcApplied(
                     expectedAfter: on,
-                    source: ValidationLogBaseGameApplySource.ClientRpcApply
+                    observedAfter: __instance.magnetOn
                 )
-        );
-    }
-
-    private static void HandleAppliedState(
-        StartOfRound instance,
-        bool expectedAfter,
-        ValidationLogBaseGameApplySource source
-    )
-    {
-        CruiserJumpPractice.Controller.HandleBaseGameShipMagnetApplied(
-            expectedAfter: expectedAfter,
-            observedAfter: instance.magnetOn,
-            source: source
         );
     }
 
