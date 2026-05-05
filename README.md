@@ -264,10 +264,10 @@ ValidationLogging = true
 ```
 
 Enabled validation records use one JSON object per log line after the stable
-`[CJP_VALIDATION] ` prefix. Prefer sharing extracted `[CJP_VALIDATION]` lines
-plus nearby error lines when asking for validation help. Share full BepInEx logs
-only when needed, because other mods or BepInEx can include unrelated local
-environment details.
+`[CJP_VALIDATION]` prefix and following space. Prefer sharing extracted
+`[CJP_VALIDATION]` lines plus nearby error lines when asking for validation
+help. Share full BepInEx logs only when needed, because other mods or BepInEx
+can include unrelated local environment details.
 
 ### r2modman
 
