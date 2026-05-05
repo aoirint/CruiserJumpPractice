@@ -71,6 +71,8 @@ internal sealed class LoadCruiserStateUseCase
                 return LoadCruiserStateResult.MagnetedToShip;
             }
 
+            // The restore observation is collected on the server path for validation logging; the
+            // client RPC still receives only the enum result so restore details stay server-local.
             var restoreObservation = gameInterop.RestoreCruiser(savedCruiserState);
             RecordRestoreApplied(restoreObservation);
             // Success means the server restore completed, not just that preconditions passed.

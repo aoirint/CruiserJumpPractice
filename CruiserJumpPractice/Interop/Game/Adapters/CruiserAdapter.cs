@@ -78,6 +78,8 @@ internal sealed class CruiserAdapter
         var localPlayerId = gameObjects.GetLocalPlayerId();
         try
         {
+            // Capture observation values from this live cruiser instance only; restore validation
+            // should not add another scene search or polling loop when logging is wired later.
             var beforeCarPosition = FromUnityVector3(cruiser.transform.position);
             var beforeCarHP = cruiser.carHP;
             var beforeTurboBoosts = GetCruiserTurboBoosts(cruiser);
