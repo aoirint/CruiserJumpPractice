@@ -30,25 +30,33 @@ internal sealed class RpcSurrogateAdapter
 
     public RpcSurrogateSpawnResult SpawnRpcSurrogate()
     {
-        var hudManager = gameObjects.GetHUDManager();
-        var gameObject = hudManager.gameObject;
-        if (gameObject == null)
+        try
         {
-            logger.LogError("HUDManager.gameObject is null.");
-            return RpcSurrogateSpawnResult.Missing;
-        }
+            var hudManager = gameObjects.GetHUDManager();
+            var gameObject = hudManager.gameObject;
+            if (gameObject == null)
+            {
+                logger.LogError("HUDManager.gameObject is null.");
+                return RpcSurrogateSpawnResult.Missing;
+            }
 
-        var rpcSurrogateNetworkBehaviour = gameObject.GetComponent<RpcSurrogateBehaviour>();
-        if (rpcSurrogateNetworkBehaviour != null)
+            var rpcSurrogateNetworkBehaviour = gameObject.GetComponent<RpcSurrogateBehaviour>();
+            if (rpcSurrogateNetworkBehaviour != null)
+            {
+                cachedRpcSurrogateBehaviour = rpcSurrogateNetworkBehaviour;
+                logger.LogDebug("RPC surrogate already exists on HUDManager.");
+                return RpcSurrogateSpawnResult.Reused;
+            }
+
+            cachedRpcSurrogateBehaviour = gameObject.AddComponent<RpcSurrogateBehaviour>();
+            logger.LogInfo("Spawned RPC surrogate on HUDManager.");
+            return RpcSurrogateSpawnResult.Added;
+        }
+        catch (System.Exception error)
         {
-            cachedRpcSurrogateBehaviour = rpcSurrogateNetworkBehaviour;
-            logger.LogDebug("RPC surrogate already exists on HUDManager.");
-            return RpcSurrogateSpawnResult.Reused;
+            logger.LogError($"Exception while spawning RPC surrogate: {error}");
+            return RpcSurrogateSpawnResult.Error;
         }
-
-        cachedRpcSurrogateBehaviour = gameObject.AddComponent<RpcSurrogateBehaviour>();
-        logger.LogInfo("Spawned RPC surrogate on HUDManager.");
-        return RpcSurrogateSpawnResult.Added;
     }
 
     public RpcSurrogateBehaviour GetRpcSurrogateBehaviour()
