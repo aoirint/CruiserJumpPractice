@@ -30,6 +30,10 @@ Only share material that you have the right to share, and do not include
 secrets, personal information, private data, or content that should not be made
 public.
 
+Do not submit sample code, documentation text, patches, or other material for
+direct inclusion in the project unless you are willing to provide it under the
+Contribution License Agreement.
+
 Do not report security issues in public GitHub Issues.
 See [Reporting security issues](#reporting-security-issues) instead.
 
