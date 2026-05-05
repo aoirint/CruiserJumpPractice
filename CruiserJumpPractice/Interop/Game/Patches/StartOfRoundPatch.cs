@@ -3,6 +3,7 @@
 
 extern alias LethalCompany;
 
+using System;
 using CruiserJumpPractice.Core.Validation;
 using HarmonyLib;
 using LethalCompany;
@@ -18,10 +19,13 @@ internal static class StartOfRoundPatch
     [HarmonyPostfix]
     public static void SetMagnetOnPostfix(StartOfRound __instance, bool on)
     {
-        RecordAppliedState(
-            instance: __instance,
-            expectedAfter: on,
-            source: ValidationLogBaseGameApplySource.LocalApply
+        TryNotifyAppliedStateValidation(
+            notify: () =>
+                HandleAppliedState(
+                    instance: __instance,
+                    expectedAfter: on,
+                    source: ValidationLogBaseGameApplySource.LocalApply
+                )
         );
     }
 
@@ -29,26 +33,34 @@ internal static class StartOfRoundPatch
     [HarmonyPostfix]
     public static void SetMagnetOnClientRpcPostfix(StartOfRound __instance, bool on)
     {
-        RecordAppliedState(
-            instance: __instance,
-            expectedAfter: on,
-            source: ValidationLogBaseGameApplySource.ClientRpcApply
+        TryNotifyAppliedStateValidation(
+            notify: () =>
+                HandleAppliedState(
+                    instance: __instance,
+                    expectedAfter: on,
+                    source: ValidationLogBaseGameApplySource.ClientRpcApply
+                )
         );
     }
 
-    private static void RecordAppliedState(
+    private static void HandleAppliedState(
         StartOfRound instance,
         bool expectedAfter,
         ValidationLogBaseGameApplySource source
     )
     {
+        CruiserJumpPractice.Controller.HandleBaseGameShipMagnetApplied(
+            expectedAfter: expectedAfter,
+            observedAfter: instance.magnetOn,
+            source: source
+        );
+    }
+
+    private static void TryNotifyAppliedStateValidation(Action notify)
+    {
         try
         {
-            CruiserJumpPractice.Controller.HandleBaseGameShipMagnetApplied(
-                expectedAfter: expectedAfter,
-                observedAfter: instance.magnetOn,
-                source: source
-            );
+            notify();
         }
         catch
         {
