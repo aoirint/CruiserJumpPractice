@@ -101,9 +101,12 @@ internal sealed class FrameHandler
     {
         validationLogger.Record(
             "input_triggered",
-            ValidationLogField.String("action", action),
-            ValidationLogField.String("role", GetRoleToken()),
-            ValidationLogField.Bool("busy", false)
+            new()
+            {
+                ["action"] = action,
+                ["role"] = GetRoleToken(),
+                ["busy"] = false
+            }
         );
     }
 
@@ -111,12 +114,15 @@ internal sealed class FrameHandler
     {
         validationLogger.Record(
             "input_suppressed",
-            ValidationLogField.String("action", action),
-            ValidationLogField.String("role", GetRoleToken()),
-            ValidationLogField.String("reason", busyState.GetBusyReasonToken() ?? "unknown"),
-            ValidationLogField.Bool("menu", busyState.IsMenuOpen),
-            ValidationLogField.Bool("terminal", busyState.IsInTerminal),
-            ValidationLogField.Bool("chat", busyState.IsTypingChat)
+            new()
+            {
+                ["action"] = action,
+                ["role"] = GetRoleToken(),
+                ["reason"] = busyState.GetBusyReasonToken() ?? "unknown",
+                ["menu"] = busyState.IsMenuOpen,
+                ["terminal"] = busyState.IsInTerminal,
+                ["chat"] = busyState.IsTypingChat
+            }
         );
     }
 

@@ -1,130 +1,36 @@
 // SPDX-License-Identifier: MIT
 #nullable enable
 
+using System;
+using System.Collections.Generic;
 using CruiserJumpPractice.Core.Snapshots;
 
 namespace CruiserJumpPractice.Core.Ports;
 
 internal interface IValidationLogger
 {
-    void Record(string eventName, params ValidationLogField[] fields);
+    void Record(string eventName, Dictionary<string, object?>? fields = null);
 }
 
-internal readonly struct ValidationLogField
+internal static class ValidationLogData
 {
-    private ValidationLogField(
-        string name,
-        ValidationLogFieldKind kind,
-        string? stringValue,
-        bool boolValue,
-        int intValue,
-        float floatValue,
-        Vector3Value vectorValue,
-        int decimalPlaces
-    )
+    public static object? Number(float value, int decimalPlaces)
     {
-        Name = name;
-        Kind = kind;
-        StringValue = stringValue;
-        BoolValue = boolValue;
-        IntValue = intValue;
-        FloatValue = floatValue;
-        VectorValue = vectorValue;
-        DecimalPlaces = decimalPlaces;
+        if (float.IsNaN(value) || float.IsInfinity(value))
+        {
+            return null;
+        }
+
+        return Math.Round(value, decimalPlaces, MidpointRounding.AwayFromZero);
     }
 
-    public string Name { get; }
-
-    internal ValidationLogFieldKind Kind { get; }
-
-    internal string? StringValue { get; }
-
-    internal bool BoolValue { get; }
-
-    internal int IntValue { get; }
-
-    internal float FloatValue { get; }
-
-    internal Vector3Value VectorValue { get; }
-
-    internal int DecimalPlaces { get; }
-
-    public static ValidationLogField String(string name, string value)
+    public static object?[] Vector3(Vector3Value value, int decimalPlaces)
     {
-        return new ValidationLogField(
-            name,
-            ValidationLogFieldKind.String,
-            value,
-            boolValue: false,
-            intValue: 0,
-            floatValue: 0,
-            vectorValue: default,
-            decimalPlaces: 0
-        );
+        return
+        [
+            Number(value.X, decimalPlaces),
+            Number(value.Y, decimalPlaces),
+            Number(value.Z, decimalPlaces)
+        ];
     }
-
-    public static ValidationLogField Bool(string name, bool value)
-    {
-        return new ValidationLogField(
-            name,
-            ValidationLogFieldKind.Bool,
-            stringValue: null,
-            value,
-            intValue: 0,
-            floatValue: 0,
-            vectorValue: default,
-            decimalPlaces: 0
-        );
-    }
-
-    public static ValidationLogField Int(string name, int value)
-    {
-        return new ValidationLogField(
-            name,
-            ValidationLogFieldKind.Int,
-            stringValue: null,
-            boolValue: false,
-            value,
-            floatValue: 0,
-            vectorValue: default,
-            decimalPlaces: 0
-        );
-    }
-
-    public static ValidationLogField Number(string name, float value, int decimalPlaces)
-    {
-        return new ValidationLogField(
-            name,
-            ValidationLogFieldKind.Number,
-            stringValue: null,
-            boolValue: false,
-            intValue: 0,
-            value,
-            vectorValue: default,
-            decimalPlaces
-        );
-    }
-
-    public static ValidationLogField Vector3(string name, Vector3Value value, int decimalPlaces)
-    {
-        return new ValidationLogField(
-            name,
-            ValidationLogFieldKind.Vector3,
-            stringValue: null,
-            boolValue: false,
-            intValue: 0,
-            floatValue: 0,
-            value,
-            decimalPlaces
-        );
-    }
-}
-
-internal enum ValidationLogFieldKind
-{
-    String,
-    Bool,
-    Int,
-    Number,
-    Vector3
 }

@@ -85,8 +85,11 @@ internal sealed class RpcSurrogateAdapter
     {
         validationLogger.Record(
             "rpc_surrogate_resolved",
-            ValidationLogField.String("source", source),
-            ValidationLogField.String("result", result)
+            new()
+            {
+                ["source"] = source,
+                ["result"] = result
+            }
         );
     }
 }

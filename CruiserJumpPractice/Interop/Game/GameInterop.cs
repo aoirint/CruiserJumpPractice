@@ -51,8 +51,11 @@ internal sealed class GameInterop : IGameInterop
         // before unwrapping user-visible text at the final HUD boundary.
         validationLogger.Record(
             "hud_tip",
-            ValidationLogField.String("role", GetRoleToken()),
-            ValidationLogField.String("message", message.Token)
+            new()
+            {
+                ["role"] = GetRoleToken(),
+                ["message"] = message.Token
+            }
         );
         hudInterop.DisplayTip(message.HeaderText, message.BodyText);
     }

@@ -38,8 +38,11 @@ public class CruiserJumpPractice : BaseUnityPlugin
 
         validationLogger.Record(
             "plugin_loaded",
-            ValidationLogField.String("version", MyPluginInfo.PLUGIN_VERSION),
-            ValidationLogField.Bool("validation_logging", validationLogging.Value)
+            new()
+            {
+                ["version"] = MyPluginInfo.PLUGIN_VERSION,
+                ["validation_logging"] = validationLogging.Value
+            }
         );
 
         // Inject the logger through the plugin logging port so Core and game interop can emit

@@ -41,8 +41,11 @@ internal sealed class RequestSaveCruiserStateUseCase
     {
         validationLogger.Record(
             "request_save_result",
-            ValidationLogField.String("role", role),
-            ValidationLogField.String("result", result)
+            new()
+            {
+                ["role"] = role,
+                ["result"] = result
+            }
         );
     }
 }

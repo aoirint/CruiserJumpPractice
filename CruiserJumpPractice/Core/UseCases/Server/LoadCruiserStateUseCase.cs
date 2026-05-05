@@ -89,8 +89,11 @@ internal sealed class LoadCruiserStateUseCase
             logger.LogError($"Exception while loading cruiser state: {error}");
             validationLogger.Record(
                 "load_result",
-                ValidationLogField.String("role", "host"),
-                ValidationLogField.String("result", "unexpected_state")
+                new()
+                {
+                    ["role"] = "host",
+                    ["result"] = "unexpected_state"
+                }
             );
             return LoadCruiserStateResult.UnexpectedState;
         }
@@ -105,11 +108,14 @@ internal sealed class LoadCruiserStateUseCase
     {
         validationLogger.Record(
             "load_result",
-            ValidationLogField.String("role", "host"),
-            ValidationLogField.String("result", result),
-            ValidationLogField.Bool("cruiser_found", cruiserFound),
-            ValidationLogField.Bool("saved_state", savedState),
-            ValidationLogField.Bool("magneted", magneted)
+            new()
+            {
+                ["role"] = "host",
+                ["result"] = result,
+                ["cruiser_found"] = cruiserFound,
+                ["saved_state"] = savedState,
+                ["magneted"] = magneted
+            }
         );
     }
 
@@ -122,11 +128,14 @@ internal sealed class LoadCruiserStateUseCase
     {
         validationLogger.Record(
             "load_result",
-            ValidationLogField.String("role", "host"),
-            ValidationLogField.String("result", result),
-            ValidationLogField.Bool("cruiser_found", cruiserFound),
-            ValidationLogField.Bool("saved_state", savedState),
-            ValidationLogField.String("magneted", magneted)
+            new()
+            {
+                ["role"] = "host",
+                ["result"] = result,
+                ["cruiser_found"] = cruiserFound,
+                ["saved_state"] = savedState,
+                ["magneted"] = magneted
+            }
         );
     }
 
@@ -134,17 +143,20 @@ internal sealed class LoadCruiserStateUseCase
     {
         validationLogger.Record(
             "restore_applied",
-            ValidationLogField.String("role", "host"),
-            ValidationLogField.Vector3("saved_pos", observation.SavedCarPosition, decimalPlaces: 1),
-            ValidationLogField.Vector3("saved_rot", observation.SavedCarRotation, decimalPlaces: 1),
-            ValidationLogField.Vector3("before_pos", observation.BeforeCarPosition, decimalPlaces: 1),
-            ValidationLogField.Vector3("after_pos", observation.AfterCarPosition, decimalPlaces: 1),
-            ValidationLogField.Int("saved_hp", observation.SavedCarHP),
-            ValidationLogField.Int("before_hp", observation.BeforeCarHP),
-            ValidationLogField.Int("after_hp", observation.AfterCarHP),
-            ValidationLogField.Int("saved_turbo", observation.SavedTurboBoosts),
-            ValidationLogField.Int("before_turbo", observation.BeforeTurboBoosts),
-            ValidationLogField.Int("after_turbo", observation.AfterTurboBoosts)
+            new()
+            {
+                ["role"] = "host",
+                ["saved_pos"] = ValidationLogData.Vector3(observation.SavedCarPosition, decimalPlaces: 1),
+                ["saved_rot"] = ValidationLogData.Vector3(observation.SavedCarRotation, decimalPlaces: 1),
+                ["before_pos"] = ValidationLogData.Vector3(observation.BeforeCarPosition, decimalPlaces: 1),
+                ["after_pos"] = ValidationLogData.Vector3(observation.AfterCarPosition, decimalPlaces: 1),
+                ["saved_hp"] = observation.SavedCarHP,
+                ["before_hp"] = observation.BeforeCarHP,
+                ["after_hp"] = observation.AfterCarHP,
+                ["saved_turbo"] = observation.SavedTurboBoosts,
+                ["before_turbo"] = observation.BeforeTurboBoosts,
+                ["after_turbo"] = observation.AfterTurboBoosts
+            }
         );
     }
 }

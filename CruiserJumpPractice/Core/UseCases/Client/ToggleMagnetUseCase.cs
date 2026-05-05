@@ -35,16 +35,13 @@ internal sealed class ToggleMagnetUseCase
         gameInterop.ToggleShipMagnet();
         validationLogger.Record(
             "magnet_toggle",
-            ValidationLogField.String("role", "host"),
-            ValidationLogField.String("before", ToValidationStateToken(observation.BeforeState)),
-            ValidationLogField.String(
-                "expected_after",
-                ToValidationStateToken(observation.ExpectedAfterState)
-            ),
-            ValidationLogField.String(
-                "observed_after",
-                ToValidationStateToken(observation.ObservedAfterState)
-            )
+            new()
+            {
+                ["role"] = "host",
+                ["before"] = ToValidationStateToken(observation.BeforeState),
+                ["expected_after"] = ToValidationStateToken(observation.ExpectedAfterState),
+                ["observed_after"] = ToValidationStateToken(observation.ObservedAfterState)
+            }
         );
 
         var result = observation.ExpectedAfterState == MagnetState.On
@@ -62,8 +59,11 @@ internal sealed class ToggleMagnetUseCase
     {
         validationLogger.Record(
             "toggle_magnet_result",
-            ValidationLogField.String("role", role),
-            ValidationLogField.String("result", result)
+            new()
+            {
+                ["role"] = role,
+                ["result"] = result
+            }
         );
     }
 

@@ -146,7 +146,7 @@ internal sealed class PluginController
     {
         validationLogger.Record(
             "save_server_rpc_received",
-            ValidationLogField.String("role", GetRoleToken())
+            new() { ["role"] = GetRoleToken() }
         );
     }
 
@@ -154,8 +154,11 @@ internal sealed class PluginController
     {
         validationLogger.Record(
             "save_client_rpc_received",
-            ValidationLogField.String("role", GetRoleToken()),
-            ValidationLogField.String("result", ToValidationResultToken(result))
+            new()
+            {
+                ["role"] = GetRoleToken(),
+                ["result"] = ToValidationResultToken(result)
+            }
         );
     }
 
@@ -163,7 +166,7 @@ internal sealed class PluginController
     {
         validationLogger.Record(
             "load_server_rpc_received",
-            ValidationLogField.String("role", GetRoleToken())
+            new() { ["role"] = GetRoleToken() }
         );
     }
 
@@ -171,8 +174,11 @@ internal sealed class PluginController
     {
         validationLogger.Record(
             "load_client_rpc_received",
-            ValidationLogField.String("role", GetRoleToken()),
-            ValidationLogField.String("result", ToValidationResultToken(result))
+            new()
+            {
+                ["role"] = GetRoleToken(),
+                ["result"] = ToValidationResultToken(result)
+            }
         );
     }
 

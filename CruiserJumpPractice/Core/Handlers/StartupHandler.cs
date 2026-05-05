@@ -23,7 +23,7 @@ internal sealed class StartupHandler
         var surrogateResult = gameInterop.SpawnRpcSurrogate();
         validationLogger.Record(
             "hud_startup",
-            ValidationLogField.String("surrogate", ToSurrogateResultToken(surrogateResult))
+            new() { ["surrogate"] = ToSurrogateResultToken(surrogateResult) }
         );
     }
 

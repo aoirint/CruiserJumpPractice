@@ -39,9 +39,12 @@ internal sealed class SaveCruiserStateUseCase
                 logger.LogInfo("No cruiser found.");
                 validationLogger.Record(
                     "save_result",
-                    ValidationLogField.String("role", "host"),
-                    ValidationLogField.String("result", "no_cruiser_found"),
-                    ValidationLogField.Bool("cruiser_found", false)
+                    new()
+                    {
+                        ["role"] = "host",
+                        ["result"] = "no_cruiser_found",
+                        ["cruiser_found"] = false
+                    }
                 );
                 return SaveCruiserStateResult.NoCruiserFound;
             }
@@ -55,8 +58,11 @@ internal sealed class SaveCruiserStateUseCase
             logger.LogError($"Exception while saving cruiser state: {error}");
             validationLogger.Record(
                 "save_result",
-                ValidationLogField.String("role", "host"),
-                ValidationLogField.String("result", "unexpected_state")
+                new()
+                {
+                    ["role"] = "host",
+                    ["result"] = "unexpected_state"
+                }
             );
             return SaveCruiserStateResult.UnexpectedState;
         }
@@ -66,15 +72,18 @@ internal sealed class SaveCruiserStateUseCase
     {
         validationLogger.Record(
             "save_result",
-            ValidationLogField.String("role", "host"),
-            ValidationLogField.String("result", "success"),
-            ValidationLogField.Bool("cruiser_found", true),
-            ValidationLogField.Vector3("pos", cruiserState.CarPosition, decimalPlaces: 1),
-            ValidationLogField.Vector3("rot", cruiserState.CarRotation, decimalPlaces: 1),
-            ValidationLogField.Int("hp", cruiserState.CarHP),
-            ValidationLogField.Int("turbo", cruiserState.TurboBoosts),
-            ValidationLogField.Number("steering", cruiserState.SteeringInput, decimalPlaces: 2),
-            ValidationLogField.Number("rpm", cruiserState.EngineRPM, decimalPlaces: 2)
+            new()
+            {
+                ["role"] = "host",
+                ["result"] = "success",
+                ["cruiser_found"] = true,
+                ["pos"] = ValidationLogData.Vector3(cruiserState.CarPosition, decimalPlaces: 1),
+                ["rot"] = ValidationLogData.Vector3(cruiserState.CarRotation, decimalPlaces: 1),
+                ["hp"] = cruiserState.CarHP,
+                ["turbo"] = cruiserState.TurboBoosts,
+                ["steering"] = ValidationLogData.Number(cruiserState.SteeringInput, decimalPlaces: 2),
+                ["rpm"] = ValidationLogData.Number(cruiserState.EngineRPM, decimalPlaces: 2)
+            }
         );
     }
 }
