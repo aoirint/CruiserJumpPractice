@@ -3,6 +3,7 @@
 
 using CruiserJumpPractice.Core.Ports;
 using CruiserJumpPractice.Core.Snapshots;
+using CruiserJumpPractice.Core.State;
 using CruiserJumpPractice.Interop.Game.Adapters;
 
 namespace CruiserJumpPractice.Interop.Game;
@@ -36,9 +37,9 @@ internal sealed class GameInterop : IGameInterop
         return networkInterop.IsHost();
     }
 
-    public bool IsLocalPlayerBusy()
+    public LocalPlayerBusyState GetLocalPlayerBusyState()
     {
-        return playerInterop.IsLocalPlayerBusy();
+        return playerInterop.GetLocalPlayerBusyState();
     }
 
     public void DisplayTip(string headerText, string bodyText)
