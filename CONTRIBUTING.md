@@ -9,7 +9,9 @@ The project maintainer is listed in [CODEOWNERS](./.github/CODEOWNERS).
 
 ## Before you start
 
-- Check the existing issues and pull requests to avoid duplicate work.
+- Check the existing [issues](https://github.com/aoirint/CruiserJumpPractice/issues)
+  and [pull requests](https://github.com/aoirint/CruiserJumpPractice/pulls)
+  to avoid duplicate work.
 - Open an issue first for larger behavior changes, compatibility changes, or
   anything that may affect release packaging.
 - Keep changes focused. Separate unrelated fixes, refactors, and documentation
@@ -17,10 +19,13 @@ The project maintainer is listed in [CODEOWNERS](./.github/CODEOWNERS).
 
 ## Reporting issues
 
-Use GitHub Issues for ordinary bug reports, feature requests, compatibility
-notes, and documentation improvement requests.
-Before opening a new issue, check the existing issues and pull requests to
-avoid duplicates.
+Use [GitHub Issues](https://github.com/aoirint/CruiserJumpPractice/issues) for
+ordinary bug reports, feature requests, compatibility notes, and documentation
+improvement requests.
+Before opening a new issue, check the existing
+[issues](https://github.com/aoirint/CruiserJumpPractice/issues) and
+[pull requests](https://github.com/aoirint/CruiserJumpPractice/pulls) to avoid
+duplicates.
 
 When you share logs, screenshots, or other supporting material in a public
 issue, expect maintainers to use that material within a reasonable scope related
@@ -32,7 +37,7 @@ public.
 
 Do not submit sample code, documentation text, patches, or other material that
 could be included or adapted into the project unless you provide it under the
-Contribution License Agreement.
+[Contribution License Agreement](#contribution-license-agreement).
 Clearly state the same confirmation used for pull requests when you submit that
 material: `I have read CONTRIBUTING.md and agree to the Contribution License
 Agreement.`
@@ -66,8 +71,10 @@ dotnet restore --locked-mode
 - Prefer the existing project structure and naming conventions.
 - Keep user-facing behavior explicit in code, documentation, or changelog
   entries when the behavior changes.
-- Update `CHANGELOG.md` for developer-facing changes that should appear in release history.
-- Update files under `assets/` when the Thunderstore package metadata, icon, README, or release notes change.
+- Update [CHANGELOG.md](./CHANGELOG.md) for developer-facing changes that should
+  appear in release history.
+- Update files under [assets/](./assets/) when the Thunderstore package
+  metadata, icon, README, or release notes change.
 - Do not commit build output, downloaded game files, local mod manager profiles, or local machine configuration.
 
 ## Verification
@@ -94,9 +101,12 @@ For package or release changes, also verify the release documentation in
 - Link related issues when applicable.
 - Keep the pull request small enough for maintainers to review without guessing
   at unrelated intent.
-- Pull requests must include the pull request template checkbox confirmation for
-  the Contribution License Agreement before they can be merged. Pull requests
-  without that confirmation may be closed without further notice.
+- Pull requests must include the
+  [pull request template](./.github/pull_request_template.md) checkbox
+  confirmation for the
+  [Contribution License Agreement](#contribution-license-agreement) before they
+  can be merged. Pull requests without that confirmation may be closed without
+  further notice.
 
 ## Stalled Pull Requests
 
