@@ -42,8 +42,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
       it is package metadata rather than a gameplay feature.
     - Issue #18 records the project decision to use this category because the
       applicable disclosure threshold is not clear.
-    - Human maintainers have reviewed past AI-assisted changes and will
-      continue reviewing future changes.
+    - Human maintainers review project changes.
 - Aligned Thunderstore manifest dependency strings with the documented v81.5
   test environment for BepInExPack and LethalCompany_InputUtils:
     - Treats the manifest dependency versions as part of the practical minimum

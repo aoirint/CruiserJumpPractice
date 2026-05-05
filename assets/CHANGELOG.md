@@ -28,8 +28,7 @@ No gameplay changes are introduced.
       it is package metadata rather than a gameplay feature.
     - The project decided to use this category because the applicable
       disclosure threshold is not clear.
-    - Human maintainers have reviewed past AI-assisted changes and will
-      continue reviewing future changes.
+    - Human maintainers review project changes.
 - Dropped backward compatibility with older CruiserJumpPractice versions:
     - Affects CruiserJumpPractice v0.1.4 and earlier.
     - Caused by a mod-internal change.
