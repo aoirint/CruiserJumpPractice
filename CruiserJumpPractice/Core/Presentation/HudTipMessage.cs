@@ -20,7 +20,7 @@ internal sealed class HudTipMessage
     );
 
     public static readonly HudTipMessage SaveHostOnly = new(
-        "save_host_only",
+        "host_only_save",
         DefaultHeaderText,
         "Only the host can save the cruiser state."
     );
@@ -44,19 +44,19 @@ internal sealed class HudTipMessage
     );
 
     public static readonly HudTipMessage LoadMagnetedToShip = new(
-        "load_magneted_to_ship",
+        "load_magneted",
         DefaultHeaderText,
         "Cannot load cruiser state while magneted to ship."
     );
 
     public static readonly HudTipMessage LoadHostOnly = new(
-        "load_host_only",
+        "host_only_load",
         DefaultHeaderText,
         "Only the host can load the cruiser state."
     );
 
     public static readonly HudTipMessage MagnetHostOnly = new(
-        "magnet_host_only",
+        "host_only_toggle",
         DefaultHeaderText,
         "Only the host can toggle the magnet."
     );

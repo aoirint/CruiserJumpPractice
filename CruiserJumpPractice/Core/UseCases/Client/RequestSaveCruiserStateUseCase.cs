@@ -11,10 +11,15 @@ namespace CruiserJumpPractice.Core.UseCases.Client;
 internal sealed class RequestSaveCruiserStateUseCase
 {
     private readonly IGameInterop gameInterop;
+    private readonly IValidationLogger validationLogger;
 
-    public RequestSaveCruiserStateUseCase(IGameInterop gameInterop)
+    public RequestSaveCruiserStateUseCase(
+        IGameInterop gameInterop,
+        IValidationLogger validationLogger
+    )
     {
         this.gameInterop = gameInterop;
+        this.validationLogger = validationLogger;
     }
 
     public RequestSaveCruiserStateResult Execute()
@@ -22,10 +27,21 @@ internal sealed class RequestSaveCruiserStateUseCase
         if (!gameInterop.IsHost())
         {
             gameInterop.DisplayTip(HudTipMessage.SaveHostOnly);
+            RecordResult("client", "host_only");
             return RequestSaveCruiserStateResult.HostOnly;
         }
 
         gameInterop.RequestSaveCruiserState();
+        RecordResult("host", "success");
         return RequestSaveCruiserStateResult.Success;
+    }
+
+    private void RecordResult(string role, string result)
+    {
+        validationLogger.Record(
+            "request_save_result",
+            ValidationLogField.String("role", role),
+            ValidationLogField.String("result", result)
+        );
     }
 }

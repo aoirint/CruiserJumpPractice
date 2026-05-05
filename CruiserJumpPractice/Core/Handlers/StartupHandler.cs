@@ -10,14 +10,32 @@ namespace CruiserJumpPractice.Core.Handlers;
 internal sealed class StartupHandler
 {
     private readonly IGameInterop gameInterop;
+    private readonly IValidationLogger validationLogger;
 
-    public StartupHandler(IGameInterop gameInterop)
+    public StartupHandler(IGameInterop gameInterop, IValidationLogger validationLogger)
     {
         this.gameInterop = gameInterop;
+        this.validationLogger = validationLogger;
     }
 
     public void HandleStartup()
     {
-        gameInterop.SpawnRpcSurrogate();
+        var surrogateResult = gameInterop.SpawnRpcSurrogate();
+        validationLogger.Record(
+            "hud_startup",
+            ValidationLogField.String("surrogate", ToSurrogateResultToken(surrogateResult))
+        );
+    }
+
+    private static string ToSurrogateResultToken(RpcSurrogateSpawnResult result)
+    {
+        return result switch
+        {
+            RpcSurrogateSpawnResult.Added => "added",
+            RpcSurrogateSpawnResult.Reused => "reused",
+            RpcSurrogateSpawnResult.Missing => "missing",
+            RpcSurrogateSpawnResult.Error => "error",
+            _ => "error"
+        };
     }
 }

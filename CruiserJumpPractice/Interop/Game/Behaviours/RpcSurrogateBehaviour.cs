@@ -17,6 +17,7 @@ internal class RpcSurrogateBehaviour : NetworkBehaviour
     [ServerRpc(RequireOwnership = true)]
     public void SaveCruiserStateServerRpc()
     {
+        CruiserJumpPractice.Controller.RecordSaveServerRpcReceived();
         var result = CruiserJumpPractice.Controller.SaveCruiserState();
         SaveCruiserStateDoneClientRpc(result);
     }
@@ -24,12 +25,14 @@ internal class RpcSurrogateBehaviour : NetworkBehaviour
     [ClientRpc]
     public void SaveCruiserStateDoneClientRpc(SaveCruiserStateResult result)
     {
+        CruiserJumpPractice.Controller.RecordSaveClientRpcReceived(result);
         CruiserJumpPractice.Controller.PresentSaveCruiserStateResult(result);
     }
 
     [ServerRpc(RequireOwnership = true)]
     public void LoadCruiserStateServerRpc()
     {
+        CruiserJumpPractice.Controller.RecordLoadServerRpcReceived();
         var result = CruiserJumpPractice.Controller.LoadCruiserState();
         LoadCruiserStateDoneClientRpc(result);
     }
@@ -37,6 +40,7 @@ internal class RpcSurrogateBehaviour : NetworkBehaviour
     [ClientRpc]
     public void LoadCruiserStateDoneClientRpc(LoadCruiserStateResult result)
     {
+        CruiserJumpPractice.Controller.RecordLoadClientRpcReceived(result);
         CruiserJumpPractice.Controller.PresentLoadCruiserStateResult(result);
     }
 }

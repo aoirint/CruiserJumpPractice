@@ -15,20 +15,22 @@ namespace CruiserJumpPractice.Interop.Game;
 internal sealed class GameInterop : IGameInterop
 {
     private readonly NetworkAdapter networkInterop;
+    private readonly IValidationLogger validationLogger;
     private readonly PlayerAdapter playerInterop;
     private readonly HudAdapter hudInterop;
     private readonly RpcSurrogateAdapter rpcSurrogateInterop;
     private readonly CruiserAdapter cruiserInterop;
     private readonly ShipMagnetAdapter shipMagnetInterop;
 
-    public GameInterop(IPluginLogger logger)
+    public GameInterop(IPluginLogger logger, IValidationLogger validationLogger)
     {
+        this.validationLogger = validationLogger;
         var gameObjects = new GameObjectAdapter(logger);
 
         networkInterop = new NetworkAdapter(logger, gameObjects);
         playerInterop = new PlayerAdapter(logger, gameObjects);
         hudInterop = new HudAdapter(logger, gameObjects);
-        rpcSurrogateInterop = new RpcSurrogateAdapter(logger, gameObjects);
+        rpcSurrogateInterop = new RpcSurrogateAdapter(logger, gameObjects, validationLogger);
         cruiserInterop = new CruiserAdapter(logger, gameObjects);
         shipMagnetInterop = new ShipMagnetAdapter(logger, gameObjects);
     }
@@ -45,12 +47,17 @@ internal sealed class GameInterop : IGameInterop
 
     public void DisplayTip(HudTipMessage message)
     {
+        validationLogger.Record(
+            "hud_tip",
+            ValidationLogField.String("role", GetRoleToken()),
+            ValidationLogField.String("message", message.Token)
+        );
         hudInterop.DisplayTip(message.HeaderText, message.BodyText);
     }
 
-    public void SpawnRpcSurrogate()
+    public RpcSurrogateSpawnResult SpawnRpcSurrogate()
     {
-        rpcSurrogateInterop.SpawnRpcSurrogate();
+        return rpcSurrogateInterop.SpawnRpcSurrogate();
     }
 
     public void RequestSaveCruiserState()
@@ -109,5 +116,10 @@ internal sealed class GameInterop : IGameInterop
     public void ToggleShipMagnet()
     {
         shipMagnetInterop.ToggleShipMagnet();
+    }
+
+    private string GetRoleToken()
+    {
+        return IsHost() ? "host" : "client";
     }
 }
