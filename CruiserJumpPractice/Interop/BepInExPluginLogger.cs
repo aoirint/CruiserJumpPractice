@@ -6,15 +6,20 @@ using CruiserJumpPractice.Core.Ports;
 
 namespace CruiserJumpPractice.Interop;
 
-// Core log messages are routed through BepInEx only at the edge of the plugin. That keeps
-// ManualLogSource out of use cases while preserving normal mod-loader output.
-internal sealed class BepInExCoreLogger : ICoreLogger
+// Plugin log messages are routed through BepInEx only at the edge of the plugin.
+// That keeps ManualLogSource out of Core and game interop composition.
+internal sealed class BepInExPluginLogger : IPluginLogger
 {
     private readonly ManualLogSource logger;
 
-    public BepInExCoreLogger(ManualLogSource logger)
+    public BepInExPluginLogger(ManualLogSource logger)
     {
         this.logger = logger;
+    }
+
+    public void LogDebug(string message)
+    {
+        logger.LogDebug(message);
     }
 
     public void LogInfo(string message)

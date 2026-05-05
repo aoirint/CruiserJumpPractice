@@ -1,8 +1,7 @@
 // SPDX-License-Identifier: Unlicense
 #nullable enable
 
-using BepInEx.Logging;
-
+using CruiserJumpPractice.Core.Ports;
 using CruiserJumpPractice.Interop.Game;
 
 namespace CruiserJumpPractice.Interop.Game.Adapters;
@@ -12,10 +11,10 @@ namespace CruiserJumpPractice.Interop.Game.Adapters;
 // path already sends the needed RPC.
 internal sealed class ShipMagnetAdapter
 {
-    private readonly ManualLogSource logger;
+    private readonly IPluginLogger logger;
     private readonly GameObjectAdapter gameObjects;
 
-    public ShipMagnetAdapter(ManualLogSource logger, GameObjectAdapter gameObjects)
+    public ShipMagnetAdapter(IPluginLogger logger, GameObjectAdapter gameObjects)
     {
         this.logger = logger;
         this.gameObjects = gameObjects;

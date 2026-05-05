@@ -2,7 +2,7 @@
 #nullable enable
 
 using BepInEx;
-using BepInEx.Logging;
+using CruiserJumpPractice.Interop;
 using CruiserJumpPractice.Interop.Game.Patches;
 
 namespace CruiserJumpPractice;
@@ -14,8 +14,6 @@ namespace CruiserJumpPractice;
 [BepInProcess("Lethal Company.exe")]
 public class CruiserJumpPractice : BaseUnityPlugin
 {
-    internal static new ManualLogSource? Logger { get; private set; }
-
     private static PluginController? controller;
 
     // Harmony and Netcode construct their callback objects outside our
@@ -25,14 +23,12 @@ public class CruiserJumpPractice : BaseUnityPlugin
 
     private void Awake()
     {
-        Logger = base.Logger;
-
-        controller = PluginController.Create(Logger);
+        controller = PluginController.Create(new BepInExPluginLogger(base.Logger));
 
         // Startup order matters: construct the controller before patching so the first game
         // callback can enter a fully wired plugin boundary.
         HarmonyPatchInstaller.Install();
 
-        Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_NAME} v{MyPluginInfo.PLUGIN_VERSION} is loaded!");
+        base.Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_NAME} v{MyPluginInfo.PLUGIN_VERSION} is loaded!");
     }
 }

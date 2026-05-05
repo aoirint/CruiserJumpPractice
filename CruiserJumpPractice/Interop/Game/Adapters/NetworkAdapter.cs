@@ -1,18 +1,17 @@
 // SPDX-License-Identifier: Unlicense
 #nullable enable
 
-using BepInEx.Logging;
-
+using CruiserJumpPractice.Core.Ports;
 using CruiserJumpPractice.Interop.Game;
 
 namespace CruiserJumpPractice.Interop.Game.Adapters;
 
 internal sealed class NetworkAdapter
 {
-    private readonly ManualLogSource logger;
+    private readonly IPluginLogger logger;
     private readonly GameObjectAdapter gameObjects;
 
-    public NetworkAdapter(ManualLogSource logger, GameObjectAdapter gameObjects)
+    public NetworkAdapter(IPluginLogger logger, GameObjectAdapter gameObjects)
     {
         this.logger = logger;
         this.gameObjects = gameObjects;
