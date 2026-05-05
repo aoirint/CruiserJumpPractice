@@ -243,10 +243,11 @@ Submitter responsibilities:
 - For pull requests, provide verification evidence that matches the change, such
   as automated test output, build output, screenshots, or a clear description of
   any hands-on checks that could not reasonably be automated.
-- Do not present AI-performed review or inspection as manual checks. Manual
-  checks should be performed without AI automation. If an AI-assisted
-  inspection is included, describe the request first, nest the AI result under
-  it, and clearly label the result as AI-assisted.
+- Do not present AI-performed review, inspection, editing, verification, or
+  other work as "manual". Manual checks should be performed without AI
+  automation. If an AI-assisted inspection is included, describe the request
+  first, nest the AI result under it, and clearly label the result as
+  AI-assisted.
 - Keep pull requests and other project-facing material reviewable. Do not submit
   either large, hard-to-review changes or high volumes of issues, comments, or
   pull requests that a maintainer cannot reasonably check, whether they were

@@ -111,8 +111,8 @@ repository policy explicitly says otherwise.
 
 ## Verification Evidence
 
-- Do not present autonomous AI review, inspection, or scenario analysis as a
-  manual check.
+- Do not present AI-performed review, inspection, editing, verification, or
+  other work as "manual".
 - Manual checks should describe checks performed without AI automation.
 - If an AI-assisted inspection was requested, report it under a
   `### AI-assisted inspections` subsection inside `## Testing`, after
