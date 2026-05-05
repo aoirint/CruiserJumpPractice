@@ -93,9 +93,9 @@ You are responsible for masking personal information, local absolute paths,
 access tokens, and other sensitive details before posting logs, screenshots,
 or videos.
 Do not present AI-performed review, inspection, editing, verification, or other
-work as "manual". If you include AI-assisted inspection, list a short
-`Request: ...` summary first, nest the `AI-assisted result: ...` under it, and
-clearly label the result as AI-assisted.
+work as "manual". For example, if you include AI-assisted inspection, list a
+short `Request: ...` summary first, nest the `AI-assisted result: ...` under it,
+and clearly label the result as AI-assisted.
 
 Optional testing structure:
 ### Build log
