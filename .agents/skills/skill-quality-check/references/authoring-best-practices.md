@@ -1,4 +1,4 @@
-<!-- SPDX-License-Identifier: Unlicense -->
+<!-- SPDX-License-Identifier: MIT -->
 
 # Agent Skill Authoring Best Practices
 
