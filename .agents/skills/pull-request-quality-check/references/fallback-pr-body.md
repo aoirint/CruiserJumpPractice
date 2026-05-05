@@ -8,6 +8,9 @@ template. If a repository template exists, the live template takes precedence.
 Keep the top-level headings, testing subsection order, and CLA checklist from
 this scaffold. When a scaffold subsection has no applicable content, write
 `None` or `Not applicable` instead of removing the heading.
+The scaffold includes the LLM alert because this fallback is usually used for
+AI-agent-prepared pull request bodies. Omit the alert only when the pull request
+has no significant LLM assistance, and use `None` for `AI disclosure`.
 
 ```markdown
 > [!WARNING]

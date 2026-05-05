@@ -18,7 +18,9 @@ description: >-
 ## Goals
 
 - Make issue titles, bodies, and replies clear enough for maintainers to triage and act on.
-- Preserve required LLM disclosure alerts whenever LLM assistance was used.
+- Preserve required LLM disclosure alerts when issue text has significant LLM
+  assistance. For artifacts prepared by an AI agent in this workflow, treat the
+  assistance as significant and include the alert.
 - Keep issue text in English except for exact quoted source material or identifiers.
 - Prevent shell quoting from corrupting Markdown when creating or editing issues through `gh`.
 - Record verification limits, uncertainty, and requested follow-up information explicitly.
@@ -27,7 +29,8 @@ description: >-
 
 1. Classify the artifact as an issue title, issue body, issue reply, or combined issue update.
 2. Check required LLM disclosure first, using the issue-body alert for issues and the comment alert
-   for replies when LLM assistance was used.
+   for replies when LLM assistance was significant. For AI-agent-prepared artifacts, assume the
+   assistance is significant.
 3. Check the title when present for concise, specific triage wording.
 4. Check the body or reply structure, keeping only sections that add useful information.
 5. Check English style, concise wording, exact quoted material, and issue-specific nuance with
@@ -54,8 +57,9 @@ Check that the title is concise, specific, and written as a problem or task:
 
 ## Required LLM Alert
 
-When the issue was prepared with LLM assistance, check that this GitHub alert
-appears at the very top of the issue body:
+When the issue has significant LLM assistance, check that this GitHub alert
+appears at the very top of the issue body. For issue bodies prepared by an AI
+agent, assume the assistance is significant:
 
 ```markdown
 > [!WARNING]
@@ -82,6 +86,10 @@ Check that the body is concise and uses these sections when applicable:
 ## Acceptance Criteria
 - ...
 ```
+
+The example includes the LLM alert because this skill is usually used for
+AI-agent-prepared issue text. Omit the alert only when the issue has no
+significant LLM assistance.
 
 Recommend sections only when they carry useful information:
 
@@ -131,8 +139,9 @@ can interpret those characters and silently corrupt the body.
 
 ## Issue Replies
 
-When the issue reply was prepared with LLM assistance, check that this GitHub
-alert appears at the very top of the comment body:
+When the issue reply has significant LLM assistance, check that this GitHub
+alert appears at the very top of the comment body. For replies prepared by an AI
+agent, assume the assistance is significant:
 
 ```markdown
 > [!WARNING]
@@ -153,6 +162,10 @@ Thanks for the report. I can reproduce this with ...
 ## Next Steps
 - ...
 ```
+
+The example includes the LLM alert because this skill is usually used for
+AI-agent-prepared replies. Omit the alert only when the reply has no significant
+LLM assistance.
 
 Recommend sections only when they carry useful information:
 
