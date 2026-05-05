@@ -37,6 +37,8 @@ internal sealed class FrameHandler
 
     public void HandleFrame()
     {
+        // Snapshot one-frame triggers before suppression so later validation logging can
+        // report the intended action without retaining raw input, chat, or terminal text.
         var saveTriggered = practiceInput.SaveCruiserTriggered;
         var loadTriggered = practiceInput.LoadCruiserTriggered;
         var toggleMagnetTriggered = practiceInput.ToggleMagnetTriggered;
