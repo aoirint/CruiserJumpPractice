@@ -33,6 +33,19 @@ public.
 Do not report security issues in public GitHub Issues.
 See [Reporting security issues](#reporting-security-issues) instead.
 
+## Stalled Issues
+
+Respond to maintainer questions when possible.
+If needed information is missing, the issue is no longer reproducible, the
+reported behavior no longer matches the current project, or the discussion has
+been inactive for a reasonable period, maintainers may close the issue to keep
+the issue list current.
+
+This kind of closure is different from rejecting an issue or marking it as not
+planned.
+It is not a judgment on the reporter, and it does not prevent you from adding
+new information later if the issue is still relevant.
+
 ## Development setup
 
 Follow the setup, formatting, build, package management, debugging, and release
