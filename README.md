@@ -1,9 +1,9 @@
-<!-- SPDX-License-Identifier: Unlicense -->
+<!-- SPDX-License-Identifier: MIT -->
 
 # CruiserJumpPractice
 
-A Lethal Company mod that saves/loads cruiser position, rotation, and condition, and lets you toggle the magnet
-remotely.
+A Lethal Company mod that saves and loads cruiser position, rotation, and condition,
+and lets you toggle the magnet remotely.
 
 - [User guide](./assets/README.md)
 
@@ -76,11 +76,58 @@ CI action together after the repository cooldown period has elapsed.
 
 ## Package management
 
+### Dependency updates
+
 To update the lock file after modifying your package references, run:
 
 ```powershell
 dotnet restore --use-lock-file
 ```
+
+### Thunderstore manifest dependency updates
+
+When changing `assets/manifest.json` dependency strings:
+
+- Compare them with the current documented test environment in
+  `assets/README.md` and `CHANGELOG.md`.
+- Treat the change as Thunderstore install metadata, not only documentation:
+  fresh installs or profile resolution may pull the listed dependency versions.
+- Treat dependency version increases as possible practical minimum runtime
+  baseline changes for Thunderstore installs.
+- Document the reason, install impact, compatibility impact, and rollback risk
+  in the pull request and `CHANGELOG.md`.
+- Remove or revise changelog compatibility notes that no longer match the
+  dependency baseline.
+- Keep dependency string updates separate from manifest description or
+  compatibility-marker prose when practical.
+
+### .NET and C# tooling updates
+
+This project separates the SDK used to build and format the mod from the target
+framework that controls runtime compatibility.
+
+- Keep `TargetFramework` on `netstandard2.1` unless Lethal Company, BepInEx,
+  Unity, or compile-only dependencies require a compatibility change.
+- Prefer supported LTS SDKs for routine maintenance. Use an STS or newer SDK
+  major only when it solves a specific compiler, formatter, analyzer, CI, or
+  Visual Studio problem.
+- Keep SDK updates in maintenance-only pull requests. Update the README SDK
+  requirement and both workflow `dotnet-version` values together.
+- Keep `LangVersion` explicit. Before increasing it, confirm SDK, Visual Studio
+  2022, and dependency compatibility, then update the C# format summary above.
+- For analyzer updates, update `packages.lock.json`, review new diagnostics,
+  and separate mechanical formatting from intentional rule or code changes when
+  practical.
+- Preserve existing restore, format, build, and Markdown lint behavior by
+  default. Record compatibility checks and verification commands in the pull
+  request, and defer the update when the impact is unclear.
+
+Maintenance references:
+
+- [.NET releases and support](https://learn.microsoft.com/en-us/dotnet/core/releases-and-support)
+- [.NET SDK, MSBuild, and Visual Studio versioning](https://learn.microsoft.com/en-us/dotnet/core/porting/versioning-sdk-msbuild-vs)
+- [Configure C# language version](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/configure-language-version)
+- [`dotnet format`](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-format)
 
 ## GitHub Actions
 
@@ -130,27 +177,79 @@ DOTNET_CLI_UI_LANGUAGE=en dotnet build --configuration Release
 ## Release
 
 1. Update the canonical developer changelog in `CHANGELOG.md`.
-2. For a stable release, derive the Thunderstore-facing release notes in `assets/CHANGELOG.md` from stable entries
-   in `CHANGELOG.md`.
-3. Replace version in `CruiserJumpPractice/CruiserJumpPractice.csproj` as semver format, e.g. `1.2.3`.
-4. Verify that `.github/workflows/build.yml` packages `assets/CHANGELOG.md` and that the `generate-version` action
-   updates `assets/manifest.json` from the project version.
-5. Commit and push the changes.
-6. CI will create a GitHub Release automatically.
-7. For stable releases, CI will upload the release artifact to Thunderstore automatically.
+2. For a stable release, derive the Thunderstore-facing release notes in
+   `assets/CHANGELOG.md` from stable entries in `CHANGELOG.md`.
+3. Update the Thunderstore package description compatibility marker in
+   `assets/manifest.json` when needed.
+4. Verify Thunderstore package metadata in `assets/manifest.json`:
+    - Confirm dependency strings match the intended release baseline.
+    - Confirm dependency string changes have documented reason, install impact,
+      compatibility impact, rollback risk, and test-environment evidence.
+    - Confirm the manifest description still matches the Thunderstore-facing
+      release intent.
+5. Replace version in `CruiserJumpPractice/CruiserJumpPractice.csproj` with a
+   SemVer version such as `1.2.3`.
+6. Verify the release packaging flow:
+    - `.github/workflows/build.yml` packages `assets/CHANGELOG.md`.
+    - The `generate-version` action updates `assets/manifest.json` from the
+      project version.
+7. Commit and push the changes.
+8. CI will create a GitHub Release automatically.
+9. For stable releases, CI will upload the release artifact to Thunderstore
+   automatically.
 
-   The current workflow deploys to the Thunderstore `aoirint` team and publishes to the `lethal-company`
-   community with the `Mods`, `Tweaks & Quality Of Life`, and `AI Generated` categories.
-   The `THUNDERSTORE_TOKEN` secret must belong to a Thunderstore service account that can publish to that team.
+### Compatibility marker
 
-   **NOTE: prerelease version is not supported by Thunderstore, e.g. `1.2.3-beta.1`.**
+Update the leading compatibility marker in `assets/manifest.json` only when the
+`assets/README.md` `Compatibility` section records a newly tested or
+maintainer-confirmed Lethal Company version.
 
-### AI Disclosure
+Use the compact marker format at the start of the description:
 
-Some parts of this project were developed with the assistance of AI tools based on large language models (LLMs),
-including agent-based tools.
-The code is reviewed by the author.
-This disclosure is made in compliance with Thunderstore policies.
+- `[v<version>]`
+- `[v<older-version>/<newer-version>]`
+
+For example, use `[v73/v81.5]` when the marker intentionally covers both Lethal
+Company versions.
+
+Marker versions mean tested or maintainer-confirmed Lethal Company versions
+from `assets/README.md`.
+List slash-separated versions from older to newer.
+Keep best-effort or lower-confidence compatibility notes out of the marker;
+document those in `assets/README.md` or `CHANGELOG.md` instead.
+
+When updating the marker:
+
+- Replace any existing leading marker with the new marker.
+- Preserve the base description after the marker:
+  `[v<version-or-versions>] <description without the compatibility marker>`.
+- Treat single-version markers such as `[v81.5]` and slash-separated markers
+  such as `[v73/v81.5]` as the same leading compatibility marker.
+- Keep exactly one leading compatibility marker group in the manifest
+  description.
+
+Keep detailed compatibility and test-environment information in
+`assets/README.md` and `CHANGELOG.md`.
+Treat `CHANGELOG.md` as the developer-facing compatibility history.
+
+Handle dependency string changes in `assets/manifest.json` as separate
+dependency maintenance.
+Document the reason and compatibility impact in that change.
+
+### Thunderstore publishing
+
+The current workflow deploys to the Thunderstore `aoirint` team and publishes to
+the `lethal-company` community with these categories:
+
+- `Mods`
+- `Tweaks & Quality Of Life`
+- `AI Generated`
+
+The `THUNDERSTORE_TOKEN` secret must belong to a Thunderstore service account
+that can publish to that team.
+
+**NOTE: Prerelease versions such as `1.2.3-alpha.1` are uploaded only to GitHub,
+because Thunderstore does not support them.**
 
 ## Debugging
 
@@ -175,3 +274,10 @@ This disclosure is made in compliance with Thunderstore policies.
 5. Set `Logging.Console.Enabled` to `true`.
 6. Set `Logging.Console.LogLevels` to `All`.
 7. Launch `Lethal Company.exe` again.
+
+## AI Disclosure
+
+Some parts of this project were developed with AI tools based on large language
+models (LLMs), including agent-based tools.
+The project maintainer reviews the code.
+This disclosure is made in compliance with Thunderstore policies.

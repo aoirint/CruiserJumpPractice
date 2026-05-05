@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: Unlicense
+// SPDX-License-Identifier: MIT
 #nullable enable
 
 extern alias LethalCompany;
@@ -10,9 +10,10 @@ using LethalCompanyInputUtils::LethalCompanyInputUtils.BindingPathEnums;
 
 namespace CruiserJumpPractice.Interop.InputUtils;
 
-// InputUtilsActions declares the keybindings that InputUtils registers for the plugin.
-// Practice-facing input behavior is adapted in InputUtilsPracticeInput, so this file stays as a
-// small attribute table with layout notes beside each binding.
+// InputUtilsActions declares the keybindings that InputUtils registers for the
+// plugin.
+// Practice-facing input behavior is adapted in InputUtilsPracticeInput, so this
+// file stays as a small attribute table with layout notes beside each binding.
 // The repeated "Keymap:" rows are intentional table data, not prose that needs varied wording.
 internal sealed class InputUtilsActions : LcInputActions
 {

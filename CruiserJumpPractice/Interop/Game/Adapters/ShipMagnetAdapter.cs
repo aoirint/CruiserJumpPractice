@@ -1,20 +1,20 @@
-// SPDX-License-Identifier: Unlicense
+// SPDX-License-Identifier: MIT
 #nullable enable
 
-using BepInEx.Logging;
-
+using CruiserJumpPractice.Core.Ports;
 using CruiserJumpPractice.Interop.Game;
 
 namespace CruiserJumpPractice.Interop.Game.Adapters;
 
-// ShipMagnetAdapter exposes the ship magnet state and toggle action used by practice mode.
-// Toggling goes through the game's lever animation because that path already sends the needed RPC.
+// ShipMagnetAdapter exposes the ship magnet state and toggle action used by
+// practice mode. Toggling goes through the game's lever animation because that
+// path already sends the needed RPC.
 internal sealed class ShipMagnetAdapter
 {
-    private readonly ManualLogSource logger;
+    private readonly IPluginLogger logger;
     private readonly GameObjectAdapter gameObjects;
 
-    public ShipMagnetAdapter(ManualLogSource logger, GameObjectAdapter gameObjects)
+    public ShipMagnetAdapter(IPluginLogger logger, GameObjectAdapter gameObjects)
     {
         this.logger = logger;
         this.gameObjects = gameObjects;
@@ -43,7 +43,8 @@ internal sealed class ShipMagnetAdapter
                 throw new GameInteropException("StartOfRound.magnetLever is null.");
             }
 
-            // NOTE: AnimatedObjectTrigger calls StartOfRound.SetMagnetOn and sends a ServerRpc internally.
+            // NOTE: AnimatedObjectTrigger calls StartOfRound.SetMagnetOn and
+            // sends a ServerRpc internally.
             magnetLever.TriggerAnimation(gameObjects.GetLocalPlayer());
         }
         catch (System.Exception error)

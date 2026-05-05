@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: Unlicense
+// SPDX-License-Identifier: MIT
 #nullable enable
 
 using CruiserJumpPractice.Core.Ports;
@@ -10,9 +10,9 @@ namespace CruiserJumpPractice.Core.UseCases.Client;
 internal sealed class PresentSaveCruiserStateResultUseCase
 {
     private readonly IGameInterop gameInterop;
-    private readonly ICoreLogger logger;
+    private readonly IPluginLogger logger;
 
-    public PresentSaveCruiserStateResultUseCase(IGameInterop gameInterop, ICoreLogger logger)
+    public PresentSaveCruiserStateResultUseCase(IGameInterop gameInterop, IPluginLogger logger)
     {
         this.gameInterop = gameInterop;
         this.logger = logger;

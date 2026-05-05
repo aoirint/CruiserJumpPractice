@@ -1,5 +1,23 @@
 <!-- SPDX-License-Identifier: MIT -->
 
+# Fallback Pull Request Body
+
+Use this fallback only when the repository has no applicable pull request
+template. If a repository template exists, the live template takes precedence.
+Use the pull request template section guidance in
+`CONTRIBUTING.md#pull-requests`.
+
+## Contents
+
+- [Fallback Scaffold](#fallback-scaffold)
+
+## Fallback Scaffold
+
+Keep the fallback structure aligned with `.github/pull_request_template.md`.
+When a scaffold subsection has no applicable content, write `None` or
+`Not applicable` instead of removing the heading.
+
+````markdown
 <!--
 If significant AI assistance affected this pull request, put this alert at the
 very top of the PR body:
@@ -115,3 +133,4 @@ confirmation.
 As the pull request author, I have checked all required items:
 
 - [ ] I have read `CONTRIBUTING.md` and agree to the Contribution License Agreement.
+````

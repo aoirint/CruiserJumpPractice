@@ -1,7 +1,11 @@
 ---
-# SPDX-License-Identifier: Unlicense
+# SPDX-License-Identifier: MIT
 name: skill-quality-check
-description: Quality-check Agent Skills for trigger clarity, scope, structure, progressive disclosure, domain separation, validation, and scenario-readiness. Use when creating, updating, reviewing, or splitting Agent Skills, SKILL.md files, skill references, bundled scripts, or skill metadata.
+description: >-
+  Quality-check Agent Skills for trigger clarity, scope, structure, progressive
+  disclosure, domain separation, validation, and scenario-readiness. Use when
+  creating, updating, reviewing, or splitting Agent Skills, SKILL.md files, skill
+  references, bundled scripts, or skill metadata.
 ---
 
 # Skill Quality Check
@@ -21,6 +25,9 @@ description: Quality-check Agent Skills for trigger clarity, scope, structure, p
   `references/`, deterministic helpers in `scripts/`, reusable output materials in `assets/`.
 - Separate project-specific or domain-specific knowledge into dedicated domain skills or reference
   files instead of mixing it into general workflow skills.
+- Use `security-check` when a skill describes security-sensitive behavior, external
+  executable artifacts, dependencies, CI actions, containers, vendored files, secrets, permissions,
+  unsafe defaults, or supply-chain policy.
 - Preserve a consistent top-level structure: `When to Use`, `Goals`, and `Workflow` unless a local
   skill has a stronger established pattern.
 - Require scenario-based validation for new or materially revised skills.
@@ -42,11 +49,16 @@ description: Quality-check Agent Skills for trigger clarity, scope, structure, p
    - No unrelated project policy, domain knowledge, or historical notes in a general-purpose skill.
    - Split domain knowledge into a dedicated skill or a directly linked reference file when it would
      otherwise make the skill broad or stale.
+   - Reference `security-check` instead of duplicating partial security or supply-chain
+     policy unless the target skill owns a narrower implementation detail.
 5. Check structure:
    - Prefer `When to Use`, `Goals`, and `Workflow` for Agent Skills.
    - Keep required steps explicit, ordered, and written as imperatives.
    - Match specificity to risk: flexible guidance for judgment-heavy work, exact commands or scripts
      for fragile operations.
+   - Use `document-quality-check` for explanatory prose. Preserve
+     skill-specific nuance such as trigger boundaries, scope, ordering, risk
+     level, and domain separation.
 6. Check progressive disclosure:
    - Keep `SKILL.md` short enough to scan quickly.
    - Link every optional reference directly from `SKILL.md`; avoid nested reference chains.
@@ -59,7 +71,12 @@ description: Quality-check Agent Skills for trigger clarity, scope, structure, p
    - For copied, adapted, generated, vendored, or reusable example files, preserve upstream
      copyright/license notices and apply the SPDX guidance from `code-quality-check`.
 8. Check metadata alignment:
+   - Check every changed skill folder for `agents/openai.yaml`. For new skills, create it unless
+     the repository has an explicit reason to omit app metadata for that skill.
+   - Treat a missing `agents/openai.yaml` as a blocking gap, not as an optional follow-up.
    - Keep `agents/openai.yaml` aligned with `SKILL.md` trigger wording, scope, and expected output.
+   - Include an SPDX notice, `interface.display_name`, `interface.short_description`, and
+     `interface.default_prompt` when creating app metadata.
    - Update or remove metadata that no longer directly supports the skill.
 9. Validate and iterate:
    - Run the available skill validator, if the project has one.
@@ -75,12 +92,16 @@ description: Quality-check Agent Skills for trigger clarity, scope, structure, p
 10. Record verification:
 
     - Note external sources consulted, why they were needed, and how their guidance was applied.
+    - Note that each changed skill folder has `agents/openai.yaml`, or explain the repository policy
+      that intentionally omits it.
+    - Note whether `security-check` was used for security-sensitive skill content.
     - Note whether docs, changelog, PR notes, or follow-up domain skills are needed.
 
 When validating with scenarios, keep the report categories separate:
 
-- **Target skill findings**: problems in the skill being reviewed, such as description/body mismatch,
-  repository-specific leakage, stale metadata, missing validation, or unsupported bundled files.
+- **Target skill findings**: problems in the skill being reviewed, such as
+  description/body mismatch, repository-specific leakage, stale metadata,
+  missing validation, or unsupported bundled files.
 - **Input gaps**: unavailable source files, exact command text, unknown provenance, or missing
   metadata. Record these as assumptions or blockers.
 - **Skill-quality-check ambiguity**: places where this skill did not say what to inspect or how to

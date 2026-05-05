@@ -1,14 +1,14 @@
-// SPDX-License-Identifier: Unlicense
+// SPDX-License-Identifier: MIT
 #nullable enable
 
 extern alias LethalCompany;
 extern alias UnityEngine;
 
-using BepInEx.Logging;
 using LethalCompany;
 using System.Reflection;
 using UnityEngine::UnityEngine;
 
+using CruiserJumpPractice.Core.Ports;
 using CruiserJumpPractice.Core.Snapshots;
 
 namespace CruiserJumpPractice.Interop.Game.Adapters;
@@ -18,10 +18,10 @@ namespace CruiserJumpPractice.Interop.Game.Adapters;
 // practice rules.
 internal sealed class CruiserAdapter
 {
-    private readonly ManualLogSource logger;
+    private readonly IPluginLogger logger;
     private readonly GameObjectAdapter gameObjects;
 
-    public CruiserAdapter(ManualLogSource logger, GameObjectAdapter gameObjects)
+    public CruiserAdapter(IPluginLogger logger, GameObjectAdapter gameObjects)
     {
         this.logger = logger;
         this.gameObjects = gameObjects;

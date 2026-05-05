@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# SPDX-License-Identifier: Unlicense
+# SPDX-License-Identifier: MIT
 
 set -euo pipefail
 
@@ -15,6 +15,8 @@ thunderstore_repo="${THUNDERSTORE_REPO:-https://thunderstore.io}"
 if [ -f "${artifact_pattern}" ]; then
   artifact_path="${artifact_pattern}"
 else
+  # Release publishing must fail if packaging ever creates zero or multiple
+  # zips; Thunderstore submissions should map to exactly one package version.
   mapfile -t artifact_matches < <(compgen -G "${artifact_pattern}")
 
   if [ "${#artifact_matches[@]}" -ne 1 ]; then
@@ -51,6 +53,8 @@ upload_uuid=$(jq --raw-output '.user_media.uuid' <<< "${upload_response}")
 parts_file=$(mktemp)
 trap 'rm -f "${parts_file}"' EXIT
 
+# Thunderstore returns presigned upload parts for larger files; upload each
+# byte range exactly as requested and collect the ETags required to finalize.
 jq --compact-output '.upload_urls[]' <<< "${upload_response}" | while read -r upload_part; do
   part_number=$(jq --raw-output '.part_number' <<< "${upload_part}")
   part_offset=$(jq --raw-output '.offset' <<< "${upload_part}")
@@ -89,6 +93,8 @@ jq --slurp --compact-output '{parts: .}' "${parts_file}" \
   > /dev/null
 
 community_categories=$(
+  # Workflow YAML keeps categories readable as lines; Thunderstore requires a
+  # compact JSON array under the community-specific category map.
   printf '%s\n' "${THUNDERSTORE_COMMUNITY_CATEGORIES}" \
     | tr '[:space:]' '\n' \
     | sed '/^$/d' \

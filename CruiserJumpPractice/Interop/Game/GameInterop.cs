@@ -1,7 +1,6 @@
-// SPDX-License-Identifier: Unlicense
+// SPDX-License-Identifier: MIT
 #nullable enable
 
-using BepInEx.Logging;
 using CruiserJumpPractice.Core.Ports;
 using CruiserJumpPractice.Core.Snapshots;
 using CruiserJumpPractice.Interop.Game.Adapters;
@@ -20,7 +19,7 @@ internal sealed class GameInterop : IGameInterop
     private readonly CruiserAdapter cruiserInterop;
     private readonly ShipMagnetAdapter shipMagnetInterop;
 
-    public GameInterop(ManualLogSource logger)
+    public GameInterop(IPluginLogger logger)
     {
         var gameObjects = new GameObjectAdapter(logger);
 
