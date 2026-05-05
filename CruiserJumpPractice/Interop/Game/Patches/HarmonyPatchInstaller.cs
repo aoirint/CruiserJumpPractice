@@ -13,7 +13,8 @@ internal static class HarmonyPatchInstaller
 
     public static void Install()
     {
-        // Patch this assembly explicitly so Harmony ownership stays with the Interop patch layer.
+        // PatchAll(Assembly) makes Harmony scan that assembly for [HarmonyPatch] classes. Passing
+        // this assembly explicitly keeps the scan target stable while this Interop type owns setup.
         harmony.PatchAll(typeof(HarmonyPatchInstaller).Assembly);
     }
 }
