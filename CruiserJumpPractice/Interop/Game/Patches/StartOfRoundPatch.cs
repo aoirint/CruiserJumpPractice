@@ -50,12 +50,9 @@ internal static class StartOfRoundPatch
                 source: source
             );
         }
-        catch (System.Exception error)
+        catch
         {
-            CruiserJumpPractice.Controller.TryLogValidationPatchError(
-                hookName: $"{nameof(StartOfRoundPatch)}.{nameof(RecordAppliedState)}",
-                error: error
-            );
+            // Validation logging must never interrupt the base-game apply path.
         }
     }
 }

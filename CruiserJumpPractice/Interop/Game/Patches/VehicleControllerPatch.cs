@@ -24,9 +24,6 @@ internal static class VehicleControllerPatch
     private static int engineOilClientRpcDepth;
     private static int turboClientRpcDepth;
 
-    // Avoid log spam if a future base-game update renames the private turbo field.
-    private static bool turboBoostsFieldMissingLogged;
-
     [HarmonyPatch(nameof(VehicleController.AddEngineOilClientRpc), typeof(int), typeof(int))]
     [HarmonyPrefix]
     public static void AddEngineOilClientRpcPrefix()
@@ -61,12 +58,9 @@ internal static class VehicleControllerPatch
                 source: ValidationLogBaseGameApplySource.ClientRpcApply
             );
         }
-        catch (System.Exception error)
+        catch
         {
-            CruiserJumpPractice.Controller.TryLogValidationPatchError(
-                hookName: $"{nameof(VehicleControllerPatch)}.{nameof(AddEngineOilOnLocalClientPostfix)}",
-                error: error
-            );
+            // Validation logging must never interrupt the base-game apply path.
         }
     }
 
@@ -98,7 +92,6 @@ internal static class VehicleControllerPatch
 
         if (turboBoostsField == null)
         {
-            LogTurboBoostsFieldMissing();
             return;
         }
 
@@ -116,29 +109,9 @@ internal static class VehicleControllerPatch
                 source: ValidationLogBaseGameApplySource.ClientRpcApply
             );
         }
-        catch (System.Exception error)
+        catch
         {
-            CruiserJumpPractice.Controller.TryLogValidationPatchError(
-                hookName: $"{nameof(VehicleControllerPatch)}.{nameof(AddTurboBoostOnLocalClientPostfix)}",
-                error: error
-            );
+            // Validation logging must never interrupt the base-game apply path.
         }
-    }
-
-    private static void LogTurboBoostsFieldMissing()
-    {
-        if (turboBoostsFieldMissingLogged)
-        {
-            return;
-        }
-
-        turboBoostsFieldMissingLogged = true;
-        CruiserJumpPractice.Controller.TryLogValidationPatchError(
-            hookName: $"{nameof(VehicleControllerPatch)}.{nameof(AddTurboBoostOnLocalClientPostfix)}",
-            error: new System.MissingFieldException(
-                className: nameof(VehicleController),
-                fieldName: "turboBoosts"
-            )
-        );
     }
 }
