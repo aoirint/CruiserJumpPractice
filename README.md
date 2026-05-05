@@ -248,7 +248,7 @@ the `lethal-company` community with these categories:
 The `THUNDERSTORE_TOKEN` secret must belong to a Thunderstore service account
 that can publish to that team.
 
-**NOTE: Prerelease versions such as `1.2.3-beta.1` are uploaded only to GitHub,
+**NOTE: Prerelease versions such as `1.2.3-alpha.1` are uploaded only to GitHub,
 because Thunderstore does not support them.**
 
 ## Debugging
