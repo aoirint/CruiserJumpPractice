@@ -176,12 +176,12 @@ internal sealed class PluginController
         );
     }
 
-    public void EnterBaseGameEngineOilClientRpc()
+    public void HandleBaseGameEngineOilClientRpcEntered()
     {
         baseGameAppliedStateValidationHandler.EnterEngineOilClientRpc();
     }
 
-    public void ExitBaseGameEngineOilClientRpc()
+    public void HandleBaseGameEngineOilClientRpcExited()
     {
         baseGameAppliedStateValidationHandler.ExitEngineOilClientRpc();
     }
@@ -194,12 +194,12 @@ internal sealed class PluginController
         );
     }
 
-    public void EnterBaseGameTurboClientRpc()
+    public void HandleBaseGameTurboClientRpcEntered()
     {
         baseGameAppliedStateValidationHandler.EnterTurboClientRpc();
     }
 
-    public void ExitBaseGameTurboClientRpc()
+    public void HandleBaseGameTurboClientRpcExited()
     {
         baseGameAppliedStateValidationHandler.ExitTurboClientRpc();
     }

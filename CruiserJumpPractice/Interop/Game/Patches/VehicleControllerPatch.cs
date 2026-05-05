@@ -3,6 +3,7 @@
 
 extern alias LethalCompany;
 
+using System;
 using CruiserJumpPractice.Interop.Game.Adapters;
 using HarmonyLib;
 using LethalCompany;
@@ -18,32 +19,35 @@ internal static class VehicleControllerPatch
     [HarmonyPrefix]
     public static void AddEngineOilClientRpcPrefix()
     {
-        CruiserJumpPractice.Controller.EnterBaseGameEngineOilClientRpc();
+        TryNotifyAppliedStateValidation(
+            notify: static () =>
+                CruiserJumpPractice.Controller.HandleBaseGameEngineOilClientRpcEntered()
+        );
     }
 
     [HarmonyPatch(nameof(VehicleController.AddEngineOilClientRpc), typeof(int), typeof(int))]
     [HarmonyFinalizer]
     public static void AddEngineOilClientRpcFinalizer()
     {
-        CruiserJumpPractice.Controller.ExitBaseGameEngineOilClientRpc();
+        TryNotifyAppliedStateValidation(
+            notify: static () => CruiserJumpPractice.Controller.HandleBaseGameEngineOilClientRpcExited()
+        );
     }
 
     [HarmonyPatch(nameof(VehicleController.AddEngineOilOnLocalClient), typeof(int))]
     [HarmonyPostfix]
     public static void AddEngineOilOnLocalClientPostfix(VehicleController __instance, int addedAmount)
     {
-        try
-        {
-            // Keep patch code limited to live game reads; filtering and record construction stay in Core.
-            CruiserJumpPractice.Controller.HandleBaseGameEngineOilLocalApplied(
-                expectedHP: addedAmount,
-                observedHP: __instance.carHP
-            );
-        }
-        catch
-        {
-            // Validation logging must never interrupt the base-game apply path.
-        }
+        TryNotifyAppliedStateValidation(
+            notify: () =>
+            {
+                // Keep patch code limited to live game reads; filtering and record construction stay in Core.
+                CruiserJumpPractice.Controller.HandleBaseGameEngineOilLocalApplied(
+                    expectedHP: addedAmount,
+                    observedHP: __instance.carHP
+                );
+            }
+        );
     }
 
     // Turbo uses the same ClientRpc/local-apply split as engine oil, but the applied value is
@@ -52,26 +56,40 @@ internal static class VehicleControllerPatch
     [HarmonyPrefix]
     public static void AddTurboBoostClientRpcPrefix()
     {
-        CruiserJumpPractice.Controller.EnterBaseGameTurboClientRpc();
+        TryNotifyAppliedStateValidation(
+            notify: static () => CruiserJumpPractice.Controller.HandleBaseGameTurboClientRpcEntered()
+        );
     }
 
     [HarmonyPatch(nameof(VehicleController.AddTurboBoostClientRpc), typeof(int), typeof(int))]
     [HarmonyFinalizer]
     public static void AddTurboBoostClientRpcFinalizer()
     {
-        CruiserJumpPractice.Controller.ExitBaseGameTurboClientRpc();
+        TryNotifyAppliedStateValidation(
+            notify: static () => CruiserJumpPractice.Controller.HandleBaseGameTurboClientRpcExited()
+        );
     }
 
     [HarmonyPatch(nameof(VehicleController.AddTurboBoostOnLocalClient), typeof(int))]
     [HarmonyPostfix]
     public static void AddTurboBoostOnLocalClientPostfix(VehicleController __instance, int addedAmount)
     {
+        TryNotifyAppliedStateValidation(
+            notify: () =>
+            {
+                CruiserJumpPractice.Controller.HandleBaseGameTurboLocalApplied(
+                    expectedTurbo: addedAmount,
+                    observedTurbo: CruiserAdapter.GetTurboBoosts(cruiser: __instance)
+                );
+            }
+        );
+    }
+
+    private static void TryNotifyAppliedStateValidation(Action notify)
+    {
         try
         {
-            CruiserJumpPractice.Controller.HandleBaseGameTurboLocalApplied(
-                expectedTurbo: addedAmount,
-                observedTurbo: CruiserAdapter.GetTurboBoosts(cruiser: __instance)
-            );
+            notify();
         }
         catch
         {
