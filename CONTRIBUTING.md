@@ -43,7 +43,8 @@ The project maintainer is listed in [CODEOWNERS](./.github/CODEOWNERS).
 - If AI assistance significantly shapes an issue report or issue comment,
   disclose that assistance in the issue or comment. This helps maintainers judge
   what context may need closer checking, such as reproduction steps,
-  compatibility claims, log interpretation, or documentation suggestions.
+  compatibility claims, log interpretation, or documentation suggestions. See
+  [AI assistance](#ai-assistance).
 - Do not submit sample code, documentation text, patches, or other material that
   could be included or adapted into the project unless you provide it under the
   [Contribution License Agreement](#contribution-license-agreement). Clearly
@@ -113,6 +114,9 @@ For package or release changes, also verify the release documentation in
 - Link related issues when applicable.
 - Keep the pull request small enough for maintainers to review without guessing
   at unrelated intent.
+- If AI assistance significantly shapes the pull request, disclose that
+  assistance in the pull request description. See
+  [AI assistance](#ai-assistance).
 - Pull requests must include the
   [pull request template](./.github/pull_request_template.md) checkbox
   confirmation for the
