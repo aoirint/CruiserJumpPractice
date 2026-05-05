@@ -30,9 +30,9 @@ Only share material that you have the right to share, and do not include
 secrets, personal information, private data, or content that should not be made
 public.
 
-Do not submit sample code, documentation text, patches, or other material for
-direct inclusion in the project unless you provide it under the Contribution
-License Agreement.
+Do not submit sample code, documentation text, patches, or other material that
+could be included or adapted into the project unless you provide it under the
+Contribution License Agreement.
 Clearly state your agreement to that license agreement when you submit that
 material.
 
