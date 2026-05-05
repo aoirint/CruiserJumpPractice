@@ -58,7 +58,7 @@ internal sealed class PluginController
         // dependency should usually mean adding another adapter here, not
         // another static property on CruiserJumpPractice.
         var inputActions = new InputUtilsActions();
-        var practiceInput = new InputUtilsPracticeInput(inputActions: inputActions);
+        var practiceInput = new InputUtilsPracticeInput(inputActions);
         IGameInterop gameInterop = new GameInterop(
             logger: logger,
             validationLogger: validationLogger

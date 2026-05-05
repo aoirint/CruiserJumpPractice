@@ -26,7 +26,7 @@ internal sealed class GameInterop : IGameInterop
     public GameInterop(IPluginLogger logger, IValidationLogger validationLogger)
     {
         this.validationLogger = validationLogger;
-        var gameObjects = new GameObjectAdapter(logger: logger);
+        var gameObjects = new GameObjectAdapter(logger);
 
         networkInterop = new NetworkAdapter(logger: logger, gameObjects: gameObjects);
         playerInterop = new PlayerAdapter(logger: logger, gameObjects: gameObjects);
@@ -86,7 +86,7 @@ internal sealed class GameInterop : IGameInterop
             return null;
         }
 
-        return cruiserInterop.CaptureCruiser(cruiser: cruiser);
+        return cruiserInterop.CaptureCruiser(cruiser);
     }
 
     public CruiserRestoreObservation RestoreCruiser(CruiserSnapshot snapshot)
@@ -108,7 +108,7 @@ internal sealed class GameInterop : IGameInterop
             throw new GameInteropException("No cruiser found.");
         }
 
-        return cruiserInterop.IsCruiserMagnetedToShip(cruiser: cruiser);
+        return cruiserInterop.IsCruiserMagnetedToShip(cruiser);
     }
 
     public bool IsShipMagnetOn()
