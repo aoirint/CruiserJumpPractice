@@ -35,6 +35,10 @@ If this pull request mixes unrelated behavior, documentation, refactors, or
 cleanup, split it or explain why the work should stay together.
 If the title or commits include `!` or `BREAKING CHANGE`, include a
 `### Breaking Changes` subsection.
+Treat a change as breaking when it removes, renames, or incompatibly changes
+public behavior, documented workflows, configuration, package or release
+behavior, compatibility guarantees, or other project-facing contracts that
+users, maintainers, automation, or downstream packaging reasonably rely on.
 
 Optional H3 examples:
 ### User impact
@@ -150,4 +154,6 @@ Use fallback sections this way:
 - `Testing`: automated commands, CI results, AI-assisted inspections, manual
   checks, screenshots, or videos.
 - `Breaking Changes`: required when the title or commits include `!` or
-  `BREAKING CHANGE`.
+  `BREAKING CHANGE`. Treat backward-incompatible changes to public behavior,
+  documented workflows, configuration, package or release behavior,
+  compatibility guarantees, or other project-facing contracts as breaking.
