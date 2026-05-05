@@ -4,6 +4,7 @@
 using CruiserJumpPractice.Core.Ports;
 using CruiserJumpPractice.Core.Presentation;
 using CruiserJumpPractice.Core.Snapshots;
+using CruiserJumpPractice.Core.State;
 using CruiserJumpPractice.Interop.Game.Adapters;
 
 namespace CruiserJumpPractice.Interop.Game;
@@ -37,9 +38,9 @@ internal sealed class GameInterop : IGameInterop
         return networkInterop.IsHost();
     }
 
-    public bool IsLocalPlayerBusy()
+    public LocalPlayerBusyState GetLocalPlayerBusyState()
     {
-        return playerInterop.IsLocalPlayerBusy();
+        return playerInterop.GetLocalPlayerBusyState();
     }
 
     public void DisplayTip(HudTipMessage message)
@@ -80,7 +81,7 @@ internal sealed class GameInterop : IGameInterop
         return cruiserInterop.CaptureCruiser(cruiser);
     }
 
-    public void RestoreCruiser(CruiserSnapshot snapshot)
+    public CruiserRestoreObservation RestoreCruiser(CruiserSnapshot snapshot)
     {
         var cruiser = cruiserInterop.FindCruiser();
         if (cruiser == null)
@@ -88,7 +89,7 @@ internal sealed class GameInterop : IGameInterop
             throw new GameInteropException("No cruiser found.");
         }
 
-        cruiserInterop.RestoreCruiser(cruiser, snapshot);
+        return cruiserInterop.RestoreCruiser(cruiser, snapshot);
     }
 
     public bool IsCruiserMagnetedToShip()

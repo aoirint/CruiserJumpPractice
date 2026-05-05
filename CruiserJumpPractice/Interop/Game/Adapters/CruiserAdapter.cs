@@ -73,11 +73,17 @@ internal sealed class CruiserAdapter
         }
     }
 
-    public void RestoreCruiser(VehicleController cruiser, CruiserSnapshot snapshot)
+    public CruiserRestoreObservation RestoreCruiser(VehicleController cruiser, CruiserSnapshot snapshot)
     {
         var localPlayerId = gameObjects.GetLocalPlayerId();
         try
         {
+            // Capture observation values from this live cruiser instance only; restore validation
+            // should not add another scene search or polling loop when logging is wired later.
+            var beforeCarPosition = FromUnityVector3(cruiser.transform.position);
+            var beforeCarHP = cruiser.carHP;
+            var beforeTurboBoosts = GetCruiserTurboBoosts(cruiser);
+
             // VehicleController already syncs transform and driving fields during its vanilla
             // update flow, while oil and turbo counts need the game's RPC helpers below.
             cruiser.transform.position = ToUnityVector3(snapshot.CarPosition);
@@ -90,6 +96,19 @@ internal sealed class CruiserAdapter
 
             cruiser.AddTurboBoostOnLocalClient(snapshot.TurboBoosts);
             cruiser.AddTurboBoostServerRpc(localPlayerId, snapshot.TurboBoosts);
+
+            return new CruiserRestoreObservation(
+                savedCarPosition: snapshot.CarPosition,
+                savedCarRotation: snapshot.CarRotation,
+                beforeCarPosition: beforeCarPosition,
+                afterCarPosition: FromUnityVector3(cruiser.transform.position),
+                savedCarHP: snapshot.CarHP,
+                beforeCarHP: beforeCarHP,
+                afterCarHP: cruiser.carHP,
+                savedTurboBoosts: snapshot.TurboBoosts,
+                beforeTurboBoosts: beforeTurboBoosts,
+                afterTurboBoosts: GetCruiserTurboBoosts(cruiser)
+            );
         }
         catch (System.Exception error)
         {

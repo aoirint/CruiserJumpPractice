@@ -3,6 +3,7 @@
 
 using CruiserJumpPractice.Core.Snapshots;
 using CruiserJumpPractice.Core.Presentation;
+using CruiserJumpPractice.Core.State;
 
 namespace CruiserJumpPractice.Core.Ports;
 
@@ -13,7 +14,7 @@ internal interface IGameInterop
 {
     bool IsHost();
 
-    bool IsLocalPlayerBusy();
+    LocalPlayerBusyState GetLocalPlayerBusyState();
 
     void DisplayTip(HudTipMessage message);
 
@@ -27,7 +28,7 @@ internal interface IGameInterop
 
     CruiserSnapshot? CaptureCruiser();
 
-    void RestoreCruiser(CruiserSnapshot snapshot);
+    CruiserRestoreObservation RestoreCruiser(CruiserSnapshot snapshot);
 
     bool IsCruiserMagnetedToShip();
 
