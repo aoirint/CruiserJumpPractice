@@ -12,7 +12,7 @@ project issue, see [CONTRIBUTING.md][contributing], then report it in
 ## Unreleased
 
 This release rebuilds CruiserJumpPractice for Lethal Company v81.5 and includes
-internal release-validation improvements.
+internal improvements.
 
 No gameplay changes are introduced.
 
