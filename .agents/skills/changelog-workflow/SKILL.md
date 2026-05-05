@@ -1,5 +1,5 @@
 ---
-# SPDX-License-Identifier: Unlicense
+# SPDX-License-Identifier: MIT
 name: changelog-workflow
 description: >-
   Create and update a canonical developer changelog. Use when adding

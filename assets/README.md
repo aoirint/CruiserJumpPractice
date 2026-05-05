@@ -1,3 +1,5 @@
+<!-- SPDX-License-Identifier: MIT -->
+
 # CruiserJumpPractice
 
 A Lethal Company mod that saves and loads cruiser position, rotation, and

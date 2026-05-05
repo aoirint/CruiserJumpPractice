@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MIT
 ---
 # Lint every committed Markdown document by default so docs, release notes, and
 # GitHub templates follow one repository-wide style.

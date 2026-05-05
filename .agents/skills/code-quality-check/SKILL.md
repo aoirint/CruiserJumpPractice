@@ -1,5 +1,5 @@
 ---
-# SPDX-License-Identifier: Unlicense
+# SPDX-License-Identifier: MIT
 name: code-quality-check
 description: >-
   Quality-check source code, generated code, tests, scripts,

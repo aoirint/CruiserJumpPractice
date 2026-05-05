@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: Unlicense
+# SPDX-License-Identifier: MIT
 name: Publish Thunderstore Package
 description: Upload and submit a prebuilt Thunderstore package zip.
 
