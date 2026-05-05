@@ -7,15 +7,15 @@ the [GitHub changelog][github-changelog].
 
 ## Unreleased
 
-This is a maintenance release reflecting internal improvements.
+This release rebuilds CruiserJumpPractice for Lethal Company v81.5 and includes
+internal improvements.
 
 No gameplay changes are introduced.
 
 ### Changed
 
-- Dropped backward compatibility with older CruiserJumpPractice versions:
-    - Affects CruiserJumpPractice v0.1.4 and earlier.
-    - Caused by a mod-internal change.
+- Rebuilt for Lethal Company v81.5.
+- Improved internal implementation structure and release packaging.
 
 ### Notes
 
