@@ -11,12 +11,24 @@ project issue, see [CONTRIBUTING.md][contributing], then report it in
 
 ## Unreleased
 
-This is a maintenance release reflecting internal improvements.
+This release rebuilds CruiserJumpPractice for Lethal Company v81.5 and includes
+internal improvements.
 
 No gameplay changes are introduced.
 
 ### Changed
 
+- Rebuilt for Lethal Company v81.5.
+- Improved internal implementation structure and release packaging.
+- Added the Thunderstore `AI Generated` category to the package metadata:
+    - The Lethal Company Thunderstore community currently provides this
+      category for authors to disclose when a `significant portion` of a mod
+      was created using AI tools.
+    - This project uses the category to disclose AI assistance in project work;
+      it is package metadata rather than a gameplay feature.
+    - The project decided to use this category because the applicable
+      disclosure threshold is not clear.
+    - Human maintainer review remains the project policy.
 - Dropped backward compatibility with older CruiserJumpPractice versions:
     - Affects CruiserJumpPractice v0.1.4 and earlier.
     - Caused by a mod-internal change.

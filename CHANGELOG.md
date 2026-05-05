@@ -12,6 +12,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## Unreleased
 
+## v0.2.0-alpha.3 - 2026-05-05 UTC
+
 ### Added
 
 - Automated stable-release publishing to Thunderstore from GitHub Actions:
@@ -29,6 +31,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Marked automated Thunderstore uploads with an additional Thunderstore
   category:
     - `AI Generated`
+    - The current Thunderstore Lethal Company category API includes
+      `AI Generated` with slug `ai-generated`:
+        - <https://thunderstore.io/api/experimental/community/lethal-company/category/>
+    - The current Lethal Company package list page describes the category as
+      the place to disclose packages where a `significant portion` was created
+      using AI tools:
+        - <https://thunderstore.io/c/lethal-company/?included_categories=2086&ordering=last-updated&q=&section=mods>
+    - This project uses the category to disclose AI assistance in project work;
+      it is package metadata rather than a gameplay feature.
+    - [Issue #18][issue-18-ai-generated-category] records the project decision
+      to use this category because the applicable disclosure threshold is not
+      clear.
+    - Human maintainer review remains the project policy.
 - Aligned Thunderstore manifest dependency strings with the documented v81.5
   test environment for BepInExPack and LethalCompany_InputUtils:
     - Treats the manifest dependency versions as part of the practical minimum
@@ -248,3 +263,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
       `1749099131234587692`).
         - Backfilled as reference compatibility information while preparing
           the v0.2.0-alpha.1 release.
+
+[issue-18-ai-generated-category]: https://github.com/aoirint/CruiserJumpPractice/issues/18
