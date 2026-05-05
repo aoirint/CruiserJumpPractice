@@ -25,8 +25,8 @@ The project maintainer is listed in [CODEOWNERS](./.github/CODEOWNERS).
     - To minimize the personal burden this project places on maintainers,
       maintainers try to keep the project's responsibilities as small as
       practical. However, issues or requests that seem relevant can still be
-      useful as related information even if they are closed as not planned. This
-      is likely for requests outside the project's scope,
+      useful as related information for other users even if they are closed as
+      not planned. This is likely for requests outside the project's scope,
       requests for large or complex features, or compatibility requests for base
       game versions that are no longer current.
 - Before opening a new issue, check the existing
