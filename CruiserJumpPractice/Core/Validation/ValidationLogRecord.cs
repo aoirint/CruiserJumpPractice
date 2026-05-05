@@ -37,6 +37,8 @@ internal enum ValidationLogRpcSurrogateResolveResult
     Error
 }
 
+// The same base-game state can be applied by a local helper or by a ClientRpc receiver path.
+// Preserve that source in validation logs so restore-side and sync-side observations are separable.
 internal enum ValidationLogBaseGameApplySource
 {
     LocalApply,

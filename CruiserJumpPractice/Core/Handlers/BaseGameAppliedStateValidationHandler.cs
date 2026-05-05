@@ -36,6 +36,8 @@ internal sealed class BaseGameAppliedStateValidationHandler
 
     public void HandleEngineOilLocalApplied(int expectedHP, int observedHP)
     {
+        // The same vanilla local helper runs during host-initiated restore; only log it when the
+        // ClientRpc wrapper marked this call as receiver-side synchronization.
         if (!stateStore.IsEngineOilClientRpcApplyActive)
         {
             return;
@@ -63,6 +65,8 @@ internal sealed class BaseGameAppliedStateValidationHandler
 
     public void HandleTurboLocalApplied(int expectedTurbo, int observedTurbo)
     {
+        // Turbo restore also calls the local helper directly, so this keeps #100 logs scoped to
+        // vanilla ClientRpc application instead of duplicating restore observations.
         if (!stateStore.IsTurboClientRpcApplyActive)
         {
             return;

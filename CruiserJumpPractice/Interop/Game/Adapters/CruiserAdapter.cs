@@ -18,6 +18,8 @@ namespace CruiserJumpPractice.Interop.Game.Adapters;
 // practice rules.
 internal sealed class CruiserAdapter
 {
+    // The field identity belongs to the VehicleController type, not to each cruiser instance.
+    // Cache it once and use GetValue only for the per-instance read.
     private static readonly FieldInfo? turboBoostsField = typeof(VehicleController).GetField(
         name: "turboBoosts",
         bindingAttr: BindingFlags.NonPublic | BindingFlags.Instance
@@ -137,6 +139,8 @@ internal sealed class CruiserAdapter
 
     internal static int GetTurboBoosts(VehicleController cruiser)
     {
+        // This remains static so Harmony patches can reuse the same interop read without owning an
+        // adapter instance; CruiserAdapter still owns the private-field knowledge.
         if (turboBoostsField == null)
         {
             throw new GameInteropException(

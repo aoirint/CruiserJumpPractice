@@ -22,6 +22,8 @@ internal sealed class BaseGameAppliedStateValidationStore
 
     public void ExitEngineOilClientRpc()
     {
+        // Harmony finalizers should be idempotent here; an unexpected extra exit must not make
+        // later local applies look like receiver-side ClientRpc work.
         if (engineOilClientRpcDepth > 0)
         {
             engineOilClientRpcDepth--;
@@ -35,6 +37,8 @@ internal sealed class BaseGameAppliedStateValidationStore
 
     public void ExitTurboClientRpc()
     {
+        // Match the engine-oil guard so an unmatched finalizer leaves the marker inactive, not
+        // negative.
         if (turboClientRpcDepth > 0)
         {
             turboClientRpcDepth--;

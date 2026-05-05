@@ -12,6 +12,8 @@ namespace CruiserJumpPractice.Interop.Game.Patches;
 [HarmonyPatch(typeof(VehicleController))]
 internal static class VehicleControllerPatch
 {
+    // The local apply method is also used by the host restore path, so the ClientRpc wrapper
+    // marks only receiver-side vanilla synchronization before the shared local helper runs.
     [HarmonyPatch(nameof(VehicleController.AddEngineOilClientRpc), typeof(int), typeof(int))]
     [HarmonyPrefix]
     public static void AddEngineOilClientRpcPrefix()
@@ -32,6 +34,7 @@ internal static class VehicleControllerPatch
     {
         try
         {
+            // Keep patch code limited to live game reads; filtering and record construction stay in Core.
             CruiserJumpPractice.Controller.HandleBaseGameEngineOilLocalApplied(
                 expectedHP: addedAmount,
                 observedHP: __instance.carHP
@@ -43,6 +46,8 @@ internal static class VehicleControllerPatch
         }
     }
 
+    // Turbo uses the same ClientRpc/local-apply split as engine oil, but the applied value is
+    // private in VehicleController and has to be read through the adapter boundary.
     [HarmonyPatch(nameof(VehicleController.AddTurboBoostClientRpc), typeof(int), typeof(int))]
     [HarmonyPrefix]
     public static void AddTurboBoostClientRpcPrefix()
