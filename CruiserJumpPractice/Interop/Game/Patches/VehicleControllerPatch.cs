@@ -3,7 +3,6 @@
 
 extern alias LethalCompany;
 
-using System.Reflection;
 using CruiserJumpPractice.Core.Validation;
 using HarmonyLib;
 using LethalCompany;
@@ -13,11 +12,6 @@ namespace CruiserJumpPractice.Interop.Game.Patches;
 [HarmonyPatch(typeof(VehicleController))]
 internal static class VehicleControllerPatch
 {
-    private static readonly FieldInfo? turboBoostsField = typeof(VehicleController).GetField(
-        name: "turboBoosts",
-        bindingAttr: BindingFlags.NonPublic | BindingFlags.Instance
-    );
-
     // The local apply helpers are also used by the initiating restore path. These depth markers
     // identify calls made from inside the base-game ClientRpc path so #100 logs receiver-side
     // applied state without duplicating #97 sender-side restore observations.
@@ -90,22 +84,11 @@ internal static class VehicleControllerPatch
             return;
         }
 
-        if (turboBoostsField == null)
-        {
-            return;
-        }
-
         try
         {
-            var observedTurbo = turboBoostsField.GetValue(obj: __instance);
-            if (observedTurbo is not int turboBoosts)
-            {
-                return;
-            }
-
             CruiserJumpPractice.Controller.RecordBaseGameTurboApplied(
                 expectedTurbo: addedAmount,
-                observedTurbo: turboBoosts,
+                observedTurbo: VehicleControllerStateReader.GetTurboBoosts(cruiser: __instance),
                 source: ValidationLogBaseGameApplySource.ClientRpcApply
             );
         }
