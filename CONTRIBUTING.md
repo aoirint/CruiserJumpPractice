@@ -22,10 +22,10 @@ notes, and documentation improvement requests.
 Before opening a new issue, check the existing issues and pull requests to
 avoid duplicates.
 
-When you share sample code, logs, screenshots, or other supporting material in a
-public issue, expect maintainers to use that material within a reasonable scope
-related to the reported issue, including to understand, reproduce, discuss,
-fix, and communicate with end users about it.
+When you share logs, screenshots, or other supporting material in a public
+issue, expect maintainers to use that material within a reasonable scope related
+to the reported issue, including to understand, reproduce, discuss, fix, and
+communicate with end users about it.
 Only share material that you have the right to share, and do not include
 secrets, personal information, private data, or content that should not be made
 public.
