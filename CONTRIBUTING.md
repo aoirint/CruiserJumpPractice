@@ -190,8 +190,8 @@ When AI assistance is significant, disclose it where maintainers and reviewers
 will see the relevant context:
 
 - For a pull request, disclose it in the pull request description.
-- For an issue report, comment, request, or other project-facing note, disclose
-  it where you submit that material.
+- For an issue report, issue comment, or other project-facing material,
+  disclose it where you submit that material.
 
 The purpose of disclosure is to give reviewers and maintainers enough context to
 understand where to focus, including areas you may not have reviewed closely.
