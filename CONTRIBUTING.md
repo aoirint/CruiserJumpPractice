@@ -40,6 +40,13 @@ The project maintainer is listed in [CODEOWNERS](./.github/CODEOWNERS).
 - Only share material that you have the right to share, and do not include
   secrets, personal information, private data, or content that should not be made
   public.
+- If AI assistance significantly shapes an issue report or issue comment,
+  disclose that assistance in the issue or comment. This helps maintainers judge
+  what context may need closer checking, such as reproduction steps,
+  compatibility claims, log interpretation, or documentation suggestions.
+- Ordinary issue reports, questions, and suggestions do not need the
+  Contribution License Agreement just because AI helped you write, translate, or
+  organize them. Keep the report focused on information maintainers can verify.
 - Do not submit sample code, documentation text, patches, or other material that
   could be included or adapted into the project unless you provide it under the
   [Contribution License Agreement](#contribution-license-agreement). Clearly
@@ -183,9 +190,11 @@ By submitting a contribution, you represent and agree that:
 AI tools may be used as aids, but the human contributor remains responsible for
 the contribution.
 When AI assistance significantly affects a pull request, disclosure is required
-in the pull request description. The purpose of disclosure is to give reviewers
-enough context to understand where to focus, including areas you may not have
-reviewed closely. There is no exact percentage or universal rule for when
+in the pull request description. When AI assistance significantly affects an
+issue report or issue comment, disclose it in that issue or comment. The purpose
+of disclosure is to give reviewers and maintainers enough context to understand
+where to focus, including areas you may not have reviewed closely. There is no
+exact percentage or universal rule for when
 assistance is "significant", so use the following common workflows as practical
 examples, not as an exhaustive list.
 
@@ -194,6 +203,9 @@ Examples that should be disclosed:
 - In the pull request description, specifically disclose AI assistance that
   significantly affected the pull request, but keep the disclosure practical.
   You do not need to provide a file-by-file table of AI involvement.
+- In issues or issue comments, disclose AI assistance that significantly shaped
+  reproduction notes, compatibility notes, log interpretation, documentation
+  improvement requests, or other triage information.
 - When possible, mention:
     - The rough prompt you gave an agent.
     - The changes you asked it to make.
