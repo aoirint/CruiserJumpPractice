@@ -1,5 +1,5 @@
 ---
-# SPDX-License-Identifier: Unlicense
+# SPDX-License-Identifier: MIT
 name: gitignore-workflow
 description: "Create or update .gitignore files. Use when editing ignore rules."
 ---
