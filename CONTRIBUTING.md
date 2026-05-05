@@ -44,12 +44,16 @@ The project maintainer is listed in [CODEOWNERS](./.github/CODEOWNERS).
 
 ## Stalled Issues
 
-- Respond to maintainer questions as much as you reasonably can.
-- To keep maintainer work manageable and the issue list current, maintainers may
-  close issues that cannot move forward because needed information is missing,
-  the issue is no longer reproducible, the reported behavior no longer matches
-  the current project, or the discussion has been inactive for a reasonable
-  period.
+- Respond to maintainer questions as much as you reasonably can. If you need
+  more time, are blocked from providing the requested information, or find that
+  the issue is no longer reproducible, leave a short comment so maintainers know
+  what to expect. Even if a long time has passed, it is always fine to reply
+  with an update.
+- To keep maintainer work manageable and the issue list current, issues that
+  cannot move forward because needed information is missing, the issue is no
+  longer reproducible, the reported behavior no longer matches the current
+  project, or the discussion has been inactive for a reasonable period may be
+  closed.
 - This is not a judgment on the reporter or the report, and it does not prevent
   you from adding new information later if the issue is still relevant.
 
