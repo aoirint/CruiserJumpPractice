@@ -32,6 +32,7 @@ internal sealed class RequestSaveCruiserStateUseCase
         }
 
         gameInterop.RequestSaveCruiserState();
+        // Request success means the host dispatched the ServerRpc, not that the server saved.
         RecordResult("host", "success");
         return RequestSaveCruiserStateResult.Success;
     }

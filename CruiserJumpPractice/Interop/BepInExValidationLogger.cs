@@ -129,6 +129,13 @@ internal sealed class BepInExValidationLogger : IValidationLogger
     )
     {
         AppendName(payload, name, isFirst);
+        if (float.IsNaN(value) || float.IsInfinity(value))
+        {
+            // JSON has no NaN or Infinity literals; keep malformed Unity state parseable.
+            payload.Append("null");
+            return;
+        }
+
         payload.Append(FormatNumber(value, decimalPlaces));
     }
 

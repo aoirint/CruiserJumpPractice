@@ -71,14 +71,15 @@ internal sealed class LoadCruiserStateUseCase
                 return LoadCruiserStateResult.MagnetedToShip;
             }
 
+            var restoreObservation = gameInterop.RestoreCruiser(savedCruiserState);
+            RecordRestoreApplied(restoreObservation);
+            // Success means the server restore completed, not just that preconditions passed.
             RecordLoadResult(
                 result: "success",
                 cruiserFound: true,
                 savedState: true,
                 magneted: false
             );
-            var restoreObservation = gameInterop.RestoreCruiser(savedCruiserState);
-            RecordRestoreApplied(restoreObservation);
             return LoadCruiserStateResult.Success;
         }
         catch (System.Exception error)

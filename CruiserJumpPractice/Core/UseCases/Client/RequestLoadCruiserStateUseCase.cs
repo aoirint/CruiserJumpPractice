@@ -32,6 +32,7 @@ internal sealed class RequestLoadCruiserStateUseCase
         }
 
         gameInterop.RequestLoadCruiserState();
+        // Request success means the host dispatched the ServerRpc, not that the server restored.
         RecordResult("host", "success");
         return RequestLoadCruiserStateResult.Success;
     }
