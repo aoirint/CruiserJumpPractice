@@ -18,7 +18,7 @@ The project maintainer is listed in [CODEOWNERS](./.github/CODEOWNERS).
 ## Reporting issues
 
 Use GitHub Issues for ordinary bug reports, feature requests, compatibility
-notes, and documentation error reports.
+notes, and documentation improvement requests.
 Before opening a new issue, check the existing issues and pull requests to
 avoid duplicates.
 
