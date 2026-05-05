@@ -92,11 +92,10 @@ If you did not run a relevant check, explain why.
 You are responsible for masking personal information, local absolute paths,
 access tokens, and other sensitive details before posting logs, screenshots,
 or videos.
-Manual checks should describe checks performed without AI automation. Do not
-present AI-performed review, inspection, editing, verification, or other work as
-"manual". If an AI-assisted inspection is included, list a short `Request: ...`
-summary first, nest the `AI-assisted result: ...` under it, and clearly label
-the result as AI-assisted.
+Do not present AI-performed review, inspection, editing, verification, or other
+work as "manual". If you include AI-assisted inspection, list a short
+`Request: ...` summary first, nest the `AI-assisted result: ...` under it, and
+clearly label the result as AI-assisted.
 
 Optional testing structure:
 ### Build log

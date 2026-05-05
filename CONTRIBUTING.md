@@ -244,9 +244,8 @@ Submitter responsibilities:
   as automated test output, build output, screenshots, or a clear description of
   any hands-on checks that could not reasonably be automated.
 - Do not present AI-performed review, inspection, editing, verification, or
-  other work as "manual". Manual checks should be performed without AI
-  automation. If an AI-assisted inspection is included, describe the request
-  first, nest the AI result under it, and clearly label the result as
+  other work as "manual". If you include AI-assisted inspection, describe the
+  request first, nest the AI result under it, and clearly label the result as
   AI-assisted.
 - Keep pull requests and other project-facing material reviewable. Do not submit
   either large, hard-to-review changes or high volumes of issues, comments, or
