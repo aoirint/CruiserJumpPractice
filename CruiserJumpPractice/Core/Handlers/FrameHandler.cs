@@ -33,43 +33,35 @@ internal sealed class FrameHandler
 
     public void HandleFrame()
     {
-        if (gameInterop.IsLocalPlayerBusy())
+        // Snapshot one-frame triggers before suppression so later validation logging can
+        // report the intended action without retaining raw input, chat, or terminal text.
+        var saveTriggered = practiceInput.SaveCruiserTriggered;
+        var loadTriggered = practiceInput.LoadCruiserTriggered;
+        var toggleMagnetTriggered = practiceInput.ToggleMagnetTriggered;
+
+        if (!saveTriggered && !loadTriggered && !toggleMagnetTriggered)
         {
             return;
         }
 
-        UpdateSaveCruiser();
-        UpdateLoadCruiser();
-        UpdateToggleMagnet();
-    }
-
-    private void UpdateSaveCruiser()
-    {
-        if (!practiceInput.SaveCruiserTriggered)
+        if (gameInterop.GetLocalPlayerBusyState().IsBusy)
         {
             return;
         }
 
-        requestSaveCruiserStateUseCase.Execute();
-    }
-
-    private void UpdateLoadCruiser()
-    {
-        if (!practiceInput.LoadCruiserTriggered)
+        if (saveTriggered)
         {
-            return;
+            requestSaveCruiserStateUseCase.Execute();
         }
 
-        requestLoadCruiserStateUseCase.Execute();
-    }
-
-    private void UpdateToggleMagnet()
-    {
-        if (!practiceInput.ToggleMagnetTriggered)
+        if (loadTriggered)
         {
-            return;
+            requestLoadCruiserStateUseCase.Execute();
         }
 
-        toggleMagnetUseCase.Execute();
+        if (toggleMagnetTriggered)
+        {
+            toggleMagnetUseCase.Execute();
+        }
     }
 }
