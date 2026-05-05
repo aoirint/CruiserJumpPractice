@@ -47,7 +47,7 @@ See [Reporting security issues](#reporting-security-issues) instead.
 
 ## Stalled Issues
 
-Respond to maintainer questions when possible.
+Respond to maintainer questions as much as you reasonably can.
 Maintainers may close issues that cannot move forward because needed
 information is missing, the issue is no longer reproducible, the reported
 behavior no longer matches the current project, or the discussion has been
@@ -110,10 +110,10 @@ For package or release changes, also verify the release documentation in
 
 ## Stalled Pull Requests
 
-- Respond to maintainer feedback when possible. If you need more time, are
-  blocked, or no longer plan to continue the pull request, leave a short comment
-  so maintainers know what to expect. Even if a long time has passed, it is
-  always fine to reply with an update.
+- Respond to maintainer feedback as much as you reasonably can. If you need
+  more time, are blocked, or no longer plan to continue the pull request, leave
+  a short comment so maintainers know what to expect. Even if a long time has
+  passed, it is always fine to reply with an update.
 - If you want to continue work from a stalled pull request, leave a short
   comment for the maintainer and the original contributor before opening a new
   pull request. The original contributor may not be available to respond, but
