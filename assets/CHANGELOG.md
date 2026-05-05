@@ -20,6 +20,12 @@ No gameplay changes are introduced.
 
 - Rebuilt for Lethal Company v81.5.
 - Improved internal implementation structure and release packaging.
+- Added the Thunderstore `AI Generated` category to the package metadata:
+    - Thunderstore added per-community AI-use attestation on 2026-05-04 UTC.
+    - The Lethal Company community now asks authors to use this category when a
+      significant portion of a mod was created using AI tools.
+    - This category discloses project assistance and does not indicate a
+      gameplay feature.
 - Dropped backward compatibility with older CruiserJumpPractice versions:
     - Affects CruiserJumpPractice v0.1.4 and earlier.
     - Caused by a mod-internal change.
