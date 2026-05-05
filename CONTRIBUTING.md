@@ -240,6 +240,8 @@ Submitter responsibilities:
 
 - Review AI-assisted material yourself. Do not assume generated code,
   documentation, tests, explanations, summaries, or issue details are correct.
+  Understand and be ready to explain the material as much as you reasonably can
+  instead of leaving that work to maintainers.
 - For pull requests, provide verification evidence that matches the change, such
   as automated test output, build output, screenshots, or a clear description of
   any hands-on checks that could not reasonably be automated.
