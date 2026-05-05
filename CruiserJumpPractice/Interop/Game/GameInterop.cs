@@ -2,6 +2,7 @@
 #nullable enable
 
 using CruiserJumpPractice.Core.Ports;
+using CruiserJumpPractice.Core.Presentation;
 using CruiserJumpPractice.Core.Snapshots;
 using CruiserJumpPractice.Interop.Game.Adapters;
 
@@ -41,9 +42,9 @@ internal sealed class GameInterop : IGameInterop
         return playerInterop.IsLocalPlayerBusy();
     }
 
-    public void DisplayTip(string headerText, string bodyText)
+    public void DisplayTip(HudTipMessage message)
     {
-        hudInterop.DisplayTip(headerText, bodyText);
+        hudInterop.DisplayTip(message.HeaderText, message.BodyText);
     }
 
     public void SpawnRpcSurrogate()

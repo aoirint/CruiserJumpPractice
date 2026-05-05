@@ -2,6 +2,7 @@
 #nullable enable
 
 using CruiserJumpPractice.Core.Snapshots;
+using CruiserJumpPractice.Core.Presentation;
 
 namespace CruiserJumpPractice.Core.Ports;
 
@@ -14,7 +15,7 @@ internal interface IGameInterop
 
     bool IsLocalPlayerBusy();
 
-    void DisplayTip(string headerText, string bodyText);
+    void DisplayTip(HudTipMessage message);
 
     void SpawnRpcSurrogate();
 

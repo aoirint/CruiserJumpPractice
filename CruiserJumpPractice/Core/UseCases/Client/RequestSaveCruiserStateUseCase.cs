@@ -2,6 +2,7 @@
 #nullable enable
 
 using CruiserJumpPractice.Core.Ports;
+using CruiserJumpPractice.Core.Presentation;
 
 namespace CruiserJumpPractice.Core.UseCases.Client;
 
@@ -20,7 +21,7 @@ internal sealed class RequestSaveCruiserStateUseCase
     {
         if (!gameInterop.IsHost())
         {
-            gameInterop.DisplayTip("CruiserJumpPractice", "Only the host can save the cruiser state.");
+            gameInterop.DisplayTip(HudTipMessage.SaveHostOnly);
             return RequestSaveCruiserStateResult.HostOnly;
         }
 
