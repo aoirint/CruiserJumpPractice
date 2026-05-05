@@ -4,6 +4,7 @@
 using CruiserJumpPractice.Core.Ports;
 using CruiserJumpPractice.Core.State;
 using CruiserJumpPractice.Core.UseCases.Client;
+using CruiserJumpPractice.Core.Validation;
 
 namespace CruiserJumpPractice.Core.Handlers;
 
@@ -99,35 +100,18 @@ internal sealed class FrameHandler
 
     private void RecordTriggeredInput(string action)
     {
-        validationLogger.Record(
-            "input_triggered",
-            new()
-            {
-                ["action"] = action,
-                ["role"] = GetRoleToken(),
-                ["busy"] = false
-            }
-        );
+        validationLogger.Record(ValidationLogRecord.InputTriggered(action, GetRole()));
     }
 
     private void RecordSuppressedInput(string action, LocalPlayerBusyState busyState)
     {
         validationLogger.Record(
-            "input_suppressed",
-            new()
-            {
-                ["action"] = action,
-                ["role"] = GetRoleToken(),
-                ["reason"] = busyState.GetBusyReasonToken() ?? "unknown",
-                ["menu"] = busyState.IsMenuOpen,
-                ["terminal"] = busyState.IsInTerminal,
-                ["chat"] = busyState.IsTypingChat
-            }
+            ValidationLogRecord.InputSuppressed(action, GetRole(), busyState)
         );
     }
 
-    private string GetRoleToken()
+    private ValidationLogRole GetRole()
     {
-        return gameInterop.IsHost() ? "host" : "client";
+        return gameInterop.IsHost() ? ValidationLogRole.Host : ValidationLogRole.Client;
     }
 }

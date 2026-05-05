@@ -4,6 +4,7 @@
 using CruiserJumpPractice.Core.Ports;
 using CruiserJumpPractice.Core.Snapshots;
 using CruiserJumpPractice.Core.State;
+using CruiserJumpPractice.Core.Validation;
 
 namespace CruiserJumpPractice.Core.UseCases.Server;
 
@@ -36,11 +37,10 @@ internal sealed class LoadCruiserStateUseCase
             if (!gameInterop.CruiserExists())
             {
                 logger.LogInfo("No cruiser found.");
-                RecordLoadResult(
-                    result: "no_cruiser_found",
-                    cruiserFound: false,
-                    savedState: cruiserStateStore.SavedCruiserState != null,
-                    magneted: "unknown"
+                validationLogger.Record(
+                    ValidationLogRecord.LoadNoCruiserFound(
+                        cruiserStateStore.SavedCruiserState != null
+                    )
                 );
                 return LoadCruiserStateResult.NoCruiserFound;
             }
@@ -49,12 +49,7 @@ internal sealed class LoadCruiserStateUseCase
             if (savedCruiserState == null)
             {
                 logger.LogInfo("No saved cruiser state found.");
-                RecordLoadResult(
-                    result: "no_saved_state",
-                    cruiserFound: true,
-                    savedState: false,
-                    magneted: "unknown"
-                );
+                validationLogger.Record(ValidationLogRecord.LoadNoSavedState());
                 return LoadCruiserStateResult.NoSavedState;
             }
 
@@ -62,12 +57,7 @@ internal sealed class LoadCruiserStateUseCase
             if (isMagneted)
             {
                 logger.LogInfo("Cruiser is currently magneted to the ship. Cannot load state.");
-                RecordLoadResult(
-                    result: "magneted_to_ship",
-                    cruiserFound: true,
-                    savedState: true,
-                    magneted: true
-                );
+                validationLogger.Record(ValidationLogRecord.LoadMagnetedToShip());
                 return LoadCruiserStateResult.MagnetedToShip;
             }
 
@@ -76,87 +66,19 @@ internal sealed class LoadCruiserStateUseCase
             var restoreObservation = gameInterop.RestoreCruiser(savedCruiserState);
             RecordRestoreApplied(restoreObservation);
             // Success means the server restore completed, not just that preconditions passed.
-            RecordLoadResult(
-                result: "success",
-                cruiserFound: true,
-                savedState: true,
-                magneted: false
-            );
+            validationLogger.Record(ValidationLogRecord.LoadSuccess());
             return LoadCruiserStateResult.Success;
         }
         catch (System.Exception error)
         {
             logger.LogError($"Exception while loading cruiser state: {error}");
-            validationLogger.Record(
-                "load_result",
-                new()
-                {
-                    ["role"] = "host",
-                    ["result"] = "unexpected_state"
-                }
-            );
+            validationLogger.Record(ValidationLogRecord.LoadUnexpectedState());
             return LoadCruiserStateResult.UnexpectedState;
         }
     }
 
-    private void RecordLoadResult(
-        string result,
-        bool cruiserFound,
-        bool savedState,
-        bool magneted
-    )
-    {
-        validationLogger.Record(
-            "load_result",
-            new()
-            {
-                ["role"] = "host",
-                ["result"] = result,
-                ["cruiser_found"] = cruiserFound,
-                ["saved_state"] = savedState,
-                ["magneted"] = magneted
-            }
-        );
-    }
-
-    private void RecordLoadResult(
-        string result,
-        bool cruiserFound,
-        bool savedState,
-        string magneted
-    )
-    {
-        validationLogger.Record(
-            "load_result",
-            new()
-            {
-                ["role"] = "host",
-                ["result"] = result,
-                ["cruiser_found"] = cruiserFound,
-                ["saved_state"] = savedState,
-                ["magneted"] = magneted
-            }
-        );
-    }
-
     private void RecordRestoreApplied(CruiserRestoreObservation observation)
     {
-        validationLogger.Record(
-            "restore_applied",
-            new()
-            {
-                ["role"] = "host",
-                ["saved_pos"] = ValidationLogData.Vector3(observation.SavedCarPosition, decimalPlaces: 1),
-                ["saved_rot"] = ValidationLogData.Vector3(observation.SavedCarRotation, decimalPlaces: 1),
-                ["before_pos"] = ValidationLogData.Vector3(observation.BeforeCarPosition, decimalPlaces: 1),
-                ["after_pos"] = ValidationLogData.Vector3(observation.AfterCarPosition, decimalPlaces: 1),
-                ["saved_hp"] = observation.SavedCarHP,
-                ["before_hp"] = observation.BeforeCarHP,
-                ["after_hp"] = observation.AfterCarHP,
-                ["saved_turbo"] = observation.SavedTurboBoosts,
-                ["before_turbo"] = observation.BeforeTurboBoosts,
-                ["after_turbo"] = observation.AfterTurboBoosts
-            }
-        );
+        validationLogger.Record(ValidationLogRecord.RestoreApplied(observation));
     }
 }

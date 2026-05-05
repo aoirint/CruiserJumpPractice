@@ -4,6 +4,7 @@
 using CruiserJumpPractice.Core.Ports;
 using CruiserJumpPractice.Core.Snapshots;
 using CruiserJumpPractice.Core.State;
+using CruiserJumpPractice.Core.Validation;
 
 namespace CruiserJumpPractice.Core.UseCases.Server;
 
@@ -37,15 +38,7 @@ internal sealed class SaveCruiserStateUseCase
             if (cruiserState == null)
             {
                 logger.LogInfo("No cruiser found.");
-                validationLogger.Record(
-                    "save_result",
-                    new()
-                    {
-                        ["role"] = "host",
-                        ["result"] = "no_cruiser_found",
-                        ["cruiser_found"] = false
-                    }
-                );
+                validationLogger.Record(ValidationLogRecord.SaveNoCruiserFound());
                 return SaveCruiserStateResult.NoCruiserFound;
             }
 
@@ -56,34 +49,13 @@ internal sealed class SaveCruiserStateUseCase
         catch (System.Exception error)
         {
             logger.LogError($"Exception while saving cruiser state: {error}");
-            validationLogger.Record(
-                "save_result",
-                new()
-                {
-                    ["role"] = "host",
-                    ["result"] = "unexpected_state"
-                }
-            );
+            validationLogger.Record(ValidationLogRecord.SaveUnexpectedState());
             return SaveCruiserStateResult.UnexpectedState;
         }
     }
 
     private void RecordSaveSuccess(CruiserSnapshot cruiserState)
     {
-        validationLogger.Record(
-            "save_result",
-            new()
-            {
-                ["role"] = "host",
-                ["result"] = "success",
-                ["cruiser_found"] = true,
-                ["pos"] = ValidationLogData.Vector3(cruiserState.CarPosition, decimalPlaces: 1),
-                ["rot"] = ValidationLogData.Vector3(cruiserState.CarRotation, decimalPlaces: 1),
-                ["hp"] = cruiserState.CarHP,
-                ["turbo"] = cruiserState.TurboBoosts,
-                ["steering"] = ValidationLogData.Number(cruiserState.SteeringInput, decimalPlaces: 2),
-                ["rpm"] = ValidationLogData.Number(cruiserState.EngineRPM, decimalPlaces: 2)
-            }
-        );
+        validationLogger.Record(ValidationLogRecord.SaveSuccess(cruiserState));
     }
 }

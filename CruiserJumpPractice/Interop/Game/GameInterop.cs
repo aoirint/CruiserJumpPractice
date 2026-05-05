@@ -5,6 +5,7 @@ using CruiserJumpPractice.Core.Ports;
 using CruiserJumpPractice.Core.Presentation;
 using CruiserJumpPractice.Core.Snapshots;
 using CruiserJumpPractice.Core.State;
+using CruiserJumpPractice.Core.Validation;
 using CruiserJumpPractice.Interop.Game.Adapters;
 
 namespace CruiserJumpPractice.Interop.Game;
@@ -49,14 +50,7 @@ internal sealed class GameInterop : IGameInterop
     {
         // Message selection stays in Core; Interop records the closed token
         // before unwrapping user-visible text at the final HUD boundary.
-        validationLogger.Record(
-            "hud_tip",
-            new()
-            {
-                ["role"] = GetRoleToken(),
-                ["message"] = message.Token
-            }
-        );
+        validationLogger.Record(ValidationLogRecord.HudTip(GetRole(), message));
         hudInterop.DisplayTip(message.HeaderText, message.BodyText);
     }
 
@@ -123,8 +117,8 @@ internal sealed class GameInterop : IGameInterop
         shipMagnetInterop.ToggleShipMagnet();
     }
 
-    private string GetRoleToken()
+    private ValidationLogRole GetRole()
     {
-        return IsHost() ? "host" : "client";
+        return IsHost() ? ValidationLogRole.Host : ValidationLogRole.Client;
     }
 }

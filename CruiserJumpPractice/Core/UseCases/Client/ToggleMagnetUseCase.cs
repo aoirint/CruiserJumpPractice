@@ -3,6 +3,7 @@
 
 using CruiserJumpPractice.Core.Ports;
 using CruiserJumpPractice.Core.Presentation;
+using CruiserJumpPractice.Core.Validation;
 
 namespace CruiserJumpPractice.Core.UseCases.Client;
 
@@ -25,7 +26,7 @@ internal sealed class ToggleMagnetUseCase
         if (!gameInterop.IsHost())
         {
             gameInterop.DisplayTip(HudTipMessage.MagnetHostOnly);
-            RecordResult("client", "host_only");
+            RecordResult(ValidationLogRole.Client, ToggleMagnetResult.HostOnly);
             return ToggleMagnetResult.HostOnly;
         }
 
@@ -33,21 +34,12 @@ internal sealed class ToggleMagnetUseCase
 
         // The game's built-in server RPC flow synchronizes this value.
         gameInterop.ToggleShipMagnet();
-        validationLogger.Record(
-            "magnet_toggle",
-            new()
-            {
-                ["role"] = "host",
-                ["before"] = ToValidationStateToken(observation.BeforeState),
-                ["expected_after"] = ToValidationStateToken(observation.ExpectedAfterState),
-                ["observed_after"] = ToValidationStateToken(observation.ObservedAfterState)
-            }
-        );
+        validationLogger.Record(ValidationLogRecord.MagnetToggle(observation));
 
         var result = observation.ExpectedAfterState == MagnetState.On
             ? ToggleMagnetResult.MagnetOn
             : ToggleMagnetResult.MagnetOff;
-        RecordResult("host", ToValidationResultToken(result));
+        validationLogger.Record(ValidationLogRecord.ToggleMagnetResultEvent(ValidationLogRole.Host, result));
         var message = result == ToggleMagnetResult.MagnetOn
             ? HudTipMessage.MagnetOn
             : HudTipMessage.MagnetOff;
@@ -55,37 +47,8 @@ internal sealed class ToggleMagnetUseCase
         return result;
     }
 
-    private void RecordResult(string role, string result)
+    private void RecordResult(ValidationLogRole role, ToggleMagnetResult result)
     {
-        validationLogger.Record(
-            "toggle_magnet_result",
-            new()
-            {
-                ["role"] = role,
-                ["result"] = result
-            }
-        );
-    }
-
-    private static string ToValidationResultToken(ToggleMagnetResult result)
-    {
-        return result switch
-        {
-            ToggleMagnetResult.MagnetOn => "magnet_on",
-            ToggleMagnetResult.MagnetOff => "magnet_off",
-            ToggleMagnetResult.HostOnly => "host_only",
-            _ => "host_only"
-        };
-    }
-
-    private static string ToValidationStateToken(MagnetState state)
-    {
-        return state switch
-        {
-            MagnetState.On => "on",
-            MagnetState.Off => "off",
-            MagnetState.Unknown => "unknown",
-            _ => "unknown"
-        };
+        validationLogger.Record(ValidationLogRecord.ToggleMagnetResultEvent(role, result));
     }
 }

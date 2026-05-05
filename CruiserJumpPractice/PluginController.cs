@@ -7,6 +7,7 @@ using CruiserJumpPractice.Core.State;
 using CruiserJumpPractice.Core.UseCases;
 using CruiserJumpPractice.Core.UseCases.Client;
 using CruiserJumpPractice.Core.UseCases.Server;
+using CruiserJumpPractice.Core.Validation;
 using CruiserJumpPractice.Interop.Game;
 using CruiserJumpPractice.Interop.InputUtils;
 
@@ -58,7 +59,7 @@ internal sealed class PluginController
         IGameInterop gameInterop = new GameInterop(logger, validationLogger);
 
         var cruiserStateStore = new CruiserStateStore();
-        validationLogger.Record("state_store_created");
+        validationLogger.Record(ValidationLogRecord.StateStoreCreated());
         var saveCruiserStateUseCase = new SaveCruiserStateUseCase(
             gameInterop,
             cruiserStateStore,
@@ -99,7 +100,7 @@ internal sealed class PluginController
             toggleMagnetUseCase
         );
 
-        validationLogger.Record("controller_created");
+        validationLogger.Record(ValidationLogRecord.ControllerCreated());
         return new PluginController(
             gameInterop: gameInterop,
             validationLogger: validationLogger,
@@ -144,70 +145,31 @@ internal sealed class PluginController
 
     public void RecordSaveServerRpcReceived()
     {
-        validationLogger.Record(
-            "save_server_rpc_received",
-            new() { ["role"] = GetRoleToken() }
-        );
+        validationLogger.Record(ValidationLogRecord.SaveServerRpcReceived(GetRole()));
     }
 
     public void RecordSaveClientRpcReceived(SaveCruiserStateResult result)
     {
         validationLogger.Record(
-            "save_client_rpc_received",
-            new()
-            {
-                ["role"] = GetRoleToken(),
-                ["result"] = ToValidationResultToken(result)
-            }
+            ValidationLogRecord.SaveClientRpcReceived(GetRole(), result)
         );
     }
 
     public void RecordLoadServerRpcReceived()
     {
-        validationLogger.Record(
-            "load_server_rpc_received",
-            new() { ["role"] = GetRoleToken() }
-        );
+        validationLogger.Record(ValidationLogRecord.LoadServerRpcReceived(GetRole()));
     }
 
     public void RecordLoadClientRpcReceived(LoadCruiserStateResult result)
     {
         validationLogger.Record(
-            "load_client_rpc_received",
-            new()
-            {
-                ["role"] = GetRoleToken(),
-                ["result"] = ToValidationResultToken(result)
-            }
+            ValidationLogRecord.LoadClientRpcReceived(GetRole(), result)
         );
     }
 
-    private string GetRoleToken()
+    private ValidationLogRole GetRole()
     {
-        return gameInterop.IsHost() ? "host" : "client";
+        return gameInterop.IsHost() ? ValidationLogRole.Host : ValidationLogRole.Client;
     }
 
-    private static string ToValidationResultToken(SaveCruiserStateResult result)
-    {
-        return result switch
-        {
-            SaveCruiserStateResult.Success => "success",
-            SaveCruiserStateResult.NoCruiserFound => "no_cruiser_found",
-            SaveCruiserStateResult.UnexpectedState => "unexpected_state",
-            _ => "unexpected_state"
-        };
-    }
-
-    private static string ToValidationResultToken(LoadCruiserStateResult result)
-    {
-        return result switch
-        {
-            LoadCruiserStateResult.Success => "success",
-            LoadCruiserStateResult.NoCruiserFound => "no_cruiser_found",
-            LoadCruiserStateResult.NoSavedState => "no_saved_state",
-            LoadCruiserStateResult.MagnetedToShip => "magneted_to_ship",
-            LoadCruiserStateResult.UnexpectedState => "unexpected_state",
-            _ => "unexpected_state"
-        };
-    }
 }

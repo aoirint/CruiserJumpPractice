@@ -3,6 +3,7 @@
 
 using CruiserJumpPractice.Core.Ports;
 using CruiserJumpPractice.Core.Presentation;
+using CruiserJumpPractice.Core.Validation;
 
 namespace CruiserJumpPractice.Core.UseCases.Client;
 
@@ -27,26 +28,19 @@ internal sealed class RequestLoadCruiserStateUseCase
         if (!gameInterop.IsHost())
         {
             gameInterop.DisplayTip(HudTipMessage.LoadHostOnly);
-            RecordResult("client", "host_only");
+            RecordResult(ValidationLogRole.Client, RequestLoadCruiserStateResult.HostOnly);
             return RequestLoadCruiserStateResult.HostOnly;
         }
 
         // Record the local acceptance before crossing into the ServerRpc path; on a host the
         // server callback can run before this method returns.
-        RecordResult("host", "success");
+        RecordResult(ValidationLogRole.Host, RequestLoadCruiserStateResult.Success);
         gameInterop.RequestLoadCruiserState();
         return RequestLoadCruiserStateResult.Success;
     }
 
-    private void RecordResult(string role, string result)
+    private void RecordResult(ValidationLogRole role, RequestLoadCruiserStateResult result)
     {
-        validationLogger.Record(
-            "request_load_result",
-            new()
-            {
-                ["role"] = role,
-                ["result"] = result
-            }
-        );
+        validationLogger.Record(ValidationLogRecord.RequestLoadResult(role, result));
     }
 }

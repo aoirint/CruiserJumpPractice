@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using CruiserJumpPractice.Core.Ports;
+using CruiserJumpPractice.Core.Validation;
 using Newtonsoft.Json;
 
 namespace CruiserJumpPractice.Interop;
@@ -24,7 +25,7 @@ internal sealed class BepInExValidationLogger : IValidationLogger
         runId = CreateRunId(startupTimeUtc);
     }
 
-    public void Record(string eventName, Dictionary<string, object?>? fields = null)
+    public void Record(ValidationLogRecord record)
     {
         var payload = new Dictionary<string, object?>
         {
@@ -32,12 +33,12 @@ internal sealed class BepInExValidationLogger : IValidationLogger
             ["ts"] = FormatTimestamp(DateTime.UtcNow),
             ["run"] = runId,
             ["seq"] = ++sequence,
-            ["event"] = eventName
+            ["event"] = record.EventName
         };
 
-        if (fields != null)
+        if (record.Fields != null)
         {
-            foreach (var field in fields)
+            foreach (var field in record.Fields)
             {
                 payload[field.Key] = field.Value;
             }

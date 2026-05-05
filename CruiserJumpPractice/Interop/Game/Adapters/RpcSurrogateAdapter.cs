@@ -2,6 +2,7 @@
 #nullable enable
 
 using CruiserJumpPractice.Core.Ports;
+using CruiserJumpPractice.Core.Validation;
 using CruiserJumpPractice.Interop.Game.Behaviours;
 
 using CruiserJumpPractice.Interop.Game;
@@ -83,13 +84,6 @@ internal sealed class RpcSurrogateAdapter
 
     private void RecordResolved(string source, string result)
     {
-        validationLogger.Record(
-            "rpc_surrogate_resolved",
-            new()
-            {
-                ["source"] = source,
-                ["result"] = result
-            }
-        );
+        validationLogger.Record(ValidationLogRecord.RpcSurrogateResolved(source, result));
     }
 }
