@@ -2,6 +2,7 @@
 #nullable enable
 
 using CruiserJumpPractice.Core.Ports;
+using CruiserJumpPractice.Core.Presentation;
 
 namespace CruiserJumpPractice.Core.UseCases.Client;
 
@@ -21,18 +22,22 @@ internal sealed class ToggleMagnetUseCase
     {
         if (!gameInterop.IsHost())
         {
-            gameInterop.DisplayTip("CruiserJumpPractice", "Only the host can toggle the magnet.");
+            gameInterop.DisplayTip(HudTipMessage.MagnetHostOnly);
             return ToggleMagnetResult.HostOnly;
         }
 
-        var newMagnetState = !gameInterop.IsShipMagnetOn();
+        var observation = MagnetToggleObservation.FromBeforeState(gameInterop.IsShipMagnetOn());
 
         // The game's built-in server RPC flow synchronizes this value.
         gameInterop.ToggleShipMagnet();
 
-        var result = newMagnetState ? ToggleMagnetResult.MagnetOn : ToggleMagnetResult.MagnetOff;
-        var magnetStateText = result == ToggleMagnetResult.MagnetOn ? "ON" : "OFF";
-        gameInterop.DisplayTip("CruiserJumpPractice", $"Magnet is now {magnetStateText}.");
+        var result = observation.ExpectedAfterState == MagnetState.On
+            ? ToggleMagnetResult.MagnetOn
+            : ToggleMagnetResult.MagnetOff;
+        var message = result == ToggleMagnetResult.MagnetOn
+            ? HudTipMessage.MagnetOn
+            : HudTipMessage.MagnetOff;
+        gameInterop.DisplayTip(message);
         return result;
     }
 }

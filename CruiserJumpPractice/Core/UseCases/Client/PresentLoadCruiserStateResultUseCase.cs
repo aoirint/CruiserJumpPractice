@@ -2,6 +2,7 @@
 #nullable enable
 
 using CruiserJumpPractice.Core.Ports;
+using CruiserJumpPractice.Core.Presentation;
 
 namespace CruiserJumpPractice.Core.UseCases.Client;
 
@@ -23,19 +24,19 @@ internal sealed class PresentLoadCruiserStateResultUseCase
     {
         if (result == LoadCruiserStateResult.Success)
         {
-            DisplayTip("Cruiser state loaded.");
+            DisplayTip(HudTipMessage.LoadSuccess);
         }
         else if (result == LoadCruiserStateResult.NoCruiserFound)
         {
-            DisplayTip("No cruiser found to load.");
+            DisplayTip(HudTipMessage.LoadNoCruiser);
         }
         else if (result == LoadCruiserStateResult.NoSavedState)
         {
-            DisplayTip("No saved cruiser state to load.");
+            DisplayTip(HudTipMessage.LoadNoSavedState);
         }
         else if (result == LoadCruiserStateResult.MagnetedToShip)
         {
-            DisplayTip("Cannot load cruiser state while magneted to ship.");
+            DisplayTip(HudTipMessage.LoadMagnetedToShip);
         }
         else
         {
@@ -43,8 +44,8 @@ internal sealed class PresentLoadCruiserStateResultUseCase
         }
     }
 
-    private void DisplayTip(string message)
+    private void DisplayTip(HudTipMessage message)
     {
-        gameInterop.DisplayTip("CruiserJumpPractice", message);
+        gameInterop.DisplayTip(message);
     }
 }

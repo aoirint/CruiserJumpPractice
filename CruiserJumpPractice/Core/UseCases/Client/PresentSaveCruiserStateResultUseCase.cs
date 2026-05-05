@@ -2,6 +2,7 @@
 #nullable enable
 
 using CruiserJumpPractice.Core.Ports;
+using CruiserJumpPractice.Core.Presentation;
 
 namespace CruiserJumpPractice.Core.UseCases.Client;
 
@@ -22,11 +23,11 @@ internal sealed class PresentSaveCruiserStateResultUseCase
     {
         if (result == SaveCruiserStateResult.Success)
         {
-            DisplayTip("Cruiser state saved.");
+            DisplayTip(HudTipMessage.SaveSuccess);
         }
         else if (result == SaveCruiserStateResult.NoCruiserFound)
         {
-            DisplayTip("No cruiser found to save.");
+            DisplayTip(HudTipMessage.SaveNoCruiser);
         }
         else
         {
@@ -34,8 +35,8 @@ internal sealed class PresentSaveCruiserStateResultUseCase
         }
     }
 
-    private void DisplayTip(string message)
+    private void DisplayTip(HudTipMessage message)
     {
-        gameInterop.DisplayTip("CruiserJumpPractice", message);
+        gameInterop.DisplayTip(message);
     }
 }
