@@ -84,6 +84,16 @@ dotnet restore --locked-mode
 - Prefer the existing project structure and naming conventions.
 - Keep user-facing behavior explicit in code, documentation, or changelog
   entries when the behavior changes.
+- Use named arguments when they make project-owned call sites easier to review,
+  especially for multiple primitive values, repeated argument types, boolean
+  flags, or compact validation records where adjacent values can be mistaken for
+  each other.
+- Avoid broad mechanical named-argument churn. Keep obvious single-argument
+  calls positional unless a name removes real ambiguity.
+- Be conservative with named arguments for external APIs, Harmony patches,
+  Unity or BepInEx framework calls, generated APIs, and base-game calls. These
+  call sites often depend on upstream parameter names or ecosystem conventions
+  outside this project's control.
 - Update [CHANGELOG.md](./CHANGELOG.md) for developer-facing changes that should
   appear in release history.
 - Update files under [assets/](./assets/) when the Thunderstore package
