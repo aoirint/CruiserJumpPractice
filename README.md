@@ -180,31 +180,7 @@ DOTNET_CLI_UI_LANGUAGE=en dotnet build --configuration Release
 2. For a stable release, derive the Thunderstore-facing release notes in
    `assets/CHANGELOG.md` from stable entries in `CHANGELOG.md`.
 3. Update the Thunderstore package description compatibility marker in
-   `assets/manifest.json` when the `assets/README.md` `Compatibility` section
-   records a newly tested Lethal Company version.
-   Use the compact marker format `[v<version>]` or
-   `[v<older-version>/<newer-version>]` at the start of the description.
-   For example, use `[v73/v81.5]` when the marker intentionally covers both
-   Lethal Company versions.
-   In this marker, versions mean tested or maintainer-confirmed Lethal Company
-   versions from `assets/README.md`.
-   List slash-separated versions from older to newer.
-   Keep best-effort or lower-confidence compatibility notes out of the marker;
-   document those in `assets/README.md` or `CHANGELOG.md` instead.
-   Restore or update the description by replacing any existing leading marker
-   with the new marker, then preserving the base description:
-   `[v<version-or-versions>] <description without the compatibility marker>`.
-   Treat single-version markers such as `[v81.5]` and slash-separated markers
-   such as `[v73/v81.5]` as the same leading compatibility marker.
-   Do not prepend a new marker to a description that already starts with a
-   compatibility marker; the manifest description should have exactly one
-   leading compatibility marker group.
-   Keep detailed compatibility and test environment information in
-   `assets/README.md` and `CHANGELOG.md`.
-   Handle dependency string changes in `assets/manifest.json` as separate
-   dependency maintenance, with the reason and compatibility impact documented
-   in that change.
-   Treat `CHANGELOG.md` as the developer-facing compatibility history.
+   `assets/manifest.json` when needed.
 4. Verify Thunderstore package metadata in `assets/manifest.json`:
     - Confirm dependency strings match the intended release baseline.
     - Confirm dependency string changes have documented reason, install impact,
@@ -222,14 +198,58 @@ DOTNET_CLI_UI_LANGUAGE=en dotnet build --configuration Release
 9. For stable releases, CI will upload the release artifact to Thunderstore
    automatically.
 
-   The current workflow deploys to the Thunderstore `aoirint` team and
-   publishes to the `lethal-company` community with the `Mods`,
-   `Tweaks & Quality Of Life`, and `AI Generated` categories.
-   The `THUNDERSTORE_TOKEN` secret must belong to a Thunderstore service
-   account that can publish to that team.
+### Compatibility marker
 
-   **NOTE: Thunderstore does not support prerelease versions such as
-   `1.2.3-beta.1`.**
+Update the leading compatibility marker in `assets/manifest.json` only when the
+`assets/README.md` `Compatibility` section records a newly tested or
+maintainer-confirmed Lethal Company version.
+
+Use the compact marker format at the start of the description:
+
+- `[v<version>]`
+- `[v<older-version>/<newer-version>]`
+
+For example, use `[v73/v81.5]` when the marker intentionally covers both Lethal
+Company versions.
+
+Marker versions mean tested or maintainer-confirmed Lethal Company versions
+from `assets/README.md`.
+List slash-separated versions from older to newer.
+Keep best-effort or lower-confidence compatibility notes out of the marker;
+document those in `assets/README.md` or `CHANGELOG.md` instead.
+
+When updating the marker:
+
+- Replace any existing leading marker with the new marker.
+- Preserve the base description after the marker:
+  `[v<version-or-versions>] <description without the compatibility marker>`.
+- Treat single-version markers such as `[v81.5]` and slash-separated markers
+  such as `[v73/v81.5]` as the same leading compatibility marker.
+- Keep exactly one leading compatibility marker group in the manifest
+  description.
+
+Keep detailed compatibility and test-environment information in
+`assets/README.md` and `CHANGELOG.md`.
+Treat `CHANGELOG.md` as the developer-facing compatibility history.
+
+Handle dependency string changes in `assets/manifest.json` as separate
+dependency maintenance.
+Document the reason and compatibility impact in that change.
+
+### Thunderstore publishing
+
+The current workflow deploys to the Thunderstore `aoirint` team and publishes to
+the `lethal-company` community with these categories:
+
+- `Mods`
+- `Tweaks & Quality Of Life`
+- `AI Generated`
+
+The `THUNDERSTORE_TOKEN` secret must belong to a Thunderstore service account
+that can publish to that team.
+
+**NOTE: Thunderstore does not support prerelease versions such as
+`1.2.3-beta.1`.**
 
 ## Debugging
 
