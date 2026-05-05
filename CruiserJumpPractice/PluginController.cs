@@ -220,11 +220,16 @@ internal sealed class PluginController
         );
     }
 
-    public void LogValidationPatchError(string hookName, Exception error)
+    public void TryLogValidationPatchError(string hookName, Exception error)
     {
-        // Harmony patches catch their own failures to preserve gameplay, so route diagnostics
-        // through the plugin logger instead of the validation logger that may be failing.
-        logger.LogError(message: $"Validation patch '{hookName}' failed: {error}");
+        try
+        {
+            // Harmony patches call this from base-game callbacks, so diagnostics are best-effort.
+            logger.LogError(message: $"Validation patch '{hookName}' failed: {error}");
+        }
+        catch
+        {
+        }
     }
 
     private ValidationLogRole GetRole()

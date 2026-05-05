@@ -52,22 +52,10 @@ internal static class StartOfRoundPatch
         }
         catch (System.Exception error)
         {
-            LogPatchError(hookName: nameof(RecordAppliedState), error: error);
-        }
-    }
-
-    private static void LogPatchError(string hookName, System.Exception error)
-    {
-        try
-        {
-            CruiserJumpPractice.Controller.LogValidationPatchError(
-                hookName: $"{nameof(StartOfRoundPatch)}.{hookName}",
+            CruiserJumpPractice.Controller.TryLogValidationPatchError(
+                hookName: $"{nameof(StartOfRoundPatch)}.{nameof(RecordAppliedState)}",
                 error: error
             );
-        }
-        catch
-        {
-            // Patch diagnostics are best-effort because this code runs inside base-game callbacks.
         }
     }
 }

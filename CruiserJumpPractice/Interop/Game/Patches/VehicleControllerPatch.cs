@@ -63,7 +63,10 @@ internal static class VehicleControllerPatch
         }
         catch (System.Exception error)
         {
-            LogPatchError(hookName: nameof(AddEngineOilOnLocalClientPostfix), error: error);
+            CruiserJumpPractice.Controller.TryLogValidationPatchError(
+                hookName: $"{nameof(VehicleControllerPatch)}.{nameof(AddEngineOilOnLocalClientPostfix)}",
+                error: error
+            );
         }
     }
 
@@ -115,7 +118,10 @@ internal static class VehicleControllerPatch
         }
         catch (System.Exception error)
         {
-            LogPatchError(hookName: nameof(AddTurboBoostOnLocalClientPostfix), error: error);
+            CruiserJumpPractice.Controller.TryLogValidationPatchError(
+                hookName: $"{nameof(VehicleControllerPatch)}.{nameof(AddTurboBoostOnLocalClientPostfix)}",
+                error: error
+            );
         }
     }
 
@@ -127,27 +133,12 @@ internal static class VehicleControllerPatch
         }
 
         turboBoostsFieldMissingLogged = true;
-        LogPatchError(
-            hookName: nameof(AddTurboBoostOnLocalClientPostfix),
+        CruiserJumpPractice.Controller.TryLogValidationPatchError(
+            hookName: $"{nameof(VehicleControllerPatch)}.{nameof(AddTurboBoostOnLocalClientPostfix)}",
             error: new System.MissingFieldException(
                 className: nameof(VehicleController),
                 fieldName: "turboBoosts"
             )
         );
-    }
-
-    private static void LogPatchError(string hookName, System.Exception error)
-    {
-        try
-        {
-            CruiserJumpPractice.Controller.LogValidationPatchError(
-                hookName: $"{nameof(VehicleControllerPatch)}.{hookName}",
-                error: error
-            );
-        }
-        catch
-        {
-            // Patch diagnostics are best-effort because this code runs inside base-game callbacks.
-        }
     }
 }
