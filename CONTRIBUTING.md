@@ -22,6 +22,14 @@ notes, and documentation improvement requests.
 Before opening a new issue, check the existing issues and pull requests to
 avoid duplicates.
 
+When you share sample code, logs, screenshots, or other supporting material in a
+public issue, expect maintainers to use that material within a reasonable scope
+to understand, reproduce, discuss, fix, and communicate about the reported
+issue.
+Only share material that you have the right to share, and do not include
+secrets, personal information, private data, or content that should not be made
+public.
+
 Do not report security issues in public GitHub Issues.
 See [Reporting security issues](#reporting-security-issues) instead.
 
