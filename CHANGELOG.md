@@ -31,6 +31,29 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Marked automated Thunderstore uploads with an additional Thunderstore
   category:
     - `AI Generated`
+    - Thunderstore added per-community AI-use attestation on 2026-05-04:
+        - `thunderstore-io/Thunderstore@00ae27015dc723f87742281097c285ac2cc8cb25`
+        - The upstream change describes a yes/no upload-form attestation that
+          auto-applies the `ai-generated` category for enrolled communities
+          when submitters answer that AI was used.
+        - Reference:
+          <https://github.com/thunderstore-io/Thunderstore/commit/00ae27015dc723f87742281097c285ac2cc8cb25>
+    - Thunderstore synced the attestation control with the `AI Generated`
+      category on 2026-05-05:
+        - `thunderstore-io/Thunderstore@e1a65587074c8c437628cb4c224c641e2ca9d659`
+        - Selecting the category and answering the attestation are intended to
+          stay consistent in both directions.
+        - Reference:
+          <https://github.com/thunderstore-io/Thunderstore/commit/e1a65587074c8c437628cb4c224c641e2ca9d659>
+    - The current Thunderstore Lethal Company category API includes
+      `AI Generated` with slug `ai-generated`:
+        - <https://thunderstore.io/api/experimental/community/lethal-company/category/>
+    - The current Lethal Company package list page describes the category as
+      the place to disclose packages where a significant portion was created
+      using AI tools:
+        - <https://thunderstore.io/c/lethal-company/?included_categories=689&ordering=last-updated&q=&section=mods>
+    - This project uses the category to disclose AI assistance in project work;
+      it is package metadata rather than a gameplay feature.
 - Aligned Thunderstore manifest dependency strings with the documented v81.5
   test environment for BepInExPack and LethalCompany_InputUtils:
     - Treats the manifest dependency versions as part of the practical minimum
