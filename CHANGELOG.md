@@ -12,6 +12,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## Unreleased
 
+## v0.2.0-alpha.3 - 2026-05-05 UTC
+
 ### Added
 
 - Automated stable-release publishing to Thunderstore from GitHub Actions:
