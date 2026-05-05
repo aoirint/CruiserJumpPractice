@@ -124,6 +124,23 @@ For package or release changes, also verify the release documentation in
   can be merged. Pull requests without that confirmation may be closed without
   further notice.
 
+Use pull request template sections this way:
+
+- `Summary`: user-facing or maintainer-facing changes, grouped by behavior or
+  area.
+- `Related Issues`: GitHub issues, pull requests, external references, or
+  `None`. When linking related work, state how it is related.
+- `Notes for reviewers`: limitations, skipped checks, migration notes, reviewer
+  attention points, or review focus.
+- `AI disclosure`: significant AI assistance details, or `None` when no
+  significant AI assistance was used.
+- `Testing`: automated commands, CI results, AI-assisted inspections, manual
+  checks, screenshots, or videos.
+- `Breaking Changes`: required when the title or commits include `!` or
+  `BREAKING CHANGE`. Treat backward-incompatible changes to public behavior,
+  documented workflows, configuration, package or release behavior,
+  compatibility guarantees, or other project-facing contracts as breaking.
+
 ## Stalled Pull Requests
 
 - Respond to maintainer feedback as much as you reasonably can. If you need
