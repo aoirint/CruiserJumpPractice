@@ -30,9 +30,9 @@ internal sealed class PlayerAdapter
             }
 
             return new LocalPlayerBusyState(
-                quickMenuManager.isMenuOpen,
-                localPlayer.inTerminalMenu,
-                localPlayer.isTypingChat
+                isMenuOpen: quickMenuManager.isMenuOpen,
+                isInTerminal: localPlayer.inTerminalMenu,
+                isTypingChat: localPlayer.isTypingChat
             );
         }
         catch (System.Exception error)

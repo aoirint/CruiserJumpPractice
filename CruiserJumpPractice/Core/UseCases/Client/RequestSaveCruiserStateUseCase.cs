@@ -28,19 +28,25 @@ internal sealed class RequestSaveCruiserStateUseCase
         if (!gameInterop.IsHost())
         {
             gameInterop.DisplayTip(HudTipMessage.SaveHostOnly);
-            RecordResult(ValidationLogRole.Client, RequestSaveCruiserStateResult.HostOnly);
+            RecordResult(
+                role: ValidationLogRole.Client,
+                result: RequestSaveCruiserStateResult.HostOnly
+            );
             return RequestSaveCruiserStateResult.HostOnly;
         }
 
         // Record the local acceptance before crossing into the ServerRpc path; on a host the
         // server callback can run before this method returns.
-        RecordResult(ValidationLogRole.Host, RequestSaveCruiserStateResult.Success);
+        RecordResult(
+            role: ValidationLogRole.Host,
+            result: RequestSaveCruiserStateResult.Success
+        );
         gameInterop.RequestSaveCruiserState();
         return RequestSaveCruiserStateResult.Success;
     }
 
     private void RecordResult(ValidationLogRole role, RequestSaveCruiserStateResult result)
     {
-        validationLogger.Record(ValidationLogRecord.RequestSaveResult(role, result));
+        validationLogger.Record(ValidationLogRecord.RequestSaveResult(role: role, result: result));
     }
 }

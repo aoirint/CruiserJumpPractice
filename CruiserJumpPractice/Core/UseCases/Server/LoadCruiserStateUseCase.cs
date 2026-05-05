@@ -39,7 +39,7 @@ internal sealed class LoadCruiserStateUseCase
                 logger.LogInfo("No cruiser found.");
                 validationLogger.Record(
                     ValidationLogRecord.LoadNoCruiserFound(
-                        cruiserStateStore.SavedCruiserState != null
+                        savedState: cruiserStateStore.SavedCruiserState != null
                     )
                 );
                 return LoadCruiserStateResult.NoCruiserFound;

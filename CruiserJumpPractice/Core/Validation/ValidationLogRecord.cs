@@ -129,7 +129,11 @@ internal sealed class ValidationLogRecord
         RequestSaveCruiserStateResult result
     )
     {
-        return Result("request_save_result", role, ToValidationResultToken(result));
+        return Result(
+            eventName: "request_save_result",
+            role: role,
+            result: ToValidationResultToken(result)
+        );
     }
 
     public static ValidationLogRecord RequestLoadResult(
@@ -137,7 +141,11 @@ internal sealed class ValidationLogRecord
         RequestLoadCruiserStateResult result
     )
     {
-        return Result("request_load_result", role, ToValidationResultToken(result));
+        return Result(
+            eventName: "request_load_result",
+            role: role,
+            result: ToValidationResultToken(result)
+        );
     }
 
     public static ValidationLogRecord ToggleMagnetResultEvent(
@@ -145,7 +153,11 @@ internal sealed class ValidationLogRecord
         ToggleMagnetResult result
     )
     {
-        return Result("toggle_magnet_result", role, ToValidationResultToken(result));
+        return Result(
+            eventName: "toggle_magnet_result",
+            role: role,
+            result: ToValidationResultToken(result)
+        );
     }
 
     public static ValidationLogRecord MagnetToggle(MagnetToggleObservation observation)
@@ -164,7 +176,7 @@ internal sealed class ValidationLogRecord
 
     public static ValidationLogRecord SaveServerRpcReceived(ValidationLogRole role)
     {
-        return Role("save_server_rpc_received", role);
+        return Role(eventName: "save_server_rpc_received", role: role);
     }
 
     public static ValidationLogRecord SaveClientRpcReceived(
@@ -172,12 +184,16 @@ internal sealed class ValidationLogRecord
         SaveCruiserStateResult result
     )
     {
-        return Result("save_client_rpc_received", role, ToValidationResultToken(result));
+        return Result(
+            eventName: "save_client_rpc_received",
+            role: role,
+            result: ToValidationResultToken(result)
+        );
     }
 
     public static ValidationLogRecord LoadServerRpcReceived(ValidationLogRole role)
     {
-        return Role("load_server_rpc_received", role);
+        return Role(eventName: "load_server_rpc_received", role: role);
     }
 
     public static ValidationLogRecord LoadClientRpcReceived(
@@ -185,7 +201,11 @@ internal sealed class ValidationLogRecord
         LoadCruiserStateResult result
     )
     {
-        return Result("load_client_rpc_received", role, ToValidationResultToken(result));
+        return Result(
+            eventName: "load_client_rpc_received",
+            role: role,
+            result: ToValidationResultToken(result)
+        );
     }
 
     public static ValidationLogRecord SaveNoCruiserFound()
@@ -203,7 +223,11 @@ internal sealed class ValidationLogRecord
 
     public static ValidationLogRecord SaveUnexpectedState()
     {
-        return Result("save_result", ValidationLogRole.Host, "unexpected_state");
+        return Result(
+            eventName: "save_result",
+            role: ValidationLogRole.Host,
+            result: "unexpected_state"
+        );
     }
 
     public static ValidationLogRecord SaveSuccess(CruiserSnapshot cruiserState)
@@ -267,7 +291,11 @@ internal sealed class ValidationLogRecord
 
     public static ValidationLogRecord LoadUnexpectedState()
     {
-        return Result("load_result", ValidationLogRole.Host, "unexpected_state");
+        return Result(
+            eventName: "load_result",
+            role: ValidationLogRole.Host,
+            result: "unexpected_state"
+        );
     }
 
     public static ValidationLogRecord RestoreApplied(CruiserRestoreObservation observation)

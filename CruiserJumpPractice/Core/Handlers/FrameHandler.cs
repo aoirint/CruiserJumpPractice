@@ -52,7 +52,12 @@ internal sealed class FrameHandler
         var busyState = gameInterop.GetLocalPlayerBusyState();
         if (busyState.IsBusy)
         {
-            RecordSuppressedInput(saveTriggered, loadTriggered, toggleMagnetTriggered, busyState);
+            RecordSuppressedInput(
+                saveTriggered: saveTriggered,
+                loadTriggered: loadTriggered,
+                toggleMagnetTriggered: toggleMagnetTriggered,
+                busyState: busyState
+            );
             return;
         }
 
@@ -84,23 +89,28 @@ internal sealed class FrameHandler
     {
         if (saveTriggered)
         {
-            RecordSuppressedInput(ValidationLogInputAction.Save, busyState);
+            RecordSuppressedInput(action: ValidationLogInputAction.Save, busyState: busyState);
         }
 
         if (loadTriggered)
         {
-            RecordSuppressedInput(ValidationLogInputAction.Load, busyState);
+            RecordSuppressedInput(action: ValidationLogInputAction.Load, busyState: busyState);
         }
 
         if (toggleMagnetTriggered)
         {
-            RecordSuppressedInput(ValidationLogInputAction.ToggleMagnet, busyState);
+            RecordSuppressedInput(
+                action: ValidationLogInputAction.ToggleMagnet,
+                busyState: busyState
+            );
         }
     }
 
     private void RecordTriggeredInput(ValidationLogInputAction action)
     {
-        validationLogger.Record(ValidationLogRecord.InputTriggered(action, GetRole()));
+        validationLogger.Record(
+            ValidationLogRecord.InputTriggered(action: action, role: GetRole())
+        );
     }
 
     private void RecordSuppressedInput(
@@ -109,7 +119,11 @@ internal sealed class FrameHandler
     )
     {
         validationLogger.Record(
-            ValidationLogRecord.InputSuppressed(action, GetRole(), busyState)
+            ValidationLogRecord.InputSuppressed(
+                action: action,
+                role: GetRole(),
+                busyState: busyState
+            )
         );
     }
 

@@ -26,7 +26,7 @@ internal sealed class ToggleMagnetUseCase
         if (!gameInterop.IsHost())
         {
             gameInterop.DisplayTip(HudTipMessage.MagnetHostOnly);
-            RecordResult(ValidationLogRole.Client, ToggleMagnetResult.HostOnly);
+            RecordResult(role: ValidationLogRole.Client, result: ToggleMagnetResult.HostOnly);
             return ToggleMagnetResult.HostOnly;
         }
 
@@ -39,7 +39,12 @@ internal sealed class ToggleMagnetUseCase
         var result = observation.ExpectedAfterState == MagnetState.On
             ? ToggleMagnetResult.MagnetOn
             : ToggleMagnetResult.MagnetOff;
-        validationLogger.Record(ValidationLogRecord.ToggleMagnetResultEvent(ValidationLogRole.Host, result));
+        validationLogger.Record(
+            ValidationLogRecord.ToggleMagnetResultEvent(
+                role: ValidationLogRole.Host,
+                result: result
+            )
+        );
         var message = result == ToggleMagnetResult.MagnetOn
             ? HudTipMessage.MagnetOn
             : HudTipMessage.MagnetOff;
@@ -49,6 +54,8 @@ internal sealed class ToggleMagnetUseCase
 
     private void RecordResult(ValidationLogRole role, ToggleMagnetResult result)
     {
-        validationLogger.Record(ValidationLogRecord.ToggleMagnetResultEvent(role, result));
+        validationLogger.Record(
+            ValidationLogRecord.ToggleMagnetResultEvent(role: role, result: result)
+        );
     }
 }

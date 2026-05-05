@@ -159,7 +159,7 @@ internal sealed class CruiserAdapter
 
     private static Vector3Value FromUnityVector3(Vector3 value)
     {
-        return new Vector3Value(value.x, value.y, value.z);
+        return new Vector3Value(x: value.x, y: value.y, z: value.z);
     }
 
     private static Vector3 ToUnityVector3(Vector3Value value)

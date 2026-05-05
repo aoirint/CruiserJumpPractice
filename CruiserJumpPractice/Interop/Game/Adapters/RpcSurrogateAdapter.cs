@@ -64,8 +64,8 @@ internal sealed class RpcSurrogateAdapter
         if (cachedRpcSurrogateBehaviour != null)
         {
             RecordResolved(
-                ValidationLogRpcSurrogateResolveSource.Cache,
-                ValidationLogRpcSurrogateResolveResult.Success
+                source: ValidationLogRpcSurrogateResolveSource.Cache,
+                result: ValidationLogRpcSurrogateResolveResult.Success
             );
             return cachedRpcSurrogateBehaviour;
         }
@@ -83,16 +83,16 @@ internal sealed class RpcSurrogateAdapter
 
             cachedRpcSurrogateBehaviour = rpcSurrogateNetworkBehaviour;
             RecordResolved(
-                ValidationLogRpcSurrogateResolveSource.Lookup,
-                ValidationLogRpcSurrogateResolveResult.Success
+                source: ValidationLogRpcSurrogateResolveSource.Lookup,
+                result: ValidationLogRpcSurrogateResolveResult.Success
             );
             return rpcSurrogateNetworkBehaviour;
         }
         catch (System.Exception error)
         {
             RecordResolved(
-                ValidationLogRpcSurrogateResolveSource.Lookup,
-                ValidationLogRpcSurrogateResolveResult.Error
+                source: ValidationLogRpcSurrogateResolveSource.Lookup,
+                result: ValidationLogRpcSurrogateResolveResult.Error
             );
             logger.LogError($"Exception while getting RpcSurrogateBehaviour: {error}");
             throw new GameInteropException($"Exception while getting RpcSurrogateBehaviour: {error}");
@@ -104,6 +104,8 @@ internal sealed class RpcSurrogateAdapter
         ValidationLogRpcSurrogateResolveResult result
     )
     {
-        validationLogger.Record(ValidationLogRecord.RpcSurrogateResolved(source, result));
+        validationLogger.Record(
+            ValidationLogRecord.RpcSurrogateResolved(source: source, result: result)
+        );
     }
 }
