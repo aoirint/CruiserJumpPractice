@@ -7,6 +7,8 @@ internal sealed class HudTipMessage
 {
     private const string DefaultHeaderText = "CruiserJumpPractice";
 
+    // Use cases select a closed token before display so future validation can
+    // record stable intent without treating HUD text as an input boundary.
     public static readonly HudTipMessage SaveSuccess = new(
         "save_success",
         DefaultHeaderText,

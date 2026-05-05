@@ -47,6 +47,8 @@ internal sealed class GameInterop : IGameInterop
 
     public void DisplayTip(HudTipMessage message)
     {
+        // Message selection stays in Core; Interop records the closed token
+        // before unwrapping user-visible text at the final HUD boundary.
         validationLogger.Record(
             "hud_tip",
             ValidationLogField.String("role", GetRoleToken()),
