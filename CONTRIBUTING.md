@@ -158,6 +158,10 @@ in this project. Ordinary issue reports, pull request discussion, questions, and
 suggestions are not contributions under this agreement unless you clearly submit
 them for inclusion in the project.
 
+For disclosure expectations when AI assistance affects contributions, issue
+reports, comments, or other project-facing material, see
+[AI assistance](#ai-assistance).
+
 By submitting a contribution, you represent and agree that:
 
 - You have the legal right to submit the contribution and to grant the rights
@@ -182,10 +186,10 @@ By submitting a contribution, you represent and agree that:
   materials if you do not have the right to contribute them under this
   agreement.
 
-## AI-assisted contributions
+## AI assistance
 
-AI tools may be used as aids, but the human contributor remains responsible for
-the contribution.
+AI tools may be used as aids, but the human submitter remains responsible for
+the material they submit.
 When AI assistance is significant, disclose it where maintainers and reviewers
 will see the relevant context:
 
@@ -248,7 +252,7 @@ Contributor responsibilities:
 - Write pull request descriptions and review replies in your own words. Use AI
   for editing help only if you still review and stand behind the final text.
 - Maintainers may close undisclosed, unverified, low-quality, or spam-like
-  AI-assisted contributions.
+  AI-assisted pull requests, issues, comments, or other project-facing material.
 
 ## Reporting security issues
 
