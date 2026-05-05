@@ -52,7 +52,7 @@ internal static class StartOfRoundPatch
         }
         catch (System.Exception error)
         {
-            LogPatchError(nameof(RecordAppliedState), error);
+            LogPatchError(hookName: nameof(RecordAppliedState), error: error);
         }
     }
 
@@ -61,8 +61,8 @@ internal static class StartOfRoundPatch
         try
         {
             CruiserJumpPractice.Controller.LogValidationPatchError(
-                $"{nameof(StartOfRoundPatch)}.{hookName}",
-                error
+                hookName: $"{nameof(StartOfRoundPatch)}.{hookName}",
+                error: error
             );
         }
         catch

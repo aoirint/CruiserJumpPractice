@@ -297,13 +297,13 @@ internal sealed class ValidationLogRecord
     )
     {
         return new(
-            "base_game_engine_oil_applied",
-            new()
+            eventName: "base_game_engine_oil_applied",
+            fields: new()
             {
-                ["role"] = ToValidationRoleToken(role),
+                ["role"] = ToValidationRoleToken(role: role),
                 ["expected_hp"] = expectedHP,
                 ["observed_hp"] = observedHP,
-                ["source"] = ToBaseGameApplySourceToken(source)
+                ["source"] = ToBaseGameApplySourceToken(source: source)
             }
         );
     }
@@ -316,13 +316,13 @@ internal sealed class ValidationLogRecord
     )
     {
         return new(
-            "base_game_turbo_applied",
-            new()
+            eventName: "base_game_turbo_applied",
+            fields: new()
             {
-                ["role"] = ToValidationRoleToken(role),
+                ["role"] = ToValidationRoleToken(role: role),
                 ["expected_turbo"] = expectedTurbo,
                 ["observed_turbo"] = observedTurbo,
-                ["source"] = ToBaseGameApplySourceToken(source)
+                ["source"] = ToBaseGameApplySourceToken(source: source)
             }
         );
     }
@@ -335,13 +335,13 @@ internal sealed class ValidationLogRecord
     )
     {
         return new(
-            "base_game_ship_magnet_applied",
-            new()
+            eventName: "base_game_ship_magnet_applied",
+            fields: new()
             {
-                ["role"] = ToValidationRoleToken(role),
+                ["role"] = ToValidationRoleToken(role: role),
                 ["expected_after"] = expectedAfter,
                 ["observed_after"] = observedAfter,
-                ["source"] = ToBaseGameApplySourceToken(source)
+                ["source"] = ToBaseGameApplySourceToken(source: source)
             }
         );
     }

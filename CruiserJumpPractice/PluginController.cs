@@ -168,7 +168,7 @@ internal sealed class PluginController
     public void RecordLoadClientRpcReceived(LoadCruiserStateResult result)
     {
         validationLogger.Record(
-            ValidationLogRecord.LoadClientRpcReceived(GetRole(), result)
+            record: ValidationLogRecord.LoadClientRpcReceived(role: GetRole(), result: result)
         );
     }
 
@@ -179,7 +179,12 @@ internal sealed class PluginController
     )
     {
         validationLogger.Record(
-            ValidationLogRecord.BaseGameEngineOilApplied(GetRole(), expectedHP, observedHP, source)
+            record: ValidationLogRecord.BaseGameEngineOilApplied(
+                role: GetRole(),
+                expectedHP: expectedHP,
+                observedHP: observedHP,
+                source: source
+            )
         );
     }
 
@@ -190,7 +195,12 @@ internal sealed class PluginController
     )
     {
         validationLogger.Record(
-            ValidationLogRecord.BaseGameTurboApplied(GetRole(), expectedTurbo, observedTurbo, source)
+            record: ValidationLogRecord.BaseGameTurboApplied(
+                role: GetRole(),
+                expectedTurbo: expectedTurbo,
+                observedTurbo: observedTurbo,
+                source: source
+            )
         );
     }
 
@@ -201,11 +211,11 @@ internal sealed class PluginController
     )
     {
         validationLogger.Record(
-            ValidationLogRecord.BaseGameShipMagnetApplied(
-                GetRole(),
-                expectedAfter,
-                observedAfter,
-                source
+            record: ValidationLogRecord.BaseGameShipMagnetApplied(
+                role: GetRole(),
+                expectedAfter: expectedAfter,
+                observedAfter: observedAfter,
+                source: source
             )
         );
     }
@@ -214,7 +224,7 @@ internal sealed class PluginController
     {
         // Harmony patches catch their own failures to preserve gameplay, so route diagnostics
         // through the plugin logger instead of the validation logger that may be failing.
-        logger.LogError($"Validation patch '{hookName}' failed: {error}");
+        logger.LogError(message: $"Validation patch '{hookName}' failed: {error}");
     }
 
     private ValidationLogRole GetRole()

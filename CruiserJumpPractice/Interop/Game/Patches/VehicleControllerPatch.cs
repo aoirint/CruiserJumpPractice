@@ -14,8 +14,8 @@ namespace CruiserJumpPractice.Interop.Game.Patches;
 internal static class VehicleControllerPatch
 {
     private static readonly FieldInfo? turboBoostsField = typeof(VehicleController).GetField(
-        "turboBoosts",
-        BindingFlags.NonPublic | BindingFlags.Instance
+        name: "turboBoosts",
+        bindingAttr: BindingFlags.NonPublic | BindingFlags.Instance
     );
 
     // The local apply helpers are also used by the initiating restore path. These depth markers
@@ -63,7 +63,7 @@ internal static class VehicleControllerPatch
         }
         catch (System.Exception error)
         {
-            LogPatchError(nameof(AddEngineOilOnLocalClientPostfix), error);
+            LogPatchError(hookName: nameof(AddEngineOilOnLocalClientPostfix), error: error);
         }
     }
 
@@ -101,7 +101,7 @@ internal static class VehicleControllerPatch
 
         try
         {
-            var observedTurbo = turboBoostsField.GetValue(__instance);
+            var observedTurbo = turboBoostsField.GetValue(obj: __instance);
             if (observedTurbo is not int turboBoosts)
             {
                 return;
@@ -115,7 +115,7 @@ internal static class VehicleControllerPatch
         }
         catch (System.Exception error)
         {
-            LogPatchError(nameof(AddTurboBoostOnLocalClientPostfix), error);
+            LogPatchError(hookName: nameof(AddTurboBoostOnLocalClientPostfix), error: error);
         }
     }
 
@@ -128,8 +128,11 @@ internal static class VehicleControllerPatch
 
         turboBoostsFieldMissingLogged = true;
         LogPatchError(
-            nameof(AddTurboBoostOnLocalClientPostfix),
-            new System.MissingFieldException(nameof(VehicleController), "turboBoosts")
+            hookName: nameof(AddTurboBoostOnLocalClientPostfix),
+            error: new System.MissingFieldException(
+                className: nameof(VehicleController),
+                fieldName: "turboBoosts"
+            )
         );
     }
 
@@ -138,8 +141,8 @@ internal static class VehicleControllerPatch
         try
         {
             CruiserJumpPractice.Controller.LogValidationPatchError(
-                $"{nameof(VehicleControllerPatch)}.{hookName}",
-                error
+                hookName: $"{nameof(VehicleControllerPatch)}.{hookName}",
+                error: error
             );
         }
         catch
