@@ -12,8 +12,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## Unreleased
 
+## v0.2.0-alpha.4 - 2026-05-05 UTC
+
 ### Added
 
+- Added opt-in structured validation logging for release validation and
+  troubleshooting:
+    - Introduced the `Debug.ValidationLogging` BepInEx config setting,
+      disabled by default.
+    - Emits sparse `[CJP_VALIDATION]` JSONL-style records only at validation
+      event boundaries.
+    - Records plugin startup, controller/state-store creation, HUD/RPC
+      surrogate lifecycle, input trigger/suppression, host-only request
+      results, save/load/restore results, magnet toggle observations, and HUD
+      tip tokens.
+    - Keeps Core independent of BepInEx-specific logging types through the
+      validation logger port.
 - Added validation logs for base-game applied-state observation points:
     - Receiver-side cruiser HP and turbo apply evidence from base-game client
       RPC paths.
