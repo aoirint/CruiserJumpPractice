@@ -186,14 +186,18 @@ By submitting a contribution, you represent and agree that:
 
 AI tools may be used as aids, but the human contributor remains responsible for
 the contribution.
-When AI assistance significantly affects a pull request, disclosure is required
-in the pull request description. When AI assistance significantly affects an
-issue report or issue comment, disclose it in that issue or comment. The purpose
-of disclosure is to give reviewers and maintainers enough context to understand
-where to focus, including areas you may not have reviewed closely. There is no
-exact percentage or universal rule for when
-assistance is "significant", so use the following common workflows as practical
-examples, not as an exhaustive list.
+When AI assistance is significant, disclose it where maintainers and reviewers
+will see the relevant context:
+
+- For a pull request, disclose it in the pull request description.
+- For an issue report, comment, request, or other project-facing note, disclose
+  it where you submit that material.
+
+The purpose of disclosure is to give reviewers and maintainers enough context to
+understand where to focus, including areas you may not have reviewed closely.
+There is no exact percentage or universal rule for when assistance is
+"significant", so use the following common workflows as practical examples, not
+as an exhaustive list.
 
 Examples that should be disclosed:
 
