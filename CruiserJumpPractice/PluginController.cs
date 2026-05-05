@@ -23,6 +23,7 @@ internal sealed class PluginController
     private readonly IValidationLogger validationLogger;
     private readonly FrameHandler frameHandler;
     private readonly StartupHandler startupHandler;
+    private readonly BaseGameAppliedStateValidationHandler baseGameAppliedStateValidationHandler;
     private readonly SaveCruiserStateUseCase saveCruiserStateUseCase;
     private readonly LoadCruiserStateUseCase loadCruiserStateUseCase;
     private readonly PresentSaveCruiserStateResultUseCase presentSaveCruiserStateResultUseCase;
@@ -33,6 +34,7 @@ internal sealed class PluginController
         IValidationLogger validationLogger,
         FrameHandler frameHandler,
         StartupHandler startupHandler,
+        BaseGameAppliedStateValidationHandler baseGameAppliedStateValidationHandler,
         SaveCruiserStateUseCase saveCruiserStateUseCase,
         LoadCruiserStateUseCase loadCruiserStateUseCase,
         PresentSaveCruiserStateResultUseCase presentSaveCruiserStateResultUseCase,
@@ -43,6 +45,7 @@ internal sealed class PluginController
         this.validationLogger = validationLogger;
         this.frameHandler = frameHandler;
         this.startupHandler = startupHandler;
+        this.baseGameAppliedStateValidationHandler = baseGameAppliedStateValidationHandler;
         this.saveCruiserStateUseCase = saveCruiserStateUseCase;
         this.loadCruiserStateUseCase = loadCruiserStateUseCase;
         this.presentSaveCruiserStateResultUseCase = presentSaveCruiserStateResultUseCase;
@@ -59,6 +62,7 @@ internal sealed class PluginController
         IGameInterop gameInterop = new GameInterop(logger, validationLogger);
 
         var cruiserStateStore = new CruiserStateStore();
+        var baseGameAppliedStateValidationStore = new BaseGameAppliedStateValidationStore();
         validationLogger.Record(ValidationLogRecord.StateStoreCreated());
         var saveCruiserStateUseCase = new SaveCruiserStateUseCase(
             gameInterop,
@@ -106,6 +110,11 @@ internal sealed class PluginController
             validationLogger: validationLogger,
             frameHandler: frameHandler,
             startupHandler: new StartupHandler(gameInterop, validationLogger),
+            baseGameAppliedStateValidationHandler: new BaseGameAppliedStateValidationHandler(
+                gameInterop: gameInterop,
+                validationLogger: validationLogger,
+                stateStore: baseGameAppliedStateValidationStore
+            ),
             saveCruiserStateUseCase: saveCruiserStateUseCase,
             loadCruiserStateUseCase: loadCruiserStateUseCase,
             presentSaveCruiserStateResultUseCase: presentSaveCruiserStateResultUseCase,
@@ -167,51 +176,52 @@ internal sealed class PluginController
         );
     }
 
-    public void RecordBaseGameEngineOilApplied(
-        int expectedHP,
-        int observedHP,
-        ValidationLogBaseGameApplySource source
-    )
+    public void EnterBaseGameEngineOilClientRpc()
     {
-        validationLogger.Record(
-            record: ValidationLogRecord.BaseGameEngineOilApplied(
-                role: GetRole(),
-                expectedHP: expectedHP,
-                observedHP: observedHP,
-                source: source
-            )
+        baseGameAppliedStateValidationHandler.EnterEngineOilClientRpc();
+    }
+
+    public void ExitBaseGameEngineOilClientRpc()
+    {
+        baseGameAppliedStateValidationHandler.ExitEngineOilClientRpc();
+    }
+
+    public void HandleBaseGameEngineOilLocalApplied(int expectedHP, int observedHP)
+    {
+        baseGameAppliedStateValidationHandler.HandleEngineOilLocalApplied(
+            expectedHP: expectedHP,
+            observedHP: observedHP
         );
     }
 
-    public void RecordBaseGameTurboApplied(
-        int expectedTurbo,
-        int observedTurbo,
-        ValidationLogBaseGameApplySource source
-    )
+    public void EnterBaseGameTurboClientRpc()
     {
-        validationLogger.Record(
-            record: ValidationLogRecord.BaseGameTurboApplied(
-                role: GetRole(),
-                expectedTurbo: expectedTurbo,
-                observedTurbo: observedTurbo,
-                source: source
-            )
+        baseGameAppliedStateValidationHandler.EnterTurboClientRpc();
+    }
+
+    public void ExitBaseGameTurboClientRpc()
+    {
+        baseGameAppliedStateValidationHandler.ExitTurboClientRpc();
+    }
+
+    public void HandleBaseGameTurboLocalApplied(int expectedTurbo, int observedTurbo)
+    {
+        baseGameAppliedStateValidationHandler.HandleTurboLocalApplied(
+            expectedTurbo: expectedTurbo,
+            observedTurbo: observedTurbo
         );
     }
 
-    public void RecordBaseGameShipMagnetApplied(
+    public void HandleBaseGameShipMagnetApplied(
         bool expectedAfter,
         bool observedAfter,
         ValidationLogBaseGameApplySource source
     )
     {
-        validationLogger.Record(
-            record: ValidationLogRecord.BaseGameShipMagnetApplied(
-                role: GetRole(),
-                expectedAfter: expectedAfter,
-                observedAfter: observedAfter,
-                source: source
-            )
+        baseGameAppliedStateValidationHandler.HandleShipMagnetApplied(
+            expectedAfter: expectedAfter,
+            observedAfter: observedAfter,
+            source: source
         );
     }
 

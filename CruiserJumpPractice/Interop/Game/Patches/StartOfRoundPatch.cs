@@ -44,7 +44,7 @@ internal static class StartOfRoundPatch
     {
         try
         {
-            CruiserJumpPractice.Controller.RecordBaseGameShipMagnetApplied(
+            CruiserJumpPractice.Controller.HandleBaseGameShipMagnetApplied(
                 expectedAfter: expectedAfter,
                 observedAfter: instance.magnetOn,
                 source: source
