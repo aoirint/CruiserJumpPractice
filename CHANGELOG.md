@@ -40,8 +40,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
         - <https://thunderstore.io/c/lethal-company/?included_categories=2086&ordering=last-updated&q=&section=mods>
     - This project uses the category to disclose AI assistance in project work;
       it is package metadata rather than a gameplay feature.
-    - Issue #18 records the project decision to use this category because the
-      applicable disclosure threshold is not clear.
+    - [Issue #18][issue-18-ai-generated-category] records the project decision
+      to use this category because the applicable disclosure threshold is not
+      clear.
     - Human maintainers review project changes.
 - Aligned Thunderstore manifest dependency strings with the documented v81.5
   test environment for BepInExPack and LethalCompany_InputUtils:
@@ -262,3 +263,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
       `1749099131234587692`).
         - Backfilled as reference compatibility information while preparing
           the v0.2.0-alpha.1 release.
+
+[issue-18-ai-generated-category]: https://github.com/aoirint/CruiserJumpPractice/issues/18
