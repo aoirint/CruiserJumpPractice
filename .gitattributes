@@ -1,3 +1,4 @@
+# SPDX-License-Identifier: MIT
 # Enforce CRLF line endings
 * text=auto eol=crlf
 

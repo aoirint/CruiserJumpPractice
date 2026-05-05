@@ -1,5 +1,5 @@
 ---
-# SPDX-License-Identifier: Unlicense
+# SPDX-License-Identifier: MIT
 name: issue-quality-check
 description: >-
   Quality-check repository issues and issue replies. Use when creating,

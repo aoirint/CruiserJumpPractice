@@ -1,4 +1,4 @@
-# SPDX-License-Identifier: Unlicense
+# SPDX-License-Identifier: MIT
 interface:
   display_name: "Changelog Workflow"
   short_description: "Update a canonical developer changelog."
