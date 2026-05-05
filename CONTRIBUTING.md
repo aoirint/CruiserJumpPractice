@@ -33,6 +33,8 @@ public.
 Do not submit sample code, documentation text, patches, or other material for
 direct inclusion in the project unless you are willing to provide it under the
 Contribution License Agreement.
+Clearly state your agreement to the Contribution License Agreement when you
+submit that material.
 
 Do not report security issues in public GitHub Issues.
 See [Reporting security issues](#reporting-security-issues) instead.
