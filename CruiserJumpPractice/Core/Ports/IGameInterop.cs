@@ -3,6 +3,7 @@
 
 using CruiserJumpPractice.Core.Snapshots;
 using CruiserJumpPractice.Core.State;
+using CruiserJumpPractice.Core.Presentation;
 
 namespace CruiserJumpPractice.Core.Ports;
 
@@ -15,7 +16,7 @@ internal interface IGameInterop
 
     LocalPlayerBusyState GetLocalPlayerBusyState();
 
-    void DisplayTip(string headerText, string bodyText);
+    void DisplayTip(HudTipMessage message);
 
     void SpawnRpcSurrogate();
 
