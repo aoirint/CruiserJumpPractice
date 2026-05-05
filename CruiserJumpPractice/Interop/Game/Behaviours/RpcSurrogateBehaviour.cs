@@ -17,6 +17,8 @@ internal class RpcSurrogateBehaviour : NetworkBehaviour
     [ServerRpc(RequireOwnership = true)]
     public void SaveCruiserStateServerRpc()
     {
+        // This event marks server-side execution after Netcode accepts the request.
+        CruiserJumpPractice.Controller.RecordSaveServerRpcReceived();
         var result = CruiserJumpPractice.Controller.SaveCruiserState();
         SaveCruiserStateDoneClientRpc(result);
     }
@@ -24,12 +26,16 @@ internal class RpcSurrogateBehaviour : NetworkBehaviour
     [ClientRpc]
     public void SaveCruiserStateDoneClientRpc(SaveCruiserStateResult result)
     {
+        // ClientRpc callbacks are presentation delivery on each recipient, including the host.
+        CruiserJumpPractice.Controller.RecordSaveClientRpcReceived(result);
         CruiserJumpPractice.Controller.PresentSaveCruiserStateResult(result);
     }
 
     [ServerRpc(RequireOwnership = true)]
     public void LoadCruiserStateServerRpc()
     {
+        // This event marks server-side execution after Netcode accepts the request.
+        CruiserJumpPractice.Controller.RecordLoadServerRpcReceived();
         var result = CruiserJumpPractice.Controller.LoadCruiserState();
         LoadCruiserStateDoneClientRpc(result);
     }
@@ -37,6 +43,8 @@ internal class RpcSurrogateBehaviour : NetworkBehaviour
     [ClientRpc]
     public void LoadCruiserStateDoneClientRpc(LoadCruiserStateResult result)
     {
+        // ClientRpc callbacks are presentation delivery on each recipient, including the host.
+        CruiserJumpPractice.Controller.RecordLoadClientRpcReceived(result);
         CruiserJumpPractice.Controller.PresentLoadCruiserStateResult(result);
     }
 }

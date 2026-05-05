@@ -2,6 +2,7 @@
 #nullable enable
 
 using CruiserJumpPractice.Core.Ports;
+using CruiserJumpPractice.Core.Validation;
 using CruiserJumpPractice.Interop.Game.Behaviours;
 
 using CruiserJumpPractice.Interop.Game;
@@ -12,41 +13,60 @@ internal sealed class RpcSurrogateAdapter
 {
     private readonly IPluginLogger logger;
     private readonly GameObjectAdapter gameObjects;
+    private readonly IValidationLogger validationLogger;
 
     private RpcSurrogateBehaviour? cachedRpcSurrogateBehaviour;
 
-    public RpcSurrogateAdapter(IPluginLogger logger, GameObjectAdapter gameObjects)
+    public RpcSurrogateAdapter(
+        IPluginLogger logger,
+        GameObjectAdapter gameObjects,
+        IValidationLogger validationLogger
+    )
     {
         this.logger = logger;
         this.gameObjects = gameObjects;
+        this.validationLogger = validationLogger;
     }
 
-    public void SpawnRpcSurrogate()
+    public RpcSurrogateSpawnResult SpawnRpcSurrogate()
     {
-        var hudManager = gameObjects.GetHUDManager();
-        var gameObject = hudManager.gameObject;
-        if (gameObject == null)
+        try
         {
-            logger.LogError("HUDManager.gameObject is null.");
-            return;
-        }
+            var hudManager = gameObjects.GetHUDManager();
+            var gameObject = hudManager.gameObject;
+            if (gameObject == null)
+            {
+                logger.LogError("HUDManager.gameObject is null.");
+                return RpcSurrogateSpawnResult.Missing;
+            }
 
-        var rpcSurrogateNetworkBehaviour = gameObject.GetComponent<RpcSurrogateBehaviour>();
-        if (rpcSurrogateNetworkBehaviour != null)
+            var rpcSurrogateNetworkBehaviour = gameObject.GetComponent<RpcSurrogateBehaviour>();
+            if (rpcSurrogateNetworkBehaviour != null)
+            {
+                cachedRpcSurrogateBehaviour = rpcSurrogateNetworkBehaviour;
+                logger.LogDebug("RPC surrogate already exists on HUDManager.");
+                return RpcSurrogateSpawnResult.Reused;
+            }
+
+            cachedRpcSurrogateBehaviour = gameObject.AddComponent<RpcSurrogateBehaviour>();
+            logger.LogInfo("Spawned RPC surrogate on HUDManager.");
+            return RpcSurrogateSpawnResult.Added;
+        }
+        catch (System.Exception error)
         {
-            cachedRpcSurrogateBehaviour = rpcSurrogateNetworkBehaviour;
-            logger.LogDebug("RPC surrogate already exists on HUDManager.");
-            return;
+            logger.LogError($"Exception while spawning RPC surrogate: {error}");
+            return RpcSurrogateSpawnResult.Error;
         }
-
-        cachedRpcSurrogateBehaviour = gameObject.AddComponent<RpcSurrogateBehaviour>();
-        logger.LogInfo("Spawned RPC surrogate on HUDManager.");
     }
 
     public RpcSurrogateBehaviour GetRpcSurrogateBehaviour()
     {
         if (cachedRpcSurrogateBehaviour != null)
         {
+            RecordResolved(
+                ValidationLogRpcSurrogateResolveSource.Cache,
+                ValidationLogRpcSurrogateResolveResult.Success
+            );
             return cachedRpcSurrogateBehaviour;
         }
 
@@ -62,12 +82,28 @@ internal sealed class RpcSurrogateAdapter
             }
 
             cachedRpcSurrogateBehaviour = rpcSurrogateNetworkBehaviour;
+            RecordResolved(
+                ValidationLogRpcSurrogateResolveSource.Lookup,
+                ValidationLogRpcSurrogateResolveResult.Success
+            );
             return rpcSurrogateNetworkBehaviour;
         }
         catch (System.Exception error)
         {
+            RecordResolved(
+                ValidationLogRpcSurrogateResolveSource.Lookup,
+                ValidationLogRpcSurrogateResolveResult.Error
+            );
             logger.LogError($"Exception while getting RpcSurrogateBehaviour: {error}");
             throw new GameInteropException($"Exception while getting RpcSurrogateBehaviour: {error}");
         }
+    }
+
+    private void RecordResolved(
+        ValidationLogRpcSurrogateResolveSource source,
+        ValidationLogRpcSurrogateResolveResult result
+    )
+    {
+        validationLogger.Record(ValidationLogRecord.RpcSurrogateResolved(source, result));
     }
 }

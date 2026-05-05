@@ -2,6 +2,7 @@
 #nullable enable
 
 using CruiserJumpPractice.Core.Ports;
+using CruiserJumpPractice.Core.Validation;
 
 namespace CruiserJumpPractice.Core.Handlers;
 
@@ -10,14 +11,17 @@ namespace CruiserJumpPractice.Core.Handlers;
 internal sealed class StartupHandler
 {
     private readonly IGameInterop gameInterop;
+    private readonly IValidationLogger validationLogger;
 
-    public StartupHandler(IGameInterop gameInterop)
+    public StartupHandler(IGameInterop gameInterop, IValidationLogger validationLogger)
     {
         this.gameInterop = gameInterop;
+        this.validationLogger = validationLogger;
     }
 
     public void HandleStartup()
     {
-        gameInterop.SpawnRpcSurrogate();
+        var surrogateResult = gameInterop.SpawnRpcSurrogate();
+        validationLogger.Record(ValidationLogRecord.HudStartup(surrogateResult));
     }
 }

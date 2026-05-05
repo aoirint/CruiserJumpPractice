@@ -253,6 +253,22 @@ because Thunderstore does not support them.**
 
 ## Debugging
 
+### Validation logging
+
+Structured validation logs are disabled by default. To enable them for release
+validation, open the generated CruiserJumpPractice config file and set:
+
+```ini
+[Debug]
+ValidationLogging = true
+```
+
+Enabled validation records use one JSON object per log line after the stable
+`[CJP_VALIDATION]` prefix and following space. Prefer sharing extracted
+`[CJP_VALIDATION]` lines plus nearby error lines when asking for validation
+help. Share full BepInEx logs only when needed, because other mods or BepInEx
+can include unrelated local environment details.
+
 ### r2modman
 
 1. Open r2modman.

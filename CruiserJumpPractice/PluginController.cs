@@ -7,6 +7,7 @@ using CruiserJumpPractice.Core.State;
 using CruiserJumpPractice.Core.UseCases;
 using CruiserJumpPractice.Core.UseCases.Client;
 using CruiserJumpPractice.Core.UseCases.Server;
+using CruiserJumpPractice.Core.Validation;
 using CruiserJumpPractice.Interop.Game;
 using CruiserJumpPractice.Interop.InputUtils;
 
@@ -18,6 +19,8 @@ namespace CruiserJumpPractice;
 // InputUtils input, and game interop into Core.
 internal sealed class PluginController
 {
+    private readonly IGameInterop gameInterop;
+    private readonly IValidationLogger validationLogger;
     private readonly FrameHandler frameHandler;
     private readonly StartupHandler startupHandler;
     private readonly SaveCruiserStateUseCase saveCruiserStateUseCase;
@@ -26,6 +29,8 @@ internal sealed class PluginController
     private readonly PresentLoadCruiserStateResultUseCase presentLoadCruiserStateResultUseCase;
 
     private PluginController(
+        IGameInterop gameInterop,
+        IValidationLogger validationLogger,
         FrameHandler frameHandler,
         StartupHandler startupHandler,
         SaveCruiserStateUseCase saveCruiserStateUseCase,
@@ -34,6 +39,8 @@ internal sealed class PluginController
         PresentLoadCruiserStateResultUseCase presentLoadCruiserStateResultUseCase
     )
     {
+        this.gameInterop = gameInterop;
+        this.validationLogger = validationLogger;
         this.frameHandler = frameHandler;
         this.startupHandler = startupHandler;
         this.saveCruiserStateUseCase = saveCruiserStateUseCase;
@@ -42,30 +49,39 @@ internal sealed class PluginController
         this.presentLoadCruiserStateResultUseCase = presentLoadCruiserStateResultUseCase;
     }
 
-    public static PluginController Create(IPluginLogger logger)
+    public static PluginController Create(IPluginLogger logger, IValidationLogger validationLogger)
     {
         // Concrete integrations become Core ports here. Adding a new external
         // dependency should usually mean adding another adapter here, not
         // another static property on CruiserJumpPractice.
         var inputActions = new InputUtilsActions();
         var practiceInput = new InputUtilsPracticeInput(inputActions);
-        IGameInterop gameInterop = new GameInterop(logger);
+        IGameInterop gameInterop = new GameInterop(logger, validationLogger);
 
         var cruiserStateStore = new CruiserStateStore();
+        validationLogger.Record(ValidationLogRecord.StateStoreCreated());
         var saveCruiserStateUseCase = new SaveCruiserStateUseCase(
             gameInterop,
             cruiserStateStore,
-            logger
+            logger,
+            validationLogger
         );
         var loadCruiserStateUseCase = new LoadCruiserStateUseCase(
             gameInterop,
             cruiserStateStore,
-            logger
+            logger,
+            validationLogger
         );
 
-        var requestSaveCruiserStateUseCase = new RequestSaveCruiserStateUseCase(gameInterop);
-        var requestLoadCruiserStateUseCase = new RequestLoadCruiserStateUseCase(gameInterop);
-        var toggleMagnetUseCase = new ToggleMagnetUseCase(gameInterop);
+        var requestSaveCruiserStateUseCase = new RequestSaveCruiserStateUseCase(
+            gameInterop,
+            validationLogger
+        );
+        var requestLoadCruiserStateUseCase = new RequestLoadCruiserStateUseCase(
+            gameInterop,
+            validationLogger
+        );
+        var toggleMagnetUseCase = new ToggleMagnetUseCase(gameInterop, validationLogger);
         var presentSaveCruiserStateResultUseCase = new PresentSaveCruiserStateResultUseCase(
             gameInterop,
             logger
@@ -78,14 +94,18 @@ internal sealed class PluginController
         var frameHandler = new FrameHandler(
             gameInterop,
             practiceInput,
+            validationLogger,
             requestSaveCruiserStateUseCase,
             requestLoadCruiserStateUseCase,
             toggleMagnetUseCase
         );
 
+        validationLogger.Record(ValidationLogRecord.ControllerCreated());
         return new PluginController(
+            gameInterop: gameInterop,
+            validationLogger: validationLogger,
             frameHandler: frameHandler,
-            startupHandler: new StartupHandler(gameInterop),
+            startupHandler: new StartupHandler(gameInterop, validationLogger),
             saveCruiserStateUseCase: saveCruiserStateUseCase,
             loadCruiserStateUseCase: loadCruiserStateUseCase,
             presentSaveCruiserStateResultUseCase: presentSaveCruiserStateResultUseCase,
@@ -122,4 +142,34 @@ internal sealed class PluginController
     {
         presentLoadCruiserStateResultUseCase.Execute(result);
     }
+
+    public void RecordSaveServerRpcReceived()
+    {
+        validationLogger.Record(ValidationLogRecord.SaveServerRpcReceived(GetRole()));
+    }
+
+    public void RecordSaveClientRpcReceived(SaveCruiserStateResult result)
+    {
+        validationLogger.Record(
+            ValidationLogRecord.SaveClientRpcReceived(GetRole(), result)
+        );
+    }
+
+    public void RecordLoadServerRpcReceived()
+    {
+        validationLogger.Record(ValidationLogRecord.LoadServerRpcReceived(GetRole()));
+    }
+
+    public void RecordLoadClientRpcReceived(LoadCruiserStateResult result)
+    {
+        validationLogger.Record(
+            ValidationLogRecord.LoadClientRpcReceived(GetRole(), result)
+        );
+    }
+
+    private ValidationLogRole GetRole()
+    {
+        return gameInterop.IsHost() ? ValidationLogRole.Host : ValidationLogRole.Client;
+    }
+
 }

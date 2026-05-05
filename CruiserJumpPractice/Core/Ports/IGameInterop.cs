@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 #nullable enable
 
-using CruiserJumpPractice.Core.Snapshots;
 using CruiserJumpPractice.Core.Presentation;
+using CruiserJumpPractice.Core.Snapshots;
 using CruiserJumpPractice.Core.State;
 
 namespace CruiserJumpPractice.Core.Ports;
@@ -18,7 +18,7 @@ internal interface IGameInterop
 
     void DisplayTip(HudTipMessage message);
 
-    void SpawnRpcSurrogate();
+    RpcSurrogateSpawnResult SpawnRpcSurrogate();
 
     void RequestSaveCruiserState();
 
@@ -35,4 +35,12 @@ internal interface IGameInterop
     bool IsShipMagnetOn();
 
     void ToggleShipMagnet();
+}
+
+internal enum RpcSurrogateSpawnResult
+{
+    Added,
+    Reused,
+    Missing,
+    Error
 }

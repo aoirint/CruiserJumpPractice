@@ -3,6 +3,7 @@
 
 using CruiserJumpPractice.Core.Ports;
 using CruiserJumpPractice.Core.Presentation;
+using CruiserJumpPractice.Core.Validation;
 
 namespace CruiserJumpPractice.Core.UseCases.Client;
 
@@ -12,10 +13,12 @@ namespace CruiserJumpPractice.Core.UseCases.Client;
 internal sealed class ToggleMagnetUseCase
 {
     private readonly IGameInterop gameInterop;
+    private readonly IValidationLogger validationLogger;
 
-    public ToggleMagnetUseCase(IGameInterop gameInterop)
+    public ToggleMagnetUseCase(IGameInterop gameInterop, IValidationLogger validationLogger)
     {
         this.gameInterop = gameInterop;
+        this.validationLogger = validationLogger;
     }
 
     public ToggleMagnetResult Execute()
@@ -23,6 +26,7 @@ internal sealed class ToggleMagnetUseCase
         if (!gameInterop.IsHost())
         {
             gameInterop.DisplayTip(HudTipMessage.MagnetHostOnly);
+            RecordResult(ValidationLogRole.Client, ToggleMagnetResult.HostOnly);
             return ToggleMagnetResult.HostOnly;
         }
 
@@ -30,14 +34,21 @@ internal sealed class ToggleMagnetUseCase
 
         // The game's built-in server RPC flow synchronizes this value.
         gameInterop.ToggleShipMagnet();
+        validationLogger.Record(ValidationLogRecord.MagnetToggle(observation));
 
         var result = observation.ExpectedAfterState == MagnetState.On
             ? ToggleMagnetResult.MagnetOn
             : ToggleMagnetResult.MagnetOff;
+        validationLogger.Record(ValidationLogRecord.ToggleMagnetResultEvent(ValidationLogRole.Host, result));
         var message = result == ToggleMagnetResult.MagnetOn
             ? HudTipMessage.MagnetOn
             : HudTipMessage.MagnetOff;
         gameInterop.DisplayTip(message);
         return result;
+    }
+
+    private void RecordResult(ValidationLogRole role, ToggleMagnetResult result)
+    {
+        validationLogger.Record(ValidationLogRecord.ToggleMagnetResultEvent(role, result));
     }
 }

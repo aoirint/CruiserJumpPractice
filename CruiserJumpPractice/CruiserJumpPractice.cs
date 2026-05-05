@@ -2,6 +2,8 @@
 #nullable enable
 
 using BepInEx;
+using CruiserJumpPractice.Core.Ports;
+using CruiserJumpPractice.Core.Validation;
 using CruiserJumpPractice.Interop;
 using CruiserJumpPractice.Interop.Game.Patches;
 
@@ -24,10 +26,23 @@ public class CruiserJumpPractice : BaseUnityPlugin
     private void Awake()
     {
         var logger = new BepInExPluginLogger(base.Logger);
+        var validationLogging = Config.Bind(
+            "Debug",
+            "ValidationLogging",
+            false,
+            "Enable structured validation logs for release validation and troubleshooting."
+        );
+        IValidationLogger validationLogger = validationLogging.Value
+            ? new BepInExValidationLogger(logger, System.DateTime.UtcNow)
+            : DisabledValidationLogger.Instance;
+
+        validationLogger.Record(
+            ValidationLogRecord.PluginLoaded(MyPluginInfo.PLUGIN_VERSION, validationLogging.Value)
+        );
 
         // Inject the logger through the plugin logging port so Core and game interop can emit
         // diagnostics without depending on BepInEx logging types.
-        controller = PluginController.Create(logger);
+        controller = PluginController.Create(logger, validationLogger);
 
         // Startup order matters: construct the controller before patching so the first game
         // callback can enter a fully wired plugin boundary.

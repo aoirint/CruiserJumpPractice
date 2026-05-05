@@ -5,6 +5,7 @@ using CruiserJumpPractice.Core.Ports;
 using CruiserJumpPractice.Core.Presentation;
 using CruiserJumpPractice.Core.Snapshots;
 using CruiserJumpPractice.Core.State;
+using CruiserJumpPractice.Core.Validation;
 using CruiserJumpPractice.Interop.Game.Adapters;
 
 namespace CruiserJumpPractice.Interop.Game;
@@ -15,20 +16,22 @@ namespace CruiserJumpPractice.Interop.Game;
 internal sealed class GameInterop : IGameInterop
 {
     private readonly NetworkAdapter networkInterop;
+    private readonly IValidationLogger validationLogger;
     private readonly PlayerAdapter playerInterop;
     private readonly HudAdapter hudInterop;
     private readonly RpcSurrogateAdapter rpcSurrogateInterop;
     private readonly CruiserAdapter cruiserInterop;
     private readonly ShipMagnetAdapter shipMagnetInterop;
 
-    public GameInterop(IPluginLogger logger)
+    public GameInterop(IPluginLogger logger, IValidationLogger validationLogger)
     {
+        this.validationLogger = validationLogger;
         var gameObjects = new GameObjectAdapter(logger);
 
         networkInterop = new NetworkAdapter(logger, gameObjects);
         playerInterop = new PlayerAdapter(logger, gameObjects);
         hudInterop = new HudAdapter(logger, gameObjects);
-        rpcSurrogateInterop = new RpcSurrogateAdapter(logger, gameObjects);
+        rpcSurrogateInterop = new RpcSurrogateAdapter(logger, gameObjects, validationLogger);
         cruiserInterop = new CruiserAdapter(logger, gameObjects);
         shipMagnetInterop = new ShipMagnetAdapter(logger, gameObjects);
     }
@@ -45,14 +48,15 @@ internal sealed class GameInterop : IGameInterop
 
     public void DisplayTip(HudTipMessage message)
     {
-        // Message selection stays in Core; Interop only unwraps the display text
-        // at the final HUD boundary.
+        // Message selection stays in Core; Interop records the closed token
+        // before unwrapping user-visible text at the final HUD boundary.
+        validationLogger.Record(ValidationLogRecord.HudTip(GetRole(), message));
         hudInterop.DisplayTip(message.HeaderText, message.BodyText);
     }
 
-    public void SpawnRpcSurrogate()
+    public RpcSurrogateSpawnResult SpawnRpcSurrogate()
     {
-        rpcSurrogateInterop.SpawnRpcSurrogate();
+        return rpcSurrogateInterop.SpawnRpcSurrogate();
     }
 
     public void RequestSaveCruiserState()
@@ -111,5 +115,10 @@ internal sealed class GameInterop : IGameInterop
     public void ToggleShipMagnet()
     {
         shipMagnetInterop.ToggleShipMagnet();
+    }
+
+    private ValidationLogRole GetRole()
+    {
+        return IsHost() ? ValidationLogRole.Host : ValidationLogRole.Client;
     }
 }
