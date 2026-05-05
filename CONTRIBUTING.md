@@ -56,6 +56,10 @@ The project maintainer is listed in [CODEOWNERS](./.github/CODEOWNERS).
   closed.
 - This is not a judgment on the reporter or the report, and it does not prevent
   you from adding new information later if the issue is still relevant.
+- If a closed issue becomes relevant again, reopen it or ask maintainers to
+  reopen it when the existing context is still useful. Open a new issue instead
+  if the current behavior is different enough that a fresh report would be
+  clearer.
 
 ## Development setup
 
