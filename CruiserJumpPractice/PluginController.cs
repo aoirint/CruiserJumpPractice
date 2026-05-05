@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 #nullable enable
 
+using System;
 using CruiserJumpPractice.Core.Handlers;
 using CruiserJumpPractice.Core.Ports;
 using CruiserJumpPractice.Core.State;
@@ -20,6 +21,7 @@ namespace CruiserJumpPractice;
 internal sealed class PluginController
 {
     private readonly IGameInterop gameInterop;
+    private readonly IPluginLogger logger;
     private readonly IValidationLogger validationLogger;
     private readonly FrameHandler frameHandler;
     private readonly StartupHandler startupHandler;
@@ -30,6 +32,7 @@ internal sealed class PluginController
 
     private PluginController(
         IGameInterop gameInterop,
+        IPluginLogger logger,
         IValidationLogger validationLogger,
         FrameHandler frameHandler,
         StartupHandler startupHandler,
@@ -40,6 +43,7 @@ internal sealed class PluginController
     )
     {
         this.gameInterop = gameInterop;
+        this.logger = logger;
         this.validationLogger = validationLogger;
         this.frameHandler = frameHandler;
         this.startupHandler = startupHandler;
@@ -103,6 +107,7 @@ internal sealed class PluginController
         validationLogger.Record(ValidationLogRecord.ControllerCreated());
         return new PluginController(
             gameInterop: gameInterop,
+            logger: logger,
             validationLogger: validationLogger,
             frameHandler: frameHandler,
             startupHandler: new StartupHandler(gameInterop, validationLogger),
@@ -203,6 +208,11 @@ internal sealed class PluginController
                 source
             )
         );
+    }
+
+    public void LogValidationPatchError(string hookName, Exception error)
+    {
+        logger.LogError($"Validation patch '{hookName}' failed: {error}");
     }
 
     private ValidationLogRole GetRole()

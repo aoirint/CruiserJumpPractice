@@ -20,6 +20,7 @@ internal static class VehicleControllerPatch
 
     private static int engineOilClientRpcDepth;
     private static int turboClientRpcDepth;
+    private static bool turboBoostsFieldMissingLogged;
 
     [HarmonyPatch(nameof(VehicleController.AddEngineOilClientRpc), typeof(int), typeof(int))]
     [HarmonyPrefix]
@@ -55,9 +56,9 @@ internal static class VehicleControllerPatch
                 source: ValidationLogBaseGameApplySource.ClientRpcApply
             );
         }
-        catch
+        catch (System.Exception error)
         {
-            // Validation logging must never interrupt the base-game apply path.
+            LogPatchError(nameof(AddEngineOilOnLocalClientPostfix), error);
         }
     }
 
@@ -82,8 +83,14 @@ internal static class VehicleControllerPatch
     [HarmonyPostfix]
     public static void AddTurboBoostOnLocalClientPostfix(VehicleController __instance, int addedAmount)
     {
-        if (turboClientRpcDepth <= 0 || turboBoostsField == null)
+        if (turboClientRpcDepth <= 0)
         {
+            return;
+        }
+
+        if (turboBoostsField == null)
+        {
+            LogTurboBoostsFieldMissing();
             return;
         }
 
@@ -99,6 +106,35 @@ internal static class VehicleControllerPatch
                 expectedTurbo: addedAmount,
                 observedTurbo: turboBoosts,
                 source: ValidationLogBaseGameApplySource.ClientRpcApply
+            );
+        }
+        catch (System.Exception error)
+        {
+            LogPatchError(nameof(AddTurboBoostOnLocalClientPostfix), error);
+        }
+    }
+
+    private static void LogTurboBoostsFieldMissing()
+    {
+        if (turboBoostsFieldMissingLogged)
+        {
+            return;
+        }
+
+        turboBoostsFieldMissingLogged = true;
+        LogPatchError(
+            nameof(AddTurboBoostOnLocalClientPostfix),
+            new System.MissingFieldException(nameof(VehicleController), "turboBoosts")
+        );
+    }
+
+    private static void LogPatchError(string hookName, System.Exception error)
+    {
+        try
+        {
+            CruiserJumpPractice.Controller.LogValidationPatchError(
+                $"{nameof(VehicleControllerPatch)}.{hookName}",
+                error
             );
         }
         catch

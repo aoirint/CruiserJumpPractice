@@ -48,6 +48,21 @@ internal static class StartOfRoundPatch
                 source: source
             );
         }
+        catch (System.Exception error)
+        {
+            LogPatchError(nameof(RecordAppliedState), error);
+        }
+    }
+
+    private static void LogPatchError(string hookName, System.Exception error)
+    {
+        try
+        {
+            CruiserJumpPractice.Controller.LogValidationPatchError(
+                $"{nameof(StartOfRoundPatch)}.{hookName}",
+                error
+            );
+        }
         catch
         {
             // Validation logging must never interrupt the base-game apply path.
