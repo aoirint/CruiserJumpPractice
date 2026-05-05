@@ -24,6 +24,10 @@ No gameplay changes are introduced.
     - The Lethal Company Thunderstore community currently provides this
       category for authors to disclose when a `significant portion` of a mod
       was created using AI tools.
+    - This project uses the category to disclose AI assistance in project work;
+      it is package metadata rather than a gameplay feature.
+    - Issue #18 records the project decision to use this category because the
+      applicable disclosure threshold is not clearly defined.
 - Dropped backward compatibility with older CruiserJumpPractice versions:
     - Affects CruiserJumpPractice v0.1.4 and earlier.
     - Caused by a mod-internal change.
