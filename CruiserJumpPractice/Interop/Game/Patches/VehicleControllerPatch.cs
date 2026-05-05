@@ -18,8 +18,13 @@ internal static class VehicleControllerPatch
         BindingFlags.NonPublic | BindingFlags.Instance
     );
 
+    // The local apply helpers are also used by the initiating restore path. These depth markers
+    // identify calls made from inside the base-game ClientRpc path so #100 logs receiver-side
+    // applied state without duplicating #97 sender-side restore observations.
     private static int engineOilClientRpcDepth;
     private static int turboClientRpcDepth;
+
+    // Avoid log spam if a future base-game update renames the private turbo field.
     private static bool turboBoostsFieldMissingLogged;
 
     [HarmonyPatch(nameof(VehicleController.AddEngineOilClientRpc), typeof(int), typeof(int))]
@@ -139,7 +144,7 @@ internal static class VehicleControllerPatch
         }
         catch
         {
-            // Validation logging must never interrupt the base-game apply path.
+            // Patch diagnostics are best-effort because this code runs inside base-game callbacks.
         }
     }
 }

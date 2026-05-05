@@ -12,6 +12,8 @@ namespace CruiserJumpPractice.Interop.Game.Patches;
 [HarmonyPatch(typeof(StartOfRound))]
 internal static class StartOfRoundPatch
 {
+    // SetMagnetOn is the local apply callback behind the lever path, while
+    // SetMagnetOnClientRpc is the receiver-side synchronization boundary.
     [HarmonyPatch(nameof(StartOfRound.SetMagnetOn), typeof(bool))]
     [HarmonyPostfix]
     public static void SetMagnetOnPostfix(StartOfRound __instance, bool on)
@@ -65,7 +67,7 @@ internal static class StartOfRoundPatch
         }
         catch
         {
-            // Validation logging must never interrupt the base-game apply path.
+            // Patch diagnostics are best-effort because this code runs inside base-game callbacks.
         }
     }
 }
