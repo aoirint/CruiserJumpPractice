@@ -1,4 +1,4 @@
-<!-- SPDX-License-Identifier: Unlicense -->
+<!-- SPDX-License-Identifier: MIT -->
 
 This changelog is the user-facing release notes for Thunderstore.
 

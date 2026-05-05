@@ -1,5 +1,5 @@
 ---
-# SPDX-License-Identifier: Unlicense
+# SPDX-License-Identifier: MIT
 name: skill-quality-check
 description: >-
   Quality-check Agent Skills for trigger clarity, scope, structure, progressive
