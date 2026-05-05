@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 #nullable enable
 
+using CruiserJumpPractice.Core.Presentation;
 using CruiserJumpPractice.Core.Snapshots;
 using CruiserJumpPractice.Core.State;
-using CruiserJumpPractice.Core.Presentation;
 
 namespace CruiserJumpPractice.Core.Ports;
 
