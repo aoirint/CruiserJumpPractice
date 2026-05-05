@@ -3,7 +3,7 @@
 
 extern alias LethalCompany;
 
-using CruiserJumpPractice.Core.Validation;
+using CruiserJumpPractice.Interop.Game.Adapters;
 using HarmonyLib;
 using LethalCompany;
 
@@ -65,7 +65,7 @@ internal static class VehicleControllerPatch
         {
             CruiserJumpPractice.Controller.HandleBaseGameTurboLocalApplied(
                 expectedTurbo: addedAmount,
-                observedTurbo: VehicleControllerStateReader.GetTurboBoosts(cruiser: __instance)
+                observedTurbo: CruiserAdapter.GetTurboBoosts(cruiser: __instance)
             );
         }
         catch

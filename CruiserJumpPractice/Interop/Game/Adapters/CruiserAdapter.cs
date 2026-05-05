@@ -4,6 +4,7 @@
 extern alias LethalCompany;
 extern alias UnityEngine;
 
+using System.Reflection;
 using LethalCompany;
 using UnityEngine::UnityEngine;
 
@@ -17,6 +18,11 @@ namespace CruiserJumpPractice.Interop.Game.Adapters;
 // practice rules.
 internal sealed class CruiserAdapter
 {
+    private static readonly FieldInfo? turboBoostsField = typeof(VehicleController).GetField(
+        name: "turboBoosts",
+        bindingAttr: BindingFlags.NonPublic | BindingFlags.Instance
+    );
+
     private readonly IPluginLogger logger;
     private readonly GameObjectAdapter gameObjects;
 
@@ -62,7 +68,7 @@ internal sealed class CruiserAdapter
                 steeringInput: cruiser.moveInputVector.x,
                 engineRPM: cruiser.EngineRPM,
                 carHP: cruiser.carHP,
-                turboBoosts: VehicleControllerStateReader.GetTurboBoosts(cruiser: cruiser)
+                turboBoosts: GetTurboBoosts(cruiser: cruiser)
             );
         }
         catch (System.Exception error)
@@ -81,7 +87,7 @@ internal sealed class CruiserAdapter
             // should not add another scene search or polling loop when logging is wired later.
             var beforeCarPosition = FromUnityVector3(cruiser.transform.position);
             var beforeCarHP = cruiser.carHP;
-            var beforeTurboBoosts = VehicleControllerStateReader.GetTurboBoosts(cruiser: cruiser);
+            var beforeTurboBoosts = GetTurboBoosts(cruiser: cruiser);
 
             // VehicleController already syncs transform and driving fields during its vanilla
             // update flow, while oil and turbo counts need the game's RPC helpers below.
@@ -106,7 +112,7 @@ internal sealed class CruiserAdapter
                 afterCarHP: cruiser.carHP,
                 savedTurboBoosts: snapshot.TurboBoosts,
                 beforeTurboBoosts: beforeTurboBoosts,
-                afterTurboBoosts: VehicleControllerStateReader.GetTurboBoosts(cruiser: cruiser)
+                afterTurboBoosts: GetTurboBoosts(cruiser: cruiser)
             );
         }
         catch (System.Exception error)
@@ -127,6 +133,24 @@ internal sealed class CruiserAdapter
             logger.LogError($"Exception while getting 'magnetedToShip': {error}");
             throw new GameInteropException($"Exception while getting 'magnetedToShip': {error}");
         }
+    }
+
+    internal static int GetTurboBoosts(VehicleController cruiser)
+    {
+        if (turboBoostsField == null)
+        {
+            throw new GameInteropException(
+                message: "Failed to get 'turboBoosts' field from VehicleController."
+            );
+        }
+
+        var turboBoostsValue = turboBoostsField.GetValue(obj: cruiser);
+        if (turboBoostsValue is int turboBoosts)
+        {
+            return turboBoosts;
+        }
+
+        throw new GameInteropException(message: "'turboBoosts' field is not of type int.");
     }
 
     private static Vector3Value FromUnityVector3(Vector3 value)
