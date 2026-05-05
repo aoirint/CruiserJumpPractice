@@ -16,17 +16,6 @@ internal improvements.
 
 No gameplay changes are introduced.
 
-### Added
-
-- Added opt-in structured validation logs for release validation and
-  troubleshooting:
-    - Disabled by default.
-    - Enabled through `Debug.ValidationLogging` in the generated BepInEx config.
-    - Emits `[CJP_VALIDATION]` records that can be shared with maintainers or
-      tooling after a human-operated test run.
-- Added extra validation observations for base-game-applied cruiser HP, turbo,
-  and ship magnet state.
-
 ### Changed
 
 - Rebuilt for Lethal Company v81.5.
