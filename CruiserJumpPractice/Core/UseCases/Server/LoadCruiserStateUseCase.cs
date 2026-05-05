@@ -48,7 +48,9 @@ internal sealed class LoadCruiserStateUseCase
                 return LoadCruiserStateResult.MagnetedToShip;
             }
 
-            gameInterop.RestoreCruiser(savedCruiserState);
+            // The restore observation is collected on the server path for later validation
+            // logging; until then, load result semantics stay enum-only for the client RPC.
+            _ = gameInterop.RestoreCruiser(savedCruiserState);
             return LoadCruiserStateResult.Success;
         }
         catch (System.Exception error)

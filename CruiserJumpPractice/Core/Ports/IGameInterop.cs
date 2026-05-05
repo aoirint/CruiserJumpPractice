@@ -27,7 +27,7 @@ internal interface IGameInterop
 
     CruiserSnapshot? CaptureCruiser();
 
-    void RestoreCruiser(CruiserSnapshot snapshot);
+    CruiserRestoreObservation RestoreCruiser(CruiserSnapshot snapshot);
 
     bool IsCruiserMagnetedToShip();
 

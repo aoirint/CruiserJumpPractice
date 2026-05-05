@@ -78,7 +78,7 @@ internal sealed class GameInterop : IGameInterop
         return cruiserInterop.CaptureCruiser(cruiser);
     }
 
-    public void RestoreCruiser(CruiserSnapshot snapshot)
+    public CruiserRestoreObservation RestoreCruiser(CruiserSnapshot snapshot)
     {
         var cruiser = cruiserInterop.FindCruiser();
         if (cruiser == null)
@@ -86,7 +86,7 @@ internal sealed class GameInterop : IGameInterop
             throw new GameInteropException("No cruiser found.");
         }
 
-        cruiserInterop.RestoreCruiser(cruiser, snapshot);
+        return cruiserInterop.RestoreCruiser(cruiser, snapshot);
     }
 
     public bool IsCruiserMagnetedToShip()
