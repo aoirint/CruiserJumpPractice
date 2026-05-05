@@ -44,9 +44,6 @@ The project maintainer is listed in [CODEOWNERS](./.github/CODEOWNERS).
   disclose that assistance in the issue or comment. This helps maintainers judge
   what context may need closer checking, such as reproduction steps,
   compatibility claims, log interpretation, or documentation suggestions.
-- Ordinary issue reports, questions, and suggestions do not need the
-  Contribution License Agreement just because AI helped you write, translate, or
-  organize them. Keep the report focused on information maintainers can verify.
 - Do not submit sample code, documentation text, patches, or other material that
   could be included or adapted into the project unless you provide it under the
   [Contribution License Agreement](#contribution-license-agreement). Clearly
