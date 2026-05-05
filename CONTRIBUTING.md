@@ -53,13 +53,9 @@ The project maintainer is listed in [CODEOWNERS](./.github/CODEOWNERS).
   cannot move forward because needed information is missing, the issue is no
   longer reproducible, the reported behavior no longer matches the current
   project, or the discussion has been inactive for a reasonable period may be
-  closed.
-- This is not a judgment on the reporter or the report, and it does not prevent
-  you from adding new information later if the issue is still relevant.
-- If a closed issue becomes relevant again, reopen it or ask maintainers to
-  reopen it when the existing context is still useful. Open a new issue instead
-  if the current behavior is different enough that a fresh report would be
-  clearer.
+  closed. This is not a judgment on the reporter or the report, and it does not
+  prevent you from reopening the issue or asking maintainers to reopen it later
+  if the issue is still relevant.
 
 ## Development setup
 
