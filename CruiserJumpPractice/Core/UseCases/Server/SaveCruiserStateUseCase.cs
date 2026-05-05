@@ -12,12 +12,12 @@ internal sealed class SaveCruiserStateUseCase
 {
     private readonly IGameInterop gameInterop;
     private readonly CruiserStateStore cruiserStateStore;
-    private readonly ICoreLogger logger;
+    private readonly IPluginLogger logger;
 
     public SaveCruiserStateUseCase(
         IGameInterop gameInterop,
         CruiserStateStore cruiserStateStore,
-        ICoreLogger logger
+        IPluginLogger logger
     )
     {
         this.gameInterop = gameInterop;

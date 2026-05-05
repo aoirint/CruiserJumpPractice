@@ -11,9 +11,9 @@ namespace CruiserJumpPractice.Core.UseCases.Client;
 internal sealed class PresentLoadCruiserStateResultUseCase
 {
     private readonly IGameInterop gameInterop;
-    private readonly ICoreLogger logger;
+    private readonly IPluginLogger logger;
 
-    public PresentLoadCruiserStateResultUseCase(IGameInterop gameInterop, ICoreLogger logger)
+    public PresentLoadCruiserStateResultUseCase(IGameInterop gameInterop, IPluginLogger logger)
     {
         this.gameInterop = gameInterop;
         this.logger = logger;

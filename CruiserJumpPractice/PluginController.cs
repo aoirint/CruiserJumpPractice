@@ -1,14 +1,12 @@
 // SPDX-License-Identifier: Unlicense
 #nullable enable
 
-using BepInEx.Logging;
 using CruiserJumpPractice.Core.Handlers;
 using CruiserJumpPractice.Core.Ports;
 using CruiserJumpPractice.Core.State;
 using CruiserJumpPractice.Core.UseCases;
 using CruiserJumpPractice.Core.UseCases.Client;
 using CruiserJumpPractice.Core.UseCases.Server;
-using CruiserJumpPractice.Interop;
 using CruiserJumpPractice.Interop.Game;
 using CruiserJumpPractice.Interop.InputUtils;
 
@@ -44,12 +42,11 @@ internal sealed class PluginController
         this.presentLoadCruiserStateResultUseCase = presentLoadCruiserStateResultUseCase;
     }
 
-    public static PluginController Create(ManualLogSource logger)
+    public static PluginController Create(IPluginLogger logger)
     {
         // Concrete integrations become Core ports here. Adding a new external
         // dependency should usually mean adding another adapter here, not
         // another static property on CruiserJumpPractice.
-        var coreLogger = new BepInExCoreLogger(logger);
         var inputActions = new InputUtilsActions();
         var practiceInput = new InputUtilsPracticeInput(inputActions);
         IGameInterop gameInterop = new GameInterop(logger);
@@ -58,12 +55,12 @@ internal sealed class PluginController
         var saveCruiserStateUseCase = new SaveCruiserStateUseCase(
             gameInterop,
             cruiserStateStore,
-            coreLogger
+            logger
         );
         var loadCruiserStateUseCase = new LoadCruiserStateUseCase(
             gameInterop,
             cruiserStateStore,
-            coreLogger
+            logger
         );
 
         var requestSaveCruiserStateUseCase = new RequestSaveCruiserStateUseCase(gameInterop);
@@ -71,11 +68,11 @@ internal sealed class PluginController
         var toggleMagnetUseCase = new ToggleMagnetUseCase(gameInterop);
         var presentSaveCruiserStateResultUseCase = new PresentSaveCruiserStateResultUseCase(
             gameInterop,
-            coreLogger
+            logger
         );
         var presentLoadCruiserStateResultUseCase = new PresentLoadCruiserStateResultUseCase(
             gameInterop,
-            coreLogger
+            logger
         );
 
         var frameHandler = new FrameHandler(
