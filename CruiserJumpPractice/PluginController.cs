@@ -42,25 +42,25 @@ internal sealed class PluginController
         this.presentLoadCruiserStateResultUseCase = presentLoadCruiserStateResultUseCase;
     }
 
-    public static PluginController Create(IPluginLogger pluginLogger)
+    public static PluginController Create(IPluginLogger logger)
     {
         // Concrete integrations become Core ports here. Adding a new external
         // dependency should usually mean adding another adapter here, not
         // another static property on CruiserJumpPractice.
         var inputActions = new InputUtilsActions();
         var practiceInput = new InputUtilsPracticeInput(inputActions);
-        IGameInterop gameInterop = new GameInterop(pluginLogger);
+        IGameInterop gameInterop = new GameInterop(logger);
 
         var cruiserStateStore = new CruiserStateStore();
         var saveCruiserStateUseCase = new SaveCruiserStateUseCase(
             gameInterop,
             cruiserStateStore,
-            pluginLogger
+            logger
         );
         var loadCruiserStateUseCase = new LoadCruiserStateUseCase(
             gameInterop,
             cruiserStateStore,
-            pluginLogger
+            logger
         );
 
         var requestSaveCruiserStateUseCase = new RequestSaveCruiserStateUseCase(gameInterop);
@@ -68,11 +68,11 @@ internal sealed class PluginController
         var toggleMagnetUseCase = new ToggleMagnetUseCase(gameInterop);
         var presentSaveCruiserStateResultUseCase = new PresentSaveCruiserStateResultUseCase(
             gameInterop,
-            pluginLogger
+            logger
         );
         var presentLoadCruiserStateResultUseCase = new PresentLoadCruiserStateResultUseCase(
             gameInterop,
-            pluginLogger
+            logger
         );
 
         var frameHandler = new FrameHandler(
