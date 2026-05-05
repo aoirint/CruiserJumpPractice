@@ -43,7 +43,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
     - [Issue #18][issue-18-ai-generated-category] records the project decision
       to use this category because the applicable disclosure threshold is not
       clear.
-    - Human maintainers review project changes.
+    - Human maintainer review remains the project policy.
 - Aligned Thunderstore manifest dependency strings with the documented v81.5
   test environment for BepInExPack and LethalCompany_InputUtils:
     - Treats the manifest dependency versions as part of the practical minimum
