@@ -33,6 +33,8 @@ Then describe the AI assistance under "AI disclosure" below.
 Briefly describe what changed, who it affects, and why it is useful.
 If this pull request mixes unrelated behavior, documentation, refactors, or
 cleanup, split it or explain why the work should stay together.
+If the title or commits include `!` or `BREAKING CHANGE`, include a
+`### Breaking Changes` subsection.
 
 Optional H3 examples:
 ### User impact
