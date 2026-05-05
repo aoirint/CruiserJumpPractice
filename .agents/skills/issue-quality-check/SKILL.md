@@ -122,6 +122,8 @@ can trace the relationship without relying on transient comments elsewhere.
 - Include reproduction steps only when they are known and useful.
 - Do not paste large logs, stack traces, or diffs; summarize and link or attach details when needed.
 - Be explicit when verification or reproduction was not run.
+- Do not present AI-performed review, inspection, editing, verification, or
+  other work as "manual".
 
 ## CLI Safety
 
@@ -186,6 +188,8 @@ For issue replies:
   application versions, reproduction steps, or relevant data files.
 - Avoid large diffs, large logs, and unrelated implementation plans.
 - Do not promise timelines unless they are already agreed.
+- Do not present AI-performed review, inspection, editing, verification, or
+  other work as "manual".
 
 Use `Update Note` or `Discussion Note` sections only when the active task asks
 for process notes, decision logs, or granular issue-thread updates. Do not add

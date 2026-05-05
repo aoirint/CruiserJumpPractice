@@ -5,6 +5,13 @@
 Use this fallback only when the repository has no applicable pull request
 template. If a repository template exists, the live template takes precedence.
 
+## Contents
+
+- [Fallback Scaffold](#fallback-scaffold)
+- [Section Guidance](#section-guidance)
+
+## Fallback Scaffold
+
 Keep the fallback structure aligned with `.github/pull_request_template.md`.
 When a scaffold subsection has no applicable content, write `None` or
 `Not applicable` instead of removing the heading.
@@ -120,6 +127,8 @@ As the pull request author, I have checked all required items:
 
 - [ ] I have read `CONTRIBUTING.md` and agree to the Contribution License Agreement.
 ````
+
+## Section Guidance
 
 Use fallback sections this way:
 
