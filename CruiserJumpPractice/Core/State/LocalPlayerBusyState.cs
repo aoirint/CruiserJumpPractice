@@ -3,6 +3,8 @@
 
 namespace CruiserJumpPractice.Core.State;
 
+// Future validation logs need a suppression reason, but this state intentionally carries only
+// closed booleans/tokens and never raw input, UI text, player identifiers, or Unity objects.
 internal readonly struct LocalPlayerBusyState
 {
     public const string MenuReasonToken = "menu";
