@@ -16,6 +16,9 @@ No gameplay changes are introduced.
 
 - Rebuilt for Lethal Company v81.5.
 - Improved internal implementation structure and release packaging.
+- Dropped backward compatibility with older CruiserJumpPractice versions:
+    - Affects CruiserJumpPractice v0.1.4 and earlier.
+    - Caused by a mod-internal change.
 
 ### Notes
 
