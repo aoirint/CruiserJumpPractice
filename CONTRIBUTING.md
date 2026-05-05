@@ -15,6 +15,16 @@ The project maintainer is listed in [CODEOWNERS](./.github/CODEOWNERS).
 - Keep changes focused. Separate unrelated fixes, refactors, and documentation
   updates into separate pull requests when practical.
 
+## Reporting issues
+
+Use GitHub Issues for ordinary bug reports, documentation errors,
+compatibility notes, and release-note corrections.
+Before opening a new issue, check the existing issues and pull requests to
+avoid duplicates.
+
+Do not report security issues in public GitHub Issues.
+See [Reporting security issues](#reporting-security-issues) instead.
+
 ## Development setup
 
 Follow the setup, formatting, build, package management, debugging, and release
