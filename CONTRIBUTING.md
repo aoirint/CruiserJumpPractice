@@ -24,8 +24,8 @@ avoid duplicates.
 
 When you share logs, screenshots, or other supporting material in a public
 issue, expect maintainers to use that material within a reasonable scope related
-to the reported issue, including to understand, reproduce, discuss, fix, and
-communicate with end users about it.
+to the reported issue, including for understanding, reproducing, discussing,
+fixing, and communicating with end users about it.
 Only share material that you have the right to share, and do not include
 secrets, personal information, private data, or content that should not be made
 public.
@@ -33,8 +33,9 @@ public.
 Do not submit sample code, documentation text, patches, or other material that
 could be included or adapted into the project unless you provide it under the
 Contribution License Agreement.
-Clearly state your agreement to that license agreement when you submit that
-material.
+Clearly state the same confirmation used for pull requests when you submit that
+material: `I have read CONTRIBUTING.md and agree to the Contribution License
+Agreement.`
 
 Do not report security issues in public GitHub Issues.
 See [Reporting security issues](#reporting-security-issues) instead.

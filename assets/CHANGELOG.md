@@ -5,8 +5,8 @@ This changelog is the user-facing release notes for Thunderstore.
 For internal implementation details and developer-facing release history, see
 the [GitHub changelog][github-changelog].
 
-If you find an error or issue in these notes, read
-[CONTRIBUTING.md][contributing] and report it in
+If you find an error or issue in these notes, see
+[CONTRIBUTING.md][contributing], then report it in
 [GitHub Issues][github-issues].
 
 ## Unreleased
