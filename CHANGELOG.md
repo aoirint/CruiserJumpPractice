@@ -12,6 +12,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## Unreleased
 
+### Added
+
+- Added validation logs for base-game applied-state observation points:
+    - Receiver-side cruiser HP and turbo apply evidence from base-game client
+      RPC paths.
+    - Ship magnet logical state evidence from local apply and receiver-side
+      client RPC paths.
+
 ## v0.2.0-alpha.3 - 2026-05-05 UTC
 
 ### Added
