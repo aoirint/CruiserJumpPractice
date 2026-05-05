@@ -22,6 +22,11 @@ The project maintainer is listed in [CODEOWNERS](./.github/CODEOWNERS).
 - Use [GitHub Issues](https://github.com/aoirint/CruiserJumpPractice/issues)
   for ordinary bug reports, feature requests, compatibility notes, and
   documentation improvement requests.
+    - To minimize the personal burden this project places on maintainers,
+      maintainers try to keep the project's responsibilities as small as
+      practical. They are unlikely to accept requests that fall outside that
+      scope, requests for large or complex features, or compatibility requests
+      for base game versions that are no longer current.
 - Before opening a new issue, check the existing
   [issues](https://github.com/aoirint/CruiserJumpPractice/issues) and
   [pull requests](https://github.com/aoirint/CruiserJumpPractice/pulls) to avoid
