@@ -2,6 +2,7 @@
 #nullable enable
 
 using CruiserJumpPractice.Core.Ports;
+using CruiserJumpPractice.Core.State;
 using CruiserJumpPractice.Interop.Game;
 
 namespace CruiserJumpPractice.Interop.Game.Adapters;
@@ -17,7 +18,7 @@ internal sealed class PlayerAdapter
         this.gameObjects = gameObjects;
     }
 
-    public bool IsLocalPlayerBusy()
+    public LocalPlayerBusyState GetLocalPlayerBusyState()
     {
         var localPlayer = gameObjects.GetLocalPlayer();
         try
@@ -28,7 +29,11 @@ internal sealed class PlayerAdapter
                 throw new GameInteropException("quickMenuManager is null.");
             }
 
-            return quickMenuManager.isMenuOpen || localPlayer.inTerminalMenu || localPlayer.isTypingChat;
+            return new LocalPlayerBusyState(
+                quickMenuManager.isMenuOpen,
+                localPlayer.inTerminalMenu,
+                localPlayer.isTypingChat
+            );
         }
         catch (System.Exception error)
         {
