@@ -19,6 +19,7 @@ Optional H3 examples:
 ### User impact
 ### Contributor impact
 ### Maintainer impact
+### Breaking Changes
 -->
 
 ## Related Issues
