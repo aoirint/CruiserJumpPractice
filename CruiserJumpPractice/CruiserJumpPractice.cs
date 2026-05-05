@@ -37,12 +37,15 @@ public class CruiserJumpPractice : BaseUnityPlugin
             : DisabledValidationLogger.Instance;
 
         validationLogger.Record(
-            ValidationLogRecord.PluginLoaded(MyPluginInfo.PLUGIN_VERSION, validationLogging.Value)
+            ValidationLogRecord.PluginLoaded(
+                version: MyPluginInfo.PLUGIN_VERSION,
+                validationLogging: validationLogging.Value
+            )
         );
 
         // Inject the logger through the plugin logging port so Core and game interop can emit
         // diagnostics without depending on BepInEx logging types.
-        controller = PluginController.Create(logger, validationLogger);
+        controller = PluginController.Create(logger: logger, validationLogger: validationLogger);
 
         // Startup order matters: construct the controller before patching so the first game
         // callback can enter a fully wired plugin boundary.

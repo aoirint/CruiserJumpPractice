@@ -59,49 +59,55 @@ internal sealed class PluginController
         // another static property on CruiserJumpPractice.
         var inputActions = new InputUtilsActions();
         var practiceInput = new InputUtilsPracticeInput(inputActions);
-        IGameInterop gameInterop = new GameInterop(logger, validationLogger);
+        IGameInterop gameInterop = new GameInterop(
+            logger: logger,
+            validationLogger: validationLogger
+        );
 
         var cruiserStateStore = new CruiserStateStore();
         var baseGameAppliedStateValidationStore = new BaseGameAppliedStateValidationStore();
         validationLogger.Record(ValidationLogRecord.StateStoreCreated());
         var saveCruiserStateUseCase = new SaveCruiserStateUseCase(
-            gameInterop,
-            cruiserStateStore,
-            logger,
-            validationLogger
+            gameInterop: gameInterop,
+            cruiserStateStore: cruiserStateStore,
+            logger: logger,
+            validationLogger: validationLogger
         );
         var loadCruiserStateUseCase = new LoadCruiserStateUseCase(
-            gameInterop,
-            cruiserStateStore,
-            logger,
-            validationLogger
+            gameInterop: gameInterop,
+            cruiserStateStore: cruiserStateStore,
+            logger: logger,
+            validationLogger: validationLogger
         );
 
         var requestSaveCruiserStateUseCase = new RequestSaveCruiserStateUseCase(
-            gameInterop,
-            validationLogger
+            gameInterop: gameInterop,
+            validationLogger: validationLogger
         );
         var requestLoadCruiserStateUseCase = new RequestLoadCruiserStateUseCase(
-            gameInterop,
-            validationLogger
+            gameInterop: gameInterop,
+            validationLogger: validationLogger
         );
-        var toggleMagnetUseCase = new ToggleMagnetUseCase(gameInterop, validationLogger);
+        var toggleMagnetUseCase = new ToggleMagnetUseCase(
+            gameInterop: gameInterop,
+            validationLogger: validationLogger
+        );
         var presentSaveCruiserStateResultUseCase = new PresentSaveCruiserStateResultUseCase(
-            gameInterop,
-            logger
+            gameInterop: gameInterop,
+            logger: logger
         );
         var presentLoadCruiserStateResultUseCase = new PresentLoadCruiserStateResultUseCase(
-            gameInterop,
-            logger
+            gameInterop: gameInterop,
+            logger: logger
         );
 
         var frameHandler = new FrameHandler(
-            gameInterop,
-            practiceInput,
-            validationLogger,
-            requestSaveCruiserStateUseCase,
-            requestLoadCruiserStateUseCase,
-            toggleMagnetUseCase
+            gameInterop: gameInterop,
+            practiceInput: practiceInput,
+            validationLogger: validationLogger,
+            requestSaveCruiserStateUseCase: requestSaveCruiserStateUseCase,
+            requestLoadCruiserStateUseCase: requestLoadCruiserStateUseCase,
+            toggleMagnetUseCase: toggleMagnetUseCase
         );
 
         validationLogger.Record(ValidationLogRecord.ControllerCreated());
@@ -109,7 +115,10 @@ internal sealed class PluginController
             gameInterop: gameInterop,
             validationLogger: validationLogger,
             frameHandler: frameHandler,
-            startupHandler: new StartupHandler(gameInterop, validationLogger),
+            startupHandler: new StartupHandler(
+                gameInterop: gameInterop,
+                validationLogger: validationLogger
+            ),
             baseGameAppliedStateValidationHandler: new BaseGameAppliedStateValidationHandler(
                 gameInterop: gameInterop,
                 validationLogger: validationLogger,
@@ -160,7 +169,7 @@ internal sealed class PluginController
     public void RecordSaveClientRpcReceived(SaveCruiserStateResult result)
     {
         validationLogger.Record(
-            ValidationLogRecord.SaveClientRpcReceived(GetRole(), result)
+            ValidationLogRecord.SaveClientRpcReceived(role: GetRole(), result: result)
         );
     }
 

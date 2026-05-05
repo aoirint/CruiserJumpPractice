@@ -28,12 +28,16 @@ internal sealed class GameInterop : IGameInterop
         this.validationLogger = validationLogger;
         var gameObjects = new GameObjectAdapter(logger);
 
-        networkInterop = new NetworkAdapter(logger, gameObjects);
-        playerInterop = new PlayerAdapter(logger, gameObjects);
-        hudInterop = new HudAdapter(logger, gameObjects);
-        rpcSurrogateInterop = new RpcSurrogateAdapter(logger, gameObjects, validationLogger);
-        cruiserInterop = new CruiserAdapter(logger, gameObjects);
-        shipMagnetInterop = new ShipMagnetAdapter(logger, gameObjects);
+        networkInterop = new NetworkAdapter(logger: logger, gameObjects: gameObjects);
+        playerInterop = new PlayerAdapter(logger: logger, gameObjects: gameObjects);
+        hudInterop = new HudAdapter(logger: logger, gameObjects: gameObjects);
+        rpcSurrogateInterop = new RpcSurrogateAdapter(
+            logger: logger,
+            gameObjects: gameObjects,
+            validationLogger: validationLogger
+        );
+        cruiserInterop = new CruiserAdapter(logger: logger, gameObjects: gameObjects);
+        shipMagnetInterop = new ShipMagnetAdapter(logger: logger, gameObjects: gameObjects);
     }
 
     public bool IsHost()
@@ -50,8 +54,8 @@ internal sealed class GameInterop : IGameInterop
     {
         // Message selection stays in Core; Interop records the closed token
         // before unwrapping user-visible text at the final HUD boundary.
-        validationLogger.Record(ValidationLogRecord.HudTip(GetRole(), message));
-        hudInterop.DisplayTip(message.HeaderText, message.BodyText);
+        validationLogger.Record(ValidationLogRecord.HudTip(role: GetRole(), message: message));
+        hudInterop.DisplayTip(headerText: message.HeaderText, bodyText: message.BodyText);
     }
 
     public RpcSurrogateSpawnResult SpawnRpcSurrogate()
@@ -93,7 +97,7 @@ internal sealed class GameInterop : IGameInterop
             throw new GameInteropException("No cruiser found.");
         }
 
-        return cruiserInterop.RestoreCruiser(cruiser, snapshot);
+        return cruiserInterop.RestoreCruiser(cruiser: cruiser, snapshot: snapshot);
     }
 
     public bool IsCruiserMagnetedToShip()

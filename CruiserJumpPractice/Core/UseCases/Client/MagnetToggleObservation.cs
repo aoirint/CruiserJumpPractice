@@ -37,9 +37,9 @@ internal sealed class MagnetToggleObservation
         // The vanilla lever/RPC boundary is asynchronous from here; this use
         // case intentionally does not claim to observe the synced result.
         return new MagnetToggleObservation(
-            beforeState,
-            expectedAfterState,
-            MagnetState.Unknown
+            beforeState: beforeState,
+            expectedAfterState: expectedAfterState,
+            observedAfterState: MagnetState.Unknown
         );
     }
 }
