@@ -51,7 +51,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
     - The current Lethal Company package list page describes the category as
       the place to disclose packages where a significant portion was created
       using AI tools:
-        - <https://thunderstore.io/c/lethal-company/?included_categories=689&ordering=last-updated&q=&section=mods>
+        - <https://thunderstore.io/c/lethal-company/?included_categories=2086&ordering=last-updated&q=&section=mods>
     - This project uses the category to disclose AI assistance in project work;
       it is package metadata rather than a gameplay feature.
 - Aligned Thunderstore manifest dependency strings with the documented v81.5
