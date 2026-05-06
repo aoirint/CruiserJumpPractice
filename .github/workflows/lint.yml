@@ -36,9 +36,8 @@ env:
 
 jobs:
   lint:
-    # Keep this hard-coded to ubuntu-slim while lint steps only need GitHub
-    # Actions, .NET, and standard shell tooling. Revisit this runner if a future
-    # lint tool requires packages that are only available on ubuntu-latest.
+    # The lint job installs its external tools explicitly, so it can run on the
+    # smaller hosted runner image without relying on ubuntu-latest's toolset.
     runs-on: ubuntu-slim
 
     steps:

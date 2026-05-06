@@ -103,16 +103,19 @@ pinact run --check --min-age 7
 DOTNET_CLI_UI_LANGUAGE=en dotnet build
 ```
 
-The Docker command is the documented pinned Markdown lint path, but Docker is
-not required. Another `markdownlint-cli2` installation method is acceptable when
-it uses the repository configuration.
+Use the commands as follows:
+
+- Run `dotnet format` and `DOTNET_CLI_UI_LANGUAGE=en dotnet build` for source
+  changes.
+- Run Markdown lint for documentation changes.
+  The Docker command is the documented pinned path, but Docker is not required.
+  Another `markdownlint-cli2` installation method is acceptable when it uses the
+  repository configuration.
+- Run `actionlint`, `shellcheck`, and `pinact` when changing GitHub Actions
+  workflows, composite actions, shell scripts, or related repository automation.
 
 On Linux, run the Markdown lint command with `sudo docker` and use
 `--user "$(id -u):$(id -g)"`.
-
-The `actionlint`, `shellcheck`, and `pinact` commands are required when changing
-GitHub Actions workflows, composite actions, shell scripts, or related
-repository automation.
 
 For package or release changes, also verify the release documentation in
 [README.md](./README.md) and confirm that the Thunderstore-facing files under

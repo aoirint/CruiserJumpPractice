@@ -78,23 +78,36 @@ CI action together after the repository cooldown period has elapsed.
 
 GitHub Actions workflows and composite actions are checked with
 [`actionlint`][actionlint-repo].
-CI installs ShellCheck so actionlint can also check inline workflow shell
-scripts. The pyflakes integration remains disabled because this repository does
-not currently contain Python files; revisit this if Python scripts are added.
+
+The local lint pass has two parts:
+
+- `actionlint` checks workflow syntax, expressions, runner labels, and composite
+  action metadata.
+- ShellCheck checks shell scripts used by repository automation.
+
+CI installs ShellCheck before running actionlint, so actionlint can also inspect
+inline shell scripts in workflows.
+The pyflakes integration remains disabled because this repository does not
+currently contain Python files.
+Revisit that setting if Python scripts are added.
 
 ```powershell
 actionlint -pyflakes=
 shellcheck .github/actions/publish-thunderstore/publish-thunderstore.sh
 ```
 
-Install `actionlint` from its upstream releases, package-manager integrations,
-Docker image, or another trusted distribution.
-Install ShellCheck from its upstream releases, package-manager integrations,
-Docker image, or another trusted distribution.
-Use a cooldown-compliant pinned release when updating CI.
-The CI workflow downloads the Linux release archives directly and verifies their
-SHA256 values before running them. CI caches the archives, not the extracted
-executables, so cached downloads are still verified before use.
+Install these tools from trusted distributions:
+
+- `actionlint`: upstream releases, package-manager integrations, Docker image,
+  or another trusted distribution.
+- ShellCheck: upstream releases, package-manager integrations, Docker image, or
+  another trusted distribution.
+
+When updating CI, use cooldown-compliant pinned releases.
+The workflow downloads Linux release archives directly and verifies their SHA256
+values before running them.
+It caches only the archives, not the extracted executables, so cached downloads
+are still verified before use.
 
 ### GitHub Actions pinning
 
@@ -106,7 +119,7 @@ comments.
 pinact run --check --min-age 7
 ```
 
-For local fixes or updates, use the documented pinact commands:
+For local fixes or maintenance updates, use the same cooldown setting:
 
 ```powershell
 # Pin or refresh version comments.
@@ -120,9 +133,11 @@ Set `GITHUB_TOKEN` when possible so pinact can query GitHub's API with normal
 authenticated rate limits.
 Install pinact from its upstream releases, package-manager integrations, or
 another trusted distribution.
-The CI workflow downloads the Linux amd64 release archive directly and verifies
-its SHA256 before running it. CI caches the archive, not the extracted
-executable, so cached downloads are still verified before use.
+
+CI downloads the Linux amd64 release archive directly and verifies its SHA256
+before running pinact.
+It caches only the archive, not the extracted executable, so cached downloads
+are still verified before use.
 
 ## Package management
 
