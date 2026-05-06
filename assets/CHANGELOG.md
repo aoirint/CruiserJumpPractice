@@ -9,7 +9,7 @@ If you find a release-note error, encounter a bug, or want to report another
 project issue, see [CONTRIBUTING.md][contributing], then report it in
 [GitHub Issues][github-issues].
 
-## Unreleased
+## v0.2.0 - 2026-05-06 UTC
 
 This release rebuilds CruiserJumpPractice for Lethal Company v81.5 and includes
 internal improvements.
@@ -19,15 +19,17 @@ No gameplay changes are introduced.
 ### Changed
 
 - Rebuilt for Lethal Company v81.5.
-- Improved internal implementation structure and release packaging.
+- Improved internal implementation structure and release flow.
 - Added the Thunderstore `AI Generated` category to the package metadata:
     - The Lethal Company Thunderstore community currently provides this
       category for authors to disclose when a `significant portion` of a mod
       was created using AI tools.
     - This project uses the category to disclose AI assistance in project work;
       it is package metadata rather than a gameplay feature.
-    - The project decided to use this category because the applicable
-      disclosure threshold is not clear.
+    - The project decided to use this category because:
+        - It has used and expects to keep using AI tools to assist with
+          development and maintenance, and to reduce workload.
+        - The applicable disclosure threshold is not clear.
     - Human maintainer review remains the project policy.
 - Dropped backward compatibility with older CruiserJumpPractice versions:
     - Affects CruiserJumpPractice v0.1.4 and earlier.
@@ -38,8 +40,8 @@ No gameplay changes are introduced.
 - Compatibility:
     - Compatible with Lethal Company v81.5 (2026-04-17 UTC, Manifest ID:
       `6423525044216269478`).
-        - Normally used together with Imperium; the v81.5 test environment
-          used Imperium v1.3.0.
+        - Normally used together with [Imperium][imperium-package]; the v81.5 test
+          environment used Imperium v1.3.0.
         - Imperium v1.3.0 appears to have some cruiser-related issues:
             - See the [Imperium issue comment][imperium-cruiser-workaround]
               for a workaround.
@@ -118,3 +120,4 @@ No gameplay changes are introduced.
 [contributing]: https://github.com/aoirint/CruiserJumpPractice/blob/main/CONTRIBUTING.md
 [github-changelog]: https://github.com/aoirint/CruiserJumpPractice/blob/main/CHANGELOG.md
 [github-issues]: https://github.com/aoirint/CruiserJumpPractice/issues
+[imperium-package]: https://thunderstore.io/c/lethal-company/p/giosuel/Imperium/

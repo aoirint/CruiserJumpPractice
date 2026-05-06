@@ -12,6 +12,44 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## Unreleased
 
+## v0.2.0 - 2026-05-06 UTC
+
+### Changed
+
+- Promoted the validated `v0.2.0-alpha.6` release candidate to stable
+  `v0.2.0`.
+- Set the project version to stable `0.2.0`:
+    - `BepInEx.PluginInfoProps` now derives the BepInEx plugin metadata version
+      from the project version again.
+    - Source `assets/manifest.json` remains at the repository placeholder
+      `0.0.0`; the release workflow writes the generated stable
+      Thunderstore manifest version into the packaged artifact.
+- Published stable user-facing release notes in `assets/CHANGELOG.md`:
+    - The stable notes roll up the user-facing outcome from the prerelease
+      cycle.
+    - Detailed developer-facing prerelease implementation history remains in
+      the `v0.2.0-alpha.*` sections below instead of being copied wholesale
+      into this stable entry.
+
+### Notes
+
+- Release validation:
+    - `v0.2.0-alpha.6` passed the [#112][issue-112] validation cycle after
+      the blocked `v0.2.0-alpha.5` startup pass.
+    - Accepted residual risk: HP/turbo restore records were present, but cases
+      where values remained default-like and unchanged do not fully prove
+      HP/turbo restore by observable before/after change.
+    - Accepted residual risk: the guest-driver load snapback observation is
+      tracked separately in [#113][issue-113] and is not treated as a
+      `v0.2.0` blocker.
+- Compatibility:
+    - Compatible with Lethal Company v81.5 (2026-04-17 UTC, Manifest ID:
+      `6423525044216269478`).
+        - The validation environment used Imperium v1.3.0 for setup support.
+        - Imperium v1.3.0 appears to have some cruiser-related issues; see the
+          [Imperium issue comment][imperium-cruiser-workaround] for the
+          maintainer-noted workaround reference.
+
 ## v0.2.0-alpha.6 - 2026-05-06 UTC
 
 ### Fixed
@@ -92,9 +130,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
         - <https://thunderstore.io/c/lethal-company/?included_categories=2086&ordering=last-updated&q=&section=mods>
     - This project uses the category to disclose AI assistance in project work;
       it is package metadata rather than a gameplay feature.
-    - [Issue #18][issue-18-ai-generated-category] records the project decision
-      to use this category because the applicable disclosure threshold is not
-      clear.
+    - [Issue #18][issue-18] records the project decision
+      to use this category because:
+        - The project has used and expects to keep using AI tools to assist
+          with development and maintenance, and to reduce workload.
+        - The applicable disclosure threshold is not clear.
     - Human maintainer review remains the project policy.
 - Aligned Thunderstore manifest dependency strings with the documented v81.5
   test environment for BepInExPack and LethalCompany_InputUtils:
@@ -316,4 +356,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
         - Backfilled as reference compatibility information while preparing
           the v0.2.0-alpha.1 release.
 
-[issue-18-ai-generated-category]: https://github.com/aoirint/CruiserJumpPractice/issues/18
+[imperium-cruiser-workaround]: https://github.com/giosuel/imperium/issues/153#issuecomment-4317402735
+[issue-18]: https://github.com/aoirint/CruiserJumpPractice/issues/18
+[issue-112]: https://github.com/aoirint/CruiserJumpPractice/issues/112
+[issue-113]: https://github.com/aoirint/CruiserJumpPractice/issues/113
