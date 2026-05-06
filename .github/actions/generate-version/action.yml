@@ -19,6 +19,9 @@ outputs:
   git_version:
     description: 'Git tag version'
     value: ${{ steps.git-version.outputs.version }}
+  manifest_version:
+    description: 'Thunderstore manifest version_number'
+    value: ${{ steps.manifest-version.outputs.version }}
 
 runs:
   using: "composite"
@@ -79,6 +82,23 @@ runs:
         APP_VERSION="${{ steps.app-version.outputs.version }}"
         echo "version=v${APP_VERSION}" >> "${GITHUB_OUTPUT}"
 
+    - name: Generate manifest version
+      id: manifest-version
+      shell: bash
+      run: |
+        RELEASE_MODE="${{ steps.release-mode.outputs.mode }}"
+
+        if [ "${RELEASE_MODE}" = "latest" ]; then
+          MANIFEST_VERSION="${{ steps.app-version.outputs.version }}"
+        else
+          # Thunderstore-style package metadata does not carry prerelease or
+          # edge identity. Keep release identity in the project version,
+          # artifact name, and Git tag instead.
+          MANIFEST_VERSION="0.0.0"
+        fi
+
+        echo "version=${MANIFEST_VERSION}" >> "${GITHUB_OUTPUT}"
+
     - name: Replace version in csproj
       shell: bash
       run: |
@@ -90,8 +110,9 @@ runs:
     - name: Replace version in manifest.json
       shell: bash
       run: |
-        # Thunderstore reads version_number from the manifest inside the zip,
-        # so keep it synchronized with the build-time package version.
-        APP_VERSION="${{ steps.app-version.outputs.version }}"
-        jq --arg ver "${APP_VERSION}" '.version_number = $ver' assets/manifest.json > assets/manifest.tmp.json
+        # Thunderstore reads version_number from the manifest inside the zip.
+        # Stable releases use the app version; prerelease and edge artifacts keep
+        # a conservative placeholder because they are GitHub-only artifacts.
+        MANIFEST_VERSION="${{ steps.manifest-version.outputs.version }}"
+        jq --arg ver "${MANIFEST_VERSION}" '.version_number = $ver' assets/manifest.json > assets/manifest.tmp.json
         mv assets/manifest.tmp.json assets/manifest.json
