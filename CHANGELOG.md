@@ -130,9 +130,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
     - This project uses the category to disclose AI assistance in project work;
       it is package metadata rather than a gameplay feature.
     - [Issue #18][issue-18-ai-generated-category] records the project decision
-      to use this category because the project has used and expects to keep
-      using AI tools to reduce development burden, and because the applicable
-      disclosure threshold is not clear.
+      to use this category because:
+        - The project has used and expects to keep using AI tools to reduce
+          development burden.
+        - The applicable disclosure threshold is not clear.
     - Human maintainer review remains the project policy.
 - Aligned Thunderstore manifest dependency strings with the documented v81.5
   test environment for BepInExPack and LethalCompany_InputUtils:
