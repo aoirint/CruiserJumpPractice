@@ -44,7 +44,7 @@ internal static class VehicleControllerPatch
                 // Keep patch code limited to live game reads; filtering and record construction stay in Core.
                 CruiserJumpPractice.Controller.HandleBaseGameEngineOilLocalApplied(
                     expectedHP: addedAmount,
-                    observedHP: __instance.carHP
+                    observedHP: CruiserAdapter.GetCarHP(cruiser: __instance)
                 );
             }
         );

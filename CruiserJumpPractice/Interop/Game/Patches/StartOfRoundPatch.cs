@@ -4,6 +4,7 @@
 extern alias LethalCompany;
 
 using System;
+using CruiserJumpPractice.Interop.Game.Adapters;
 using HarmonyLib;
 using LethalCompany;
 
@@ -22,7 +23,7 @@ internal static class StartOfRoundPatch
             notify: () =>
                 CruiserJumpPractice.Controller.HandleBaseGameShipMagnetLocalApplied(
                     expectedAfter: on,
-                    observedAfter: __instance.magnetOn
+                    observedAfter: ShipMagnetAdapter.GetMagnetOn(startOfRound: __instance)
                 )
         );
     }
@@ -35,7 +36,7 @@ internal static class StartOfRoundPatch
             notify: () =>
                 CruiserJumpPractice.Controller.HandleBaseGameShipMagnetClientRpcApplied(
                     expectedAfter: on,
-                    observedAfter: __instance.magnetOn
+                    observedAfter: ShipMagnetAdapter.GetMagnetOn(startOfRound: __instance)
                 )
         );
     }
