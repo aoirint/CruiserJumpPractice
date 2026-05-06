@@ -80,7 +80,7 @@ GitHub Actions workflows and composite actions are checked with
 [`actionlint`][actionlint-repo].
 CI installs ShellCheck so actionlint can also check inline workflow shell
 scripts. The pyflakes integration remains disabled because this repository does
-not currently maintain Python workflow scripts.
+not currently contain Python files; revisit this if Python scripts are added.
 
 ```powershell
 actionlint -pyflakes=

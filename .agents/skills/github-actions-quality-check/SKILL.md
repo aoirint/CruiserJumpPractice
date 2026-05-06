@@ -46,7 +46,8 @@ description: >-
    actionlint cannot infer.
 6. Run actionlint for workflow and action metadata validation. Match the
    repository's documented command; when optional integrations would add
-   dependencies, disable them explicitly and note the reduced scope.
+   dependencies, disable them explicitly and note the reduced scope. Revisit
+   pyflakes disablement when Python scripts exist in the repository.
 7. Run ShellCheck for standalone shell scripts and keep actionlint's ShellCheck
    integration enabled when the repository installs ShellCheck.
 8. Run pinact in check mode for action and reusable-workflow pins. Use

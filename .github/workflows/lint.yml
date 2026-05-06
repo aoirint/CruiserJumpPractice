@@ -127,8 +127,8 @@ jobs:
 
       - name: Run actionlint
         # ShellCheck is installed above so actionlint can inspect inline
-        # workflow scripts. Keep pyflakes disabled until this repository has
-        # Python workflow scripts that justify another lint runtime.
+        # workflow scripts. No Python files are currently in this repository;
+        # revisit the pyflakes disablement when Python scripts are added.
         run: actionlint -color -pyflakes=
 
       - name: Run ShellCheck

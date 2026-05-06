@@ -1,6 +1,0 @@
-# SPDX-License-Identifier: MIT
-self-hosted-runner:
-  # GitHub-hosted ubuntu-slim is not in actionlint v1.7.12's built-in runner
-  # label list yet. Keep this explicit until actionlint recognizes the label.
-  labels:
-    - ubuntu-slim
