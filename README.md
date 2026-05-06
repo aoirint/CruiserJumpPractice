@@ -99,7 +99,7 @@ external actions stay pinned to full commit SHAs with synchronized version
 comments.
 
 ```powershell
-pinact run --check
+pinact run --check --min-age 7
 ```
 
 For local fixes or updates, use the documented pinact commands:

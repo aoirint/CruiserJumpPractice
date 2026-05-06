@@ -70,7 +70,7 @@ jobs:
       - name: Run pinact
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: pinact run --check
+        run: pinact run --check --min-age 7
 
       - name: Setup .NET
         # Keep dotnet-version aligned with build.yml per the README .NET and
