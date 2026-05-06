@@ -5,6 +5,8 @@ namespace CruiserJumpPractice.Interop.Game.Patches;
 
 internal static class HarmonyCallbackTokens
 {
+    // Tokens are stable validation identifiers, not display text. Use
+    // class_method_patchkind naming so SDC and CJP diagnostics stay comparable.
     public const string HudManagerAwakePostfix = "hud_manager_awake_postfix";
     public const string HudManagerUpdatePostfix = "hud_manager_update_postfix";
     public const string StartOfRoundSetMagnetOnPrefix = "start_of_round_set_magnet_on_prefix";
