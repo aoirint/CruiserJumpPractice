@@ -89,6 +89,28 @@ internal sealed class GameInterop : IGameInterop
         return cruiserInterop.CaptureCruiser(cruiser);
     }
 
+    public int? GetCruiserCarHP()
+    {
+        var cruiser = cruiserInterop.FindCruiser();
+        if (cruiser == null)
+        {
+            return null;
+        }
+
+        return CruiserAdapter.GetCarHP(cruiser: cruiser);
+    }
+
+    public int? GetCruiserTurboBoosts()
+    {
+        var cruiser = cruiserInterop.FindCruiser();
+        if (cruiser == null)
+        {
+            return null;
+        }
+
+        return CruiserAdapter.GetTurboBoosts(cruiser: cruiser);
+    }
+
     public CruiserRestoreObservation RestoreCruiser(CruiserSnapshot snapshot)
     {
         var cruiser = cruiserInterop.FindCruiser();

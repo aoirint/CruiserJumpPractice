@@ -11,9 +11,32 @@ internal sealed class BaseGameAppliedStateValidationStore
     private int engineOilClientRpcDepth;
     private int turboClientRpcDepth;
 
+    // Snapshots of game state captured immediately before each local apply so the post-apply
+    // handler can record a before/after pair without needing arguments from the Patch layer.
+    private int? preEngineOilLocalApplyCarHP;
+    private int? preTurboLocalApplyBoosts;
+    private bool? preMagnetLocalApplyState;
+    private bool? preMagnetClientRpcApplyState;
+
     public bool IsEngineOilClientRpcApplyActive => engineOilClientRpcDepth > 0;
 
     public bool IsTurboClientRpcApplyActive => turboClientRpcDepth > 0;
+
+    public int? PreEngineOilLocalApplyCarHP => preEngineOilLocalApplyCarHP;
+
+    public int? PreTurboLocalApplyBoosts => preTurboLocalApplyBoosts;
+
+    public bool? PreMagnetLocalApplyState => preMagnetLocalApplyState;
+
+    public bool? PreMagnetClientRpcApplyState => preMagnetClientRpcApplyState;
+
+    public void SetPreEngineOilLocalApplyCarHP(int? value) => preEngineOilLocalApplyCarHP = value;
+
+    public void SetPreTurboLocalApplyBoosts(int? value) => preTurboLocalApplyBoosts = value;
+
+    public void SetPreMagnetLocalApplyState(bool? value) => preMagnetLocalApplyState = value;
+
+    public void SetPreMagnetClientRpcApplyState(bool? value) => preMagnetClientRpcApplyState = value;
 
     public void EnterEngineOilClientRpc()
     {

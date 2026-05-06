@@ -34,7 +34,12 @@ internal sealed class BaseGameAppliedStateValidationHandler
         stateStore.ExitEngineOilClientRpc();
     }
 
-    public void HandleEngineOilLocalApplied(int expectedHP, int observedHP)
+    public void HandleEngineOilLocalPreApply()
+    {
+        stateStore.SetPreEngineOilLocalApplyCarHP(gameInterop.GetCruiserCarHP());
+    }
+
+    public void HandleEngineOilLocalApplied()
     {
         // The same vanilla local helper runs during host-initiated restore; only log it when the
         // ClientRpc wrapper marked this call as receiver-side synchronization.
@@ -46,8 +51,8 @@ internal sealed class BaseGameAppliedStateValidationHandler
         validationLogger.Record(
             record: ValidationLogRecord.BaseGameEngineOilApplied(
                 role: GetRole(),
-                expectedHP: expectedHP,
-                observedHP: observedHP,
+                beforeCarHP: stateStore.PreEngineOilLocalApplyCarHP,
+                afterCarHP: gameInterop.GetCruiserCarHP(),
                 source: ValidationLogBaseGameApplySource.ClientRpcApply
             )
         );
@@ -63,7 +68,12 @@ internal sealed class BaseGameAppliedStateValidationHandler
         stateStore.ExitTurboClientRpc();
     }
 
-    public void HandleTurboLocalApplied(int expectedTurbo, int observedTurbo)
+    public void HandleTurboLocalPreApply()
+    {
+        stateStore.SetPreTurboLocalApplyBoosts(gameInterop.GetCruiserTurboBoosts());
+    }
+
+    public void HandleTurboLocalApplied()
     {
         // Turbo restore also calls the local helper directly, so this keeps #100 logs scoped to
         // vanilla ClientRpc application instead of duplicating restore observations.
@@ -75,42 +85,52 @@ internal sealed class BaseGameAppliedStateValidationHandler
         validationLogger.Record(
             record: ValidationLogRecord.BaseGameTurboApplied(
                 role: GetRole(),
-                expectedTurbo: expectedTurbo,
-                observedTurbo: observedTurbo,
+                beforeTurbo: stateStore.PreTurboLocalApplyBoosts,
+                afterTurbo: gameInterop.GetCruiserTurboBoosts(),
                 source: ValidationLogBaseGameApplySource.ClientRpcApply
             )
         );
     }
 
-    public void HandleShipMagnetLocalApplied(bool expectedAfter, bool observedAfter)
+    public void HandleShipMagnetLocalPreApply()
+    {
+        stateStore.SetPreMagnetLocalApplyState(gameInterop.IsShipMagnetOn());
+    }
+
+    public void HandleShipMagnetLocalApplied()
     {
         HandleShipMagnetApplied(
-            expectedAfter: expectedAfter,
-            observedAfter: observedAfter,
+            before: stateStore.PreMagnetLocalApplyState,
+            after: gameInterop.IsShipMagnetOn(),
             source: ValidationLogBaseGameApplySource.LocalApply
         );
     }
 
-    public void HandleShipMagnetClientRpcApplied(bool expectedAfter, bool observedAfter)
+    public void HandleShipMagnetClientRpcPreApply()
+    {
+        stateStore.SetPreMagnetClientRpcApplyState(gameInterop.IsShipMagnetOn());
+    }
+
+    public void HandleShipMagnetClientRpcApplied()
     {
         HandleShipMagnetApplied(
-            expectedAfter: expectedAfter,
-            observedAfter: observedAfter,
+            before: stateStore.PreMagnetClientRpcApplyState,
+            after: gameInterop.IsShipMagnetOn(),
             source: ValidationLogBaseGameApplySource.ClientRpcApply
         );
     }
 
     private void HandleShipMagnetApplied(
-        bool expectedAfter,
-        bool observedAfter,
+        bool? before,
+        bool after,
         ValidationLogBaseGameApplySource source
     )
     {
         validationLogger.Record(
             record: ValidationLogRecord.BaseGameShipMagnetApplied(
                 role: GetRole(),
-                expectedAfter: expectedAfter,
-                observedAfter: observedAfter,
+                before: before,
+                after: after,
                 source: source
             )
         );

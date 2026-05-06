@@ -137,6 +137,13 @@ internal sealed class CruiserAdapter
         }
     }
 
+    internal static int GetCarHP(VehicleController cruiser)
+    {
+        // This remains static so Harmony patches can reuse the same interop read without owning an
+        // adapter instance; CruiserAdapter still owns the field-access knowledge.
+        return cruiser.carHP;
+    }
+
     internal static int GetTurboBoosts(VehicleController cruiser)
     {
         // This remains static so Harmony patches can reuse the same interop read without owning an

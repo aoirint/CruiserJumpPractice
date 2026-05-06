@@ -28,6 +28,10 @@ internal interface IGameInterop
 
     CruiserSnapshot? CaptureCruiser();
 
+    int? GetCruiserCarHP();
+
+    int? GetCruiserTurboBoosts();
+
     CruiserRestoreObservation RestoreCruiser(CruiserSnapshot snapshot);
 
     bool IsCruiserMagnetedToShip();
