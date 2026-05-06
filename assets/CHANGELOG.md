@@ -27,8 +27,8 @@ No gameplay changes are introduced.
     - This project uses the category to disclose AI assistance in project work;
       it is package metadata rather than a gameplay feature.
     - The project decided to use this category because:
-        - It has used and expects to keep using AI tools to assist development
-          and maintenance while reducing workload.
+        - It has used and expects to keep using AI tools to assist with
+          development and maintenance, and to reduce workload.
         - The applicable disclosure threshold is not clear.
     - Human maintainer review remains the project policy.
 - Dropped backward compatibility with older CruiserJumpPractice versions:

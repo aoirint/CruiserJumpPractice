@@ -132,7 +132,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
     - [Issue #18][issue-18-ai-generated-category] records the project decision
       to use this category because:
         - The project has used and expects to keep using AI tools to assist
-          development and maintenance while reducing workload.
+          with development and maintenance, and to reduce workload.
         - The applicable disclosure threshold is not clear.
     - Human maintainer review remains the project policy.
 - Aligned Thunderstore manifest dependency strings with the documented v81.5
