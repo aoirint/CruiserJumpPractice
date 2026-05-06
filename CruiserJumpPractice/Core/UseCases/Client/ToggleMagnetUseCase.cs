@@ -45,6 +45,9 @@ internal sealed class ToggleMagnetUseCase
                 result: result
             )
         );
+
+        // Feedback uses the expected state because the vanilla lever/RPC path
+        // may finish synchronization after this use case returns.
         var message = result == ToggleMagnetResult.MagnetOn
             ? HudTipMessage.MagnetOn
             : HudTipMessage.MagnetOff;

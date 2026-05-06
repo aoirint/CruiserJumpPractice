@@ -40,6 +40,8 @@ internal sealed class PresentLoadCruiserStateResultUseCase
         }
         else
         {
+            // Unexpected results are diagnostics, not player-facing practice
+            // states. Known failures get HUD tips; unknown values stay in logs.
             logger.LogError($"Unknown LoadCruiserStateResult: {result}");
         }
     }

@@ -29,6 +29,8 @@ internal readonly struct LocalPlayerBusyState
 
     public string? GetBusyReasonToken()
     {
+        // Collapse overlapping suppressions into one reason token for quick
+        // filtering; the individual boolean fields still preserve details.
         var busyReasonCount = 0;
         busyReasonCount += IsMenuOpen ? 1 : 0;
         busyReasonCount += IsInTerminal ? 1 : 0;

@@ -34,6 +34,8 @@ internal sealed class LoadCruiserStateUseCase
     {
         try
         {
+            // Keep restore preconditions in this order so validation logs
+            // report one stable cause for each rejected load attempt.
             if (!gameInterop.CruiserExists())
             {
                 logger.LogInfo("No cruiser found.");

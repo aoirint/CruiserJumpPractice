@@ -7,6 +7,8 @@ using CruiserJumpPractice.Interop.Game;
 
 namespace CruiserJumpPractice.Interop.Game.Adapters;
 
+// PlayerAdapter exposes only local UI/input-blocking state to Core. Keeping the
+// checks here avoids passing PlayerControllerB or menu objects across the port.
 internal sealed class PlayerAdapter
 {
     private readonly IPluginLogger logger;
@@ -23,6 +25,8 @@ internal sealed class PlayerAdapter
         var localPlayer = gameObjects.GetLocalPlayer();
         try
         {
+            // These three flags cover the base-game states where a practice key
+            // press would conflict with text entry or menu navigation.
             var quickMenuManager = localPlayer.quickMenuManager;
             if (quickMenuManager == null)
             {

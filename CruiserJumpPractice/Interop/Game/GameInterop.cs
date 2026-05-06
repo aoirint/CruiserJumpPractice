@@ -73,6 +73,9 @@ internal sealed class GameInterop : IGameInterop
         rpcSurrogateInterop.GetRpcSurrogateBehaviour().LoadCruiserStateServerRpc();
     }
 
+    // Probe-style cruiser reads report absence as null/false-style results so
+    // Core use cases can choose user-facing outcomes. Operations that require
+    // an already validated cruiser throw instead.
     public bool CruiserExists()
     {
         return cruiserInterop.FindCruiser() != null;

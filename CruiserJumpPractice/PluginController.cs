@@ -67,6 +67,9 @@ internal sealed class PluginController
         var cruiserStateStore = new CruiserStateStore();
         var baseGameAppliedStateValidationStore = new BaseGameAppliedStateValidationStore();
         validationLogger.Record(ValidationLogRecord.StateStoreCreated());
+
+        // Manual wiring is grouped by direction of control: server state
+        // mutations, client requests/presentation, then frame/startup handlers.
         var saveCruiserStateUseCase = new SaveCruiserStateUseCase(
             gameInterop: gameInterop,
             cruiserStateStore: cruiserStateStore,
@@ -161,6 +164,8 @@ internal sealed class PluginController
         presentLoadCruiserStateResultUseCase.Execute(result);
     }
 
+    // Netcode callbacks enter through these methods so RPC receipt logging stays
+    // at the same boundary as result presentation.
     public void RecordSaveServerRpcReceived()
     {
         validationLogger.Record(ValidationLogRecord.SaveServerRpcReceived(GetRole()));
@@ -185,6 +190,8 @@ internal sealed class PluginController
         );
     }
 
+    // Base-game Harmony callbacks use these narrow methods to keep patch
+    // classes free of validation-store details.
     public void HandleBaseGameEngineOilClientRpcEntered()
     {
         baseGameAppliedStateValidationHandler.EnterEngineOilClientRpc();

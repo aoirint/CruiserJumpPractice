@@ -9,6 +9,8 @@ using CruiserJumpPractice.Interop.Game;
 
 namespace CruiserJumpPractice.Interop.Game.Adapters;
 
+// The RPC surrogate lives on HUDManager because it is available on clients and
+// survives long enough to host the NetworkBehaviour bridge for practice RPCs.
 internal sealed class RpcSurrogateAdapter
 {
     private readonly IPluginLogger logger;
@@ -61,6 +63,9 @@ internal sealed class RpcSurrogateAdapter
 
     public RpcSurrogateBehaviour GetRpcSurrogateBehaviour()
     {
+        // Startup normally seeds the cache. The lookup fallback keeps input
+        // handling resilient if Unity recreated the component or startup order
+        // differs during validation.
         if (cachedRpcSurrogateBehaviour != null)
         {
             RecordResolved(

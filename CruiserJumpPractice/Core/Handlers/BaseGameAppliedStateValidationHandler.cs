@@ -7,6 +7,9 @@ using CruiserJumpPractice.Core.Validation;
 
 namespace CruiserJumpPractice.Core.Handlers;
 
+// This handler translates Harmony patch observation points into before/after
+// validation events. Patch classes know where the base game applies state; this
+// class decides which observations are meaningful to CJP validation.
 internal sealed class BaseGameAppliedStateValidationHandler
 {
     private readonly IGameInterop gameInterop;
@@ -24,6 +27,8 @@ internal sealed class BaseGameAppliedStateValidationHandler
         this.stateStore = stateStore;
     }
 
+    // Engine oil state is applied by the local helper, but only receiver-side
+    // ClientRpc applications should be logged here.
     public void EnterEngineOilClientRpc()
     {
         stateStore.EnterEngineOilClientRpc();
@@ -58,6 +63,8 @@ internal sealed class BaseGameAppliedStateValidationHandler
         );
     }
 
+    // Turbo count follows the same receiver-side ClientRpc pattern as engine
+    // oil, with the private field read hidden behind GameInterop.
     public void EnterTurboClientRpc()
     {
         stateStore.EnterTurboClientRpc();
@@ -92,6 +99,9 @@ internal sealed class BaseGameAppliedStateValidationHandler
         );
     }
 
+    // Ship magnet validation records both local lever application and
+    // receiver-side ClientRpc application, then relies on the source field to
+    // keep those paths distinguishable.
     public void HandleShipMagnetLocalPreApply()
     {
         stateStore.SetPreMagnetLocalApplyState(gameInterop.IsShipMagnetOn());
