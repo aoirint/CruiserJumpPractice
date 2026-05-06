@@ -321,8 +321,8 @@ internal sealed class ValidationLogRecord
 
     public static ValidationLogRecord BaseGameEngineOilApplied(
         ValidationLogRole role,
-        int expectedHP,
-        int observedHP,
+        int? beforeCarHP,
+        int? afterCarHP,
         ValidationLogBaseGameApplySource source
     )
     {
@@ -331,8 +331,8 @@ internal sealed class ValidationLogRecord
             fields: new()
             {
                 ["role"] = ToValidationRoleToken(role: role),
-                ["expected_hp"] = expectedHP,
-                ["observed_hp"] = observedHP,
+                ["before_hp"] = beforeCarHP,
+                ["after_hp"] = afterCarHP,
                 ["source"] = ToBaseGameApplySourceToken(source: source)
             }
         );
@@ -340,8 +340,8 @@ internal sealed class ValidationLogRecord
 
     public static ValidationLogRecord BaseGameTurboApplied(
         ValidationLogRole role,
-        int expectedTurbo,
-        int observedTurbo,
+        int? beforeTurbo,
+        int? afterTurbo,
         ValidationLogBaseGameApplySource source
     )
     {
@@ -350,8 +350,8 @@ internal sealed class ValidationLogRecord
             fields: new()
             {
                 ["role"] = ToValidationRoleToken(role: role),
-                ["expected_turbo"] = expectedTurbo,
-                ["observed_turbo"] = observedTurbo,
+                ["before_turbo"] = beforeTurbo,
+                ["after_turbo"] = afterTurbo,
                 ["source"] = ToBaseGameApplySourceToken(source: source)
             }
         );
@@ -359,8 +359,8 @@ internal sealed class ValidationLogRecord
 
     public static ValidationLogRecord BaseGameShipMagnetApplied(
         ValidationLogRole role,
-        bool expectedAfter,
-        bool observedAfter,
+        bool? before,
+        bool after,
         ValidationLogBaseGameApplySource source
     )
     {
@@ -369,8 +369,8 @@ internal sealed class ValidationLogRecord
             fields: new()
             {
                 ["role"] = ToValidationRoleToken(role: role),
-                ["expected_after"] = expectedAfter,
-                ["observed_after"] = observedAfter,
+                ["before"] = before,
+                ["after"] = after,
                 ["source"] = ToBaseGameApplySourceToken(source: source)
             }
         );

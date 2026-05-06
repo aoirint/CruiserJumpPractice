@@ -195,12 +195,14 @@ internal sealed class PluginController
         baseGameAppliedStateValidationHandler.ExitEngineOilClientRpc();
     }
 
-    public void HandleBaseGameEngineOilLocalApplied(int expectedHP, int observedHP)
+    public void HandleBaseGameEngineOilPreApply()
     {
-        baseGameAppliedStateValidationHandler.HandleEngineOilLocalApplied(
-            expectedHP: expectedHP,
-            observedHP: observedHP
-        );
+        baseGameAppliedStateValidationHandler.HandleEngineOilPreApply();
+    }
+
+    public void HandleBaseGameEngineOilLocalApplied()
+    {
+        baseGameAppliedStateValidationHandler.HandleEngineOilLocalApplied();
     }
 
     public void HandleBaseGameTurboClientRpcEntered()
@@ -213,28 +215,34 @@ internal sealed class PluginController
         baseGameAppliedStateValidationHandler.ExitTurboClientRpc();
     }
 
-    public void HandleBaseGameTurboLocalApplied(int expectedTurbo, int observedTurbo)
+    public void HandleBaseGameTurboPreApply()
     {
-        baseGameAppliedStateValidationHandler.HandleTurboLocalApplied(
-            expectedTurbo: expectedTurbo,
-            observedTurbo: observedTurbo
-        );
+        baseGameAppliedStateValidationHandler.HandleTurboPreApply();
     }
 
-    public void HandleBaseGameShipMagnetLocalApplied(bool expectedAfter, bool observedAfter)
+    public void HandleBaseGameTurboLocalApplied()
     {
-        baseGameAppliedStateValidationHandler.HandleShipMagnetLocalApplied(
-            expectedAfter: expectedAfter,
-            observedAfter: observedAfter
-        );
+        baseGameAppliedStateValidationHandler.HandleTurboLocalApplied();
     }
 
-    public void HandleBaseGameShipMagnetClientRpcApplied(bool expectedAfter, bool observedAfter)
+    public void HandleBaseGameShipMagnetLocalPreApply()
     {
-        baseGameAppliedStateValidationHandler.HandleShipMagnetClientRpcApplied(
-            expectedAfter: expectedAfter,
-            observedAfter: observedAfter
-        );
+        baseGameAppliedStateValidationHandler.HandleShipMagnetLocalPreApply();
+    }
+
+    public void HandleBaseGameShipMagnetLocalApplied()
+    {
+        baseGameAppliedStateValidationHandler.HandleShipMagnetLocalApplied();
+    }
+
+    public void HandleBaseGameShipMagnetClientRpcPreApply()
+    {
+        baseGameAppliedStateValidationHandler.HandleShipMagnetClientRpcPreApply();
+    }
+
+    public void HandleBaseGameShipMagnetClientRpcApplied()
+    {
+        baseGameAppliedStateValidationHandler.HandleShipMagnetClientRpcApplied();
     }
 
     private ValidationLogRole GetRole()

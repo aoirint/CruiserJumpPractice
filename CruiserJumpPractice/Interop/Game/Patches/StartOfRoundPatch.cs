@@ -4,7 +4,6 @@
 extern alias LethalCompany;
 
 using System;
-using CruiserJumpPractice.Interop.Game.Adapters;
 using HarmonyLib;
 using LethalCompany;
 
@@ -16,28 +15,42 @@ internal static class StartOfRoundPatch
     // SetMagnetOn is the local apply callback behind the lever path, while
     // SetMagnetOnClientRpc is the receiver-side synchronization boundary.
     [HarmonyPatch(nameof(StartOfRound.SetMagnetOn), typeof(bool))]
-    [HarmonyPostfix]
-    public static void SetMagnetOnPostfix(StartOfRound __instance, bool on)
+    [HarmonyPrefix]
+    public static void SetMagnetOnPrefix()
     {
         TryNotifyAppliedStateValidation(
-            notify: () =>
-                CruiserJumpPractice.Controller.HandleBaseGameShipMagnetLocalApplied(
-                    expectedAfter: on,
-                    observedAfter: ShipMagnetAdapter.GetMagnetOn(startOfRound: __instance)
-                )
+            notify: static () =>
+                CruiserJumpPractice.Controller.HandleBaseGameShipMagnetLocalPreApply()
+        );
+    }
+
+    [HarmonyPatch(nameof(StartOfRound.SetMagnetOn), typeof(bool))]
+    [HarmonyPostfix]
+    public static void SetMagnetOnPostfix()
+    {
+        TryNotifyAppliedStateValidation(
+            notify: static () =>
+                CruiserJumpPractice.Controller.HandleBaseGameShipMagnetLocalApplied()
+        );
+    }
+
+    [HarmonyPatch(nameof(StartOfRound.SetMagnetOnClientRpc), typeof(bool))]
+    [HarmonyPrefix]
+    public static void SetMagnetOnClientRpcPrefix()
+    {
+        TryNotifyAppliedStateValidation(
+            notify: static () =>
+                CruiserJumpPractice.Controller.HandleBaseGameShipMagnetClientRpcPreApply()
         );
     }
 
     [HarmonyPatch(nameof(StartOfRound.SetMagnetOnClientRpc), typeof(bool))]
     [HarmonyPostfix]
-    public static void SetMagnetOnClientRpcPostfix(StartOfRound __instance, bool on)
+    public static void SetMagnetOnClientRpcPostfix()
     {
         TryNotifyAppliedStateValidation(
-            notify: () =>
-                CruiserJumpPractice.Controller.HandleBaseGameShipMagnetClientRpcApplied(
-                    expectedAfter: on,
-                    observedAfter: ShipMagnetAdapter.GetMagnetOn(startOfRound: __instance)
-                )
+            notify: static () =>
+                CruiserJumpPractice.Controller.HandleBaseGameShipMagnetClientRpcApplied()
         );
     }
 

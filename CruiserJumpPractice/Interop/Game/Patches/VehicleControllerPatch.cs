@@ -4,7 +4,6 @@
 extern alias LethalCompany;
 
 using System;
-using CruiserJumpPractice.Interop.Game.Adapters;
 using HarmonyLib;
 using LethalCompany;
 
@@ -35,18 +34,21 @@ internal static class VehicleControllerPatch
     }
 
     [HarmonyPatch(nameof(VehicleController.AddEngineOilOnLocalClient), typeof(int))]
-    [HarmonyPostfix]
-    public static void AddEngineOilOnLocalClientPostfix(VehicleController __instance, int addedAmount)
+    [HarmonyPrefix]
+    public static void AddEngineOilOnLocalClientPrefix()
     {
         TryNotifyAppliedStateValidation(
-            notify: () =>
-            {
-                // Keep patch code limited to live game reads; filtering and record construction stay in Core.
-                CruiserJumpPractice.Controller.HandleBaseGameEngineOilLocalApplied(
-                    expectedHP: addedAmount,
-                    observedHP: CruiserAdapter.GetCarHP(cruiser: __instance)
-                );
-            }
+            notify: static () => CruiserJumpPractice.Controller.HandleBaseGameEngineOilPreApply()
+        );
+    }
+
+    [HarmonyPatch(nameof(VehicleController.AddEngineOilOnLocalClient), typeof(int))]
+    [HarmonyPostfix]
+    public static void AddEngineOilOnLocalClientPostfix()
+    {
+        TryNotifyAppliedStateValidation(
+            notify: static () =>
+                CruiserJumpPractice.Controller.HandleBaseGameEngineOilLocalApplied()
         );
     }
 
@@ -71,17 +73,21 @@ internal static class VehicleControllerPatch
     }
 
     [HarmonyPatch(nameof(VehicleController.AddTurboBoostOnLocalClient), typeof(int))]
-    [HarmonyPostfix]
-    public static void AddTurboBoostOnLocalClientPostfix(VehicleController __instance, int addedAmount)
+    [HarmonyPrefix]
+    public static void AddTurboBoostOnLocalClientPrefix()
     {
         TryNotifyAppliedStateValidation(
-            notify: () =>
-            {
-                CruiserJumpPractice.Controller.HandleBaseGameTurboLocalApplied(
-                    expectedTurbo: addedAmount,
-                    observedTurbo: CruiserAdapter.GetTurboBoosts(cruiser: __instance)
-                );
-            }
+            notify: static () => CruiserJumpPractice.Controller.HandleBaseGameTurboPreApply()
+        );
+    }
+
+    [HarmonyPatch(nameof(VehicleController.AddTurboBoostOnLocalClient), typeof(int))]
+    [HarmonyPostfix]
+    public static void AddTurboBoostOnLocalClientPostfix()
+    {
+        TryNotifyAppliedStateValidation(
+            notify: static () =>
+                CruiserJumpPractice.Controller.HandleBaseGameTurboLocalApplied()
         );
     }
 

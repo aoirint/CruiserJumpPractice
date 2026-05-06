@@ -1,11 +1,8 @@
 // SPDX-License-Identifier: MIT
 #nullable enable
 
-extern alias LethalCompany;
-
 using CruiserJumpPractice.Core.Ports;
 using CruiserJumpPractice.Interop.Game;
-using LethalCompany;
 
 namespace CruiserJumpPractice.Interop.Game.Adapters;
 
@@ -55,12 +52,5 @@ internal sealed class ShipMagnetAdapter
             logger.LogError($"Exception while toggling magnet: {error}");
             throw new GameInteropException($"Exception while toggling magnet: {error}");
         }
-    }
-
-    internal static bool GetMagnetOn(StartOfRound startOfRound)
-    {
-        // This remains static so Harmony patches can reuse the same interop read without owning an
-        // adapter instance; ShipMagnetAdapter still owns the field-access knowledge.
-        return startOfRound.magnetOn;
     }
 }
