@@ -18,8 +18,8 @@ Install [Visual Studio 2022][visual-studio-download].
 Install [Docker][docker-install] if you plan to use the documented local
 Markdown lint command.
 
-Install [`actionlint`][actionlint-repo] and [pinact][pinact-repo] if you plan to
-run GitHub Actions quality checks locally.
+Install [`actionlint`][actionlint-repo], [ShellCheck][shellcheck-repo], and
+[pinact][pinact-repo] if you plan to run GitHub Actions quality checks locally.
 
 Restore NuGet packages.
 
@@ -78,20 +78,23 @@ CI action together after the repository cooldown period has elapsed.
 
 GitHub Actions workflows and composite actions are checked with
 [`actionlint`][actionlint-repo].
-The CI check runs only actionlint's built-in workflow, expression, and action
-metadata checks so it does not require extra tools such as ShellCheck or
-pyflakes.
+CI installs ShellCheck so actionlint can also check inline workflow shell
+scripts. The pyflakes integration remains disabled because this repository does
+not currently maintain Python workflow scripts.
 
 ```powershell
-actionlint -shellcheck= -pyflakes=
+actionlint -pyflakes=
+shellcheck .github/actions/publish-thunderstore/publish-thunderstore.sh
 ```
 
 Install `actionlint` from its upstream releases, package-manager integrations,
 Docker image, or another trusted distribution.
+Install ShellCheck from its upstream releases, package-manager integrations,
+Docker image, or another trusted distribution.
 Use a cooldown-compliant pinned release when updating CI.
-The CI workflow downloads the Linux amd64 release archive directly and verifies
-its SHA256 before running it. CI caches the archive, not the extracted
-executable, so cached downloads are still verified before use.
+The CI workflow downloads the Linux release archives directly and verifies their
+SHA256 values before running them. CI caches the archives, not the extracted
+executables, so cached downloads are still verified before use.
 
 ### GitHub Actions pinning
 
@@ -359,5 +362,6 @@ This disclosure is made in compliance with Thunderstore and community policies.
 [pinact-repo]: https://github.com/suzuki-shunsuke/pinact
 [powershell-install]: https://learn.microsoft.com/en-us/powershell/scripting/install/install-powershell-on-windows
 [r2modman-package]: https://thunderstore.io/c/lethal-company/p/ebkr/r2modman/
+[shellcheck-repo]: https://github.com/koalaman/shellcheck
 [thunderstore-lethal-company-community]: https://thunderstore.io/c/lethal-company/
 [visual-studio-download]: https://visualstudio.microsoft.com/en-us/vs/

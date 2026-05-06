@@ -47,23 +47,26 @@ description: >-
 6. Run actionlint for workflow and action metadata validation. Match the
    repository's documented command; when optional integrations would add
    dependencies, disable them explicitly and note the reduced scope.
-7. Run pinact in check mode for action and reusable-workflow pins. Use
+7. Run ShellCheck for standalone shell scripts and keep actionlint's ShellCheck
+   integration enabled when the repository installs ShellCheck.
+8. Run pinact in check mode for action and reusable-workflow pins. Use
    `GITHUB_TOKEN` when available so API calls use authenticated rate limits.
-8. For new or updated external actions, downloaded tools, or containers, apply
+9. For new or updated external actions, downloaded tools, or containers, apply
    `security-check`: verify release age, provenance, pinning, permissions, and
    runtime behavior before adopting the artifact.
-9. Re-read comments near non-obvious versions, runner choices, cache paths,
+10. Re-read comments near non-obvious versions, runner choices, cache paths,
    suppressions, and install commands. Keep comments specific and actionable.
-10. Summarize verification by category: actionlint, pinact, other automated
-    checks, AI-assisted inspection, and any skipped checks with concrete
-    blockers.
+11. Summarize verification by category: actionlint, ShellCheck, pinact, other
+    automated checks, AI-assisted inspection, and any skipped checks with
+    concrete blockers.
 
 ## Command Examples
 
 Use these examples only when they match the repository's documented tooling:
 
 ```bash
-actionlint -shellcheck= -pyflakes=
+actionlint -pyflakes=
+shellcheck .github/actions/publish-thunderstore/publish-thunderstore.sh
 pinact run --check --min-age 7
 ```
 
@@ -76,6 +79,8 @@ pinact run --update --min-age 7
 ## Review Checklist
 
 - Workflow syntax and expressions were checked with actionlint.
+- Inline workflow shell scripts and standalone shell scripts were checked with
+  ShellCheck.
 - Third-party actions and reusable workflows were checked with pinact.
 - New executable artifacts satisfy the repository cooldown and pinning policy.
 - Permissions and secrets are least-privilege and documented when unusual.
