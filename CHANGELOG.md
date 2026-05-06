@@ -12,6 +12,21 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## Unreleased
 
+## v0.2.0-alpha.5 - 2026-05-06 UTC
+
+### Changed
+
+- Refactored `Patch` classes into pure timing notifiers with zero-argument
+  `Handle` calls:
+    - Split each patched method into a `Pre`-prefixed notifier that captures
+      the before-state from `IGameInterop` into the validation store, and a
+      zero-argument applied notifier that reads the stored before-state when
+      building validation log records.
+    - Affected notifiers: engine oil local apply, turbo local apply, ship
+      magnet local apply, and ship magnet ClientRpc apply.
+    - Keeps `Patch` classes free of game-state argument passing while
+      preserving before/after evidence in `BaseGameAppliedStateValidationStore`.
+
 ## v0.2.0-alpha.4 - 2026-05-05 UTC
 
 ### Added
