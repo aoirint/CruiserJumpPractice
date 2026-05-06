@@ -28,7 +28,7 @@ No gameplay changes are introduced.
       it is package metadata rather than a gameplay feature.
     - The project decided to use this category because:
         - It has used and expects to keep using AI tools to assist development
-          and reduce development burden.
+          and maintenance while reducing workload.
         - The applicable disclosure threshold is not clear.
     - Human maintainer review remains the project policy.
 - Dropped backward compatibility with older CruiserJumpPractice versions:
