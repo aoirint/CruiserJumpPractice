@@ -3,7 +3,6 @@
 
 extern alias LethalCompany;
 
-using System;
 using HarmonyLib;
 using LethalCompany;
 
@@ -12,13 +11,15 @@ namespace CruiserJumpPractice.Interop.Game.Patches;
 [HarmonyPatch(typeof(StartOfRound))]
 internal static class StartOfRoundPatch
 {
-    // SetMagnetOn is the local apply callback behind the lever path, while
-    // SetMagnetOnClientRpc is the receiver-side synchronization boundary.
+    // For the base game, SetMagnetOn applies the local/originating ship-magnet
+    // state used by the lever flow. It is not the receiver-side RPC receipt
+    // boundary.
     [HarmonyPatch(nameof(StartOfRound.SetMagnetOn), typeof(bool))]
     [HarmonyPrefix]
     public static void SetMagnetOnPrefix()
     {
-        TryNotifyAppliedStateValidation(
+        HarmonyCallbackGuard.TryNotifyHarmonyCallback(
+            callback: HarmonyCallbackTokens.StartOfRoundSetMagnetOnPrefix,
             notify: static () =>
                 CruiserJumpPractice.Controller.HandleBaseGameShipMagnetLocalPreApply()
         );
@@ -28,17 +29,21 @@ internal static class StartOfRoundPatch
     [HarmonyPostfix]
     public static void SetMagnetOnPostfix()
     {
-        TryNotifyAppliedStateValidation(
+        HarmonyCallbackGuard.TryNotifyHarmonyCallback(
+            callback: HarmonyCallbackTokens.StartOfRoundSetMagnetOnPostfix,
             notify: static () =>
                 CruiserJumpPractice.Controller.HandleBaseGameShipMagnetLocalApplied()
         );
     }
 
+    // For the base game, SetMagnetOnClientRpc applies ship-magnet state on RPC
+    // receivers. Its Postfix is the receiver-side final-state observation point.
     [HarmonyPatch(nameof(StartOfRound.SetMagnetOnClientRpc), typeof(bool))]
     [HarmonyPrefix]
     public static void SetMagnetOnClientRpcPrefix()
     {
-        TryNotifyAppliedStateValidation(
+        HarmonyCallbackGuard.TryNotifyHarmonyCallback(
+            callback: HarmonyCallbackTokens.StartOfRoundSetMagnetOnClientRpcPrefix,
             notify: static () =>
                 CruiserJumpPractice.Controller.HandleBaseGameShipMagnetClientRpcPreApply()
         );
@@ -48,21 +53,10 @@ internal static class StartOfRoundPatch
     [HarmonyPostfix]
     public static void SetMagnetOnClientRpcPostfix()
     {
-        TryNotifyAppliedStateValidation(
+        HarmonyCallbackGuard.TryNotifyHarmonyCallback(
+            callback: HarmonyCallbackTokens.StartOfRoundSetMagnetOnClientRpcPostfix,
             notify: static () =>
                 CruiserJumpPractice.Controller.HandleBaseGameShipMagnetClientRpcApplied()
         );
-    }
-
-    private static void TryNotifyAppliedStateValidation(Action notify)
-    {
-        try
-        {
-            notify();
-        }
-        catch
-        {
-            // Validation logging must never interrupt the base-game apply path.
-        }
     }
 }

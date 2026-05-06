@@ -262,6 +262,10 @@ Enabled validation records use one JSON object per log line after the stable
 help. Share full BepInEx logs only when needed, because other mods or BepInEx
 can include unrelated local environment details.
 
+Harmony callback failures that are intentionally swallowed may emit
+`callback_exception` validation records. These records include only the stable
+callback token and exception type.
+
 ### r2modman
 
 1. Open [r2modman][r2modman-package].

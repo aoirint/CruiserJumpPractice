@@ -3,7 +3,6 @@
 
 extern alias LethalCompany;
 
-using System;
 using HarmonyLib;
 using LethalCompany;
 
@@ -12,13 +11,15 @@ namespace CruiserJumpPractice.Interop.Game.Patches;
 [HarmonyPatch(typeof(VehicleController))]
 internal static class VehicleControllerPatch
 {
-    // The local apply method is also used by the host restore path, so the ClientRpc wrapper
-    // marks only receiver-side vanilla synchronization before the shared local helper runs.
+    // For the base game, AddEngineOilClientRpc is the receiver-side RPC boundary
+    // for synchronized cruiser HP restoration. The local apply method below is
+    // where the HP value is applied.
     [HarmonyPatch(nameof(VehicleController.AddEngineOilClientRpc), typeof(int), typeof(int))]
     [HarmonyPrefix]
     public static void AddEngineOilClientRpcPrefix()
     {
-        TryNotifyAppliedStateValidation(
+        HarmonyCallbackGuard.TryNotifyHarmonyCallback(
+            callback: HarmonyCallbackTokens.VehicleControllerAddEngineOilClientRpcPrefix,
             notify: static () =>
                 CruiserJumpPractice.Controller.HandleBaseGameEngineOilClientRpcEntered()
         );
@@ -28,16 +29,20 @@ internal static class VehicleControllerPatch
     [HarmonyFinalizer]
     public static void AddEngineOilClientRpcFinalizer()
     {
-        TryNotifyAppliedStateValidation(
+        HarmonyCallbackGuard.TryNotifyHarmonyCallback(
+            callback: HarmonyCallbackTokens.VehicleControllerAddEngineOilClientRpcFinalizer,
             notify: static () => CruiserJumpPractice.Controller.HandleBaseGameEngineOilClientRpcExited()
         );
     }
 
+    // For the base game, AddEngineOilOnLocalClient applies the cruiser HP value
+    // on the local client after either local or RPC-driven oil restoration.
     [HarmonyPatch(nameof(VehicleController.AddEngineOilOnLocalClient), typeof(int))]
     [HarmonyPrefix]
     public static void AddEngineOilOnLocalClientPrefix()
     {
-        TryNotifyAppliedStateValidation(
+        HarmonyCallbackGuard.TryNotifyHarmonyCallback(
+            callback: HarmonyCallbackTokens.VehicleControllerAddEngineOilOnLocalClientPrefix,
             notify: static () => CruiserJumpPractice.Controller.HandleBaseGameEngineOilLocalPreApply()
         );
     }
@@ -46,19 +51,22 @@ internal static class VehicleControllerPatch
     [HarmonyPostfix]
     public static void AddEngineOilOnLocalClientPostfix()
     {
-        TryNotifyAppliedStateValidation(
+        HarmonyCallbackGuard.TryNotifyHarmonyCallback(
+            callback: HarmonyCallbackTokens.VehicleControllerAddEngineOilOnLocalClientPostfix,
             notify: static () =>
                 CruiserJumpPractice.Controller.HandleBaseGameEngineOilLocalApplied()
         );
     }
 
-    // Turbo uses the same ClientRpc/local-apply split as engine oil, but the applied value is
-    // private in VehicleController and has to be read through the adapter boundary.
+    // For the base game, AddTurboBoostClientRpc is the receiver-side RPC
+    // boundary for synchronized turbo count restoration. The applied count is
+    // stored inside VehicleController state.
     [HarmonyPatch(nameof(VehicleController.AddTurboBoostClientRpc), typeof(int), typeof(int))]
     [HarmonyPrefix]
     public static void AddTurboBoostClientRpcPrefix()
     {
-        TryNotifyAppliedStateValidation(
+        HarmonyCallbackGuard.TryNotifyHarmonyCallback(
+            callback: HarmonyCallbackTokens.VehicleControllerAddTurboBoostClientRpcPrefix,
             notify: static () => CruiserJumpPractice.Controller.HandleBaseGameTurboClientRpcEntered()
         );
     }
@@ -67,16 +75,20 @@ internal static class VehicleControllerPatch
     [HarmonyFinalizer]
     public static void AddTurboBoostClientRpcFinalizer()
     {
-        TryNotifyAppliedStateValidation(
+        HarmonyCallbackGuard.TryNotifyHarmonyCallback(
+            callback: HarmonyCallbackTokens.VehicleControllerAddTurboBoostClientRpcFinalizer,
             notify: static () => CruiserJumpPractice.Controller.HandleBaseGameTurboClientRpcExited()
         );
     }
 
+    // For the base game, AddTurboBoostOnLocalClient applies the turbo count on
+    // the local client after either local or RPC-driven turbo restoration.
     [HarmonyPatch(nameof(VehicleController.AddTurboBoostOnLocalClient), typeof(int))]
     [HarmonyPrefix]
     public static void AddTurboBoostOnLocalClientPrefix()
     {
-        TryNotifyAppliedStateValidation(
+        HarmonyCallbackGuard.TryNotifyHarmonyCallback(
+            callback: HarmonyCallbackTokens.VehicleControllerAddTurboBoostOnLocalClientPrefix,
             notify: static () => CruiserJumpPractice.Controller.HandleBaseGameTurboLocalPreApply()
         );
     }
@@ -85,21 +97,10 @@ internal static class VehicleControllerPatch
     [HarmonyPostfix]
     public static void AddTurboBoostOnLocalClientPostfix()
     {
-        TryNotifyAppliedStateValidation(
+        HarmonyCallbackGuard.TryNotifyHarmonyCallback(
+            callback: HarmonyCallbackTokens.VehicleControllerAddTurboBoostOnLocalClientPostfix,
             notify: static () =>
                 CruiserJumpPractice.Controller.HandleBaseGameTurboLocalApplied()
         );
-    }
-
-    private static void TryNotifyAppliedStateValidation(Action notify)
-    {
-        try
-        {
-            notify();
-        }
-        catch
-        {
-            // Validation logging must never interrupt the base-game apply path.
-        }
     }
 }
