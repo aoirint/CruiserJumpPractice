@@ -25,6 +25,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
     - The assembly/package version remains the release identity, so
       validation logs and startup logs still report the concrete artifact
       version such as `0.2.0-alpha.6`.
+    - GitHub-only prerelease and edge artifacts now keep the packaged
+      `manifest.json` `version_number` at `0.0.0`, matching the conservative
+      metadata approach while the artifact name, Git tag, and assembly metadata
+      carry the release identity.
 
 ## v0.2.0-alpha.5 - 2026-05-06 UTC
 
