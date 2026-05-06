@@ -19,7 +19,7 @@ No gameplay changes are introduced.
 ### Changed
 
 - Rebuilt for Lethal Company v81.5.
-- Improved internal implementation structure and release packaging.
+- Improved internal implementation structure and release flow.
 - Added the Thunderstore `AI Generated` category to the package metadata:
     - The Lethal Company Thunderstore community currently provides this
       category for authors to disclose when a `significant portion` of a mod
