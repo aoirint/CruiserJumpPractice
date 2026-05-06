@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 #nullable enable
 
+using System.Reflection;
 using BepInEx;
 using CruiserJumpPractice.Core.Ports;
 using CruiserJumpPractice.Core.Validation;
@@ -17,6 +18,11 @@ namespace CruiserJumpPractice;
 public class CruiserJumpPractice : BaseUnityPlugin
 {
     private static PluginController? controller;
+    private static readonly string ReleaseVersion =
+        typeof(CruiserJumpPractice).Assembly
+            .GetCustomAttribute<AssemblyInformationalVersionAttribute>()
+            ?.InformationalVersion
+        ?? MyPluginInfo.PLUGIN_VERSION;
 
     // Harmony and Netcode construct their callback objects outside our
     // construction path. This static entry exposes one plugin-level controller
@@ -38,7 +44,7 @@ public class CruiserJumpPractice : BaseUnityPlugin
 
         validationLogger.Record(
             ValidationLogRecord.PluginLoaded(
-                version: MyPluginInfo.PLUGIN_VERSION,
+                version: ReleaseVersion,
                 validationLogging: validationLogging.Value
             )
         );
@@ -51,6 +57,8 @@ public class CruiserJumpPractice : BaseUnityPlugin
         // callback can enter a fully wired plugin boundary.
         HarmonyPatchInstaller.Install();
 
-        logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_NAME} v{MyPluginInfo.PLUGIN_VERSION} is loaded!");
+        logger.LogInfo(
+            $"Plugin {MyPluginInfo.PLUGIN_NAME} v{ReleaseVersion} is loaded with BepInEx metadata version {MyPluginInfo.PLUGIN_VERSION}!"
+        );
     }
 }
