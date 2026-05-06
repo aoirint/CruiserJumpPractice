@@ -11,7 +11,7 @@ namespace CruiserJumpPractice.Interop.Game.Patches;
 // HUDManager is patched only to find lifecycle moments the game already owns. Once those moments
 // are found, work is delegated to PluginController rather than embedding practice logic here.
 [HarmonyPatch(typeof(HUDManager))]
-internal class HUDManagerPatch
+internal static class HUDManagerPatch
 {
     [HarmonyPatch(nameof(HUDManager.Awake))]
     [HarmonyPostfix]
