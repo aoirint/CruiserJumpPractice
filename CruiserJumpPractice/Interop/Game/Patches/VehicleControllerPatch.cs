@@ -11,9 +11,9 @@ namespace CruiserJumpPractice.Interop.Game.Patches;
 [HarmonyPatch(typeof(VehicleController))]
 internal static class VehicleControllerPatch
 {
-    // AddEngineOilClientRpc marks the receiver-side vanilla synchronization
-    // boundary. The local apply method below is the final-state hook used after
-    // both initiating and receiver-side paths update the cruiser HP.
+    // For the base game, AddEngineOilClientRpc is the receiver-side RPC boundary
+    // for synchronized cruiser HP restoration. The local apply method below is
+    // where the HP value is applied.
     [HarmonyPatch(nameof(VehicleController.AddEngineOilClientRpc), typeof(int), typeof(int))]
     [HarmonyPrefix]
     public static void AddEngineOilClientRpcPrefix()
@@ -35,8 +35,8 @@ internal static class VehicleControllerPatch
         );
     }
 
-    // AddEngineOilOnLocalClient is the local apply point identified as the
-    // first HP final-state observation hook.
+    // For the base game, AddEngineOilOnLocalClient applies the cruiser HP value
+    // on the local client after either local or RPC-driven oil restoration.
     [HarmonyPatch(nameof(VehicleController.AddEngineOilOnLocalClient), typeof(int))]
     [HarmonyPrefix]
     public static void AddEngineOilOnLocalClientPrefix()
@@ -58,9 +58,9 @@ internal static class VehicleControllerPatch
         );
     }
 
-    // AddTurboBoostClientRpc uses the same receiver-side synchronization shape
-    // as engine oil. The applied turbo count is private, so final-state reads
-    // stay behind the adapter boundary.
+    // For the base game, AddTurboBoostClientRpc is the receiver-side RPC
+    // boundary for synchronized turbo count restoration. The applied count is
+    // stored inside VehicleController state.
     [HarmonyPatch(nameof(VehicleController.AddTurboBoostClientRpc), typeof(int), typeof(int))]
     [HarmonyPrefix]
     public static void AddTurboBoostClientRpcPrefix()
@@ -81,8 +81,8 @@ internal static class VehicleControllerPatch
         );
     }
 
-    // AddTurboBoostOnLocalClient is the local apply point identified as the
-    // first turbo-count final-state observation hook.
+    // For the base game, AddTurboBoostOnLocalClient applies the turbo count on
+    // the local client after either local or RPC-driven turbo restoration.
     [HarmonyPatch(nameof(VehicleController.AddTurboBoostOnLocalClient), typeof(int))]
     [HarmonyPrefix]
     public static void AddTurboBoostOnLocalClientPrefix()
