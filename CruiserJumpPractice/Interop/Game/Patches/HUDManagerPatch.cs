@@ -8,13 +8,18 @@ using LethalCompany;
 
 namespace CruiserJumpPractice.Interop.Game.Patches;
 
-// HUDManager is patched only to find lifecycle moments the game already owns. Once those moments
-// are found, work is delegated to PluginController rather than embedding practice logic here.
+/// <summary>
+/// Harmony patches for HUD lifecycle moments that CJP uses as plugin hooks.
+/// </summary>
+/// <remarks>
+/// Work is delegated to PluginController rather than embedding practice logic here.
+/// </remarks>
 [HarmonyPatch(typeof(HUDManager))]
 internal static class HUDManagerPatch
 {
-    // For the base game, Awake initializes HUD state and UI references. The
-    // Postfix waits until that setup finishes before plugin startup work runs.
+    /// <summary>
+    /// Runs plugin startup after the base-game HUD Awake setup finishes.
+    /// </summary>
     [HarmonyPatch(nameof(HUDManager.Awake))]
     [HarmonyPostfix]
     public static void AwakePostfix()
@@ -25,8 +30,9 @@ internal static class HUDManagerPatch
         );
     }
 
-    // For the base game, Update is the HUD's per-frame UI loop. The Postfix
-    // runs plugin frame work after the base HUD frame update has completed.
+    /// <summary>
+    /// Runs plugin frame work after the base-game HUD frame update completes.
+    /// </summary>
     [HarmonyPatch(nameof(HUDManager.Update))]
     [HarmonyPostfix]
     public static void UpdatePostfix()

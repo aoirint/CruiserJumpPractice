@@ -8,8 +8,13 @@ using CruiserJumpPractice.Core.Validation;
 
 namespace CruiserJumpPractice.Core.Handlers;
 
-// Frame handling is coordination rather than policy. It reads one-frame input, skips unsafe
-// local-player states, and dispatches client-side commands; save/load rules remain in use cases.
+/// <summary>
+/// Coordinates one-frame practice input with client-side command dispatch.
+/// </summary>
+/// <remarks>
+/// Save/load policy remains in use cases; this handler reads input, suppresses
+/// unsafe local-player states, and dispatches accepted commands.
+/// </remarks>
 internal sealed class FrameHandler
 {
     private readonly IGameInterop gameInterop;

@@ -10,11 +10,14 @@ using LethalCompanyInputUtils::LethalCompanyInputUtils.BindingPathEnums;
 
 namespace CruiserJumpPractice.Interop.InputUtils;
 
-// InputUtilsActions declares the keybindings that InputUtils registers for the
-// plugin.
-// Practice-facing input behavior is adapted in InputUtilsPracticeInput, so this
-// file stays as a small attribute table with layout notes beside each binding.
-// The repeated "Keymap:" rows are intentional table data, not prose that needs varied wording.
+/// <summary>
+/// Declares the keybindings that InputUtils registers for the plugin.
+/// </summary>
+/// <remarks>
+/// Practice-facing input behavior is adapted in InputUtilsPracticeInput, so this
+/// file stays as a small attribute table with layout notes beside each binding.
+/// The repeated "Keymap:" rows are intentional table data.
+/// </remarks>
 internal sealed class InputUtilsActions : LcInputActions
 {
     // Keymap: JP109 @, US [

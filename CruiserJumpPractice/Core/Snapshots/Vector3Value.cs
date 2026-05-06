@@ -3,8 +3,12 @@
 
 namespace CruiserJumpPractice.Core.Snapshots;
 
-// Position and rotation values cross the Core boundary without UnityEngine.Vector3 so snapshot
-// data remains plain and Unity conversion stays in adapters.
+/// <summary>
+/// Plain vector value used for positions and rotations crossing the Core boundary.
+/// </summary>
+/// <remarks>
+/// Snapshot data remains free of UnityEngine.Vector3; Unity conversion stays in adapters.
+/// </remarks>
 internal readonly struct Vector3Value
 {
     public float X { get; }

@@ -12,6 +12,13 @@ using CruiserJumpPractice.Interop.Game;
 
 namespace CruiserJumpPractice.Interop.Game.Adapters;
 
+/// <summary>
+/// Centralizes Unity and base-game singleton lookups for game interop adapters.
+/// </summary>
+/// <remarks>
+/// Missing base-game objects are converted into <see cref="GameInteropException"/>
+/// with a log entry at the Interop boundary.
+/// </remarks>
 internal sealed class GameObjectAdapter
 {
     private readonly IPluginLogger logger;
@@ -88,6 +95,9 @@ internal sealed class GameObjectAdapter
     {
         try
         {
+            // Netcode RPC helpers take the local player ID as an int even
+            // though the base-game player controller stores it as an unsigned
+            // client ID.
             return (int)GetLocalPlayer().playerClientId;
         }
         catch (System.Exception error)

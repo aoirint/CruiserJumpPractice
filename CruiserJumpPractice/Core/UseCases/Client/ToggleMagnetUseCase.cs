@@ -7,9 +7,13 @@ using CruiserJumpPractice.Core.Validation;
 
 namespace CruiserJumpPractice.Core.UseCases.Client;
 
-// Magnet toggling reuses the game's own synchronized lever behavior. The custom
-// RPC surrogate is reserved for cruiser snapshot save/load, so this use case
-// only guards host authority and feedback.
+/// <summary>
+/// Toggles the ship magnet through the game's synchronized lever behavior.
+/// </summary>
+/// <remarks>
+/// The custom RPC surrogate is reserved for cruiser snapshot save/load, so this
+/// use case only guards host authority and feedback.
+/// </remarks>
 internal sealed class ToggleMagnetUseCase
 {
     private readonly IGameInterop gameInterop;
@@ -45,6 +49,9 @@ internal sealed class ToggleMagnetUseCase
                 result: result
             )
         );
+
+        // Feedback uses the expected state because the vanilla lever/RPC path
+        // may finish synchronization after this use case returns.
         var message = result == ToggleMagnetResult.MagnetOn
             ? HudTipMessage.MagnetOn
             : HudTipMessage.MagnetOff;

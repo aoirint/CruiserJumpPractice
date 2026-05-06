@@ -13,10 +13,14 @@ using CruiserJumpPractice.Interop.InputUtils;
 
 namespace CruiserJumpPractice;
 
-// The controller is the plugin-facing facade. Callbacks ask it to perform named
-// plugin actions, while the controller keeps the actual Core use cases private.
-// It lives beside the BepInEx entrypoint because it wires BepInEx logging,
-// InputUtils input, and game interop into Core.
+/// <summary>
+/// Plugin-facing facade that exposes named callback actions while keeping Core
+/// use cases private.
+/// </summary>
+/// <remarks>
+/// This type lives beside the BepInEx entrypoint because it wires BepInEx
+/// logging, InputUtils input, and game interop into Core.
+/// </remarks>
 internal sealed class PluginController
 {
     private readonly IGameInterop gameInterop;
@@ -52,6 +56,10 @@ internal sealed class PluginController
         this.presentLoadCruiserStateResultUseCase = presentLoadCruiserStateResultUseCase;
     }
 
+    /// <summary>
+    /// Builds the plugin controller and manually wires concrete integrations to
+    /// Core ports.
+    /// </summary>
     public static PluginController Create(IPluginLogger logger, IValidationLogger validationLogger)
     {
         // Concrete integrations become Core ports here. Adding a new external
@@ -67,6 +75,9 @@ internal sealed class PluginController
         var cruiserStateStore = new CruiserStateStore();
         var baseGameAppliedStateValidationStore = new BaseGameAppliedStateValidationStore();
         validationLogger.Record(ValidationLogRecord.StateStoreCreated());
+
+        // Manual wiring is grouped by direction of control: server state
+        // mutations, client requests/presentation, then frame/startup handlers.
         var saveCruiserStateUseCase = new SaveCruiserStateUseCase(
             gameInterop: gameInterop,
             cruiserStateStore: cruiserStateStore,
@@ -161,11 +172,17 @@ internal sealed class PluginController
         presentLoadCruiserStateResultUseCase.Execute(result);
     }
 
+    /// <summary>
+    /// Records that the save ServerRpc was accepted by the Netcode boundary.
+    /// </summary>
     public void RecordSaveServerRpcReceived()
     {
         validationLogger.Record(ValidationLogRecord.SaveServerRpcReceived(GetRole()));
     }
 
+    /// <summary>
+    /// Records that a save result ClientRpc was delivered for presentation.
+    /// </summary>
     public void RecordSaveClientRpcReceived(SaveCruiserStateResult result)
     {
         validationLogger.Record(
@@ -173,11 +190,17 @@ internal sealed class PluginController
         );
     }
 
+    /// <summary>
+    /// Records that the load ServerRpc was accepted by the Netcode boundary.
+    /// </summary>
     public void RecordLoadServerRpcReceived()
     {
         validationLogger.Record(ValidationLogRecord.LoadServerRpcReceived(GetRole()));
     }
 
+    /// <summary>
+    /// Records that a load result ClientRpc was delivered for presentation.
+    /// </summary>
     public void RecordLoadClientRpcReceived(LoadCruiserStateResult result)
     {
         validationLogger.Record(
@@ -185,61 +208,97 @@ internal sealed class PluginController
         );
     }
 
+    /// <summary>
+    /// Marks entry into the base-game engine-oil ClientRpc receiver path.
+    /// </summary>
     public void HandleBaseGameEngineOilClientRpcEntered()
     {
         baseGameAppliedStateValidationHandler.EnterEngineOilClientRpc();
     }
 
+    /// <summary>
+    /// Marks exit from the base-game engine-oil ClientRpc receiver path.
+    /// </summary>
     public void HandleBaseGameEngineOilClientRpcExited()
     {
         baseGameAppliedStateValidationHandler.ExitEngineOilClientRpc();
     }
 
+    /// <summary>
+    /// Captures cruiser HP before the base-game local engine-oil apply helper runs.
+    /// </summary>
     public void HandleBaseGameEngineOilLocalPreApply()
     {
         baseGameAppliedStateValidationHandler.HandleEngineOilLocalPreApply();
     }
 
+    /// <summary>
+    /// Records cruiser HP after the base-game local engine-oil apply helper runs.
+    /// </summary>
     public void HandleBaseGameEngineOilLocalApplied()
     {
         baseGameAppliedStateValidationHandler.HandleEngineOilLocalApplied();
     }
 
+    /// <summary>
+    /// Marks entry into the base-game turbo ClientRpc receiver path.
+    /// </summary>
     public void HandleBaseGameTurboClientRpcEntered()
     {
         baseGameAppliedStateValidationHandler.EnterTurboClientRpc();
     }
 
+    /// <summary>
+    /// Marks exit from the base-game turbo ClientRpc receiver path.
+    /// </summary>
     public void HandleBaseGameTurboClientRpcExited()
     {
         baseGameAppliedStateValidationHandler.ExitTurboClientRpc();
     }
 
+    /// <summary>
+    /// Captures turbo count before the base-game local turbo apply helper runs.
+    /// </summary>
     public void HandleBaseGameTurboLocalPreApply()
     {
         baseGameAppliedStateValidationHandler.HandleTurboLocalPreApply();
     }
 
+    /// <summary>
+    /// Records turbo count after the base-game local turbo apply helper runs.
+    /// </summary>
     public void HandleBaseGameTurboLocalApplied()
     {
         baseGameAppliedStateValidationHandler.HandleTurboLocalApplied();
     }
 
+    /// <summary>
+    /// Captures ship-magnet state before the base-game local magnet apply path runs.
+    /// </summary>
     public void HandleBaseGameShipMagnetLocalPreApply()
     {
         baseGameAppliedStateValidationHandler.HandleShipMagnetLocalPreApply();
     }
 
+    /// <summary>
+    /// Records ship-magnet state after the base-game local magnet apply path runs.
+    /// </summary>
     public void HandleBaseGameShipMagnetLocalApplied()
     {
         baseGameAppliedStateValidationHandler.HandleShipMagnetLocalApplied();
     }
 
+    /// <summary>
+    /// Captures ship-magnet state before the base-game magnet ClientRpc apply path runs.
+    /// </summary>
     public void HandleBaseGameShipMagnetClientRpcPreApply()
     {
         baseGameAppliedStateValidationHandler.HandleShipMagnetClientRpcPreApply();
     }
 
+    /// <summary>
+    /// Records ship-magnet state after the base-game magnet ClientRpc apply path runs.
+    /// </summary>
     public void HandleBaseGameShipMagnetClientRpcApplied()
     {
         baseGameAppliedStateValidationHandler.HandleShipMagnetClientRpcApplied();

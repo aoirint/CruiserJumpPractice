@@ -6,8 +6,13 @@ using CruiserJumpPractice.Core.Presentation;
 
 namespace CruiserJumpPractice.Core.UseCases.Client;
 
-// Save result wording belongs with practice behavior, but displaying the tip is still a game
-// operation. This keeps the message mapping in Core and the HUD call behind IGameInterop.
+/// <summary>
+/// Maps save results to player-facing HUD feedback.
+/// </summary>
+/// <remarks>
+/// Save result wording belongs with practice behavior, while displaying the tip
+/// remains a game operation behind IGameInterop.
+/// </remarks>
 internal sealed class PresentSaveCruiserStateResultUseCase
 {
     private readonly IGameInterop gameInterop;
@@ -31,6 +36,8 @@ internal sealed class PresentSaveCruiserStateResultUseCase
         }
         else
         {
+            // Unexpected results are diagnostics, not player-facing practice
+            // states. Known failures get HUD tips; unknown values stay in logs.
             logger.LogError($"Unknown SaveCruiserStateResult: {result}");
         }
     }

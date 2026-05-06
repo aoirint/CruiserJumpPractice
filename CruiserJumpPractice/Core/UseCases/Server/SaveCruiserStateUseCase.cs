@@ -8,8 +8,13 @@ using CruiserJumpPractice.Core.Validation;
 
 namespace CruiserJumpPractice.Core.UseCases.Server;
 
-// The server save path is the only writer to CruiserStateStore. It returns a small result value
-// because the NetworkBehaviour only needs to report the outcome, not the captured snapshot.
+/// <summary>
+/// Captures cruiser state on the server and stores it for later restore.
+/// </summary>
+/// <remarks>
+/// This is the only writer to CruiserStateStore. It returns a small result
+/// value because the NetworkBehaviour only needs to report the outcome.
+/// </remarks>
 internal sealed class SaveCruiserStateUseCase
 {
     private readonly IGameInterop gameInterop;

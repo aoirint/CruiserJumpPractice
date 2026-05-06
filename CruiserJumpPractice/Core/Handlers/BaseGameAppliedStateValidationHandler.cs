@@ -7,6 +7,13 @@ using CruiserJumpPractice.Core.Validation;
 
 namespace CruiserJumpPractice.Core.Handlers;
 
+/// <summary>
+/// Translates Harmony patch observation points into before/after validation events.
+/// </summary>
+/// <remarks>
+/// Patch classes know where the base game applies state; this class decides
+/// which observations are meaningful to CJP validation.
+/// </remarks>
 internal sealed class BaseGameAppliedStateValidationHandler
 {
     private readonly IGameInterop gameInterop;
@@ -24,21 +31,33 @@ internal sealed class BaseGameAppliedStateValidationHandler
         this.stateStore = stateStore;
     }
 
+    /// <summary>
+    /// Marks entry into the engine-oil ClientRpc receiver path.
+    /// </summary>
     public void EnterEngineOilClientRpc()
     {
         stateStore.EnterEngineOilClientRpc();
     }
 
+    /// <summary>
+    /// Marks exit from the engine-oil ClientRpc receiver path.
+    /// </summary>
     public void ExitEngineOilClientRpc()
     {
         stateStore.ExitEngineOilClientRpc();
     }
 
+    /// <summary>
+    /// Captures cruiser HP before the local engine-oil apply helper runs.
+    /// </summary>
     public void HandleEngineOilLocalPreApply()
     {
         stateStore.SetPreEngineOilLocalApplyCarHP(gameInterop.GetCruiserCarHP());
     }
 
+    /// <summary>
+    /// Records receiver-side cruiser HP after the local engine-oil apply helper runs.
+    /// </summary>
     public void HandleEngineOilLocalApplied()
     {
         // The same vanilla local helper runs during host-initiated restore; only log it when the
@@ -58,21 +77,33 @@ internal sealed class BaseGameAppliedStateValidationHandler
         );
     }
 
+    /// <summary>
+    /// Marks entry into the turbo ClientRpc receiver path.
+    /// </summary>
     public void EnterTurboClientRpc()
     {
         stateStore.EnterTurboClientRpc();
     }
 
+    /// <summary>
+    /// Marks exit from the turbo ClientRpc receiver path.
+    /// </summary>
     public void ExitTurboClientRpc()
     {
         stateStore.ExitTurboClientRpc();
     }
 
+    /// <summary>
+    /// Captures turbo count before the local turbo apply helper runs.
+    /// </summary>
     public void HandleTurboLocalPreApply()
     {
         stateStore.SetPreTurboLocalApplyBoosts(gameInterop.GetCruiserTurboBoosts());
     }
 
+    /// <summary>
+    /// Records receiver-side turbo count after the local turbo apply helper runs.
+    /// </summary>
     public void HandleTurboLocalApplied()
     {
         // Turbo restore also calls the local helper directly, so this keeps #100 logs scoped to
@@ -92,11 +123,17 @@ internal sealed class BaseGameAppliedStateValidationHandler
         );
     }
 
+    /// <summary>
+    /// Captures ship-magnet state before the local magnet apply path runs.
+    /// </summary>
     public void HandleShipMagnetLocalPreApply()
     {
         stateStore.SetPreMagnetLocalApplyState(gameInterop.IsShipMagnetOn());
     }
 
+    /// <summary>
+    /// Records ship-magnet state after the local magnet apply path runs.
+    /// </summary>
     public void HandleShipMagnetLocalApplied()
     {
         HandleShipMagnetApplied(
@@ -106,11 +143,17 @@ internal sealed class BaseGameAppliedStateValidationHandler
         );
     }
 
+    /// <summary>
+    /// Captures ship-magnet state before the magnet ClientRpc apply path runs.
+    /// </summary>
     public void HandleShipMagnetClientRpcPreApply()
     {
         stateStore.SetPreMagnetClientRpcApplyState(gameInterop.IsShipMagnetOn());
     }
 
+    /// <summary>
+    /// Records ship-magnet state after the magnet ClientRpc apply path runs.
+    /// </summary>
     public void HandleShipMagnetClientRpcApplied()
     {
         HandleShipMagnetApplied(

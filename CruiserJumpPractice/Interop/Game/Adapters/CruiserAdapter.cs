@@ -13,9 +13,13 @@ using CruiserJumpPractice.Core.Snapshots;
 
 namespace CruiserJumpPractice.Interop.Game.Adapters;
 
-// CruiserAdapter finds live cruisers and turns them into the snapshots used by save/load.
-// Unity vector conversion and reflection for private cruiser fields stay here, away from Core
-// practice rules.
+/// <summary>
+/// Finds live cruisers and converts them to and from Core snapshots.
+/// </summary>
+/// <remarks>
+/// Unity vector conversion and reflection for private cruiser fields stay here,
+/// away from Core practice rules.
+/// </remarks>
 internal sealed class CruiserAdapter
 {
     // The field identity belongs to the VehicleController type, not to each cruiser instance.

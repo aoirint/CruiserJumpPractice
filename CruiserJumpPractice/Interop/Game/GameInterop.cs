@@ -10,9 +10,13 @@ using CruiserJumpPractice.Interop.Game.Adapters;
 
 namespace CruiserJumpPractice.Interop.Game;
 
-// GameInterop is the game-facing implementation of the practice operations requested by Core.
-// It presents one practice-oriented surface while focused adapters handle HUD, networking,
-// cruiser reflection, and ship magnet objects.
+/// <summary>
+/// Game-facing implementation of the practice operations requested by Core.
+/// </summary>
+/// <remarks>
+/// Presents one practice-oriented surface while focused adapters handle HUD,
+/// networking, cruiser reflection, and ship magnet objects.
+/// </remarks>
 internal sealed class GameInterop : IGameInterop
 {
     private readonly NetworkAdapter networkInterop;
@@ -73,6 +77,14 @@ internal sealed class GameInterop : IGameInterop
         rpcSurrogateInterop.GetRpcSurrogateBehaviour().LoadCruiserStateServerRpc();
     }
 
+    /// <summary>
+    /// Checks whether the current scene has a cruiser that Core can address.
+    /// </summary>
+    /// <remarks>
+    /// Probe-style cruiser reads report absence as null/false-style results so
+    /// Core use cases can choose user-facing outcomes. Operations that require
+    /// an already validated cruiser throw instead.
+    /// </remarks>
     public bool CruiserExists()
     {
         return cruiserInterop.FindCruiser() != null;

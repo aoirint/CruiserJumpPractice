@@ -46,8 +46,13 @@ internal enum ValidationLogBaseGameApplySource
     Unknown
 }
 
+/// <summary>
+/// Immutable validation event description with stable event names and fields.
+/// </summary>
 internal sealed class ValidationLogRecord
 {
+    // Call sites choose semantic events through named factories; this type owns
+    // the stable field names and token spelling.
     private ValidationLogRecord(string eventName, Dictionary<string, object?>? fields = null)
     {
         EventName = eventName;
@@ -458,6 +463,8 @@ internal sealed class ValidationLogRecord
 
     private static object? Number(float value, int decimalPlaces)
     {
+        // JSON has no portable NaN/Infinity representation. Null keeps the
+        // validation record parseable while still signaling an unusable value.
         if (float.IsNaN(value) || float.IsInfinity(value))
         {
             return null;
