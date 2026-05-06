@@ -50,7 +50,7 @@ You can change the keybinds from the
 - Save Cruiser State: `]` (US: `]`, JP109: `[`)
 - Toggle Magnet: `\` (US: `\`, JP109: `]`)
 
-## Current Limitations
+## Known Issues and Limitations
 
 - Known multiplayer issue:
     - When a guest client is driving and the host loads a saved cruiser state,
