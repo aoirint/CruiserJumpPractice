@@ -34,19 +34,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Notes
 
 - Release validation:
-    - `v0.2.0-alpha.6` passed the #112 validation cycle after the blocked
-      `v0.2.0-alpha.5` startup pass.
+    - `v0.2.0-alpha.6` passed the [#112][issue-112] validation cycle after
+      the blocked `v0.2.0-alpha.5` startup pass.
     - Accepted residual risk: HP/turbo restore records were present, but cases
       where values remained default-like and unchanged do not fully prove
       HP/turbo restore by observable before/after change.
     - Accepted residual risk: the guest-driver load snapback observation is
-      tracked separately in #113 and is not treated as a `v0.2.0` blocker.
+      tracked separately in [#113][issue-113] and is not treated as a
+      `v0.2.0` blocker.
 - Compatibility:
     - Compatible with Lethal Company v81.5 (2026-04-17 UTC, Manifest ID:
       `6423525044216269478`).
         - The validation environment used Imperium v1.3.0 for setup support.
         - Imperium v1.3.0 appears to have some cruiser-related issues; see the
-          linked Imperium issue comment in `assets/CHANGELOG.md` for the
+          [Imperium issue comment][imperium-cruiser-workaround] for the
           maintainer-noted workaround reference.
 
 ## v0.2.0-alpha.6 - 2026-05-06 UTC
@@ -355,4 +356,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
         - Backfilled as reference compatibility information while preparing
           the v0.2.0-alpha.1 release.
 
+[imperium-cruiser-workaround]: https://github.com/giosuel/imperium/issues/153#issuecomment-4317402735
 [issue-18-ai-generated-category]: https://github.com/aoirint/CruiserJumpPractice/issues/18
+[issue-112]: https://github.com/aoirint/CruiserJumpPractice/issues/112
+[issue-113]: https://github.com/aoirint/CruiserJumpPractice/issues/113

@@ -1,6 +1,6 @@
 <!-- SPDX-License-Identifier: MIT -->
 
-This changelog is the user-facing release notes for Thunderstore.
+This changelog is the user-facing release notes for [Thunderstore][thunderstore].
 
 For internal implementation details and developer-facing release history, see
 the [GitHub changelog][github-changelog].
@@ -11,19 +11,19 @@ project issue, see [CONTRIBUTING.md][contributing], then report it in
 
 ## v0.2.0 - 2026-05-06 UTC
 
-This release rebuilds CruiserJumpPractice for Lethal Company v81.5 and includes
-internal improvements.
+This release rebuilds CruiserJumpPractice for [Lethal Company][lethal-company]
+v81.5 and includes internal improvements.
 
 No gameplay changes are introduced.
 
 ### Changed
 
-- Rebuilt for Lethal Company v81.5.
+- Rebuilt for [Lethal Company][lethal-company] v81.5.
 - Improved internal implementation structure and release flow.
 - Added the Thunderstore `AI Generated` category to the package metadata:
-    - The Lethal Company Thunderstore community currently provides this
-      category for authors to disclose when a `significant portion` of a mod
-      was created using AI tools.
+    - The [Lethal Company Thunderstore community][thunderstore-lethal-company]
+      currently provides this category for authors to disclose when a
+      `significant portion` of a mod was created using AI tools.
     - This project uses the category to disclose AI assistance in project work;
       it is package metadata rather than a gameplay feature.
     - The project decided to use this category because:
@@ -38,10 +38,10 @@ No gameplay changes are introduced.
 ### Notes
 
 - Compatibility:
-    - Compatible with Lethal Company v81.5 (2026-04-17 UTC, Manifest ID:
-      `6423525044216269478`).
-        - Normally used together with Imperium; the v81.5 test environment
-          used Imperium v1.3.0.
+    - Compatible with [Lethal Company][lethal-company] v81.5 (2026-04-17 UTC,
+      Manifest ID: `6423525044216269478`).
+        - Normally used together with [Imperium][imperium]; the v81.5 test
+          environment used Imperium v1.3.0.
         - Imperium v1.3.0 appears to have some cruiser-related issues:
             - See the [Imperium issue comment][imperium-cruiser-workaround]
               for a workaround.
@@ -120,3 +120,7 @@ No gameplay changes are introduced.
 [contributing]: https://github.com/aoirint/CruiserJumpPractice/blob/main/CONTRIBUTING.md
 [github-changelog]: https://github.com/aoirint/CruiserJumpPractice/blob/main/CHANGELOG.md
 [github-issues]: https://github.com/aoirint/CruiserJumpPractice/issues
+[imperium]: https://thunderstore.io/c/lethal-company/p/giosuel/Imperium/
+[lethal-company]: https://store.steampowered.com/app/1966720/Lethal_Company/
+[thunderstore]: https://thunderstore.io/
+[thunderstore-lethal-company]: https://thunderstore.io/c/lethal-company/
