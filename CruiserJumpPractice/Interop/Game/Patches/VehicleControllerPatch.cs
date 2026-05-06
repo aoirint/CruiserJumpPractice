@@ -38,7 +38,7 @@ internal static class VehicleControllerPatch
     public static void AddEngineOilOnLocalClientPrefix()
     {
         TryNotifyAppliedStateValidation(
-            notify: static () => CruiserJumpPractice.Controller.HandleBaseGameEngineOilPreApply()
+            notify: static () => CruiserJumpPractice.Controller.HandleBaseGameEngineOilLocalPreApply()
         );
     }
 
@@ -77,7 +77,7 @@ internal static class VehicleControllerPatch
     public static void AddTurboBoostOnLocalClientPrefix()
     {
         TryNotifyAppliedStateValidation(
-            notify: static () => CruiserJumpPractice.Controller.HandleBaseGameTurboPreApply()
+            notify: static () => CruiserJumpPractice.Controller.HandleBaseGameTurboLocalPreApply()
         );
     }
 

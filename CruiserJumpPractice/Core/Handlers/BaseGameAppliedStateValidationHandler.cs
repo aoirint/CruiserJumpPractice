@@ -34,9 +34,9 @@ internal sealed class BaseGameAppliedStateValidationHandler
         stateStore.ExitEngineOilClientRpc();
     }
 
-    public void HandleEngineOilPreApply()
+    public void HandleEngineOilLocalPreApply()
     {
-        stateStore.SetPreEngineOilApplyCarHP(gameInterop.GetCruiserCarHP());
+        stateStore.SetPreEngineOilLocalApplyCarHP(gameInterop.GetCruiserCarHP());
     }
 
     public void HandleEngineOilLocalApplied()
@@ -51,7 +51,7 @@ internal sealed class BaseGameAppliedStateValidationHandler
         validationLogger.Record(
             record: ValidationLogRecord.BaseGameEngineOilApplied(
                 role: GetRole(),
-                beforeCarHP: stateStore.PreEngineOilApplyCarHP,
+                beforeCarHP: stateStore.PreEngineOilLocalApplyCarHP,
                 afterCarHP: gameInterop.GetCruiserCarHP(),
                 source: ValidationLogBaseGameApplySource.ClientRpcApply
             )
@@ -68,9 +68,9 @@ internal sealed class BaseGameAppliedStateValidationHandler
         stateStore.ExitTurboClientRpc();
     }
 
-    public void HandleTurboPreApply()
+    public void HandleTurboLocalPreApply()
     {
-        stateStore.SetPreTurboApplyBoosts(gameInterop.GetCruiserTurboBoosts());
+        stateStore.SetPreTurboLocalApplyBoosts(gameInterop.GetCruiserTurboBoosts());
     }
 
     public void HandleTurboLocalApplied()
@@ -85,7 +85,7 @@ internal sealed class BaseGameAppliedStateValidationHandler
         validationLogger.Record(
             record: ValidationLogRecord.BaseGameTurboApplied(
                 role: GetRole(),
-                beforeTurbo: stateStore.PreTurboApplyBoosts,
+                beforeTurbo: stateStore.PreTurboLocalApplyBoosts,
                 afterTurbo: gameInterop.GetCruiserTurboBoosts(),
                 source: ValidationLogBaseGameApplySource.ClientRpcApply
             )

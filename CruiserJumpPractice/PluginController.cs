@@ -195,9 +195,9 @@ internal sealed class PluginController
         baseGameAppliedStateValidationHandler.ExitEngineOilClientRpc();
     }
 
-    public void HandleBaseGameEngineOilPreApply()
+    public void HandleBaseGameEngineOilLocalPreApply()
     {
-        baseGameAppliedStateValidationHandler.HandleEngineOilPreApply();
+        baseGameAppliedStateValidationHandler.HandleEngineOilLocalPreApply();
     }
 
     public void HandleBaseGameEngineOilLocalApplied()
@@ -215,9 +215,9 @@ internal sealed class PluginController
         baseGameAppliedStateValidationHandler.ExitTurboClientRpc();
     }
 
-    public void HandleBaseGameTurboPreApply()
+    public void HandleBaseGameTurboLocalPreApply()
     {
-        baseGameAppliedStateValidationHandler.HandleTurboPreApply();
+        baseGameAppliedStateValidationHandler.HandleTurboLocalPreApply();
     }
 
     public void HandleBaseGameTurboLocalApplied()
