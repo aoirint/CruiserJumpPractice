@@ -41,6 +41,12 @@ public class CruiserJumpPractice : BaseUnityPlugin
         // Inject the logger through the plugin logging port so Core and game interop can emit
         // diagnostics without depending on BepInEx logging types.
         controller = PluginController.Create(logger: logger, validationLogger: validationLogger);
+        HarmonyCallbackGuard.Configure(
+            new HarmonyCallbackDiagnosticReporter(
+                logger: logger,
+                validationLogger: validationLogger
+            )
+        );
 
         // Startup order matters: construct the controller before patching so the first game
         // callback can enter a fully wired plugin boundary.

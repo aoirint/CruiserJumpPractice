@@ -403,6 +403,18 @@ internal sealed class ValidationLogRecord
         );
     }
 
+    public static ValidationLogRecord CallbackException(string callback, string exceptionType)
+    {
+        return new(
+            "callback_exception",
+            new()
+            {
+                ["callback"] = callback,
+                ["exception_type"] = exceptionType
+            }
+        );
+    }
+
     private static ValidationLogRecord LoadResult(
         string result,
         bool cruiserFound,

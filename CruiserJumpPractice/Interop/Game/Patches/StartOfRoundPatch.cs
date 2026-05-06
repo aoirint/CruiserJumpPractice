@@ -3,7 +3,6 @@
 
 extern alias LethalCompany;
 
-using System;
 using HarmonyLib;
 using LethalCompany;
 
@@ -18,7 +17,8 @@ internal static class StartOfRoundPatch
     [HarmonyPrefix]
     public static void SetMagnetOnPrefix()
     {
-        TryNotifyAppliedStateValidation(
+        HarmonyCallbackGuard.TryNotifyHarmonyCallback(
+            callback: HarmonyCallbackTokens.StartOfRoundSetMagnetOnPrefix,
             notify: static () =>
                 CruiserJumpPractice.Controller.HandleBaseGameShipMagnetLocalPreApply()
         );
@@ -28,7 +28,8 @@ internal static class StartOfRoundPatch
     [HarmonyPostfix]
     public static void SetMagnetOnPostfix()
     {
-        TryNotifyAppliedStateValidation(
+        HarmonyCallbackGuard.TryNotifyHarmonyCallback(
+            callback: HarmonyCallbackTokens.StartOfRoundSetMagnetOnPostfix,
             notify: static () =>
                 CruiserJumpPractice.Controller.HandleBaseGameShipMagnetLocalApplied()
         );
@@ -38,7 +39,8 @@ internal static class StartOfRoundPatch
     [HarmonyPrefix]
     public static void SetMagnetOnClientRpcPrefix()
     {
-        TryNotifyAppliedStateValidation(
+        HarmonyCallbackGuard.TryNotifyHarmonyCallback(
+            callback: HarmonyCallbackTokens.StartOfRoundSetMagnetOnClientRpcPrefix,
             notify: static () =>
                 CruiserJumpPractice.Controller.HandleBaseGameShipMagnetClientRpcPreApply()
         );
@@ -48,21 +50,10 @@ internal static class StartOfRoundPatch
     [HarmonyPostfix]
     public static void SetMagnetOnClientRpcPostfix()
     {
-        TryNotifyAppliedStateValidation(
+        HarmonyCallbackGuard.TryNotifyHarmonyCallback(
+            callback: HarmonyCallbackTokens.StartOfRoundSetMagnetOnClientRpcPostfix,
             notify: static () =>
                 CruiserJumpPractice.Controller.HandleBaseGameShipMagnetClientRpcApplied()
         );
-    }
-
-    private static void TryNotifyAppliedStateValidation(Action notify)
-    {
-        try
-        {
-            notify();
-        }
-        catch
-        {
-            // Validation logging must never interrupt the base-game apply path.
-        }
     }
 }

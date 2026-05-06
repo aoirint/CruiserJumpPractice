@@ -3,7 +3,6 @@
 
 extern alias LethalCompany;
 
-using System;
 using HarmonyLib;
 using LethalCompany;
 
@@ -18,7 +17,8 @@ internal static class VehicleControllerPatch
     [HarmonyPrefix]
     public static void AddEngineOilClientRpcPrefix()
     {
-        TryNotifyAppliedStateValidation(
+        HarmonyCallbackGuard.TryNotifyHarmonyCallback(
+            callback: HarmonyCallbackTokens.VehicleControllerAddEngineOilClientRpcPrefix,
             notify: static () =>
                 CruiserJumpPractice.Controller.HandleBaseGameEngineOilClientRpcEntered()
         );
@@ -28,7 +28,8 @@ internal static class VehicleControllerPatch
     [HarmonyFinalizer]
     public static void AddEngineOilClientRpcFinalizer()
     {
-        TryNotifyAppliedStateValidation(
+        HarmonyCallbackGuard.TryNotifyHarmonyCallback(
+            callback: HarmonyCallbackTokens.VehicleControllerAddEngineOilClientRpcFinalizer,
             notify: static () => CruiserJumpPractice.Controller.HandleBaseGameEngineOilClientRpcExited()
         );
     }
@@ -37,7 +38,8 @@ internal static class VehicleControllerPatch
     [HarmonyPrefix]
     public static void AddEngineOilOnLocalClientPrefix()
     {
-        TryNotifyAppliedStateValidation(
+        HarmonyCallbackGuard.TryNotifyHarmonyCallback(
+            callback: HarmonyCallbackTokens.VehicleControllerAddEngineOilOnLocalClientPrefix,
             notify: static () => CruiserJumpPractice.Controller.HandleBaseGameEngineOilLocalPreApply()
         );
     }
@@ -46,7 +48,8 @@ internal static class VehicleControllerPatch
     [HarmonyPostfix]
     public static void AddEngineOilOnLocalClientPostfix()
     {
-        TryNotifyAppliedStateValidation(
+        HarmonyCallbackGuard.TryNotifyHarmonyCallback(
+            callback: HarmonyCallbackTokens.VehicleControllerAddEngineOilOnLocalClientPostfix,
             notify: static () =>
                 CruiserJumpPractice.Controller.HandleBaseGameEngineOilLocalApplied()
         );
@@ -58,7 +61,8 @@ internal static class VehicleControllerPatch
     [HarmonyPrefix]
     public static void AddTurboBoostClientRpcPrefix()
     {
-        TryNotifyAppliedStateValidation(
+        HarmonyCallbackGuard.TryNotifyHarmonyCallback(
+            callback: HarmonyCallbackTokens.VehicleControllerAddTurboBoostClientRpcPrefix,
             notify: static () => CruiserJumpPractice.Controller.HandleBaseGameTurboClientRpcEntered()
         );
     }
@@ -67,7 +71,8 @@ internal static class VehicleControllerPatch
     [HarmonyFinalizer]
     public static void AddTurboBoostClientRpcFinalizer()
     {
-        TryNotifyAppliedStateValidation(
+        HarmonyCallbackGuard.TryNotifyHarmonyCallback(
+            callback: HarmonyCallbackTokens.VehicleControllerAddTurboBoostClientRpcFinalizer,
             notify: static () => CruiserJumpPractice.Controller.HandleBaseGameTurboClientRpcExited()
         );
     }
@@ -76,7 +81,8 @@ internal static class VehicleControllerPatch
     [HarmonyPrefix]
     public static void AddTurboBoostOnLocalClientPrefix()
     {
-        TryNotifyAppliedStateValidation(
+        HarmonyCallbackGuard.TryNotifyHarmonyCallback(
+            callback: HarmonyCallbackTokens.VehicleControllerAddTurboBoostOnLocalClientPrefix,
             notify: static () => CruiserJumpPractice.Controller.HandleBaseGameTurboLocalPreApply()
         );
     }
@@ -85,21 +91,10 @@ internal static class VehicleControllerPatch
     [HarmonyPostfix]
     public static void AddTurboBoostOnLocalClientPostfix()
     {
-        TryNotifyAppliedStateValidation(
+        HarmonyCallbackGuard.TryNotifyHarmonyCallback(
+            callback: HarmonyCallbackTokens.VehicleControllerAddTurboBoostOnLocalClientPostfix,
             notify: static () =>
                 CruiserJumpPractice.Controller.HandleBaseGameTurboLocalApplied()
         );
-    }
-
-    private static void TryNotifyAppliedStateValidation(Action notify)
-    {
-        try
-        {
-            notify();
-        }
-        catch
-        {
-            // Validation logging must never interrupt the base-game apply path.
-        }
     }
 }
