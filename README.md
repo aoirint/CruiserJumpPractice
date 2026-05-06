@@ -18,6 +18,9 @@ Install [Visual Studio 2022][visual-studio-download].
 Install [Docker][docker-install] if you plan to use the documented local
 Markdown lint command.
 
+Install [`actionlint`][actionlint-repo] and [pinact][pinact-repo] if you plan to
+run GitHub Actions quality checks locally.
+
 Restore NuGet packages.
 
 ```powershell
@@ -70,6 +73,51 @@ sudo docker run --rm --network none --user "$(id -u):$(id -g)" -v ".:/workdir" d
 
 When updating Markdown lint tooling, update the documented local command and the
 CI action together after the repository cooldown period has elapsed.
+
+### GitHub Actions lint
+
+GitHub Actions workflows and composite actions are checked with
+[`actionlint`][actionlint-repo].
+The CI check runs only actionlint's built-in workflow, expression, and action
+metadata checks so it does not require extra tools such as ShellCheck or
+pyflakes.
+
+```powershell
+actionlint -shellcheck= -pyflakes=
+```
+
+Install `actionlint` from its upstream releases, package-manager integrations,
+Docker image, or another trusted distribution.
+Use a cooldown-compliant pinned release when updating CI.
+The CI workflow downloads the Linux amd64 release archive directly and verifies
+its SHA256 before running it.
+
+### GitHub Actions pinning
+
+GitHub Actions and reusable workflows are checked with [pinact][pinact-repo] so
+external actions stay pinned to full commit SHAs with synchronized version
+comments.
+
+```powershell
+pinact run --check
+```
+
+For local fixes or updates, use the documented pinact commands:
+
+```powershell
+# Pin or refresh version comments.
+pinact run --min-age 7
+
+# Update pinned actions after the repository cooldown period.
+pinact run --update --min-age 7
+```
+
+Set `GITHUB_TOKEN` when possible so pinact can query GitHub's API with normal
+authenticated rate limits.
+Install pinact from its upstream releases, package-manager integrations, or
+another trusted distribution.
+The CI workflow downloads the Linux amd64 release archive directly and verifies
+its SHA256 before running it.
 
 ## Package management
 
@@ -132,7 +180,7 @@ The repository uses [GitHub Actions][github-actions-docs] for CI.
 
 ### Action pinning
 
-The version of the actions are pinned with [pinact](https://github.com/suzuki-shunsuke/pinact).
+Action versions are pinned with [pinact][pinact-repo].
 Actions and other executable CI tooling should be updated after the repository
 cooldown period has elapsed. Keep SHA pins and version comments synchronized
 when updating pinned actions.
@@ -303,8 +351,10 @@ This disclosure is made in compliance with Thunderstore and community policies.
 [docker-install]: https://docs.docker.com/get-started/get-docker/
 [dotnet-sdk-download]: https://dotnet.microsoft.com/en-us/download/dotnet/10.0
 [github-actions-docs]: https://docs.github.com/en/actions
+[actionlint-repo]: https://github.com/rhysd/actionlint
 [lethal-company-steam]: https://store.steampowered.com/app/1966720/Lethal_Company/
 [markdownlint-cli2-repo]: https://github.com/DavidAnson/markdownlint-cli2
+[pinact-repo]: https://github.com/suzuki-shunsuke/pinact
 [powershell-install]: https://learn.microsoft.com/en-us/powershell/scripting/install/install-powershell-on-windows
 [r2modman-package]: https://thunderstore.io/c/lethal-company/p/ebkr/r2modman/
 [thunderstore-lethal-company-community]: https://thunderstore.io/c/lethal-company/
