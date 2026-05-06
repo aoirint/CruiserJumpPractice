@@ -1,6 +1,6 @@
 {
     "name": "CruiserJumpPractice",
-    "version_number": "0.0.0",
+    "version_number": "0.2.0",
     "website_url": "https://github.com/aoirint/CruiserJumpPractice",
     "description": "[v81.5] Saves and loads cruiser position, rotation, and condition, and lets you toggle the magnet remotely.",
     "dependencies": [

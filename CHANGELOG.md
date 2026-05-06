@@ -12,6 +12,66 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## Unreleased
 
+## v0.2.0 - 2026-05-06 UTC
+
+### Added
+
+- Added automated stable-release publishing to Thunderstore from GitHub Actions:
+    - Stable releases now publish the packaged release artifact to the
+      Lethal Company Thunderstore community after the GitHub release is
+      created.
+    - Prerelease and edge artifacts remain GitHub-only validation artifacts.
+- Added opt-in structured validation logging for release validation and
+  troubleshooting:
+    - `Debug.ValidationLogging` is disabled by default.
+    - When enabled, sparse `[CJP_VALIDATION]` JSONL-style records describe
+      startup, HUD/RPC surrogate lifecycle, input triggers and suppression,
+      host-only denials, save/load/restore results, magnet toggles, HUD tips,
+      and base-game applied-state observations.
+
+### Changed
+
+- Rebuilt the mod for the Lethal Company v81.5 dependency baseline.
+- Refactored internal architecture around Core use cases, ports, and adapters:
+    - The refactor keeps game-specific interop at the repository boundary while
+      preserving save/load, magnet toggle, HUD, and input behavior.
+    - Patch classes now act as timing notifiers for base-game state observation
+      instead of forwarding game state directly.
+- Dropped backward compatibility with CruiserJumpPractice v0.1.4 and earlier:
+    - A mod-internal `NetworkBehaviour` name changed during the refactor.
+    - Multiplayer clients should use the current release line together when
+      installing CruiserJumpPractice on more than the host.
+
+### Fixed
+
+- Fixed ship-magnet HUD/state observation gaps by adding validation evidence
+  around local and receiver-side magnet apply paths.
+- Fixed prerelease validation being blocked by BepInEx 5 plugin-version parsing
+  before startup:
+    - The validated `v0.2.0-alpha.6` retry proved that prerelease builds can
+      keep loader-facing/package metadata conservative while the GitHub release
+      tag, artifact name, and digest carry prerelease identity.
+    - The stable `v0.2.0` release restores real stable package and loader-facing
+      metadata because `0.2.0` is compatible with BepInEx 5 version parsing.
+
+### Notes
+
+- Release validation:
+    - `v0.2.0-alpha.6` passed the #112 validation cycle after the blocked
+      `v0.2.0-alpha.5` startup pass.
+    - Accepted residual risk: HP/turbo restore records were present, but cases
+      where values remained default-like and unchanged do not fully prove
+      HP/turbo restore by observable before/after change.
+    - Accepted residual risk: the guest-driver load snapback observation is
+      tracked separately in #113 and is not treated as a `v0.2.0` blocker.
+- Compatibility:
+    - Compatible with Lethal Company v81.5 (2026-04-17 UTC, Manifest ID:
+      `6423525044216269478`).
+        - The validation environment used Imperium v1.3.0 for setup support.
+        - Imperium v1.3.0 appears to have some cruiser-related issues; see the
+          linked Imperium issue comment in `assets/CHANGELOG.md` for the
+          maintainer-noted workaround reference.
+
 ## v0.2.0-alpha.6 - 2026-05-06 UTC
 
 ### Fixed
