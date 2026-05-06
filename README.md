@@ -2,18 +2,18 @@
 
 # CruiserJumpPractice
 
-A [Lethal Company][lethal-company] mod that saves and loads cruiser position,
+A [Lethal Company][lethal-company-steam] mod that saves and loads cruiser position,
 rotation, and condition, and lets you toggle the magnet remotely.
 
 - [User guide](./assets/README.md)
 
 ## Development
 
-Install [.NET SDK 10.0][dotnet-10] or later.
+Install [.NET SDK 10.0][dotnet-sdk-download] or later.
 
 Install [PowerShell 7][powershell-install].
 
-Install [Visual Studio 2022][visual-studio].
+Install [Visual Studio 2022][visual-studio-download].
 
 Install [Docker][docker-install] for local Markdown linting.
 
@@ -123,7 +123,7 @@ Maintenance references:
 
 ## GitHub Actions
 
-The repository uses [GitHub Actions][github-actions] for CI.
+The repository uses [GitHub Actions][github-actions-docs] for CI.
 
 ### Action pinning
 
@@ -231,7 +231,7 @@ Document the reason and compatibility impact in that change.
 ### Thunderstore publishing
 
 The current workflow deploys to the Thunderstore `aoirint` team and publishes to
-the [`lethal-company`][thunderstore-lethal-company] community with these
+the [`lethal-company`][thunderstore-lethal-company-community] community with these
 categories:
 
 - `Mods`
@@ -264,7 +264,7 @@ can include unrelated local environment details.
 
 ### r2modman
 
-1. Open [r2modman][r2modman].
+1. Open [r2modman][r2modman-package].
 2. Open `Config editor`.
 3. Open `BepInEx\config\BepInEx.cfg` in the config list.
 4. Set `Logging.Console.LogLevels` to `All`.
@@ -289,14 +289,14 @@ can include unrelated local environment details.
 Some parts of this project were developed with AI tools based on large language
 models (LLMs), including agent-based tools.
 The project maintainer reviews the code.
-This disclosure is made in compliance with [Thunderstore policies][thunderstore].
+This disclosure is made in compliance with [Thunderstore policies][thunderstore-home].
 
 [docker-install]: https://docs.docker.com/get-started/get-docker/
-[dotnet-10]: https://dotnet.microsoft.com/en-us/download/dotnet/10.0
-[github-actions]: https://docs.github.com/en/actions
-[lethal-company]: https://store.steampowered.com/app/1966720/Lethal_Company/
+[dotnet-sdk-download]: https://dotnet.microsoft.com/en-us/download/dotnet/10.0
+[github-actions-docs]: https://docs.github.com/en/actions
+[lethal-company-steam]: https://store.steampowered.com/app/1966720/Lethal_Company/
 [powershell-install]: https://learn.microsoft.com/en-us/powershell/scripting/install/install-powershell-on-windows
-[r2modman]: https://thunderstore.io/c/lethal-company/p/ebkr/r2modman/
-[thunderstore]: https://thunderstore.io/
-[thunderstore-lethal-company]: https://thunderstore.io/c/lethal-company/
-[visual-studio]: https://visualstudio.microsoft.com/en-us/vs/
+[r2modman-package]: https://thunderstore.io/c/lethal-company/p/ebkr/r2modman/
+[thunderstore-home]: https://thunderstore.io/
+[thunderstore-lethal-company-community]: https://thunderstore.io/c/lethal-company/
+[visual-studio-download]: https://visualstudio.microsoft.com/en-us/vs/
