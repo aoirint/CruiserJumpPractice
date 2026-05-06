@@ -11,8 +11,9 @@ namespace CruiserJumpPractice.Interop.Game.Patches;
 [HarmonyPatch(typeof(StartOfRound))]
 internal static class StartOfRoundPatch
 {
-    // SetMagnetOn is the local apply callback behind the lever path, while
-    // SetMagnetOnClientRpc is the receiver-side synchronization boundary.
+    // SetMagnetOn is the local/originating ship-magnet apply path behind the
+    // lever flow. It is useful local-state evidence, but not receiver-side RPC
+    // receipt evidence.
     [HarmonyPatch(nameof(StartOfRound.SetMagnetOn), typeof(bool))]
     [HarmonyPrefix]
     public static void SetMagnetOnPrefix()
@@ -35,6 +36,9 @@ internal static class StartOfRoundPatch
         );
     }
 
+    // SetMagnetOnClientRpc is the receiver-side synchronization boundary for
+    // ship magnet state. Its Postfix is the primary receiver-side final-state
+    // observation point identified by the base-game investigation.
     [HarmonyPatch(nameof(StartOfRound.SetMagnetOnClientRpc), typeof(bool))]
     [HarmonyPrefix]
     public static void SetMagnetOnClientRpcPrefix()

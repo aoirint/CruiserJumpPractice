@@ -13,6 +13,8 @@ namespace CruiserJumpPractice.Interop.Game.Patches;
 [HarmonyPatch(typeof(HUDManager))]
 internal static class HUDManagerPatch
 {
+    // Awake is the base HUD setup lifecycle point. CJP waits until that setup
+    // finishes before running plugin startup work that depends on game UI state.
     [HarmonyPatch(nameof(HUDManager.Awake))]
     [HarmonyPostfix]
     public static void AwakePostfix()
@@ -23,6 +25,8 @@ internal static class HUDManagerPatch
         );
     }
 
+    // Update is the base HUD frame tick. CJP observes after each tick so frame
+    // work runs alongside the game loop without replacing the base HUD update.
     [HarmonyPatch(nameof(HUDManager.Update))]
     [HarmonyPostfix]
     public static void UpdatePostfix()

@@ -11,8 +11,9 @@ namespace CruiserJumpPractice.Interop.Game.Patches;
 [HarmonyPatch(typeof(VehicleController))]
 internal static class VehicleControllerPatch
 {
-    // The local apply method is also used by the host restore path, so the ClientRpc wrapper
-    // marks only receiver-side vanilla synchronization before the shared local helper runs.
+    // AddEngineOilClientRpc marks the receiver-side vanilla synchronization
+    // boundary. The local apply method below is the final-state hook used after
+    // both initiating and receiver-side paths update the cruiser HP.
     [HarmonyPatch(nameof(VehicleController.AddEngineOilClientRpc), typeof(int), typeof(int))]
     [HarmonyPrefix]
     public static void AddEngineOilClientRpcPrefix()
@@ -34,6 +35,8 @@ internal static class VehicleControllerPatch
         );
     }
 
+    // AddEngineOilOnLocalClient is the local apply point identified as the
+    // first HP final-state observation hook.
     [HarmonyPatch(nameof(VehicleController.AddEngineOilOnLocalClient), typeof(int))]
     [HarmonyPrefix]
     public static void AddEngineOilOnLocalClientPrefix()
@@ -55,8 +58,9 @@ internal static class VehicleControllerPatch
         );
     }
 
-    // Turbo uses the same ClientRpc/local-apply split as engine oil, but the applied value is
-    // private in VehicleController and has to be read through the adapter boundary.
+    // AddTurboBoostClientRpc uses the same receiver-side synchronization shape
+    // as engine oil. The applied turbo count is private, so final-state reads
+    // stay behind the adapter boundary.
     [HarmonyPatch(nameof(VehicleController.AddTurboBoostClientRpc), typeof(int), typeof(int))]
     [HarmonyPrefix]
     public static void AddTurboBoostClientRpcPrefix()
@@ -77,6 +81,8 @@ internal static class VehicleControllerPatch
         );
     }
 
+    // AddTurboBoostOnLocalClient is the local apply point identified as the
+    // first turbo-count final-state observation hook.
     [HarmonyPatch(nameof(VehicleController.AddTurboBoostOnLocalClient), typeof(int))]
     [HarmonyPrefix]
     public static void AddTurboBoostOnLocalClientPrefix()
