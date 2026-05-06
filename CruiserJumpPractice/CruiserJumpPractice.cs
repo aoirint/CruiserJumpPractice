@@ -26,20 +26,15 @@ public class CruiserJumpPractice : BaseUnityPlugin
     private void Awake()
     {
         var logger = new BepInExPluginLogger(base.Logger);
-        var validationLogging = Config.Bind(
-            "Debug",
-            "ValidationLogging",
-            false,
-            "Enable structured validation logs for release validation and troubleshooting."
-        );
-        IValidationLogger validationLogger = validationLogging.Value
+        var config = BepInExPluginConfig.Bind(Config);
+        IValidationLogger validationLogger = config.ValidationLogging
             ? new BepInExValidationLogger(logger, System.DateTime.UtcNow)
             : DisabledValidationLogger.Instance;
 
         validationLogger.Record(
             ValidationLogRecord.PluginLoaded(
                 version: MyPluginInfo.PLUGIN_VERSION,
-                validationLogging: validationLogging.Value
+                validationLogging: config.ValidationLogging
             )
         );
 
