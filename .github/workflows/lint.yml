@@ -43,26 +43,42 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Cache actionlint
-        # Cache the verified release binary by tool version. Cache misses still
-        # download the fixed archive and validate its SHA256 value.
+        # Cache only the release archive. The install step verifies SHA256 on
+        # every run before extracting an executable into RUNNER_TEMP.
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
-          path: ${{ runner.tool_cache }}/actionlint/${{ env.ACTIONLINT_VERSION }}/linux-amd64
-          key: actionlint-${{ runner.os }}-${{ runner.arch }}-${{ env.ACTIONLINT_VERSION }}
+          path: ${{ runner.tool_cache }}/actionlint-archives/${{ env.ACTIONLINT_VERSION }}/linux-amd64
+          key: actionlint-${{ runner.os }}-${{ runner.arch }}-${{ env.ACTIONLINT_VERSION }}-${{ env.ACTIONLINT_SHA256 }}
 
       - name: Install actionlint
         run: |
           archive="actionlint_${ACTIONLINT_VERSION}_linux_amd64.tar.gz"
           url="https://github.com/rhysd/actionlint/releases/download/v${ACTIONLINT_VERSION}/${archive}"
-          tool_dir="${RUNNER_TOOL_CACHE}/actionlint/${ACTIONLINT_VERSION}/linux-amd64"
+          archive_dir="${RUNNER_TOOL_CACHE}/actionlint-archives/${ACTIONLINT_VERSION}/linux-amd64"
+          archive_path="${archive_dir}/${archive}"
+          tool_dir="${RUNNER_TEMP}/actionlint"
 
-          if [[ ! -x "${tool_dir}/actionlint" ]]; then
-            mkdir -p "${tool_dir}"
-            curl -fsSLo "${RUNNER_TEMP}/${archive}" "${url}"
-            echo "${ACTIONLINT_SHA256}  ${RUNNER_TEMP}/${archive}" | sha256sum -c -
-            tar -xzf "${RUNNER_TEMP}/${archive}" -C "${tool_dir}" actionlint
+          download_archive() {
+            curl --fail --silent --show-error --location --retry 3 --retry-delay 2 \
+              --retry-connrefused --output "${archive_path}" "${url}"
+          }
+
+          verify_archive() {
+            echo "${ACTIONLINT_SHA256}  ${archive_path}" | sha256sum -c -
+          }
+
+          mkdir -p "${archive_dir}" "${tool_dir}"
+          if [[ ! -f "${archive_path}" ]]; then
+            download_archive
           fi
 
+          if ! verify_archive; then
+            rm -f "${archive_path}"
+            download_archive
+            verify_archive
+          fi
+
+          tar -xzf "${archive_path}" -C "${tool_dir}" actionlint
           echo "${tool_dir}" >> "${GITHUB_PATH}"
 
       - name: Run actionlint
@@ -71,26 +87,42 @@ jobs:
         run: actionlint -color -shellcheck= -pyflakes=
 
       - name: Cache pinact
-        # Cache the verified release binary by tool version. Cache misses still
-        # download the fixed archive and validate its SHA256 value.
+        # Cache only the release archive. The install step verifies SHA256 on
+        # every run before extracting an executable into RUNNER_TEMP.
         uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
         with:
-          path: ${{ runner.tool_cache }}/pinact/${{ env.PINACT_VERSION }}/linux-amd64
-          key: pinact-${{ runner.os }}-${{ runner.arch }}-${{ env.PINACT_VERSION }}
+          path: ${{ runner.tool_cache }}/pinact-archives/${{ env.PINACT_VERSION }}/linux-amd64
+          key: pinact-${{ runner.os }}-${{ runner.arch }}-${{ env.PINACT_VERSION }}-${{ env.PINACT_SHA256 }}
 
       - name: Install pinact
         run: |
           archive="pinact_linux_amd64.tar.gz"
           url="https://github.com/suzuki-shunsuke/pinact/releases/download/v${PINACT_VERSION}/${archive}"
-          tool_dir="${RUNNER_TOOL_CACHE}/pinact/${PINACT_VERSION}/linux-amd64"
+          archive_dir="${RUNNER_TOOL_CACHE}/pinact-archives/${PINACT_VERSION}/linux-amd64"
+          archive_path="${archive_dir}/${archive}"
+          tool_dir="${RUNNER_TEMP}/pinact"
 
-          if [[ ! -x "${tool_dir}/pinact" ]]; then
-            mkdir -p "${tool_dir}"
-            curl -fsSLo "${RUNNER_TEMP}/${archive}" "${url}"
-            echo "${PINACT_SHA256}  ${RUNNER_TEMP}/${archive}" | sha256sum -c -
-            tar -xzf "${RUNNER_TEMP}/${archive}" -C "${tool_dir}" pinact
+          download_archive() {
+            curl --fail --silent --show-error --location --retry 3 --retry-delay 2 \
+              --retry-connrefused --output "${archive_path}" "${url}"
+          }
+
+          verify_archive() {
+            echo "${PINACT_SHA256}  ${archive_path}" | sha256sum -c -
+          }
+
+          mkdir -p "${archive_dir}" "${tool_dir}"
+          if [[ ! -f "${archive_path}" ]]; then
+            download_archive
           fi
 
+          if ! verify_archive; then
+            rm -f "${archive_path}"
+            download_archive
+            verify_archive
+          fi
+
+          tar -xzf "${archive_path}" -C "${tool_dir}" pinact
           echo "${tool_dir}" >> "${GITHUB_PATH}"
 
       - name: Run pinact
