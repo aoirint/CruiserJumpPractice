@@ -14,45 +14,22 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## v0.2.0 - 2026-05-06 UTC
 
-### Added
-
-- Added automated stable-release publishing to Thunderstore from GitHub Actions:
-    - Stable releases now publish the packaged release artifact to the
-      Lethal Company Thunderstore community after the GitHub release is
-      created.
-    - Prerelease and edge artifacts remain GitHub-only validation artifacts.
-- Added opt-in structured validation logging for release validation and
-  troubleshooting:
-    - `Debug.ValidationLogging` is disabled by default.
-    - When enabled, sparse `[CJP_VALIDATION]` JSONL-style records describe
-      startup, HUD/RPC surrogate lifecycle, input triggers and suppression,
-      host-only denials, save/load/restore results, magnet toggles, HUD tips,
-      and base-game applied-state observations.
-
 ### Changed
 
-- Rebuilt the mod for the Lethal Company v81.5 dependency baseline.
-- Refactored internal architecture around Core use cases, ports, and adapters:
-    - The refactor keeps game-specific interop at the repository boundary while
-      preserving save/load, magnet toggle, HUD, and input behavior.
-    - Patch classes now act as timing notifiers for base-game state observation
-      instead of forwarding game state directly.
-- Dropped backward compatibility with CruiserJumpPractice v0.1.4 and earlier:
-    - A mod-internal `NetworkBehaviour` name changed during the refactor.
-    - Multiplayer clients should use the current release line together when
-      installing CruiserJumpPractice on more than the host.
-
-### Fixed
-
-- Fixed ship-magnet HUD/state observation gaps by adding validation evidence
-  around local and receiver-side magnet apply paths.
-- Fixed prerelease validation being blocked by BepInEx 5 plugin-version parsing
-  before startup:
-    - The validated `v0.2.0-alpha.6` retry proved that prerelease builds can
-      keep loader-facing/package metadata conservative while the GitHub release
-      tag, artifact name, and digest carry prerelease identity.
-    - The stable `v0.2.0` release restores real stable package and loader-facing
-      metadata because `0.2.0` is compatible with BepInEx 5 version parsing.
+- Promoted the validated `v0.2.0-alpha.6` release candidate to stable
+  `v0.2.0`.
+- Set the project version to stable `0.2.0`:
+    - `BepInEx.PluginInfoProps` now derives the BepInEx plugin metadata version
+      from the project version again.
+    - Source `assets/manifest.json` remains at the repository placeholder
+      `0.0.0`; the release workflow writes the generated stable
+      Thunderstore manifest version into the packaged artifact.
+- Published stable user-facing release notes in `assets/CHANGELOG.md`:
+    - The stable notes roll up the user-facing outcome from the prerelease
+      cycle.
+    - Detailed developer-facing prerelease implementation history remains in
+      the `v0.2.0-alpha.*` sections below instead of being copied wholesale
+      into this stable entry.
 
 ### Notes
 
