@@ -130,7 +130,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
         - <https://thunderstore.io/c/lethal-company/?included_categories=2086&ordering=last-updated&q=&section=mods>
     - This project uses the category to disclose AI assistance in project work;
       it is package metadata rather than a gameplay feature.
-    - [Issue #18][issue-18-ai-generated-category] records the project decision
+    - [Issue #18][issue-18] records the project decision
       to use this category because:
         - The project has used and expects to keep using AI tools to assist
           with development and maintenance, and to reduce workload.
@@ -357,6 +357,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
           the v0.2.0-alpha.1 release.
 
 [imperium-cruiser-workaround]: https://github.com/giosuel/imperium/issues/153#issuecomment-4317402735
-[issue-18-ai-generated-category]: https://github.com/aoirint/CruiserJumpPractice/issues/18
+[issue-18]: https://github.com/aoirint/CruiserJumpPractice/issues/18
 [issue-112]: https://github.com/aoirint/CruiserJumpPractice/issues/112
 [issue-113]: https://github.com/aoirint/CruiserJumpPractice/issues/113
