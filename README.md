@@ -90,7 +90,7 @@ Install `actionlint` from its upstream releases, package-manager integrations,
 Docker image, or another trusted distribution.
 Use a cooldown-compliant pinned release when updating CI.
 The CI workflow downloads the Linux amd64 release archive directly and verifies
-its SHA256 before running it.
+its SHA256 before running it on cache misses.
 
 ### GitHub Actions pinning
 
@@ -117,7 +117,7 @@ authenticated rate limits.
 Install pinact from its upstream releases, package-manager integrations, or
 another trusted distribution.
 The CI workflow downloads the Linux amd64 release archive directly and verifies
-its SHA256 before running it.
+its SHA256 before running it on cache misses.
 
 ## Package management
 

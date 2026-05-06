@@ -36,18 +36,32 @@ jobs:
       # and Markdown lint read repository-local configuration and source files.
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
+      - name: Cache GitHub Actions lint tools
+        # Cache the verified release binaries by tool version. Cache misses
+        # still download fixed archives and validate their SHA256 values.
+        uses: actions/cache@27d5ce7f107fe9357f9df03efb73ab90386fccae # v5.0.5
+        with:
+          path: |
+            ${{ runner.tool_cache }}/actionlint/1.7.12/linux-amd64
+            ${{ runner.tool_cache }}/pinact/3.9.2/linux-amd64
+          key: gha-lint-tools-${{ runner.os }}-actionlint-1.7.12-pinact-3.9.2
+
       - name: Install actionlint
         run: |
           version=1.7.12
+          sha256="8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8"
           archive="actionlint_${version}_linux_amd64.tar.gz"
           url="https://github.com/rhysd/actionlint/releases/download/v${version}/${archive}"
-          sha256="8aca8db96f1b94770f1b0d72b6dddcb1ebb8123cb3712530b08cc387b349a3d8"
+          tool_dir="${RUNNER_TOOL_CACHE}/actionlint/${version}/linux-amd64"
 
-          mkdir -p "${RUNNER_TEMP}/actionlint"
-          curl -fsSLo "${RUNNER_TEMP}/${archive}" "${url}"
-          echo "${sha256}  ${RUNNER_TEMP}/${archive}" | sha256sum -c -
-          tar -xzf "${RUNNER_TEMP}/${archive}" -C "${RUNNER_TEMP}/actionlint" actionlint
-          echo "${RUNNER_TEMP}/actionlint" >> "${GITHUB_PATH}"
+          if [[ ! -x "${tool_dir}/actionlint" ]]; then
+            mkdir -p "${tool_dir}"
+            curl -fsSLo "${RUNNER_TEMP}/${archive}" "${url}"
+            echo "${sha256}  ${RUNNER_TEMP}/${archive}" | sha256sum -c -
+            tar -xzf "${RUNNER_TEMP}/${archive}" -C "${tool_dir}" actionlint
+          fi
+
+          echo "${tool_dir}" >> "${GITHUB_PATH}"
 
       - name: Run actionlint
         # Disable optional external integrations so the check remains a
@@ -57,15 +71,19 @@ jobs:
       - name: Install pinact
         run: |
           version=3.9.2
+          sha256="6adcc8a2217e4114e0841f8bca0cddf9958a9c52e3e89760c35b791cdba1a916"
           archive="pinact_linux_amd64.tar.gz"
           url="https://github.com/suzuki-shunsuke/pinact/releases/download/v${version}/${archive}"
-          sha256="6adcc8a2217e4114e0841f8bca0cddf9958a9c52e3e89760c35b791cdba1a916"
+          tool_dir="${RUNNER_TOOL_CACHE}/pinact/${version}/linux-amd64"
 
-          mkdir -p "${RUNNER_TEMP}/pinact"
-          curl -fsSLo "${RUNNER_TEMP}/${archive}" "${url}"
-          echo "${sha256}  ${RUNNER_TEMP}/${archive}" | sha256sum -c -
-          tar -xzf "${RUNNER_TEMP}/${archive}" -C "${RUNNER_TEMP}/pinact" pinact
-          echo "${RUNNER_TEMP}/pinact" >> "${GITHUB_PATH}"
+          if [[ ! -x "${tool_dir}/pinact" ]]; then
+            mkdir -p "${tool_dir}"
+            curl -fsSLo "${RUNNER_TEMP}/${archive}" "${url}"
+            echo "${sha256}  ${RUNNER_TEMP}/${archive}" | sha256sum -c -
+            tar -xzf "${RUNNER_TEMP}/${archive}" -C "${tool_dir}" pinact
+          fi
+
+          echo "${tool_dir}" >> "${GITHUB_PATH}"
 
       - name: Run pinact
         env:

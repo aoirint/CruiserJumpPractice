@@ -58,6 +58,21 @@ description: >-
     checks, AI-assisted inspection, and any skipped checks with concrete
     blockers.
 
+## Command Examples
+
+Use these examples only when they match the repository's documented tooling:
+
+```bash
+actionlint -shellcheck= -pyflakes=
+pinact run --check --min-age 7
+```
+
+When updating action pins, keep the cooldown in the command:
+
+```bash
+pinact run --update --min-age 7
+```
+
 ## Review Checklist
 
 - Workflow syntax and expressions were checked with actionlint.
