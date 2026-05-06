@@ -92,8 +92,8 @@ runs:
           MANIFEST_VERSION="${{ steps.app-version.outputs.version }}"
         else
           # Thunderstore-style package metadata does not carry prerelease or
-          # edge identity. Keep release identity in the artifact name, Git tag,
-          # and assembly metadata instead.
+          # edge identity. Keep release identity in the project version,
+          # artifact name, and Git tag instead.
           MANIFEST_VERSION="0.0.0"
         fi
 
