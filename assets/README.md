@@ -52,18 +52,15 @@ You can change the keybinds from the
 
 ## Current Limitations
 
-- Destroyed cruiser restore is not implemented:
-    - Exploded cruisers cannot be restored. Use Imperium to respawn the cruiser
-      and then load the saved state.
-- Cruiser spawning is not implemented:
-    - This mod does not provide a way to instantly spawn a cruiser.
-- Player teleport is not implemented:
-    - This mod does not provide a way to teleport a player.
 - Known multiplayer issue:
     - When a guest client is driving and the host loads a saved cruiser state,
       the cruiser may briefly load on the host and then snap back. This is
       tracked in
       [GitHub issue #113](https://github.com/aoirint/CruiserJumpPractice/issues/113).
+- Gear position is not saved or restored yet:
+    - Park, Drive, and Reverse are not included in the saved cruiser state in
+      this release. Gear save/load support is tracked in
+      [GitHub issue #114](https://github.com/aoirint/CruiserJumpPractice/issues/114).
 
 ## Who needs to install
 
