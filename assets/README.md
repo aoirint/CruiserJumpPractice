@@ -72,7 +72,7 @@ Clients cannot use all features even if they install this mod.
 Some parts of this project were developed with AI tools based on large language
 models (LLMs), including agent-based tools.
 The project maintainer reviews the code.
-This disclosure is made in compliance with Thunderstore policies.
+This disclosure is made in compliance with Thunderstore and community policies.
 
 [imperium-cruiser-workaround]: https://github.com/giosuel/imperium/issues/153#issuecomment-4317402735
 [bepinex-monomod-debug-patcher-package]: https://thunderstore.io/c/lethal-company/p/BepInEx/BepInEx_MonoMod_Debug_Patcher/

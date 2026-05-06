@@ -289,7 +289,7 @@ can include unrelated local environment details.
 Some parts of this project were developed with AI tools based on large language
 models (LLMs), including agent-based tools.
 The project maintainer reviews the code.
-This disclosure is made in compliance with [Thunderstore policies][thunderstore-home].
+This disclosure is made in compliance with Thunderstore and community policies.
 
 [docker-install]: https://docs.docker.com/get-started/get-docker/
 [dotnet-sdk-download]: https://dotnet.microsoft.com/en-us/download/dotnet/10.0
@@ -297,6 +297,5 @@ This disclosure is made in compliance with [Thunderstore policies][thunderstore-
 [lethal-company-steam]: https://store.steampowered.com/app/1966720/Lethal_Company/
 [powershell-install]: https://learn.microsoft.com/en-us/powershell/scripting/install/install-powershell-on-windows
 [r2modman-package]: https://thunderstore.io/c/lethal-company/p/ebkr/r2modman/
-[thunderstore-home]: https://thunderstore.io/
 [thunderstore-lethal-company-community]: https://thunderstore.io/c/lethal-company/
 [visual-studio-download]: https://visualstudio.microsoft.com/en-us/vs/
