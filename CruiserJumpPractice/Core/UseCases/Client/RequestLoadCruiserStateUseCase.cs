@@ -7,8 +7,13 @@ using CruiserJumpPractice.Core.Validation;
 
 namespace CruiserJumpPractice.Core.UseCases.Client;
 
-// A load key press is still local input, even though restoring transform and physics state is
-// server work. Host validation happens here before Interop sends the RPC.
+/// <summary>
+/// Handles a local load key press before requesting the server restore path.
+/// </summary>
+/// <remarks>
+/// Restoring transform and physics state is server work; host validation
+/// happens here before Interop sends the RPC.
+/// </remarks>
 internal sealed class RequestLoadCruiserStateUseCase
 {
     private readonly IGameInterop gameInterop;

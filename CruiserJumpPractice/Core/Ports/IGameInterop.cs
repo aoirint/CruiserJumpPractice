@@ -7,9 +7,13 @@ using CruiserJumpPractice.Core.State;
 
 namespace CruiserJumpPractice.Core.Ports;
 
-// IGameInterop names the game operations the practice rules need, not the Unity objects used to
-// perform them. Reflection, Netcode, HUD, and VehicleController details can change in Interop
-// without forcing use cases to speak in Lethal Company types.
+/// <summary>
+/// Names the game operations the practice rules need without exposing Unity objects.
+/// </summary>
+/// <remarks>
+/// Reflection, Netcode, HUD, and VehicleController details can change in
+/// Interop without forcing use cases to speak in Lethal Company types.
+/// </remarks>
 internal interface IGameInterop
 {
     bool IsHost();

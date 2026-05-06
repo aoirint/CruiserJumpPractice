@@ -3,8 +3,12 @@
 
 namespace CruiserJumpPractice.Core.UseCases;
 
-// Result enums are deliberately small enough to travel through RPC callbacks and presentation
-// code. Exceptions and adapter details stay on the side that observed them.
+/// <summary>
+/// Small result tokens that can travel through RPC callbacks and presentation code.
+/// </summary>
+/// <remarks>
+/// Exceptions and adapter details stay on the side that observed them.
+/// </remarks>
 internal enum RequestSaveCruiserStateResult
 {
     Success,

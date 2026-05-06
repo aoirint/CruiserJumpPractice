@@ -3,8 +3,13 @@
 
 namespace CruiserJumpPractice.Core.Ports;
 
-// Core consumes input as one-frame practice intentions. The keybinding package, key names, and
-// nullability quirks stay outside the frame handler.
+/// <summary>
+/// Provides one-frame practice input intentions to Core.
+/// </summary>
+/// <remarks>
+/// The keybinding package, key names, and nullability quirks stay outside the
+/// frame handler.
+/// </remarks>
 internal interface IPracticeInput
 {
     bool SaveCruiserTriggered { get; }

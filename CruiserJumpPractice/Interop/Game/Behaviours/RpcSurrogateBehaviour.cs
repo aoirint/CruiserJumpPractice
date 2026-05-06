@@ -9,9 +9,14 @@ using CruiserJumpPractice.Core.UseCases;
 
 namespace CruiserJumpPractice.Interop.Game.Behaviours;
 
-// Netcode RPC methods must live on a NetworkBehaviour, so this bridge stays in
-// Interop. It crosses the client/server boundary, then hands execution and
-// result presentation back to PluginController.
+/// <summary>
+/// NetworkBehaviour bridge that hosts practice save/load RPC methods.
+/// </summary>
+/// <remarks>
+/// Netcode RPC methods must live on a NetworkBehaviour, so this bridge stays in
+/// Interop. It crosses the client/server boundary, then hands execution and
+/// result presentation back to PluginController.
+/// </remarks>
 internal class RpcSurrogateBehaviour : NetworkBehaviour
 {
     [ServerRpc(RequireOwnership = true)]

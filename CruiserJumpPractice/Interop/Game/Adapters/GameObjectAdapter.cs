@@ -12,9 +12,13 @@ using CruiserJumpPractice.Interop.Game;
 
 namespace CruiserJumpPractice.Interop.Game.Adapters;
 
-// Game object lookups stay centralized so Unity singleton/null handling has one
-// policy: convert missing base-game objects into GameInteropException with a
-// log entry at the Interop boundary.
+/// <summary>
+/// Centralizes Unity and base-game singleton lookups for game interop adapters.
+/// </summary>
+/// <remarks>
+/// Missing base-game objects are converted into <see cref="GameInteropException"/>
+/// with a log entry at the Interop boundary.
+/// </remarks>
 internal sealed class GameObjectAdapter
 {
     private readonly IPluginLogger logger;

@@ -3,8 +3,13 @@
 
 namespace CruiserJumpPractice.Core.Snapshots;
 
-// A saved cruiser state is plain data: the practice rules need these values, not a reference to
-// VehicleController. Interop translates between this snapshot and the live Unity component.
+/// <summary>
+/// Plain saved cruiser state used by the practice save/load rules.
+/// </summary>
+/// <remarks>
+/// Core needs these values, not a reference to VehicleController. Interop
+/// translates between this snapshot and the live Unity component.
+/// </remarks>
 internal sealed class CruiserSnapshot
 {
     public Vector3Value CarPosition { get; }

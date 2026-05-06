@@ -3,8 +3,13 @@
 
 namespace CruiserJumpPractice.Core.Snapshots;
 
-// Restore observations carry only numeric cruiser state that future restore validation can use
-// without exposing Unity objects or environment-specific identifiers.
+/// <summary>
+/// Numeric before/after observation captured while applying a cruiser restore.
+/// </summary>
+/// <remarks>
+/// Restore validation can use this data without exposing Unity objects or
+/// environment-specific identifiers.
+/// </remarks>
 internal sealed class CruiserRestoreObservation
 {
     public Vector3Value SavedCarPosition { get; }

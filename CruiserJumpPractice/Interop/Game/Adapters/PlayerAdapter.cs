@@ -7,8 +7,13 @@ using CruiserJumpPractice.Interop.Game;
 
 namespace CruiserJumpPractice.Interop.Game.Adapters;
 
-// PlayerAdapter exposes only local UI/input-blocking state to Core. Keeping the
-// checks here avoids passing PlayerControllerB or menu objects across the port.
+/// <summary>
+/// Exposes only local UI/input-blocking state to Core.
+/// </summary>
+/// <remarks>
+/// Keeping the checks here avoids passing PlayerControllerB or menu objects
+/// across the port.
+/// </remarks>
 internal sealed class PlayerAdapter
 {
     private readonly IPluginLogger logger;

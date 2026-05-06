@@ -6,8 +6,13 @@ using CruiserJumpPractice.Core.Validation;
 
 namespace CruiserJumpPractice.Core.Handlers;
 
-// On HUD startup, practice mode needs its RPC surrogate present before input can request server
-// work. Interop detects the HUD lifecycle event; Core names the side effect to perform.
+/// <summary>
+/// Handles HUD startup by ensuring the practice RPC surrogate is present.
+/// </summary>
+/// <remarks>
+/// Interop detects the HUD lifecycle event; Core names the side effect to
+/// perform before input can request server work.
+/// </remarks>
 internal sealed class StartupHandler
 {
     private readonly IGameInterop gameInterop;

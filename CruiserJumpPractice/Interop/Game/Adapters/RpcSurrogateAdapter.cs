@@ -9,8 +9,13 @@ using CruiserJumpPractice.Interop.Game;
 
 namespace CruiserJumpPractice.Interop.Game.Adapters;
 
-// The RPC surrogate lives on HUDManager because it is available on clients and
-// survives long enough to host the NetworkBehaviour bridge for practice RPCs.
+/// <summary>
+/// Manages the NetworkBehaviour bridge used for practice save/load RPCs.
+/// </summary>
+/// <remarks>
+/// The RPC surrogate lives on HUDManager because it is available on clients and
+/// survives long enough to host the NetworkBehaviour bridge.
+/// </remarks>
 internal sealed class RpcSurrogateAdapter
 {
     private readonly IPluginLogger logger;

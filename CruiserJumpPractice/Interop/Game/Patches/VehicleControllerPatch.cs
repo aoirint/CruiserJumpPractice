@@ -11,9 +11,9 @@ namespace CruiserJumpPractice.Interop.Game.Patches;
 [HarmonyPatch(typeof(VehicleController))]
 internal static class VehicleControllerPatch
 {
-    // For the base game, AddEngineOilClientRpc is the receiver-side RPC boundary
-    // for synchronized cruiser HP restoration. The local apply method below is
-    // where the HP value is applied.
+    /// <summary>
+    /// Marks entry into the receiver-side engine-oil RPC boundary.
+    /// </summary>
     [HarmonyPatch(nameof(VehicleController.AddEngineOilClientRpc), typeof(int), typeof(int))]
     [HarmonyPrefix]
     public static void AddEngineOilClientRpcPrefix()
@@ -25,6 +25,9 @@ internal static class VehicleControllerPatch
         );
     }
 
+    /// <summary>
+    /// Marks exit from the receiver-side engine-oil RPC boundary.
+    /// </summary>
     [HarmonyPatch(nameof(VehicleController.AddEngineOilClientRpc), typeof(int), typeof(int))]
     [HarmonyFinalizer]
     public static void AddEngineOilClientRpcFinalizer()
@@ -35,8 +38,9 @@ internal static class VehicleControllerPatch
         );
     }
 
-    // For the base game, AddEngineOilOnLocalClient applies the cruiser HP value
-    // on the local client after either local or RPC-driven oil restoration.
+    /// <summary>
+    /// Captures cruiser HP before the base-game local engine-oil apply helper runs.
+    /// </summary>
     [HarmonyPatch(nameof(VehicleController.AddEngineOilOnLocalClient), typeof(int))]
     [HarmonyPrefix]
     public static void AddEngineOilOnLocalClientPrefix()
@@ -47,6 +51,9 @@ internal static class VehicleControllerPatch
         );
     }
 
+    /// <summary>
+    /// Records cruiser HP after the base-game local engine-oil apply helper runs.
+    /// </summary>
     [HarmonyPatch(nameof(VehicleController.AddEngineOilOnLocalClient), typeof(int))]
     [HarmonyPostfix]
     public static void AddEngineOilOnLocalClientPostfix()
@@ -58,9 +65,9 @@ internal static class VehicleControllerPatch
         );
     }
 
-    // For the base game, AddTurboBoostClientRpc is the receiver-side RPC
-    // boundary for synchronized turbo count restoration. The applied count is
-    // stored inside VehicleController state.
+    /// <summary>
+    /// Marks entry into the receiver-side turbo RPC boundary.
+    /// </summary>
     [HarmonyPatch(nameof(VehicleController.AddTurboBoostClientRpc), typeof(int), typeof(int))]
     [HarmonyPrefix]
     public static void AddTurboBoostClientRpcPrefix()
@@ -71,6 +78,9 @@ internal static class VehicleControllerPatch
         );
     }
 
+    /// <summary>
+    /// Marks exit from the receiver-side turbo RPC boundary.
+    /// </summary>
     [HarmonyPatch(nameof(VehicleController.AddTurboBoostClientRpc), typeof(int), typeof(int))]
     [HarmonyFinalizer]
     public static void AddTurboBoostClientRpcFinalizer()
@@ -81,8 +91,9 @@ internal static class VehicleControllerPatch
         );
     }
 
-    // For the base game, AddTurboBoostOnLocalClient applies the turbo count on
-    // the local client after either local or RPC-driven turbo restoration.
+    /// <summary>
+    /// Captures turbo count before the base-game local turbo apply helper runs.
+    /// </summary>
     [HarmonyPatch(nameof(VehicleController.AddTurboBoostOnLocalClient), typeof(int))]
     [HarmonyPrefix]
     public static void AddTurboBoostOnLocalClientPrefix()
@@ -93,6 +104,9 @@ internal static class VehicleControllerPatch
         );
     }
 
+    /// <summary>
+    /// Records turbo count after the base-game local turbo apply helper runs.
+    /// </summary>
     [HarmonyPatch(nameof(VehicleController.AddTurboBoostOnLocalClient), typeof(int))]
     [HarmonyPostfix]
     public static void AddTurboBoostOnLocalClientPostfix()

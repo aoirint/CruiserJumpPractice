@@ -3,8 +3,12 @@
 
 namespace CruiserJumpPractice.Core.Ports;
 
-// Core use cases and game interop adapters report decisions and caught failures
-// through this port so diagnostics stay independent of the mod-loader logger.
+/// <summary>
+/// Logger port used by Core use cases and game interop adapters.
+/// </summary>
+/// <remarks>
+/// Diagnostics stay independent of the mod-loader logger implementation.
+/// </remarks>
 internal interface IPluginLogger
 {
     void LogDebug(string message);

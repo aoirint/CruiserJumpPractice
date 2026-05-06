@@ -6,9 +6,13 @@ using CruiserJumpPractice.Interop.Game;
 
 namespace CruiserJumpPractice.Interop.Game.Adapters;
 
-// ShipMagnetAdapter exposes the ship magnet state and toggle action used by
-// practice mode. Toggling goes through the game's lever animation because that
-// path already sends the needed RPC.
+/// <summary>
+/// Exposes the ship magnet state and toggle action used by practice mode.
+/// </summary>
+/// <remarks>
+/// Toggling goes through the game's lever animation because that path already
+/// sends the needed RPC.
+/// </remarks>
 internal sealed class ShipMagnetAdapter
 {
     private readonly IPluginLogger logger;

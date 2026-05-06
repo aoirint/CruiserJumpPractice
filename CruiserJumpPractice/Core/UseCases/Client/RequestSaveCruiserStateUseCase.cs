@@ -7,8 +7,13 @@ using CruiserJumpPractice.Core.Validation;
 
 namespace CruiserJumpPractice.Core.UseCases.Client;
 
-// A save key press is handled locally first so non-host players get immediate feedback. Only a
-// host request crosses into the RPC path where the server captures the snapshot.
+/// <summary>
+/// Handles a local save key press before requesting the server save path.
+/// </summary>
+/// <remarks>
+/// Non-host players get immediate feedback. Only a host request crosses into
+/// the RPC path where the server captures the snapshot.
+/// </remarks>
 internal sealed class RequestSaveCruiserStateUseCase
 {
     private readonly IGameInterop gameInterop;

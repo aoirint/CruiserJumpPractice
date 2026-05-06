@@ -8,8 +8,13 @@ using CruiserJumpPractice.Core.Validation;
 
 namespace CruiserJumpPractice.Core.UseCases.Server;
 
-// Loading can move a live vehicle, so the preconditions stay next to the server restore call.
-// The client gets only the result enum that describes why the restore did or did not happen.
+/// <summary>
+/// Restores the saved cruiser state from the server path.
+/// </summary>
+/// <remarks>
+/// Loading can move a live vehicle, so preconditions stay next to the restore
+/// call. The client gets only the result enum that describes the outcome.
+/// </remarks>
 internal sealed class LoadCruiserStateUseCase
 {
     private readonly IGameInterop gameInterop;
