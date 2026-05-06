@@ -48,8 +48,9 @@ description: >-
    repository's documented command; when optional integrations would add
    dependencies, disable them explicitly and note the reduced scope. Revisit
    pyflakes disablement when Python scripts exist in the repository.
-7. Run ShellCheck for standalone shell scripts and keep actionlint's ShellCheck
-   integration enabled when the repository installs ShellCheck.
+7. Run ShellCheck for standalone shell scripts discovered in the changed
+   automation scope, and keep actionlint's ShellCheck integration enabled when
+   the repository installs ShellCheck.
 8. Run pinact in check mode for action and reusable-workflow pins. Use
    `GITHUB_TOKEN` when available so API calls use authenticated rate limits.
 9. For new or updated external actions, downloaded tools, or containers, apply
@@ -63,13 +64,21 @@ description: >-
 
 ## Command Examples
 
-Use these examples only when they match the repository's documented tooling:
+Use these examples only when they match the repository's documented tooling.
+Discover shell files from the current repository instead of copying a
+repository-specific path from this skill.
 
 ```bash
 actionlint -pyflakes=
-shellcheck .github/actions/publish-thunderstore/publish-thunderstore.sh
+mapfile -t shell_files < <(rg --files -g '*.sh' -g '*.bash' .github)
+if ((${#shell_files[@]})); then
+  shellcheck "${shell_files[@]}"
+fi
 pinact run --check --min-age 7
 ```
+
+If no shell files are present, rely on actionlint's inline script checks and
+record that the standalone ShellCheck pass had no targets.
 
 When updating action pins, keep the cooldown in the command:
 
