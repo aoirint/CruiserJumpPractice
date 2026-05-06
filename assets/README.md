@@ -35,12 +35,6 @@ synced cruiser state even without this mod installed.
 [giosuel/Imperium](https://thunderstore.io/c/lethal-company/p/giosuel/Imperium/)
 is practically required.
 
-Important: this mod **does not** provide any way to:
-
-- ❌ Instantly spawn a cruiser.
-- ❌ Teleport a player.
-- ❌ **Restore a destroyed cruiser**.
-
 ## Keybinds
 
 You can change the keybinds from the
@@ -52,8 +46,18 @@ You can change the keybinds from the
 
 ## Current Limitations
 
-- Exploded cruisers cannot be restored. Use Imperium to respawn the cruiser and
-  then load the saved state.
+- Destroyed cruiser restore is not implemented:
+    - Exploded cruisers cannot be restored. Use Imperium to respawn the cruiser
+      and then load the saved state.
+- Cruiser spawning is not implemented:
+    - This mod does not provide a way to instantly spawn a cruiser.
+- Player teleport is not implemented:
+    - This mod does not provide a way to teleport a player.
+- Known multiplayer issue:
+    - When a guest client is driving and the host loads a saved cruiser state,
+      the cruiser may briefly load on the host and then snap back. This is
+      tracked in
+      [GitHub issue #113](https://github.com/aoirint/CruiserJumpPractice/issues/113).
 
 ## Who needs to install
 
