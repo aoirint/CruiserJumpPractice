@@ -1,5 +1,3 @@
-<!-- SPDX-License-Identifier: MIT -->
-
 # Contributing
 
 Thank you for your interest in improving CruiserJumpPractice. This project
