@@ -10,6 +10,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## Unreleased
 
+### Fixed
+
+- Added CI-only BepInEx plugin metadata fallback for future prerelease and edge
+  artifacts:
+    - CJP `v0.2.0-alpha.6` used a source `BepInExPluginVersion` override to
+      pass BepInEx 5 startup validation.
+    - The stable `v0.2.0` release correctly removed that source override once
+      `Version` became loader-compatible again.
+    - Future non-stable builds now pass `BepInExPluginVersion=0.0.0` only to
+      the CI build, keeping stable source metadata clean while preventing the
+      prerelease startup blocker from recurring.
+
 ## v0.2.0 - 2026-05-06 UTC
 
 ### Changed
