@@ -53,7 +53,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
       tracked separately in [#113][issue-113] and is not treated as a
       `v0.2.0` blocker.
 - Compatibility:
-    - Compatible with Lethal Company v81.5 (2026-04-17 UTC, Manifest ID:
+    - Compatible with Lethal Company v81 (2026-04-17 UTC, Manifest ID:
       `6423525044216269478`).
         - The validation environment used Imperium v1.3.0 for setup support.
         - Imperium v1.3.0 appears to have some cruiser-related issues; see the
@@ -146,7 +146,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
           with development and maintenance, and to reduce workload.
         - The applicable disclosure threshold is not clear.
     - Human maintainer review remains the project policy.
-- Aligned Thunderstore manifest dependency strings with the documented v81.5
+- Aligned Thunderstore manifest dependency strings with the documented v81
   test environment for BepInExPack and LethalCompany_InputUtils:
     - Treats the manifest dependency versions as part of the practical minimum
       runtime baseline for Thunderstore installs.
@@ -157,16 +157,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Notes
 
 - Compatibility:
-    - Compatible with Lethal Company v81.5 (2026-04-17 UTC, Manifest ID:
+    - Compatible with Lethal Company v81 (2026-04-17 UTC, Manifest ID:
       `6423525044216269478`).
-        - Normally used together with Imperium; the v81.5 test environment
+        - Normally used together with Imperium; the v81 test environment
           used Imperium v1.3.0.
         - Imperium v1.3.0 appears to have some cruiser-related issues:
             - See
               <https://github.com/giosuel/imperium/issues/153#issuecomment-4317402735>
               for a workaround.
 - Test environment:
-    - Lethal Company v81.5 (2026-04-17 UTC, Manifest ID:
+    - Lethal Company v81 (2026-04-17 UTC, Manifest ID:
       `6423525044216269478`)
     - BepInExPack v5.4.2305 (2026-03-17 UTC)
     - Imperium v1.3.0 (2026-04-08 UTC)
@@ -189,7 +189,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Changed
 
 - Updated compile-time dependencies:
-    - Lethal Company v73 to v81.5.
+    - Lethal Company v73 to v81.
     - LethalCompany_InputUtils v0.7.13.
     - BepInEx.PluginInfoProps v2.1.0.
     - UnityEngine.Modules 2022.3.62.
@@ -231,9 +231,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Notes
 
 - Compatibility:
-    - Compatible with Lethal Company v81.5 (2026-04-17 UTC, Manifest ID:
+    - Compatible with Lethal Company v81 (2026-04-17 UTC, Manifest ID:
       `6423525044216269478`).
-        - Normally used together with Imperium; the v81.5 test environment
+        - Normally used together with Imperium; the v81 test environment
           used Imperium v1.3.0.
     - Older base-game compatibility became best-effort after the project
       stopped pursuing static multi-version validation through NuGet

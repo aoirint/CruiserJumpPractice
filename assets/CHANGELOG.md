@@ -9,14 +9,14 @@ project issue, see [CONTRIBUTING.md][contributing], then report it in
 
 ## v0.2.0 - 2026-05-06 UTC
 
-This release rebuilds CruiserJumpPractice for Lethal Company v81.5 and includes
+This release rebuilds CruiserJumpPractice for Lethal Company v81 and includes
 internal improvements.
 
 No gameplay changes are introduced.
 
 ### Changed
 
-- Rebuilt for Lethal Company v81.5.
+- Rebuilt for Lethal Company v81.
 - Improved internal implementation structure and release flow.
 - Added the Thunderstore `AI Generated` category to the package metadata:
     - The Lethal Company Thunderstore community currently provides this
@@ -36,9 +36,9 @@ No gameplay changes are introduced.
 ### Notes
 
 - Compatibility:
-    - Compatible with Lethal Company v81.5 (2026-04-17 UTC, Manifest ID:
+    - Compatible with Lethal Company v81 (2026-04-17 UTC, Manifest ID:
       `6423525044216269478`).
-        - Normally used together with [Imperium][imperium-package]; the v81.5 test
+        - Normally used together with [Imperium][imperium-package]; the v81 test
           environment used Imperium v1.3.0.
         - Imperium v1.3.0 appears to have some cruiser-related issues:
             - See the [Imperium issue comment][imperium-cruiser-workaround]
