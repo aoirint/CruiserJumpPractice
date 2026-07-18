@@ -20,10 +20,11 @@ The HUD hooks and transient result presentation are documented in
 toggle—before checking `LocalPlayerBusyState`. A busy player suppresses each
 requested action rather than dispatching a partial command.
 
-Accepted save and load input uses client request use cases, which cross the
-network boundary to the server. The server runs `SaveCruiserStateUseCase` or
-`LoadCruiserStateUseCase`, then a result ClientRpc returns a compact result
-for client-side presentation.
+Save and load are host-only. A non-host request is rejected locally with HUD
+feedback. Accepted host input uses client request use cases to cross the
+surrogate ServerRpc boundary; the server runs `SaveCruiserStateUseCase` or
+`LoadCruiserStateUseCase`, then a result ClientRpc returns a compact result for
+client-side presentation.
 
 ## Save and load policy
 

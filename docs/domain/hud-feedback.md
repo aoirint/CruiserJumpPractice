@@ -11,7 +11,7 @@
 
 | Member | Declaration | Role |
 | --- | --- | --- |
-| Singleton | `public static HUDManager Instance` | Resolve the active local HUD manager. |
+| Singleton | `public static HUDManager Instance { get; private set; }` | Resolve the active local HUD manager. |
 | Setup | `private void Awake()` | Postfix boundary after base HUD initialization. |
 | Frame update | `private void Update()` | Postfix boundary for frame-driven mod input handling. |
 | Tip API | `public void DisplayTip(string headerText, string bodyText, bool isWarning = false, bool useSave = false, string prefsKey = "LC_Tip1")` | Shows a game-styled, transient result message. |
@@ -69,11 +69,11 @@ cleanup responsibilities that a transient command result does not need.
 
 ### Handle an unavailable HUD
 
-#### Treat the current HUD as unavailable and defer HUD-dependent work — recommended
+#### Treat the current HUD as unavailable
 
 A null singleton means the game object needed for presentation is unavailable
-at that moment. The caller must not claim that a tip was displayed until a
-current manager can be resolved.
+at that moment. The caller must not claim that a tip was displayed. Whether to
+fail, retry, or queue work is a mod-specific architecture decision.
 
 #### Cache an older `HUDManager` instance or silently discard the result
 

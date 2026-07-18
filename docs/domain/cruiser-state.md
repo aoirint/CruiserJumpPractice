@@ -19,8 +19,12 @@
 | Magnet state | `public bool magnetedToShip` | Do not restore while true. |
 | Oil apply | `public void AddEngineOilOnLocalClient(int setCarHP)` | Local health application. |
 | Oil request | `public void AddEngineOilServerRpc(int playerId, int setHP)` | Network request for health application. |
+| Oil receive | `public void AddEngineOilClientRpc(int playerId, int setHP)` | Receiver-side health application; patch target for client observation. |
 | Turbo apply | `public void AddTurboBoostOnLocalClient(int setTurboBoosts)` | Local turbo-count application. |
 | Turbo request | `public void AddTurboBoostServerRpc(int playerId, int setTurboBoosts)` | Network request for turbo application. |
+| Turbo receive | `public void AddTurboBoostClientRpc(int playerId, int setTurboBoosts)` | Receiver-side turbo application; patch target for client observation. |
+| Position request | `public void SyncCarPositionServerRpc(Vector3 carPosition, Vector3 carRotation, float steeringInput, float EngineRPM)` | Owner-gated request for vehicle transform and driving values. |
+| Position receive | `public void SyncCarPositionClientRpc(Vector3 carPosition, Vector3 carRotation, float steeringInput, float engineSpeed)` | Stores non-owner synchronization targets; `FixedUpdate` moves toward the received transform later. |
 
 ## Implementation choices
 
@@ -41,12 +45,19 @@ Neither approach establishes that the reference is the current
 #### Assign the live transform, `moveInputVector.x`, and `EngineRPM` directly — recommended
 
 These are the current local values used by the vehicle update path. The
-documented health and turbo RPCs do not carry transform state.
+base-game owner path later synchronizes transform targets, steering animation,
+and engine speed through the `SyncCarPosition` RPC pair; direct assignment
+restores the captured state immediately on the live instance. This normal
+follow-up applies only while the local restoring client owns the
+`VehicleController`; `SyncCarPositionServerRpc` rejects a non-owner, so a
+non-owner restore requires a supported ownership or synchronization strategy.
 
-#### Send a position RPC or wait for a later vehicle update
+#### Send `SyncCarPositionServerRpc(...)` or wait for a later vehicle update
 
-The listed base-game RPCs do not represent this snapshot state, and delaying
-does not itself apply the saved values.
+The base-game RPC represents this snapshot state but is owner-gated and follows
+the vehicle's normal update cadence. Delaying does not itself apply saved
+values, and an explicit request is not the same as restoring the current local
+instance immediately.
 
 ### Restore health and turbo
 
@@ -97,9 +108,10 @@ relationships, not values to restore.
 
 Apply transform, steering, and engine speed to the live `VehicleController`.
 Apply health and turbo count through both their local helper and server RPC,
-using the current local player's ID for the RPC methods. The local helper is a
-separate patch point from the RPC: patch it when observing the effective local
-value, and patch the RPC when observing or guarding the network request.
+using the current local player's ID for the request. The local helper, outgoing
+`ServerRpc`, and incoming `ClientRpc` are distinct boundaries: patch the helper
+for local application, the server RPC for the request, and the client RPC for
+receiver-side observation.
 
 `VehicleController` moves a magneted vehicle during its fixed update. Check
 `magnetedToShip` before restore, and track `StartOfRound.SetMagnetOn(bool)` /
@@ -108,7 +120,8 @@ value, and patch the RPC when observing or guarding the network request.
 ## Change checklist
 
 1. Bind reflection to the private instance `int turboBoosts` field.
-2. Keep local-helper and server-RPC patches distinct; their signatures differ.
+2. Keep local-helper, server-RPC, and client-RPC patches distinct; their
+   signatures and roles differ.
 3. Do not write transform or snapshot values while `magnetedToShip` is true.
 4. After applying values, read `carHP` and `turboBoosts` from the same live
    `VehicleController` instance.
