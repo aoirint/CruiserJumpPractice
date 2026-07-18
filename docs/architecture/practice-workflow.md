@@ -9,6 +9,8 @@ it is neither persistent storage nor a multi-slot save system.
 
 The base-game vehicle members, synchronization methods, and magnet behaviour
 are documented in [../domain/cruiser-state.md](../domain/cruiser-state.md).
+The HUD hooks and transient result presentation are documented in
+[../domain/hud-feedback.md](../domain/hud-feedback.md).
 
 ## Input and command flow
 

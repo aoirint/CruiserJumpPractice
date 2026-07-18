@@ -26,8 +26,16 @@
 
 | Member | Declaration | Role |
 | --- | --- | --- |
+| Magnet flag | `public bool magnetOn` | Current ship-magnet state read before a toggle or restore decision. |
+| Magnet lever | `public AnimatedObjectTrigger magnetLever` | Interaction path that performs the game-managed magnet toggle. |
 | Magnet toggle | `public void SetMagnetOn(bool on)` | Patch target for ship-magnet transitions. |
 | Magnet sync | `public void SetMagnetOnClientRpc(bool on)` | Client-side magnet-toggle application. |
+
+### `AnimatedObjectTrigger`
+
+| Member | Declaration | Role |
+| --- | --- | --- |
+| Lever interaction | `public void TriggerAnimation(PlayerControllerB playerWhoTriggered)` | Invokes the lever's normal interaction path, which reaches the magnet toggle and its RPC path. |
 
 ## Implementation choices
 
@@ -95,6 +103,19 @@ snapshot values during that attachment state.
 
 A delay does not establish that the attachment state has ended.
 
+### Toggle the ship magnet
+
+#### Trigger `StartOfRound.magnetLever.TriggerAnimation(localPlayer)` — recommended
+
+The lever is the base-game interaction surface. Its normal path reaches
+`SetMagnetOn` and the corresponding network request, so the toggle follows the
+same state and synchronization path as a player action.
+
+#### Assign `magnetOn` or call only `SetMagnetOn(bool)`
+
+Direct assignment skips the behaviour attached to the lever. Calling the local
+method alone does not establish that the server-side toggle request was sent.
+
 ## Snapshot and restore boundary
 
 A durable snapshot can contain `transform.position`, `transform.eulerAngles`,
@@ -119,3 +140,5 @@ value, and patch the RPC when observing or guarding the network request.
 3. Do not write transform or snapshot values while `magnetedToShip` is true.
 4. After applying values, read `carHP` and `turboBoosts` from the same live
    `VehicleController` instance.
+5. Toggle the ship magnet through `magnetLever.TriggerAnimation(localPlayer)`;
+   do not set `magnetOn` directly.
