@@ -7,6 +7,24 @@ If you find a release-note error, encounter a bug, or want to report another
 project issue, see [CONTRIBUTING.md][contributing], then report it in
 [GitHub Issues][github-issues].
 
+## v0.2.1 - 2026-07-18 UTC
+
+This release improves stability and package metadata.
+
+### Fixed
+
+- Unexpected Harmony callback failures are now reported instead of escaping
+  through the game patch path, reducing the chance that a callback error
+  disrupts the surrounding game flow.
+- Corrected the Lethal Company compatibility label to v81 based on the public
+  depot history.
+
+### Notes
+
+- Compatibility: Lethal Company v81 (2026-04-17 UTC, Manifest ID:
+  `6423525044216269478`).
+- `Debug.ValidationLogging` keeps the same setting name, default, and behavior.
+
 ## v0.2.0 - 2026-05-06 UTC
 
 This release rebuilds CruiserJumpPractice for Lethal Company v81 and includes
