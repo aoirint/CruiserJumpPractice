@@ -10,6 +10,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## Unreleased
 
+## v0.2.2 - 2026-07-18 UTC
+
+### Changed
+
+- Refined the user-facing v0.2.1 release notes to clarify the internal
+  improvements, package-icon source update, and Lethal Company v81 label
+  correction included in the package.
+
+### Notes
+
+- No gameplay or binary behavior changes are intended in this release.
+- Compatibility: Lethal Company v81 (2026-04-17 UTC, Manifest ID:
+  `6423525044216269478`).
+
 ## v0.2.1 - 2026-07-18 UTC
 
 ### Changed
