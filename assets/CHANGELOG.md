@@ -21,8 +21,8 @@ This release includes internal improvements and some documentation corrections.
 
 ### Fixed
 
-- Corrected the Lethal Company compatibility label to match the in-game v81
-  label.
+- Corrected the Lethal Company compatibility label from v81.5 to match the
+  in-game v81 label.
 
 ### Notes
 
