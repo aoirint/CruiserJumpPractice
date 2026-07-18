@@ -16,7 +16,7 @@ This release includes internal improvements and some documentation corrections.
 - Updated the package icon's editable source from GIMP XCF to SVG. The
   package icon may have minor rendering differences.
 - Refactored internal configuration handling.
-- Expanded `Debug.ValidationLogging` diagnostics for unexpected errors in the
+- Improved `Debug.ValidationLogging` diagnostics for unexpected errors in the
   mod's game-event callbacks.
 
 ### Fixed
