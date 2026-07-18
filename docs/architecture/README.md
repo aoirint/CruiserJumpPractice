@@ -7,4 +7,3 @@ CruiserJumpPractice's base-game vehicle and magnet knowledge is documented in
   client/server commands, snapshots, and result presentation.
 - [Layer boundaries](layer-boundaries.md) defines state ownership and the Core
   and Interop responsibilities.
-

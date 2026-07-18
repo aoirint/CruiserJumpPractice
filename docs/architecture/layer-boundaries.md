@@ -24,4 +24,3 @@ and exception guards. It translates framework callbacks into
 stores, server use cases, client request and presentation use cases, then
 handlers. New game/framework dependencies should be represented by a Core port
 with an Interop implementation; new practice policy belongs in a Core use case.
-

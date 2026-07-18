@@ -35,4 +35,3 @@ presentation separate from authority and validation diagnostics.
 
 The magnet command is a separate client use case. Base-game magnet patches
 feed validation observations but do not own the mod's input policy.
-

@@ -15,7 +15,7 @@
 | Steering | `public Vector2 moveInputVector` | Its `x` component is the stored steering input. |
 | Engine speed | `public float EngineRPM` | Stored engine-speed value. |
 | Health | `public int carHP` | Stored and restored through the oil helpers. |
-| Turbo count | `private int turboBoosts` | Reflection target: `GetField("turboBoosts", BindingFlags.NonPublic | BindingFlags.Instance)`. |
+| Turbo count | `private int turboBoosts` | Reflection target: `GetField("turboBoosts", BindingFlags.NonPublic \| BindingFlags.Instance)`. |
 | Magnet state | `public bool magnetedToShip` | Do not restore while true. |
 | Oil apply | `public void AddEngineOilOnLocalClient(int setCarHP)` | Local health application. |
 | Oil request | `public void AddEngineOilServerRpc(int playerId, int setHP)` | Network request for health application. |
