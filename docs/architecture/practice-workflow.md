@@ -7,8 +7,10 @@
 it is neither persistent storage nor a multi-slot save system.
 `CruiserRestoreObservation` records values around a restore for validation.
 
-The base-game vehicle members, synchronization methods, and magnet behaviour
-are documented in [../domain/cruiser-state.md](../domain/cruiser-state.md).
+The base-game vehicle members and synchronization methods are documented in
+[../domain/cruiser-state.md](../domain/cruiser-state.md). The ship magnet's
+lever and synchronization path are documented in
+[../domain/ship-magnet.md](../domain/ship-magnet.md).
 The HUD hooks and transient result presentation are documented in
 [../domain/hud-feedback.md](../domain/hud-feedback.md).
 
