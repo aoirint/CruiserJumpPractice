@@ -29,6 +29,16 @@
 | Magnet toggle | `public void SetMagnetOn(bool on)` | Patch target for ship-magnet transitions. |
 | Magnet sync | `public void SetMagnetOnClientRpc(bool on)` | Client-side magnet-toggle application. |
 
+## Implementation choices
+
+| Decision | Options | Recommended approach | Why |
+| --- | --- | --- | --- |
+| Find the cruiser | Cache a previous instance; search `VehicleController` instances when needed; infer it from ship state | Resolve the live `VehicleController` instance. | The snapshot and restore targets are members of that instance; a stale reference can refer to a destroyed or replaced vehicle. |
+| Restore transform and driving values | Assign public members directly; send a position RPC; wait for a later vehicle update | Assign the live transform, `moveInputVector.x`, and `EngineRPM` directly. | These are the current local values used by the vehicle update path; the documented health and turbo RPCs do not carry transform state. |
+| Restore health and turbo | Assign fields only; call local helpers only; call local helper and matching server RPC | Call the local helper and matching server RPC. | The helper applies the local value immediately, while the RPC carries the corresponding network request; either one alone covers only one stage. |
+| Read turbo count | Assume a public member; reflect `turboBoosts`; infer it from the HUD | Reflect the private `turboBoosts` field with non-public instance binding. | It is the stored base-game value; the HUD is a presentation of that value and does not provide the field identity needed for save/restore. |
+| Restore near the ship magnet | Restore unconditionally; reject while `magnetedToShip`; wait for an arbitrary delay | Reject while `magnetedToShip` and observe the magnet methods. | The base controller moves a magneted vehicle, so an arbitrary delay does not establish that the attachment state has ended. |
+
 ## Snapshot and restore boundary
 
 A durable snapshot can contain `transform.position`, `transform.eulerAngles`,
