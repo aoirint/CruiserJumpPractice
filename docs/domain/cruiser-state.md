@@ -5,6 +5,11 @@
 This document records the vehicle-state concepts used for Lethal Company v81.
 Recheck target-version evidence before changing save or restore behavior.
 
+The claims are `direct_static` observations from the v81 decompilation's
+`VehicleController.cs` and `StartOfRound.cs`. The matching v81 asset root was
+inspected; no serialized vehicle value is used as a premise. Whether a client
+has applied a requested network change is runtime-dependent.
+
 ## Snapshot boundary
 
 A useful cruiser snapshot separates durable vehicle values from live scene
