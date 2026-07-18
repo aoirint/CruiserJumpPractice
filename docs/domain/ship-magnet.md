@@ -35,7 +35,7 @@ different and sends the matching server RPC. The server reaches
 `SetMagnetOnClientRpc(bool)` so connected clients apply the same value.
 
 `AnimatedObjectTrigger.TriggerAnimation(PlayerControllerB)` is the game-owned
-lever interaction path. In the v81 ship-magnet scene, the lever's
+lever interaction path. In the ship-magnet scene, the lever's
 `onTriggerBool` persistent call targets `StartOfRound.SetMagnetOn`; this asset
 binding is what connects the generic trigger to the magnet state and RPC path.
 Recheck that binding as well as the method signatures on a game update.
