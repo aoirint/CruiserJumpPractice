@@ -7,6 +7,22 @@ If you find a release-note error, encounter a bug, or want to report another
 project issue, see [CONTRIBUTING.md][contributing], then report it in
 [GitHub Issues][github-issues].
 
+## v0.2.2 - 2026-07-18 UTC
+
+This release updates the v0.2.1 release notes included in the package.
+
+No gameplay changes are introduced.
+
+### Changed
+
+- Clarified the v0.2.1 notes for internal improvements, the package-icon source
+  update, and the Lethal Company v81 label correction.
+
+### Notes
+
+- Compatibility: Lethal Company v81 (2026-04-17 UTC, Manifest ID:
+  `6423525044216269478`).
+
 ## v0.2.1 - 2026-07-18 UTC
 
 This release includes internal improvements and some documentation corrections.
