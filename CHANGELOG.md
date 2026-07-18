@@ -10,17 +10,30 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## Unreleased
 
+### Changed
+
+- Moved the existing `Debug.ValidationLogging` configuration binding behind a
+  Core configuration port without changing its section, key, default, or
+  behavior.
+- Replaced the editable package-icon source with SVG while retaining the
+  packaged PNG appearance.
+
 ### Fixed
 
-- Added CI-only BepInEx plugin metadata fallback for future prerelease and edge
-  artifacts:
-    - CJP `v0.2.0-alpha.6` used a source `BepInExPluginVersion` override to
-      pass BepInEx 5 startup validation.
-    - The stable `v0.2.0` release correctly removed that source override once
-      `Version` became loader-compatible again.
-    - Future non-stable builds now pass `BepInExPluginVersion=0.0.0` only to
-      the CI build, keeping stable source metadata clean while preventing the
-      prerelease startup blocker from recurring.
+- Guarded Harmony callback failures so unexpected callback exceptions are
+  reported instead of escaping through the game patch path.
+- Added a CI-only BepInEx metadata fallback for prerelease and edge artifacts.
+  Stable builds continue to use their source version metadata.
+- Validated that the version-generation action fails when its required
+  marker-adjacent project version is missing.
+- Corrected the Lethal Company compatibility label to v81 throughout
+  documentation, changelogs, and Thunderstore metadata, based on the public
+  depot history.
+
+### Notes
+
+- Compatibility: Lethal Company v81 (2026-04-17 UTC, Manifest ID:
+  `6423525044216269478`).
 
 ## v0.2.0 - 2026-05-06 UTC
 
