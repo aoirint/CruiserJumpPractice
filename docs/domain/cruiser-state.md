@@ -31,13 +31,69 @@
 
 ## Implementation choices
 
-| Decision | Options | Recommended approach | Why |
-| --- | --- | --- | --- |
-| Find the cruiser | Cache a previous instance; search `VehicleController` instances when needed; infer it from ship state | Resolve the live `VehicleController` instance. | The snapshot and restore targets are members of that instance; a stale reference can refer to a destroyed or replaced vehicle. |
-| Restore transform and driving values | Assign public members directly; send a position RPC; wait for a later vehicle update | Assign the live transform, `moveInputVector.x`, and `EngineRPM` directly. | These are the current local values used by the vehicle update path; the documented health and turbo RPCs do not carry transform state. |
-| Restore health and turbo | Assign fields only; call local helpers only; call local helper and matching server RPC | Call the local helper and matching server RPC. | The helper applies the local value immediately, while the RPC carries the corresponding network request; either one alone covers only one stage. |
-| Read turbo count | Assume a public member; reflect `turboBoosts`; infer it from the HUD | Reflect the private `turboBoosts` field with non-public instance binding. | It is the stored base-game value; the HUD is a presentation of that value and does not provide the field identity needed for save/restore. |
-| Restore near the ship magnet | Restore unconditionally; reject while `magnetedToShip`; wait for an arbitrary delay | Reject while `magnetedToShip` and observe the magnet methods. | The base controller moves a magneted vehicle, so an arbitrary delay does not establish that the attachment state has ended. |
+### Find the cruiser
+
+#### Resolve the live `VehicleController` instance — recommended
+
+Snapshot and restore targets are members of that instance. Resolving the live
+instance avoids using a stale reference to a destroyed or replaced vehicle.
+
+#### Cache a previous instance or infer the vehicle from ship state
+
+Neither approach establishes that the reference is the current
+`VehicleController` being updated by the game.
+
+### Restore transform and driving values
+
+#### Assign the live transform, `moveInputVector.x`, and `EngineRPM` directly — recommended
+
+These are the current local values used by the vehicle update path. The
+documented health and turbo RPCs do not carry transform state.
+
+#### Send a position RPC or wait for a later vehicle update
+
+The listed base-game RPCs do not represent this snapshot state, and delaying
+does not itself apply the saved values.
+
+### Restore health and turbo
+
+#### Call the local helper and matching server RPC — recommended
+
+The helper applies the local value immediately, while the RPC carries the
+corresponding network request. Both stages are represented by separate base
+methods.
+
+#### Assign fields only
+
+Direct assignment bypasses the base helper and its network request.
+
+#### Call only the local helper or only the server RPC
+
+Either alternative covers only one of the local-application and network-request
+stages.
+
+### Read turbo count
+
+#### Reflect the private `turboBoosts` field with non-public instance binding — recommended
+
+It is the stored base-game value and gives the field identity required for
+save and restore.
+
+#### Assume a public member or infer the value from the HUD
+
+The count is private, and HUD state is a presentation rather than the stored
+field required by the implementation.
+
+### Restore near the ship magnet
+
+#### Reject while `magnetedToShip` and observe magnet methods — recommended
+
+The base controller moves a magneted vehicle, so restoration must not write
+snapshot values during that attachment state.
+
+#### Wait for an arbitrary delay
+
+A delay does not establish that the attachment state has ended.
 
 ## Snapshot and restore boundary
 
