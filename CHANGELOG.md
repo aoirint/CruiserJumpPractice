@@ -28,9 +28,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
   Stable builds continue to use their source version metadata.
 - Validated that the version-generation action fails when its required
   marker-adjacent project version is missing.
-- Corrected the Lethal Company compatibility label to v81 throughout
-  documentation, changelogs, and Thunderstore metadata, based on the public
-  depot history.
+- Corrected the inaccurate `v81.5` Lethal Company compatibility label to match
+  the in-game v81 label throughout documentation, changelogs, and Thunderstore
+  metadata.
 
 ### Notes
 
