@@ -7,20 +7,27 @@
 
 ## Patch and access targets
 
-| Type | Member | Declaration | Use |
-| --- | --- | --- | --- |
-| `VehicleController` | Physics body | `public Rigidbody mainRigidbody` | Source of the live vehicle position, rotation, and velocity. |
-| `VehicleController` | Steering | `public Vector2 moveInputVector` | Its `x` component is the stored steering input. |
-| `VehicleController` | Engine speed | `public float EngineRPM` | Stored engine-speed value. |
-| `VehicleController` | Health | `public int carHP` | Stored and restored through the oil helpers. |
-| `VehicleController` | Turbo count | `private int turboBoosts` | Reflection target: `GetField("turboBoosts", BindingFlags.NonPublic | BindingFlags.Instance)`. |
-| `VehicleController` | Magnet state | `public bool magnetedToShip` | Do not restore while true. |
-| `VehicleController` | Oil apply | `public void AddEngineOilOnLocalClient(int setCarHP)` | Local health application. |
-| `VehicleController` | Oil request | `public void AddEngineOilServerRpc(int playerId, int setHP)` | Network request for health application. |
-| `VehicleController` | Turbo apply | `public void AddTurboBoostOnLocalClient(int setTurboBoosts)` | Local turbo-count application. |
-| `VehicleController` | Turbo request | `public void AddTurboBoostServerRpc(int playerId, int setTurboBoosts)` | Network request for turbo application. |
-| `StartOfRound` | Magnet toggle | `public void SetMagnetOn(bool on)` | Patch target for ship-magnet transitions. |
-| `StartOfRound` | Magnet sync | `public void SetMagnetOnClientRpc(bool on)` | Client-side magnet-toggle application. |
+### `VehicleController`
+
+| Member | Declaration | Role |
+| --- | --- | --- |
+| Physics body | `public Rigidbody mainRigidbody` | Source of the live vehicle position, rotation, and velocity. |
+| Steering | `public Vector2 moveInputVector` | Its `x` component is the stored steering input. |
+| Engine speed | `public float EngineRPM` | Stored engine-speed value. |
+| Health | `public int carHP` | Stored and restored through the oil helpers. |
+| Turbo count | `private int turboBoosts` | Reflection target: `GetField("turboBoosts", BindingFlags.NonPublic | BindingFlags.Instance)`. |
+| Magnet state | `public bool magnetedToShip` | Do not restore while true. |
+| Oil apply | `public void AddEngineOilOnLocalClient(int setCarHP)` | Local health application. |
+| Oil request | `public void AddEngineOilServerRpc(int playerId, int setHP)` | Network request for health application. |
+| Turbo apply | `public void AddTurboBoostOnLocalClient(int setTurboBoosts)` | Local turbo-count application. |
+| Turbo request | `public void AddTurboBoostServerRpc(int playerId, int setTurboBoosts)` | Network request for turbo application. |
+
+### `StartOfRound`
+
+| Member | Declaration | Role |
+| --- | --- | --- |
+| Magnet toggle | `public void SetMagnetOn(bool on)` | Patch target for ship-magnet transitions. |
+| Magnet sync | `public void SetMagnetOnClientRpc(bool on)` | Client-side magnet-toggle application. |
 
 ## Snapshot and restore boundary
 
