@@ -9,21 +9,25 @@ project issue, see [CONTRIBUTING.md][contributing], then report it in
 
 ## v0.2.1 - 2026-07-18 UTC
 
-This release improves stability and package metadata.
+This release includes internal improvements and some documentation corrections.
+
+### Changed
+
+- Updated the package icon's editable source from GIMP XCF to SVG. The
+  package icon may have minor rendering differences.
+- Refactored internal configuration handling.
+- Expanded `Debug.ValidationLogging` diagnostics for unexpected errors in the
+  mod's game-event callbacks.
 
 ### Fixed
 
-- Unexpected Harmony callback failures are now reported instead of escaping
-  through the game patch path, reducing the chance that a callback error
-  disrupts the surrounding game flow.
-- Corrected the Lethal Company compatibility label to v81 based on the public
-  depot history.
+- Corrected the Lethal Company compatibility label to match the in-game v81
+  label.
 
 ### Notes
 
 - Compatibility: Lethal Company v81 (2026-04-17 UTC, Manifest ID:
   `6423525044216269478`).
-- `Debug.ValidationLogging` keeps the same setting name, default, and behavior.
 
 ## v0.2.0 - 2026-05-06 UTC
 
