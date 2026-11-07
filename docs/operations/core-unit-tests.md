@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-Install the latest [.NET 10 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0),
+Install the [.NET 10 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0),
 which includes the .NET 10 runtime used by the tests.
 Run the commands below from the repository root.
 
