@@ -47,6 +47,10 @@ runs:
       shell: bash
       run: dotnet build --no-restore
 
+    - name: Test Core behavior
+      shell: bash
+      run: dotnet test --no-restore --no-build
+
     - name: Lint Markdown
       uses: DavidAnson/markdownlint-cli2-action@21c1be1b93ad9ed58fa840aacc3f279cde2a72ff # v24.2.0
       with:

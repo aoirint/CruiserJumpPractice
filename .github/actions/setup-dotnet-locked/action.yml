@@ -15,6 +15,8 @@ runs:
       run: |
         test ! -e CruiserJumpPractice/bin
         test ! -e CruiserJumpPractice/obj
+        test ! -e CruiserJumpPractice.Tests/bin
+        test ! -e CruiserJumpPractice.Tests/obj
         echo 'build-state-owned=true' >>"$GITHUB_OUTPUT"
 
     - name: Set up .NET
@@ -22,7 +24,9 @@ runs:
       with:
         global-json-file: global.json
         cache: true
-        cache-dependency-path: CruiserJumpPractice/packages.lock.json
+        cache-dependency-path: |
+          CruiserJumpPractice/packages.lock.json
+          CruiserJumpPractice.Tests/packages.lock.json
 
     - name: Restore NuGet packages
       shell: bash
