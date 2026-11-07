@@ -110,7 +110,7 @@ Use the commands as follows:
   See [Core unit tests](./docs/operations/core-unit-tests.md) for the test scope
   and lockfile update procedure.
 - Run Markdown lint for documentation changes.
-  The Docker command is the reviewed immutable path.
+  The Docker command pins the lint image by digest.
 - Run `shellcheck`, `actionlint`, and `pinact` when changing GitHub Actions
   workflows, composite actions, shell scripts, or related repository automation.
   ShellCheck should run before actionlint so actionlint can use its ShellCheck
