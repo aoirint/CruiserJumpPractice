@@ -100,12 +100,15 @@ actionlint -pyflakes=
 pinact run --check --min-age 7
 $env:DOTNET_CLI_UI_LANGUAGE = 'en'
 dotnet build --no-restore
+dotnet test --no-restore --no-build
 ```
 
 Use the commands as follows:
 
-- Run `dotnet format` and the environment-pinned `dotnet build` for source
-  changes.
+- Run `dotnet format`, the environment-pinned `dotnet build`, and `dotnet test`
+  for C# source, test, project, or dependency changes.
+  See [Core unit tests](./docs/operations/core-unit-tests.md) for the test scope
+  and lockfile update procedure.
 - Run Markdown lint for documentation changes.
   The Docker command is the reviewed immutable path.
 - Run `shellcheck`, `actionlint`, and `pinact` when changing GitHub Actions

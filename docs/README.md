@@ -13,6 +13,7 @@
 - Keep an architecture document focused on one mod concern. Do not copy
   base-game member declarations or behaviour analysis into it; link to the
   relevant domain document instead.
+- `operations/` contains repeatable development and verification procedures.
 
 ## Release assets
 
@@ -20,4 +21,5 @@
   and regeneration workflow.
 
 Start with [architecture/README.md](architecture/README.md) for the mod design,
-and [domain/README.md](domain/README.md) for supporting knowledge.
+[domain/README.md](domain/README.md) for supporting knowledge, and
+[operations/README.md](operations/README.md) for development procedures.

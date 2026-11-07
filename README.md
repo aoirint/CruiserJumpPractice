@@ -4,6 +4,7 @@ A [Lethal Company][lethal-company-steam] mod that saves and loads cruiser positi
 rotation, and condition, and lets you toggle the magnet remotely.
 
 - [User guide](./assets/README.md)
+- [Developer documentation](./docs/README.md)
 
 ## Development
 
@@ -57,6 +58,17 @@ dotnet format --no-restore --verify-no-changes
 `dotnet format` is an aggregate formatter that checks whitespace, built-in code
 style, and fixable analyzer diagnostics. Roslyn analyzers also run during build,
 including diagnostics that cannot be automatically fixed.
+
+### Core unit tests
+
+After a locked restore and build, run:
+
+```powershell
+dotnet test --no-restore --no-build
+```
+
+See [Core unit tests](./docs/operations/core-unit-tests.md) for the framework,
+coverage scope, focused command, and dependency maintenance procedure.
 
 ### Markdown lint
 
