@@ -8,7 +8,7 @@ rotation, and condition, and lets you toggle the magnet remotely.
 
 ## Development
 
-Install [.NET SDK 10.0][dotnet-sdk-download] or later.
+Install the latest [.NET 10 SDK][dotnet-sdk-download].
 
 Install [PowerShell 7][powershell-install].
 
