@@ -2,7 +2,7 @@
 
 ## Scope and prerequisites
 
-Install the SDK selected by `global.json` (currently 10.0.302) and run commands
+Install the SDK selected by [global.json](../../global.json) and run commands
 from the repository root. Restore needs access to the explicit NuGet feeds in
 each project's `nuget.config`; running tests needs no game installation,
 Steam, Unity editor, BepInEx process, or filesystem fixtures.
@@ -14,8 +14,8 @@ See [layer boundaries](../architecture/layer-boundaries.md) for Core ownership.
 
 ## Framework and runner
 
-Use xUnit.net v3 3.2.2 with the VSTest runner supplied by
-`Microsoft.NET.Test.Sdk` 18.0.1 and `xunit.runner.visualstudio` 3.1.5.
+Use xUnit.net v3 with VSTest integration supplied by `Microsoft.NET.Test.Sdk`
+and `xunit.runner.visualstudio`.
 This supports the existing solution-level `dotnet test` workflow and Visual
 Studio Test Explorer without changing the SDK's runner selection.
 The executable output type is required by xUnit v3.
@@ -62,7 +62,11 @@ both lockfiles.
 
 ## Dependency maintenance
 
-Test references are exact versions and private development dependencies.
+Test packages are private development dependencies. The
+[test project](../../CruiserJumpPractice.Tests/CruiserJumpPractice.Tests.csproj)
+declares target frameworks and package constraints; its
+[lockfile](../../CruiserJumpPractice.Tests/packages.lock.json) records exact
+resolved versions and content hashes.
 The test project's `nuget.config` clears implicit sources and maps the test
 framework to nuget.org, while retaining mappings for production dependencies.
 Each resolving project has its own committed `packages.lock.json`.
