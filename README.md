@@ -9,8 +9,6 @@ rotation, and condition, and lets you toggle the magnet remotely.
 ## Development
 
 Install the [.NET 11 SDK][dotnet-sdk-download].
-Install .NET SDK 10.0.302 alongside it to run the unchanged `net10.0` tests;
-CI installs both SDKs and selects .NET 11 for builds.
 
 Install [PowerShell 7][powershell-install].
 
