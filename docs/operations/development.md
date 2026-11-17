@@ -20,20 +20,39 @@ Use the checked-in package sources and source mappings.
    tests. Keep the project and lockfile changes together in the PR and verify
    its CI before merging.
 
-Run from the repository root in PowerShell. For a plugin dependency update:
+Run from the repository root in PowerShell. The plugin and test project have
+separate NuGet configurations and lockfiles.
+
+For a plugin dependency update:
 
 ```powershell
 dotnet restore CruiserJumpPractice/CruiserJumpPractice.csproj `
   --configfile CruiserJumpPractice/nuget.config --force-evaluate --use-lock-file
+```
+
+For a test dependency update:
+
+```powershell
+dotnet restore CruiserJumpPractice.Tests/CruiserJumpPractice.Tests.csproj `
+  --configfile CruiserJumpPractice.Tests/nuget.config --force-evaluate --use-lock-file
+```
+
+After reviewing the diff, verify the lockfile for the project you updated:
+
+Plugin:
+
+```powershell
 dotnet restore CruiserJumpPractice/CruiserJumpPractice.csproj `
   --configfile CruiserJumpPractice/nuget.config --locked-mode
 ```
 
-For a test dependency, substitute
-`CruiserJumpPractice.Tests/CruiserJumpPractice.Tests.csproj` and
-`CruiserJumpPractice.Tests/nuget.config` in both commands.
-Keep the production graph unchanged unless the plugin update is intended.
-Then run the [core unit-test checks](core-unit-tests.md).
+Tests:
 
-See [Quality checks](../../README.md#quality-checks) for
-format and build verification.
+```powershell
+dotnet restore CruiserJumpPractice.Tests/CruiserJumpPractice.Tests.csproj `
+  --configfile CruiserJumpPractice.Tests/nuget.config --locked-mode
+```
+
+Keep the production graph unchanged unless the plugin update is intended.
+Run the [core unit-test checks](core-unit-tests.md) and see
+[Quality checks](../../README.md#quality-checks) for format and build verification.
