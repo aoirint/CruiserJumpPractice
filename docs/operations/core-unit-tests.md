@@ -2,8 +2,8 @@
 
 ## Prerequisites
 
-Install the [.NET 10 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0),
-which includes the .NET 10 runtime used by the tests.
+Install the [.NET 11 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/11.0),
+which includes the .NET 11 runtime used by the tests.
 Run the commands below from the repository root.
 
 Package restore needs network access to nuget.org and the BepInEx NuGet feed.
@@ -31,7 +31,7 @@ removes build outputs.
 
 ## Test scope and framework
 
-The test project targets `net10.0` and references the production assembly.
+The test project targets `net11.0` and references the production assembly.
 The plugin remains `netstandard2.1` with C# 13. Tests receive access to internal
 types through `InternalsVisibleTo("CruiserJumpPractice.Tests")`.
 See [layer boundaries](../architecture/layer-boundaries.md) for Core ownership.

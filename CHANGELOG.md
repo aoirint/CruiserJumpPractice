@@ -15,6 +15,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - Added isolated Core unit tests with xUnit.net v3, locked test dependencies,
   and a solution-level CI test gate before release packaging.
 
+### Changed
+
+- Use .NET SDK 11.0.100 for local and CI builds, target .NET 11 in the
+  test harness, and configure a seven-day NuGet cooldown for automatic
+  version selection.
+
 ## v0.2.2 - 2026-07-18 UTC
 
 ### Changed
