@@ -37,7 +37,7 @@ dotnet restore CruiserJumpPractice.Tests/CruiserJumpPractice.Tests.csproj `
   --configfile CruiserJumpPractice.Tests/nuget.config --force-evaluate --use-lock-file
 ```
 
-After reviewing the diff, verify the lockfile for the project you updated:
+Verify the lockfile for the project you updated:
 
 Plugin:
 
@@ -52,7 +52,3 @@ Tests:
 dotnet restore CruiserJumpPractice.Tests/CruiserJumpPractice.Tests.csproj `
   --configfile CruiserJumpPractice.Tests/nuget.config --locked-mode
 ```
-
-Keep the production graph unchanged unless the plugin update is intended.
-Run the [core unit-test checks](core-unit-tests.md) and see
-[Quality checks](../../README.md#quality-checks) for format and build verification.
