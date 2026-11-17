@@ -65,20 +65,9 @@ copies only the production plugin DLL; test binaries stay out of the archive.
 ## Updating test dependencies
 
 The test framework and runner are private development dependencies.
-`dotnet restore --locked-mode` installs the committed dependency graph for both
-projects. Use the procedure below when intentionally updating a test package.
+Use the [dependency update procedure](development.md#dependency-updates) with
+the test project and its own NuGet configuration.
 
-Before changing a test dependency, review its publisher, immutable version,
-release age of at least seven days, license, content hash, and transitive graph.
-Edit the package version in
-`CruiserJumpPractice.Tests/CruiserJumpPractice.Tests.csproj`, then regenerate its
-lockfile:
-
-```shell
-dotnet restore CruiserJumpPractice.Tests/CruiserJumpPractice.Tests.csproj --force-evaluate
-```
-
-Review the resulting lockfile diff, then run the verification commands above.
 Keep the production dependency graph unchanged unless its update is separately
 intended. Reverting the project and lockfile changes restores the previous
 dependency selection. Update this guide when the runtime requirements, test
