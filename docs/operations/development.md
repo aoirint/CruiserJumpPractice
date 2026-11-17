@@ -4,6 +4,7 @@
 
 Run from the repository root in PowerShell. The plugin and test project have
 separate NuGet configurations and lockfiles.
+NuGet applies a seven-day cooldown to automatic version selection.
 
 For a plugin dependency update:
 
