@@ -1,7 +1,7 @@
 # Domain Knowledge
 
-This directory contains implementation knowledge about Lethal Company. It does
-not define CruiserJumpPractice's product model or design decisions.
+This directory contains implementation knowledge about Lethal Company and
+reusable knowledge about dependencies. It does not define CruiserJumpPractice's product model or design decisions.
 
 - [Cruiser state](cruiser-state.md) records the vehicle values and
   synchronization methods used to reason about cruiser save and restore.
@@ -9,3 +9,5 @@ not define CruiserJumpPractice's product model or design decisions.
   vehicle-attachment behaviour used for ship-magnet interaction.
 - [HUD feedback](hud-feedback.md) records the HUD lifecycle hooks and tip
   API available for transient feedback.
+- [Dependency baseline](dependencies.md) explains NuGet minimum publish age,
+  including automatic version selection, publication metadata, and restore limits.
